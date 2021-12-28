@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  Numpy Fundamentals Numpy Fundamentals
+title:  Numpy Fundamentals
  
 description: Overview of the numpy python library.
 ---
