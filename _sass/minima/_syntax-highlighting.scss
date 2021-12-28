@@ -1,0 +1,146 @@
+/**
+ * Syntax highlighting styles
+ */
+.highlight {
+  background: $grey-color-dark;
+  @extend %vertical-rhythm;
+
+  .highlighter-rouge & {
+    background: $grey-color-dark;
+  }
+  .p
+  .hll,
+  .s,
+  .sa,
+  .sb,
+  .sc,
+  .dl,
+  .sd,
+  .s2,
+  .se,
+  .sh,
+  .si,
+  .sx,
+  .sr,
+  .s1,
+  .ss {
+       color:rgb(231, 153, 122);
+  }
+
+  .go {
+    color: #44475a;
+  }
+
+  .err,
+  .g,
+  .l,
+  .n,
+  .x,
+  .ge,
+  .gr,
+  .gh,
+  .gi,
+  .gp,
+  .gs,
+  .gu,
+  .gt,
+  .ld,
+  .no,
+  .nd,
+  .pi,
+  .ni,
+  .ne,
+  .nn,
+  .nx,
+  .py,
+  .w {
+    color: #dadad8;
+  }
+
+  .p {
+       font-weight: bold;
+       color: rgb(102, 217, 239);
+}
+
+  .ge {
+    text-decoration: underline;
+  }
+
+  .bp {
+    font-style: italic;
+  }
+
+  .c,
+  .ch,
+  .cm,
+  .cpf,
+  .cs {
+    color: #6272a4;
+  }
+
+  .c1 {
+    color: gray;
+  }
+
+  .kd,
+  .kt,
+  .nb,
+  .nl,
+  .nv,
+  .vc,
+  .vg,
+  .vi,
+  .vm {
+    color: #8be9fd;
+  }
+
+  .kd,
+  .nb,
+  .nl,
+  .nv,
+  .vc,
+  .vg,
+  .vi,
+  .vm {
+    font-style: italic;
+  }
+
+  .fm,
+  .na,
+  .nc,
+  .nf
+   {
+    color: rgb(172, 229, 145);
+  }
+
+  .k,
+  .o,
+  .cp,
+  .kc,
+  .kn,
+  .kp,
+  .kr,
+  .nt,
+  .ow {
+    color: rgb(148, 210, 247);
+  }
+
+  .kc {
+       color: rgb(172, 229, 145);   
+  }
+
+  .m,
+  .mb,
+  .mf,
+  .mh,
+  .mi,
+  .mo,
+  .il,
+  .bp {
+    color: #bd93f9;
+  }
+
+  .gd {
+    color: #ff5555;
+  }
+}

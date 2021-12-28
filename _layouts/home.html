@@ -1,0 +1,49 @@
+---
+layout: landing
+---
+<!-- =============================== LANDING PAGE START =============================== -->
+<div class="blog">
+    <section class="blog blog_landing">
+        <h2 class="section__title section__title--blog">My Blog</h2>
+
+        {% include scroll.html %}
+        
+    </section>
+ 
+    <section class="recent_post blog__item">
+        <h2 class="recent_title">Most recent post</h2>
+        <div class="recent_post--container">
+            <div class="recent_post--post">
+                {% for post in site.posts limit:1 %}
+                <div class="blog_post">
+                    <a class="post_title" href="{{ post.url }}">{{ post.title}}</a>
+                    <p class="post_desc">
+                        {{ post.description }}
+                    </p>
+                    <div class="read_more">
+                        <a class="post_link" href="{{ post.url }}">Read More</a>
+                    </div>
+                    
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <section class="blog__item">
+        <h2 class="recent_title">Previous Posts</h2>
+        <div class="previous_posts">
+            {% for post in site.posts limit:6 offset:1 %}
+                <div class="blog-post previous_posts--item">
+                    <a class="post_title" href="{{ post.url }}">{{ post.title}}</a>
+                    <p class="post_desc">
+                        {{ post.description }}
+                    </p>
+                    <div class="read_more">
+                        <a class="post_link" href="{{ post.url }}">Read More</a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+</div>
