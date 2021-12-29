@@ -1,8 +1,7 @@
 ---
 layout: post
-author: Ethan Guyant
 title:  Numpy Fundamentals
-categories: Python
+ 
 description: Overview of the numpy python library.
 ---
 

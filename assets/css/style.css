@@ -138,6 +138,7 @@ strong {
     perspective-origin: 0%;
 
 }
+
 /* =============================== SECTION STYLES =============================== */
 
 .section__title {
@@ -281,22 +282,6 @@ strong {
 .hamburger::before {top: 6px;}
 .hamburger::after {bottom: 6px;}
 
-/* =============================== HOME BUTTON =============================== */
-.blog_home {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    right: 0;
-    display: flex;
-    padding: 1em;
-    z-index: 15;
-    color: var(--clr-accent);
-}
-
-.blog-home::hover {
-    color: var(--clr-accent2);
-}
-/* =============================== HOME BUTTON END =============================== */
 
 /* =============================== INTRO SECTiON =============================== */
 
@@ -906,13 +891,7 @@ svg circle:nth-child(2) {
 
 .blog_landing {
     height: 100vh;
-}
-.tag_names {
-    font-size: 0.9rem;
-    font-family: var(--ff-secondary);
-    color: var(--clr-accent);
-    margin-right: 0.8rem;
-    white-space: nowrap;
+
 }
 
 .section__title--blog {
@@ -982,18 +961,14 @@ svg circle:nth-child(2) {
     transition: ease-out 200ms;
     align-self: center;
 }
-.post_title:hover {
-    opacity: 0.55;
-}
 .post_desc {
     align-self: start;
 }
-.post_meta {
-    margin: 0;
+
+.post_title:hover {
+    opacity: 0.55;
 }
-.cat_tag {
-    color: var(--clr-accent);
-}
+
 .read_more {
    margin-top: 2rem;
    align-self: end;
@@ -1049,38 +1024,19 @@ svg circle:nth-child(2) {
         'readmore';
 }
 
-.archive_title {
-    font-family: var(--ff-secondary);
-    color: whitesmoke;
-    text-transform: uppercase;
-    margin-bottom: 1em;
-    font-size: 2rem;
-}
 
-.archive_title::after {
-    content: '';
-    display: block;
-    width: 100%;
-    height:  0.1em;
-    margin: 0.5em 0.0 0.2em;
-    background-color: var(--clr-accent);
-    border-radius: 2px;
+/*
+@media (max-width: 1289px) {
+    .blog {
+        height: 380px;
+    }
 }
-.archive_group {
-    color: var(--clr-accent);
-    margin-bottom: 1.5em;
+@media (max-width: 380px) {
+    .blog {
+        height: fit-content;
+    }
 }
-
-.archive_item a{
-    color: #91cbd1;
-}
-.archive_topic_list {
-    margin-bottom: 0px;
-    color: #91cbd1;
-}
-.post_date {
-    font-size: 0.8rem;
-}
+*/
 
 /* =============================== BLOG END =============================== */
 
