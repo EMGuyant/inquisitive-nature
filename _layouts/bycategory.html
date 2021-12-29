@@ -1,0 +1,26 @@
+---
+layout: default
+permalink: /categories/
+title: Categories
+---
+
+{% include home_button.html %}
+
+<div id="archives">
+  <div class="archive_title">Archive by Category
+    <div id="tags">
+      {% for category in site.categories %}
+
+          {% capture category_name %}{{ category | first }}{% endcapture %}
+
+          <a class="tag_names" href="{{site.baseurl}}/categories/{{category_name|slugize}}"><i class="fas fa-hashtag cat_tag"></i>{{category_name}}</a>
+
+      {% endfor %}
+      <a class="tag_names" href="{{site.baseurl}}/categories"><i class="fas fa-hashtag cat_tag"></i>All</a>
+    </div>
+
+  </div>
+
+  {{ content }}
+  
+</div>
