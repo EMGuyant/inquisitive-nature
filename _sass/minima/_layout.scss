@@ -233,13 +233,13 @@
   background-color: #051214;
   padding: 2em;
   p,li {
-    color: #218490;
+    color: #7eb5bb;
   }
   strong {
     color: #5a9aa1;
   }
   h2 {
-    color: #da843e;
+    color: #be7233;
     @include relative-font-size(2);
 
     @include media-query($on-laptop) {
@@ -248,11 +248,11 @@
   }
 
   h3 {
-    color: #865125;
-    @include relative-font-size(1.625);
+    color: #dddddd;
+    @include relative-font-size(1.375);
 
     @include media-query($on-laptop) {
-      @include relative-font-size(1.375);
+      @include relative-font-size(1.0);
     }
   }
 
