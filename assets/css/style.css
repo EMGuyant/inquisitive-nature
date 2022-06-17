@@ -21,6 +21,7 @@
     --clr-dark2: #051214;
     --clr-accent: #da843e;
     --clr-accent2: #865125;
+    --clr-accent3: #ca6b1d;
     /*#13424c*/
     --fs-h1: 3rem;
     --fs-h2: 2.25rem;
@@ -33,8 +34,8 @@
 
 @media (min-width: 920px) {
     :root {
-        --fs-h1: 4.5rem;
-        --fs-h2: 3.75rem;
+        --fs-h1: 3.5rem;
+        --fs-h2: 2.5rem;
         --fs-h3: 1.5rem;
         --fs-body: 1.125rem;
     }
@@ -47,8 +48,9 @@ html {
 
 code.language-plaintext{
     border: 1px solid var(--clr-dark2);
-    background-color: var(--clr-light);
-    color: var(--clr-dark2);
+    background-color: var(--clr-dark2);
+    color: var(--clr-accent3);
+    font-size: 0.85em;
     border-radius: 8px;
     font-family: var(--ff-secondary);
 }
