@@ -103,11 +103,11 @@ h1, h2, h3, h4, h5, h6 {
  * Links
  */
 a {
-  color: $brand-color;
+  color: #a7a7a7;
   text-decoration: none;
 
   &:hover {
-    color: darken($brand-color, 25%);
+    color: ($brand-color);
     text-decoration: underline;
   }
 
