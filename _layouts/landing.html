@@ -7,10 +7,52 @@
 
     {%- include header.html -%}
 
+    <section class="hero">
+      <div class="hero__img"></div>
+      <canvas id="c" class="hero__over"></canvas>
+      <div id="title-window" class="wrapper">
+        <div class="title">
+           <p class="title__txt">INQUISITIVE</p>
+           <p class="subtitle__txt">NATURE</p>
+        </div>
+      </div>
+      <div class="arrow wrapper">
+        <p class="arrow__txt">Feed your Curiosity</p>
+        <i class="fa fa-angles-down arrow__icon bounce"></i> 
+      </div>
+     </section>
 
-    {{ content }}
-
-
+     <section class="blog__posts">
+      <div class="wrapper">
+          <h2 class="recent__title">Recent Posts</h2>
+          {% for post in site.posts limit:3 %}
+            <article class="post">
+              <div class="post__image__wrapper">
+                <div class="post__image">
+                  <img src="{{ post.image }}">
+                </div>
+              </div>
+              <div class="post__content__wrapper">
+                <div class="post__content">
+                  <h2 class="post__title">
+                    <a href="{{ post.url }}">{{ post.title }}</a>
+                  </h2>
+                  <p class="post__subtitle">{{ post.subtitle }}</p>
+                  <p class="post__description">{{ post. description }}</p>
+                </div>
+              </div>
+            </article>
+          {% endfor %}
+        </div>
+          <section class="pages">
+            <div class="wrapper">
+              <a class="btn next__page" href="/blog/index.html">
+                <span>Discover More</span>
+              </a>
+            </div>
+          </section>
+    </section>
+ 
     {%- include footer.html -%}
 
     <script src="https://kit.fontawesome.com/c9965d23bb.js" crossorigin="anonymous"></script>

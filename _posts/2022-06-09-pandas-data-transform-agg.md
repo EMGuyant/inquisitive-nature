@@ -1,8 +1,8 @@
 ---
 layout: post
 author: Ethan Guyant
-title:  Data Manipulation - Pandas
-categories: Python
+title:  Data Transformation - Pandas
+categories: Python, Pandas
 description: An overview of various data manipulation functions and methods utilizing pandas dataframes.
 ---
 

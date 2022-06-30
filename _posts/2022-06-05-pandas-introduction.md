@@ -1,9 +1,10 @@
 ---
 layout: post
 author: Ethan Guyant
-title:  Data Manipulation - Pandas
-categories: Python
+title:  Introduction to the Pandas Library
+categories: Python, Pandas
 description: An overview of various data manipulation functions and methods utilizing pandas dataframes.
+image: /assets/img/project_01.jpg
 ---
 ### Contents
 [Introduction to Pandas](#introduction-to-pandas)  
