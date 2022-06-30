@@ -1,0 +1,58 @@
+---
+layout: default
+permalink: /blog/
+pagination:
+  enabled: true
+  offset: 3
+---
+<section class="blog__header">
+  <div class="blog__img">
+    <div class="blog__img__over"></div>
+  </div>
+  <div class="wrapper">
+    <h1 class="blog__title"><span class="inquisitive">INQUISITIVE</span> <span class="nature">NATURE</span></h1>
+    <p class="blog__subtitle">Exploring the aspects of data science</p>
+  </div>
+</section>
+<section class="blog__postings">
+  <div class="wrapper">
+    {% for post in paginator.posts %}
+    <article class="post">
+      <div class="post__image__wrapper">
+        <div class="post__image">
+          <img src="{{ post.image }}">
+        </div>
+      </div>
+      <div class="post__content__wrapper">
+        <div class="post__content">
+          <h2 class="post__title">
+            <a href="{{ post.url }}">{{ post.title }}</a>
+          </h2>
+          <p class="post__subtitle">{{ post.subtitle }}</p>
+          <p class="post__description">{{ post.description }}</p>
+        </div>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+  </section>
+  <section class="pages">
+    <div class="wrapper">
+      {% if paginator.total_pages > 1 %}
+        {% if paginator.previous_page %}
+          <a href="{{ paginator.previous_page_path | prepend: site.baseurl }}" class="btn prev__page">
+            <span>Previous Posts</span>
+          </a>
+        {% else %}
+          <a href="/" class="btn prev__page">
+            <span>Back</span>
+          </a>
+        {% endif %}
+        {% if paginator.next_page %}
+          <a href="{{ paginator.next_page_path | prepend: site.baseurl }}" class="btn next__page">
+            <span>Discover More</span>            
+          </a>
+        {% endif %}
+      {% endif %}
+    </div>
+  </section>
