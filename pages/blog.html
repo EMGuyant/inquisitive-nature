@@ -11,7 +11,7 @@ pagination:
   </div>
   <div class="wrapper">
     <h1 class="blog__title"><span class="inquisitive">INQUISITIVE</span> <span class="nature">NATURE</span></h1>
-    <p class="blog__subtitle">Exploring the aspects of data science</p>
+    <p class="blog__subtitle">Exploring the world of data</p>
   </div>
 </section>
 <section class="blog__postings">
@@ -22,6 +22,10 @@ pagination:
         <div class="post__image">
           <img src="{{ post.image }}">
         </div>
+        <button class="unsplash__button"><i class="fa-brands fa-unsplash"></i> 
+          Photo by <a href="{{ post.image_by_link }}">
+          {{ post.image_by }}</a> on <a href="https://unsplash.com/s/photos/data?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>        
+        </button>
       </div>
       <div class="post__content__wrapper">
         <div class="post__content">

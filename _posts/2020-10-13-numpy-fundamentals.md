@@ -1,8 +1,11 @@
 ---
 layout: post
 title:  Numpy Fundamentals
- 
+date:   2021-10-13 16:41:02 -0500
 description: Overview of the numpy python library.
+image: /assets/img/post_img/library.jpg
+image_by: Jaredd Craig
+image_by_link: https://unsplash.com/es/@jareddc?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
 ---
 
 ## Numpy Arrays
