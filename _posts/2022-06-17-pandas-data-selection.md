@@ -4,6 +4,9 @@ author: Ethan Guyant
 title:  Data Subsetting - Pandas
 categories: Python, Pandas
 description: An overview of various data manipulation functions and methods utilizing pandas dataframes.
+image: /assets/img/post_img/subsetting-pandas.jpg
+image_by: Brands&People
+image_by_link: https://unsplash.com/@brandsandpeople?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
 ---
 ### Contents   
 [Transforming DataFrames](#transforming-dataframes)     

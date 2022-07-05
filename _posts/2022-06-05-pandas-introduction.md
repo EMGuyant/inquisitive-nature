@@ -4,7 +4,9 @@ author: Ethan Guyant
 title:  Introduction to the Pandas Library
 categories: Python, Pandas
 description: An overview of various data manipulation functions and methods utilizing pandas dataframes.
-image: /assets/img/project_01.jpg
+image: /assets/img/post_img/introduction-pandas.jpg
+image_by: Sincerely Media
+image_by_link: https://unsplash.com/@sincerelymedia?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
 ---
 ### Contents
 [Introduction to Pandas](#introduction-to-pandas)  
@@ -12,7 +14,6 @@ image: /assets/img/project_01.jpg
 ---
 
 <br>
-
 
 ## Introduction to Pandas
 Pandas is a fast, powerful, flexible and easy to use open source data analysis and manipulation tool, built on top of the Python programming language ([pandas](https://pandas.pydata.org/)). Pandas excels at working with tabular which can be stored using pandas DataFrames. 

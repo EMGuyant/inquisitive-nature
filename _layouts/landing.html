@@ -31,6 +31,10 @@
                 <div class="post__image">
                   <img src="{{ post.image }}">
                 </div>
+                <button class="unsplash__button"><i class="fa-brands fa-unsplash"></i> 
+                  Photo by <a href="{{ post.image_by_link }}">
+                  {{ post.image_by }}</a> on <a href="https://unsplash.com/s/photos/data?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>        
+                </button>
               </div>
               <div class="post__content__wrapper">
                 <div class="post__content">

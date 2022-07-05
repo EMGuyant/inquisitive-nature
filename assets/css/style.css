@@ -157,6 +157,43 @@ strong {
 .btn:hover {
     transform: scale(1.1);
 }
+.unsplash__button {
+    position: absolute;
+
+    background-color: var(--clr-text-dark);
+    opacity: 0.65;
+    cursor: pointer;
+    text-align: center;
+    font-size: 12px;
+    border: none;
+    padding: 5px;
+    color: black;
+
+}
+@media only screen and (min-width: 1024px) {
+    .unsplash__button {
+        bottom: 2%;
+    }
+    .post:nth-child(odd) .unsplash__button {
+        left: 2%;
+    }
+    .post:nth-child(even) .unsplash__button {
+        right: 2%;
+    }
+}
+@media only screen and (max-width: 1024px) {
+    .unsplash__button {
+        right: 2%;
+        bottom: 40px;
+    }
+}
+.unsplash__button a {
+    color: var(--clr-accent-dark);
+    text-decoration: auto;
+}
+.unsplash__button:hover a{
+    font-weight: var(--fw-mid);
+}
 
 /* =============================== PARALLAX =============================== 
 
@@ -461,24 +498,21 @@ svg|a:hover {
 /* =============================== HERO END SECTiON =============================== */ 
 
 /* =============================== ABOUT SECTiON =============================== */
-.about__content__wrapper {
-    position:relative;
-    float:left;
-    clear:both;
-    width:100%;
-    margin-top:30px;
-    padding-bottom: 50px;
-
-}
-.about__title{
-    justify-content: center;
-    margin-top: 2.5rem;
-    position: relative;
-    color: var(--clr-text-light);
-    font-size: clamp(2rem, -0.875rem + 8.333vw, 3rem);
-    font-weight: var(--fw-mid);
+.about__header{
+    margin-top: 50px;
     text-align: center;
 }
+.about__wrapper {
+    width: 80%;
+    max-width: 900px;
+    margin: auto;
+}
+.about__title {
+    font-size: clamp(2rem, -0.875rem + 8.333vw, 3rem);
+    font-weight: var(--fw-bold);
+    color: var(--clr-text-light);
+    font-family: Arvo, sans-serif
+} 
 .about__title::after {
     content: '';
     display: block;
@@ -487,6 +521,15 @@ svg|a:hover {
     margin: 0.5em auto;
     background-color: var(--clr-accent-light);
     border-radius: 2px;
+}
+.about{
+    position:relative;
+    float:left;
+    clear:both;
+    width:100%;
+    margin-top:30px;
+    padding-bottom: 30px;
+    cursor:pointer
 }
 .about__image{
     position:absolute;
@@ -497,27 +540,59 @@ svg|a:hover {
     background-position:center;
     background-repeat:no-repeat;
     background-size:cover;
-    align-self: center;
 }
-.about__subtitle {
-    color: var(--clr-text-light);
+.about__image__wrapper{
+    position:relative;
+    height:0;
+    margin:0;
+    padding-bottom:55%;
+    overflow:hidden
+}
+.about__content__wrapper{
+    float:left;
+    width:100%;
+    position:relative;
+    padding:0 20px 20px;
+    background: var(--clr-text-dark);
+}
+.about__content{
+    position:relative;
+    padding: 25px;
+    background: var(--clr-dark);
+    box-shadow: var(--bs);
+    transition:all .4s cubic-bezier(.2,.3,0,1)
+}
+.about__title a{
+    font-weight:var(--fw-reg)
+}
+.about__subtitle{
+    margin-top:5px;
+    font-size:clamp(1em, -0.875rem + 8.333vw, 2rem);
+    color:var(--clr-text-light);
+    font-weight: var(--fw-mid);
 }
 .action {
     color: var(--clr-accent-light);
-    font-weight: var(--fw-bold);
+    font-weight: var(--fw-mid);
 }
 .contact__button {
-    background: linear-gradient(var(--clr-accent-light), var(--clr-accent-dark));
+    width: 140px;
     padding: 10px;
-    width: 150px;
-    color: var(--clr-text-dark);
+    margin-bottom: 10px;
+    border: 0;
+    text-align: center;
+    background: linear-gradient(var(--clr-accent-light), var(--clr-accent-dark));
+
 }
 .contact__button:hover {
     color: var(--clr-dark);
     box-shadow: var(--bs);
-    transform: translateY(-10px);
+    transform: translateY(-10px)
 }
-
+@media only screen and (min-width:768px){
+    .about__content__wrapper{padding:0 30px 30px}
+    .about__content{margin-top:35px;padding:35px}
+}
 /* =============================== INTRO SECTiON =============================== 
 
 .intro {
@@ -1101,9 +1176,6 @@ svg circle:nth-child(2) {
     opacity: 0.75;
 }
 .blog__postings{margin-top:-40px}
-@media only screen and (min-width:768px){
-    .blog_postings{margin-top:-60px}
-}
 .recent__title{
     justify-content: center;
     margin-top: 2.5rem;
@@ -1146,7 +1218,7 @@ svg circle:nth-child(2) {
     transition:all 1s cubic-bezier(.2,.3,0,1)
 }
 .post:hover .post__image{
-    transform:scale(1.2)
+    transform:scale(1.1)
 }
 .post:hover .post__content{
     box-shadow: var(-bs)
@@ -1157,32 +1229,12 @@ svg circle:nth-child(2) {
 .post:hover .post__title a{
     color:var(--clr-accent-light)
 }
-@media only screen and (min-width:1024px){
-    .post:nth-child(2n) .post__image__wrapper{
-        left:auto;right:0}
-        .post:nth-child(2n) .post__content__wrapper{
-            float:left;
-            padding:35px 0 35px 35px}
-        .post:nth-child(2n) .post__content{
-            margin:0 -25px 0 0}
-}
 .post__image__wrapper{
     position:relative;
     height:0;
     margin:0;
-    padding-bottom:56.25%;
+    padding-bottom:55%;
     overflow:hidden
-}
-@media only screen and (min-width:1024px){
-    .post__image__wrapper{
-        position:absolute;
-        top:0;
-        left:0;
-        bottom:0;
-        right: 0;
-        width:50%;
-        height:auto;
-        padding-bottom:0}
 }
 .post__content__wrapper{
     float:left;
@@ -1191,15 +1243,6 @@ svg circle:nth-child(2) {
     padding:0 20px 20px;
     background: var(--clr-text-dark);
 }
-@media only screen and (min-width:768px){
-    .post__content__wrapper{padding:0 30px 30px}
-}
-@media only screen and (min-width:1024px){
-    .post__content__wrapper{
-        float:right;
-        padding:35px 35px 35px 0;
-        width:50%}
-}
 .post__content{
     position:relative;
     margin-top:-20px;
@@ -1207,12 +1250,6 @@ svg circle:nth-child(2) {
     background: var(--clr-dark);
     box-shadow: var(--bs);
     transition:all .4s cubic-bezier(.2,.3,0,1)
-}
-@media only screen and (min-width:768px){
-    .post__content{margin-top:-35px;padding:35px}
-}
-@media only screen and (min-width:1024px){
-    .post__content{margin:0 0 0 -30px;min-height:400px}
 }
 .post__title a{
     font-weight:var(--fw-reg)
@@ -1224,9 +1261,6 @@ svg circle:nth-child(2) {
 }
 .pages {
     margin-top: 30px;
-}
-@media only screen and (min-width:1024px) {
-    .pages{margin-top: 60px;}
 }
 .next__page {
     background: linear-gradient(var(--clr-accent-light), var(--clr-accent-dark));
@@ -1240,20 +1274,6 @@ svg circle:nth-child(2) {
     padding: 10px;
     margin-bottom: 10px;
     border: 0;
-}
-@media only screen and (min-width: 768px) {
-    .next__page,
-    .prev__page {
-        padding: 10px;
-        margin-bottom: 10px;
-        font-size: clamp(0.5rem, -0.875rem + 8.333vw, 1.25rem);
-    }
-}
-@media only screen and (min-width: 1386px) {
-    .next__page,
-    .prev__page {
-        font-size: clamp(0.5rem, -0.875rem + 8.333vw, 1.25rem);
-    }
 }
 .next__page:hover {
     color: var(--clr-dark);
@@ -1274,10 +1294,6 @@ svg circle:nth-child(2) {
     float: right;
     text-align: right;
 }
-/* =============================== BLOG END =============================== */
-
-/* =============================== BLOG POST =============================== */
-
 .blog-container {
     padding-left: 8em;
     padding-right: 8em;
@@ -1294,6 +1310,61 @@ svg circle:nth-child(2) {
     margin: 0.5em auto 0.8em;
     background-color: var(--clr-accent-light);
     border-radius: 2px;
+}
+@media only screen and (min-width:768px){
+    .blog_postings{margin-top:-60px}
+}
+@media only screen and (min-width:1024px){
+    .post:nth-child(2n) .post__image__wrapper{
+        left:auto;right:0}
+        .post:nth-child(2n) .post__content__wrapper{
+            float:left;
+            padding:35px 0 35px 35px}
+        .post:nth-child(2n) .post__content{
+            margin:0 -25px 0 0}
+}
+@media only screen and (min-width:1024px){
+    .post__image__wrapper{
+        position:absolute;
+        top:0;
+        left:0;
+        bottom:0;
+        right: 0;
+        width:50%;
+        height:auto;
+        padding-bottom:0}
+}
+@media only screen and (min-width:768px){
+    .post__content__wrapper{padding:0 30px 30px}
+}
+@media only screen and (min-width:1024px){
+    .post__content__wrapper{
+        float:right;
+        padding:35px 35px 35px 0;
+        width:50%}
+}
+@media only screen and (min-width:768px){
+    .post__content{margin-top:-35px;padding:35px}
+}
+@media only screen and (min-width:1024px){
+    .post__content{margin:0 0 0 -30px;min-height:400px}
+}
+@media only screen and (min-width:1024px) {
+    .pages{margin-top: 60px;}
+}
+@media only screen and (min-width: 768px) {
+    .next__page,
+    .prev__page {
+        padding: 10px;
+        margin-bottom: 10px;
+        font-size: clamp(0.5rem, -0.875rem + 8.333vw, 1.25rem);
+    }
+}
+@media only screen and (min-width: 1386px) {
+    .next__page,
+    .prev__page {
+        font-size: clamp(0.5rem, -0.875rem + 8.333vw, 1.25rem);
+    }
 }
 /* =============================== BLOG POST END =============================== */
 
