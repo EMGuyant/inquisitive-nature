@@ -1,0 +1,61 @@
+---
+layout: default
+permalink: /projects/
+pagination:
+  enabled: true
+  collection: projects
+---
+<section class="blog__header">
+  <div class="blog__img">
+    <div class="blog__img__over"></div>
+  </div>
+  <div class="wrapper">
+    <h1 class="blog__title"><span class="inquisitive">INQUISITIVE</span> <span class="nature">NATURE</span></h1>
+    <p class="blog__subtitle">Learn  <strong>Explore</strong>  Share</p>
+  </div>
+</section>
+<section class="blog__postings">
+  <div class="wrapper">
+    {% for post in paginator.posts %}
+    <article class="post">
+      <div class="post__image__wrapper">
+        <div class="post__image">
+          <img src="{{ post.image }}">
+        </div>
+        <button class="unsplash__button"><i class="fa-brands fa-unsplash"></i> 
+          Photo by <a href="{{ post.image_by_link }}">
+          {{ post.image_by }}</a> on <a href="https://unsplash.com/s/photos/data?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>        
+        </button>
+      </div>
+      <div class="post__content__wrapper">
+        <div class="post__content">
+          <h2 class="post__title">
+            <a href="{{ post.repository_link }}">{{ post.title }}</a>
+          </h2>
+          <p class="post__subtitle">{{ post.subtitle }}</p>
+          <p class="post__description">{{ post.description }}</p>
+          <a href="{{ post.repository_link }}" class="btn accent__button"><span>Github </span><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+  </section>
+  <section class="pages">
+    <div class="wrapper">
+      {% if paginator.total_pages > 1 %}
+        {% if paginator.previous_page %}
+          <a href="{{ paginator.previous_page_path | prepend: site.baseurl }}" class="btn prev__page">
+            <span>Previous Projects</span>
+          </a>
+        {% else %}
+
+        {% endif %}
+        {% if paginator.next_page %}
+          <a href="{{ paginator.next_page_path | prepend: site.baseurl }}" class="btn next__page">
+            <span>Discover More</span>            
+          </a>
+        {% endif %}
+      {% endif %}
+    </div>
+  </section>

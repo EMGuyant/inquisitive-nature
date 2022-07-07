@@ -102,6 +102,10 @@ svg {
     display: block;
     max-width: 100%;
 }
+p strong {
+    color: var(--clr-text-light);
+    font-weight: var(--fw-bold);
+}
 a {text-decoration: none;}
 a:hover{text-decoration: none;}
 .wrapper {
@@ -552,7 +556,7 @@ svg|a:hover {
     float:left;
     width:100%;
     position:relative;
-    padding:0 20px 20px;
+    padding: 20px;
     background: var(--clr-text-dark);
 }
 .about__content{
@@ -575,22 +579,23 @@ svg|a:hover {
     color: var(--clr-accent-light);
     font-weight: var(--fw-mid);
 }
-.contact__button {
+.accent__button {
     width: 140px;
     padding: 10px;
     margin-bottom: 10px;
     border: 0;
     text-align: center;
+    color: var(--clr-dark);
     background: linear-gradient(var(--clr-accent-light), var(--clr-accent-dark));
 
 }
-.contact__button:hover {
-    color: var(--clr-dark);
+.accent__button:hover {
+    color: whitesmoke;
     box-shadow: var(--bs);
     transform: translateY(-10px)
 }
 @media only screen and (min-width:768px){
-    .about__content__wrapper{padding:0 30px 30px}
+    .about__content__wrapper{padding: 30px}
     .about__content{margin-top:35px;padding:35px}
 }
 /* =============================== INTRO SECTiON =============================== 
@@ -1153,7 +1158,8 @@ svg circle:nth-child(2) {
     color: var(--clr-text-dark);
 }
 .blog__subtitle {
-    color: var(--clr-text-light)
+    color: var(--clr-text-dark);
+    font-weight: var(--fw-mid);
 }
 .blog__img {
     position: absolute;

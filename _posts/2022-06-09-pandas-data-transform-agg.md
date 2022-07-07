@@ -2,7 +2,8 @@
 layout: post
 author: Ethan Guyant
 title:  Data Transformation - Pandas
-categories: Python, Pandas
+category: Quick Start
+tags: Python Pandas
 description: An overview of various data manipulation functions and methods utilizing pandas dataframes.
 image: /assets/img/post_img/transformation-pandas.jpg
 image_by: Suzanne D. Williams
