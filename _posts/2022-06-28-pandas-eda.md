@@ -2,7 +2,8 @@
 layout: post
 author: Ethan Guyant
 title:  Exploratory Data Analysis - Pandas
-categories: Python, Pandas
+category: Quick Start
+tags: Python Pandas
 description: An overview of various data manipulation functions and methods utilizing pandas dataframes.
 image: /assets/img/post_img/eda-pandas.jpg
 image_by: Andrew Neel

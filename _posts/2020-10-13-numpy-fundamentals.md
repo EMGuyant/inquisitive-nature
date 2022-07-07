@@ -2,6 +2,8 @@
 layout: post
 title:  Numpy Fundamentals
 date:   2021-10-13 16:41:02 -0500
+category: Quick Start
+tags: Python Numpy
 description: Overview of the numpy python library.
 image: /assets/img/post_img/library.jpg
 image_by: Jaredd Craig
