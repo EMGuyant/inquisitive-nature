@@ -1372,10 +1372,57 @@ svg circle:nth-child(2) {
         font-size: clamp(0.5rem, -0.875rem + 8.333vw, 1.25rem);
     }
 }
-/* =============================== BLOG POST END =============================== */
+/* =============================== BLOG END =============================== */
+
+/* ================================= POST ================================= */
+.article__header {
+    justify-content: center;
+    color: whitesmoke;
+    position: relative;
+    margin-top: -45px;
+    padding: 15px;
+    background-color: var(--clr-dark);
+}
+
+.article__header::after {
+    content: '';
+    display: block;
+    left: 0;
+    width: 30em;
+    height:  0.2rem;
+    margin-top: 15px;
+    margin-bottom: 30px;
+    background-color: var(--clr-accent-light);
+    border-radius: 2px;
+}
+.post-meta {
+    color: var(--clr-text-dark);
+}
+.post-tags {
+    font-size: 0.8rem;
+}
+
+
+
+.section__title--blogpost {
+    color: whitesmoke;
+    position: relative;
+    margin-top: 5vw;
+    line-height: 2rem;
+}
+
+.section__title--blogpost::after {
+    content: '';
+    display: block;
+    width: 30em;
+    height:  0.1em;
+    margin: 0.5em 0.0 0.2em;
+    background-color: var(--clr-accent);
+    border-radius: 2px;
+}
+/* =============================== POST END ============================== */
 
 /* =============================== FOOTER =============================== */
-
 .footer {
     background: var(--clr-darkest);
     color: var(--clr-text-dark);

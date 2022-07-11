@@ -5,15 +5,8 @@ pagination:
   enabled: true
   offset: 3
 ---
-<section class="blog__header">
-  <div class="blog__img">
-    <div class="blog__img__over"></div>
-  </div>
-  <div class="wrapper">
-    <h1 class="blog__title"><span class="inquisitive">INQUISITIVE</span> <span class="nature">NATURE</span></h1>
-    <p class="blog__subtitle">Learn  Explore  <strong>Share</strong></p>
-  </div>
-</section>
+{%- include blog_header.html -%}
+
 <section class="blog__postings">
   <div class="wrapper">
     {% for post in paginator.posts %}
