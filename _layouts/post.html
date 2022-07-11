@@ -4,8 +4,7 @@ layout: default
 {%- include blog_header.html -%}
 <div class="wrapper">
   <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-    <section class="title__section">
-      <header class="post-header">
+    <section class="article__header">
         <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
         <p class="post-meta">
           <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
@@ -15,7 +14,17 @@ layout: default
           {%- if page.author -%}
             • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{{ page.author }}</span></span>
           {%- endif -%}</p>
-      </header>
+        <p class="post-tags">
+          Tags: 
+          {% if page.tags.size > 0 %}
+            {% for tag in page.tags %}  
+              <a href="/">
+                <i class="fas fa-hashtag cat_tag"></i>
+                {{ tag }}
+              </a> 
+            {% endfor %}
+          {% endif %}
+        </p>
     </section>
     <div class="post-content e-content" itemprop="articleBody">
       {{ content }}

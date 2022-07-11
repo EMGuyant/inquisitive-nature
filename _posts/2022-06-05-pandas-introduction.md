@@ -3,7 +3,7 @@ layout: post
 author: Ethan Guyant
 title:  Introduction to the Pandas Library
 category: Quick Start
-tags: Python Pandas
+tags: [Python, Pandas]
 description: An overview of various data manipulation functions and methods utilizing pandas dataframes.
 image: /assets/img/post_img/introduction-pandas.jpg
 image_by: Sincerely Media
@@ -51,6 +51,19 @@ Index(['Col A', 'Col B', 'Col C'], dtype='object')
 ```
 * Index: the `.index` attribute contains row number or now names
 ```python
->>> df.index
-RangeIndex(start=0, stop=6, step=1)
+>>> df['Height(cm)'] > 50
+0     True
+1    False
+2    False
+3    False
+4     True
+5    False
+6     True
+Name: Height(cm), dtype: bool
+>>> df[df['Height(cm)'] > 50]
+     Name        Breed  Color  Height(cm)  Weight(kg)         DOB
+0   Bella     Labrador  Brown          56          25  2013-07-01
+4     Max     Labrador  Black          59          29  2017-01-20
+6  Bernie  St. Bernard  White          77          74  2018-02-27
+```
 ```
