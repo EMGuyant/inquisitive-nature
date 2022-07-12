@@ -25,7 +25,7 @@ layout: default
           Tags: 
           {% if page.tags.size > 0 %} 
             {% for tag in page.tags %}  
-              <a href="{{site.basurl}}/tags/{{tags|slugize}}">
+              <a href="{{site.basurl}}/tag/{{tag|slugify}}">
                 <i class="fa-solid fa-tag"></i>
                 {{ tag }}
               </a> 
