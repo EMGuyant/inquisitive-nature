@@ -14,12 +14,19 @@ layout: default
           {%- if page.author -%}
             • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{{ page.author }}</span></span>
           {%- endif -%}</p>
-        <p class="post-tags">
+          <p class="post-category">
+            Category: 
+            <a href="{{site.basurl}}/category/{{ page.category|slugify}}">
+              <i class="fa-solid fa-folder"></i>
+              {{ page.category }}
+            </a> 
+          </p>
+          <p class="post-tags">
           Tags: 
-          {% if page.tags.size > 0 %}
+          {% if page.tags.size > 0 %} 
             {% for tag in page.tags %}  
-              <a href="/">
-                <i class="fas fa-hashtag cat_tag"></i>
+              <a href="{{site.basurl}}/tags/{{tags|slugize}}">
+                <i class="fa-solid fa-tag"></i>
                 {{ tag }}
               </a> 
             {% endfor %}

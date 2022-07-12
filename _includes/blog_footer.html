@@ -1,0 +1,23 @@
+<section class="category__tags">
+    <div class="wrapper">
+        <p class="post-category">
+            Categories:
+            {% for category in site.categories %}
+                {% capture category_name %}{{ category | first }}{% endcapture %}
+                <a href="{{site.basurl}}/category/{{ category_name |slugify}}">
+                <i class="fa-solid fa-folder"></i>
+                {{ category_name }}
+                </a> 
+            {% endfor %}
+        </p>
+        <p class="post-tags">
+            Tags:
+            {% for tag in site.tags %}
+                <a href="{{site.basurl}}/tag/{{ tag|first|slugify}}">
+                <i class="fa-solid fa-tag"></i>
+                {{ tag|first }}
+                </a> 
+            {% endfor %}
+        </p>
+    </div>
+</section>
