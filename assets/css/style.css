@@ -1181,7 +1181,7 @@ svg circle:nth-child(2) {
     background-color: var(--clr-dark);
     opacity: 0.75;
 }
-.blog__postings{margin-top:-40px}
+.blog__postings{margin-top:-80px}
 .recent__title{
     justify-content: center;
     margin-top: 2.5rem;
@@ -1251,7 +1251,7 @@ svg circle:nth-child(2) {
 }
 .post__content{
     position:relative;
-    margin-top:-20px;
+    margin-top:-50px;
     padding: 25px;
     background: var(--clr-dark);
     box-shadow: var(--bs);
@@ -1318,7 +1318,7 @@ svg circle:nth-child(2) {
     border-radius: 2px;
 }
 @media only screen and (min-width:768px){
-    .blog_postings{margin-top:-60px}
+    .blog_postings{margin-top:-80px}
 }
 @media only screen and (min-width:1024px){
     .post:nth-child(2n) .post__image__wrapper{
@@ -1350,7 +1350,7 @@ svg circle:nth-child(2) {
         width:50%}
 }
 @media only screen and (min-width:768px){
-    .post__content{margin-top:-35px;padding:35px}
+    .post__content{margin-top:-60px;padding:35px}
 }
 @media only screen and (min-width:1024px){
     .post__content{margin:0 0 0 -30px;min-height:400px}
@@ -1379,11 +1379,10 @@ svg circle:nth-child(2) {
     justify-content: center;
     color: whitesmoke;
     position: relative;
-    margin-top: -45px;
+    margin-top: -80px;
     padding: 15px;
     background-color: var(--clr-dark);
 }
-
 .article__header::after {
     content: '';
     display: block;
@@ -1400,29 +1399,53 @@ svg circle:nth-child(2) {
 }
 .post-tags {
     font-size: 0.8rem;
+    margin: 0;
 }
-
-
-
-.section__title--blogpost {
-    color: whitesmoke;
-    position: relative;
-    margin-top: 5vw;
-    line-height: 2rem;
-}
-
-.section__title--blogpost::after {
-    content: '';
-    display: block;
-    width: 30em;
-    height:  0.1em;
-    margin: 0.5em 0.0 0.2em;
-    background-color: var(--clr-accent);
-    border-radius: 2px;
+.post-category {
+    font-size: 0.8rem;
+    margin: 0;
 }
 /* =============================== POST END ============================== */
 
-/* =============================== FOOTER =============================== */
+/* ============================= CATEGORY PAGE ============================ */
+.archives__header {
+    justify-content: center;
+    color: whitesmoke;
+    position: relative;
+    margin-top: -80px;
+    padding: 15px;
+    background-color: var(--clr-dark);
+    margin-bottom: 60px;
+}
+.display__name {
+    font-size: clamp(1rem, -0.875rem + 8.333vw, 1.8rem);
+    font-weight: var(--fw-mid);
+    color: var(--clr-text-light);
+}
+.display__name::after {
+    content: '';
+    display: block;
+    left: 0;
+    width: 15em;
+    height:  0.2rem;
+    margin-top: 15px;
+    margin-bottom: 30px;
+    background-color: var(--clr-accent-light);
+    border-radius: 2px;
+}
+.post__categories {
+    font-weight: var(--fw-reg);
+    font-size: 0.8rem;
+}
+/* =========================== CATEGORY PAGE END ========================== */
+
+/* ============================== BLOG FOOTER ============================= */
+.category__tags {
+    margin: 30px;
+}
+/* ============================ BLOG FOOTER END =========================== */
+
+/* ================================ FOOTER ================================ */
 .footer {
     background: var(--clr-darkest);
     color: var(--clr-text-dark);
