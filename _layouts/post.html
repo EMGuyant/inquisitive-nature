@@ -1,46 +1,46 @@
 ---
 layout: default
 ---
-
-{% include home_button.html %}
-<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
-
-  <header class="post-header section__title--blogpost">
-    <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
-    <div class="post-meta">
-      <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
-        {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
-        {{ page.date | date: date_format }}
-      </time>
-      {%- if page.author -%}
-        • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{{ page.author }}</span></span>
-      {%- endif -%}
-    
-      <div class="post_categories">
-        {% if post %}
-          {% assign categories = post.categories %}
-        {% else %}
-          {% assign categories = page.categories %}
-        {% endif %}
-        {% for category in categories %}
-        <a href="{{site.baseurl}}/categories/{{category|slugize}}"><i class="fas fa-hashtag cat_tag"></i>{{category}}</a>
-        {% unless forloop.last %}&nbsp;{% endunless %}
-        {% endfor %}
-      </div>
-
+{%- include blog_header.html -%}
+<div class="wrapper">
+  <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+    <section class="article__header">
+        <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
+        <p class="post-meta">
+          <time class="dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+            {%- assign date_format = site.minima.date_format | default: "%b %-d, %Y" -%}
+            {{ page.date | date: date_format }}
+          </time>
+          {%- if page.author -%}
+            • <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">{{ page.author }}</span></span>
+          {%- endif -%}</p>
+          <p class="post-category">
+            Category: 
+            <a href="{{site.basurl}}/category/{{ page.category|slugify}}">
+              <i class="fa-solid fa-folder"></i>
+              {{ page.category }}
+            </a> 
+          </p>
+          <p class="post-tags">
+          Tags: 
+          {% if page.tags.size > 0 %} 
+            {% for tag in page.tags %}  
+              <a href="{{site.basurl}}/tag/{{tag|slugify}}">
+                <i class="fa-solid fa-tag"></i>
+                {{ tag }}
+              </a> 
+            {% endfor %}
+          {% endif %}
+        </p>
+    </section>
+    <div class="post-content e-content" itemprop="articleBody">
+      {{ content }}
     </div>
 
+    {%- if site.disqus.shortname -%}
+      {%- include disqus_comments.html -%}
+    {%- endif -%}
 
-      
-  </header>
-
-  <div class="post-content e-content" itemprop="articleBody">
-    {{ content }}
-  </div>
-
-  {%- if site.disqus.shortname -%}
-    {%- include disqus_comments.html -%}
-  {%- endif -%}
-
-  <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
-</article>
+    <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
+  </article>
+</div>

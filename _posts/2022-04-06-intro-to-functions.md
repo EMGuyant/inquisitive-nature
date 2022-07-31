@@ -2,8 +2,12 @@
 layout: post
 author: Ethan Guyant
 title:  Introduction to Functions
-categories: Python
+category: Deep Dive
+tags: Python
 description: An introduction to python user-defined functions, their syntax, arguments, documentation, different types of functions, and much more.
+image: /assets/img/post_img/introduction-functions.jpg
+image_by: Dan Cristian Păduret
+image_by_link: https://unsplash.com/@dancristianpaduret?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
 ---
 
 ### Naming and Syntax

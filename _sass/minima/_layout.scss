@@ -200,8 +200,6 @@
 .post-meta {
   font-size: $small-font-size;
   color: $grey-color;
-  margin-top: 0.5em;
-  line-height: 1.5em;
 }
 
 .post-link {
@@ -230,16 +228,16 @@
 
 .post-content {
   margin-bottom: $spacing-unit;
-  background-color: #051214;
+  background-color: #0c1113;
   padding: 2em;
   p,li {
-    color: #7eb5bb;
+    color: #a7a7a7;
   }
   strong {
-    color: #5a9aa1;
+    color: #a7a7a7;
   }
   h2 {
-    color: #be7233;
+    color: #39ace7;
     @include relative-font-size(2);
 
     @include media-query($on-laptop) {
@@ -248,7 +246,7 @@
   }
 
   h3 {
-    color: #dddddd;
+    color: whitesmoke;
     @include relative-font-size(1.375);
 
     @include media-query($on-laptop) {

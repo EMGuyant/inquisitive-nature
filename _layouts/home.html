@@ -1,19 +1,11 @@
 ---
 layout: landing
+permalink: /
 ---
 <!-- =============================== LANDING PAGE START =============================== -->
 <div class="blog">
     <section class="blog blog_landing">
         <h2 class="section__title section__title--blog">My Blog</h2>
-
-        <div id="tags">
-            {% for category in site.categories %}
-
-                {% capture category_name %}{{ category | first }}{% endcapture %}
-
-                <a class="tag_names" href="{{site.baseurl}}/categories/{{category_name|slugize}}"><i class="fas fa-hashtag cat_tag"></i>{{category_name}}</a>
-            {% endfor %}
-        </div>
 
         {% include scroll.html %}
         

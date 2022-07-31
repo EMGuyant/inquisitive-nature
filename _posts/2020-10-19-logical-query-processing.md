@@ -2,9 +2,12 @@
 layout: post
 author: Ethan Guyant
 title:  Logical Query Processing Order
-categories: SQL
+category: Quick Start
+tags: SQL
 description: A SQL query declares what data is expected to be returned. The impact of this is that the oder a query is written is not the order that the query is process. This article aims to explain the differences in the order SQL is written vs the order in which it is processed.
-
+image: /assets/img/post_img/logical-sql.jpg
+image_by: AltumCode
+image_by_link: https://unsplash.com/@altumcode?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
 ---
 ## Logical Query Process
 
