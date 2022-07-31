@@ -1,0 +1,1229 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Introduction to Functions | Ethan Guyant’s Data Science Blog</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="Introduction to Functions" />
+<meta name="author" content="Ethan Guyant" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="An introduction to python user-defined functions, their syntax, arguments, documentation, different types of functions, and much more." />
+<meta property="og:description" content="An introduction to python user-defined functions, their syntax, arguments, documentation, different types of functions, and much more." />
+<link rel="canonical" href="http://blog.ethanguyant.com/deep%20dive/intro-to-functions.html" />
+<meta property="og:url" content="http://blog.ethanguyant.com/deep%20dive/intro-to-functions.html" />
+<meta property="og:site_name" content="Ethan Guyant’s Data Science Blog" />
+<meta property="og:image" content="http://blog.ethanguyant.com/assets/img/post_img/introduction-functions.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-04-06T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="http://blog.ethanguyant.com/assets/img/post_img/introduction-functions.jpg" />
+<meta property="twitter:title" content="Introduction to Functions" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"Ethan Guyant"},"description":"An introduction to python user-defined functions, their syntax, arguments, documentation, different types of functions, and much more.","url":"http://blog.ethanguyant.com/deep%20dive/intro-to-functions.html","@type":"BlogPosting","image":"http://blog.ethanguyant.com/assets/img/post_img/introduction-functions.jpg","headline":"Introduction to Functions","dateModified":"2022-04-06T00:00:00+00:00","datePublished":"2022-04-06T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://blog.ethanguyant.com/deep%20dive/intro-to-functions.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<title>Ethan Guyant's Personal Blog</title>
+  <!-- Normalize CSS file irons out some difference between browsers -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+  <!-- Google Fonts-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,900|Source+Sans+Pro:300,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Arvo:wght@700&display=swap" rel="stylesheet">
+  <!-- CSS Styles -->
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <!-- Animation on Scroll-->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <!-- Font Awesome Kit -->
+  <script src="https://kit.fontawesome.com/c9965d23bb.js" crossorigin="anonymous"></script><link type="application/atom+xml" rel="alternate" href="http://blog.ethanguyant.com/feed.xml" title="Ethan Guyant's Data Science Blog" /></head>
+<body><header class="header sticky">
+    <div class="wrapper">
+        <div>
+            <div class="scroll-logo"> 
+                <a href="/">  
+                    <svg id="EG" viewBox="0 0 152 216">
+                        <g>
+                            <path id="hex"d="M 76.342 4 L 147.685 41.377 L 147.685 116.13 L 76.342 153.506 L 5 116.13 L 5 41.377 Z" style="stroke-width: 8.37394px; fill-opacity: 0; fill: none; stroke: #39ace7;"></path>         
+                            <polygon class="logo"style="stroke-width: 3.58883px; stroke: #39ace7; fill: #39ace7;" points="41.001 38.501 112.012 38.501 112.012 62.884 97.474 62.884 97.474 54.976 41.001 54.976"></polygon>
+                            <polygon class="logo" style="stroke-width: 3.58883px; stroke: #39ace7; fill: #39ace7;" points="40.671 102.9 97.81 102.9 97.81 86.796 83.604 86.796 83.604 70.701 112.014 70.701 112.014 102.92 112.014 119.004 40.939 119.004"></polygon>
+                            <polygon class="logo" style="stroke-width: 3.58883px; stroke: #39ace7; fill: #39ace7;" points="41.001 70.701 69.753 70.701 63.532 87.725 41.317 87.725"></polygon>
+                        </g> 
+                    </svg>
+                </a>
+            </div>
+
+            <div class="header__title">
+                <a href="/">EthanGuyant.com</a>
+            </div>
+            
+        </div>
+        
+        <div class="nav__menu">
+            <div class="nav__toggle">
+                <div class="nav__icon">
+                    <span></span>
+                </div>
+            </div>
+        </div>
+        <div class="nav__menu__wrapper">
+            <ul class="nav__menu__list">
+                <li class="nav__menu__list__item">
+                    <a href="/" class="nav__menu__list__item__link">Home</a>
+                </li>
+                <li class="nav__menu__list__item">
+                    <a href="/blog" class="nav__menu__list__item__link">Blog</a>
+                </li>
+                <li class="nav__menu__list__item">
+                    <a href="/about" class="nav__menu__list__item__link">About</a>
+                </li>
+                <li class="nav__menu__list__item">
+                    <a href="/projects" class="nav__menu__list__item__link">Projects</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header><main class="page" aria-label="Content">
+      <div class="page__content">
+        <section class="blog__header">
+    <div class="blog__img">
+      <div class="blog__img__over"></div>
+    </div>
+    <div class="wrapper">
+      <h1 class="blog__title"><span class="inquisitive">INQUISITIVE</span> <span class="nature">NATURE</span></h1>
+      <p class="blog__subtitle">Learn  Explore  <strong>Share</strong></p>
+      <p class="post__categories">
+    </div>
+  </section><div class="wrapper">
+  <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+    <section class="article__header">
+        <h1 class="post-title p-name" itemprop="name headline">Introduction to Functions</h1>
+        <p class="post-meta">
+          <time class="dt-published" datetime="2022-04-06T00:00:00+00:00" itemprop="datePublished">Apr 6, 2022
+          </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">Ethan Guyant</span></span></p>
+          <p class="post-category">
+            Category: 
+            <a href="/category/deep-dive">
+              <i class="fa-solid fa-folder"></i>
+              Deep Dive
+            </a> 
+          </p>
+          <p class="post-tags">
+          Tags: 
+           
+              
+              <a href="/tag/python">
+                <i class="fa-solid fa-tag"></i>
+                Python
+              </a> 
+            
+          
+        </p>
+    </section>
+    <div class="post-content e-content" itemprop="articleBody">
+      <h3 id="naming-and-syntax">Naming and Syntax</h3>
+<p>A user defined function begins with the reserved keyword <code class="language-plaintext highlighter-rouge">def</code> followed by parentheses which inclose input parameters to the function and lastly a colon (<code class="language-plaintext highlighter-rouge">:</code>). Naming of these user-defined functions follow the same rules as the naming of variables. Including the name must not be a reserved keyword (e.g. <code class="language-plaintext highlighter-rouge">def</code>), must start with a letter or underscore, etc., as well as typically following certain conventions (e.g. lowercase_words_separated_with_underscores). For more details see <a href="https://www.python.org/dev/peps/pep-0008/#function-and-variable-names">PEP 8 - Naming Conventions</a>. The function body (i.e. all function statements) must be indented.</p>
+
+<p><br /></p>
+
+<h2 id="general-notes">General Notes</h2>
+<h3 id="dry-do-not-repeat--do-one-thing">DRY (Do Not Repeat) &amp; Do One Thing</h3>
+<ul>
+  <li>When repeated code is identified it commonly indicates that a function should be utilized</li>
+  <li>Each function should complete a single task
+    <ul>
+      <li>Large complex functions should typically be broken up into multiple smaller functions</li>
+      <li>Advantages:
+        <ul>
+          <li>Code will become more flexible</li>
+          <li>Easier to read and understand</li>
+          <li>Simplified debugging</li>
+          <li>Allow for easier updates</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="pass-by-assignment">Pass by Assignment</h3>
+<p>Also referred to by pass by object or pass by object reference. Information is passed to the function using ‘pass by assignment’. See the below examples to better understand this.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">b</span> <span class="o">=</span> <span class="n">a</span>
+</code></pre></div></div>
+<p>At this point both <code class="language-plaintext highlighter-rouge">a</code> and <code class="language-plaintext highlighter-rouge">b</code> point to the same object or location in memory</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">b</span> <span class="ow">is</span> <span class="n">a</span>
+<span class="bp">True</span>
+</code></pre></div></div>
+<p>Since a list is a mutable object what happens to <code class="language-plaintext highlighter-rouge">b</code> will also happen to <code class="language-plaintext highlighter-rouge">a</code></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">a</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">b</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+</code></pre></div></div>
+<p>However if <code class="language-plaintext highlighter-rouge">a</code> is changed to a different object in memory, this does not change what object in memory <code class="language-plaintext highlighter-rouge">b</code> is pointing to. After this things that happen to <code class="language-plaintext highlighter-rouge">a</code> will no longer happen to <code class="language-plaintext highlighter-rouge">b</code></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">5</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="mi">25</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+<span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+</code></pre></div></div>
+<p>The above behavior of appending a value to the list <code class="language-plaintext highlighter-rouge">a</code> effecting the list <code class="language-plaintext highlighter-rouge">b</code> is due to a list being a mutable object. This behavior is not see if <code class="language-plaintext highlighter-rouge">a</code> and <code class="language-plaintext highlighter-rouge">b</code> are assigned to a immutable object.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">b</span> <span class="o">=</span> <span class="n">a</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">b</span> <span class="ow">is</span> <span class="n">a</span>
+<span class="bp">True</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span> <span class="o">+</span> <span class="mi">5</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">b</span>
+<span class="mi">25</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">a</span>
+<span class="mi">20</span>
+</code></pre></div></div>
+<p>This is because <code class="language-plaintext highlighter-rouge">b = b + 5</code> assigns <code class="language-plaintext highlighter-rouge">b</code> to a different object in memory due to a <code class="language-plaintext highlighter-rouge">int</code> object being immutable. Immutable and mutable types are listed below:</p>
+<ul>
+  <li>Immutable
+    <ul>
+      <li>int, float, bool, string, bytes, tuples, forzewnset, None</li>
+    </ul>
+  </li>
+  <li>Mutable
+    <ul>
+      <li>list, dict, set, bytearray, objects, functions, almost all other things</li>
+    </ul>
+  </li>
+</ul>
+
+<p>Due to this behavior mutable default arguments to a function should be avoided.</p>
+<ul>
+  <li>If a default mutable variable is required, defaulting to a value of <code class="language-plaintext highlighter-rouge">None</code> should be used and the variable can then be set within the function
+    <ul>
+      <li>More details below in the <a href="#default-arguments">Default Arguments</a> section.</li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">broken_function</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">var</span><span class="o">=</span><span class="p">[]):</span>
+	<span class="n">var</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
+	<span class="k">print</span><span class="p">(</span><span class="n">var</span><span class="p">)</span>
+
+	
+<span class="o">&gt;&gt;&gt;</span> <span class="n">broken_function</span><span class="p">(</span><span class="s">'first call'</span><span class="p">)</span>
+<span class="p">[</span><span class="s">'first call'</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>Calling the function a single time returns the expected result. However, calling the function again shows the default value of <code class="language-plaintext highlighter-rouge">var</code> has been modified by the first call to the function</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">broken_function</span><span class="p">(</span><span class="s">'second call'</span><span class="p">)</span>
+<span class="p">[</span><span class="s">'first call'</span><span class="p">,</span> <span class="s">'second call'</span><span class="p">]</span>
+
+<span class="c1"># Improve the function by setting the the default argument to None
+</span><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">improved_function</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">var</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+	<span class="k">if</span> <span class="n">var</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+		<span class="n">var</span> <span class="o">=</span> <span class="p">[]</span>
+	<span class="n">var</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
+	<span class="k">print</span><span class="p">(</span><span class="n">var</span><span class="p">)</span>
+
+	
+<span class="o">&gt;&gt;&gt;</span> <span class="n">improved_function</span><span class="p">(</span><span class="s">'first call'</span><span class="p">)</span>
+<span class="p">[</span><span class="s">'first call'</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">improved_function</span><span class="p">(</span><span class="s">'second call'</span><span class="p">)</span>
+<span class="p">[</span><span class="s">'second call'</span><span class="p">]</span>
+</code></pre></div></div>
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="inclusion-of-docstrings">Inclusion of Docstrings</h2>
+<p>In addition to the required syntax described above it is typically best practice to include a function docstring directly following the line of code which defines the function (<code class="language-plaintext highlighter-rouge">def function_name():</code>). Docstrings are string literals typically enclosed by triple quotes (either <code class="language-plaintext highlighter-rouge">'''</code> or <code class="language-plaintext highlighter-rouge">"""</code>) and are used to document the function. Enclosing the docstring in triple quotes allows for the documentation to expand more than a single line.</p>
+
+<p>Helpful information to include in a docstring consists of:</p>
+<ul>
+  <li>What the function does</li>
+  <li>What the arguments of the function are</li>
+  <li>What should be returned by the function</li>
+  <li>Information regarding any errors the function may raise</li>
+  <li>Any other relevant information about the function</li>
+</ul>
+
+<p><strong>At minimum the docstring should include what the function does and what it returns</strong></p>
+
+<p>Docstrings should follow a consistent style. Two common styles include Google Style and Numpydoc style.</p>
+
+<h3 id="google-style">Google Style</h3>
+<p>A Google Style docstring consists of:</p>
+<ul>
+  <li>A concise description of what the function does</li>
+  <li>An argument section if there are any arguments
+    <ul>
+      <li>If a given argument has a default value include “optional” when describing this argument</li>
+    </ul>
+  </li>
+  <li>A returns section that lists the expected type(s) of what the function returns</li>
+  <li>Followed by any errors raises and extra notes</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">function</span><span class="p">(</span><span class="n">arg_1</span><span class="p">,</span> <span class="n">arg_2</span><span class="o">=</span><span class="mi">42</span><span class="p">):</span>
+    <span class="s">'''Description of what the function does.
+
+    Args:
+      arg_1 (str): Description of arg_1
+      arg_2 (int, optional): Write optional when an argument has a default value
+
+    Returns:
+      bool: Optional description of the returned value
+
+    Raises:
+      ValueError: Include any error types that the function intentionally raises
+
+    Notes:
+      Any additional notes about the function
+</span></code></pre></div></div>
+
+<h3 id="numpydoc-style">Numpydoc Style</h3>
+<ul>
+  <li>Contains similar sections as the above described Google Style that is  formatted differently which can be easier to read, however tends to take up more vertical space
+    <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">function</span><span class="p">(</span><span class="n">arg_1</span><span class="p">,</span> <span class="n">arg_2</span><span class="o">=</span><span class="mi">42</span><span class="p">):</span>
+    <span class="s">'''
+    Description of what the function does.
+
+    Parameters
+    ----------
+    arg_1: str
+      Description of arg_1.
+    arg_2: int, optional
+      Description of arg_2.
+      Default=42
+      
+    Returns
+    -------
+    The type of the return value
+      Can include a description of the return value.
+      Replace "Returns" with "Yields" if the function is a generator
+    '''</span>
+</code></pre></div>    </div>
+  </li>
+</ul>
+
+<p>A function’s docstring can be accessed with the <code class="language-plaintext highlighter-rouge">__doc__</code> attribute (unformatted docstring) or by calling the <code class="language-plaintext highlighter-rouge">help()</code> function and passing in the functions name (<code class="language-plaintext highlighter-rouge">help(function_name)</code>, which returns a formatted version of the docstring). For simple functions it may be more appropriate to have a simplified single line docstring in the form of “Do something, Return something”. For more information see <a href="https://www.python.org/dev/peps/pep-0257/#what-is-a-docstring">PEP 257 - What is a Docstring</a></p>
+
+<p>Simplified Docstring</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">raise_to_power</span><span class="p">(</span><span class="n">value1</span><span class="p">,</span> <span class="n">value2</span><span class="p">):</span>
+    <span class="s">'''Raise value1 to the power of value2'''</span>
+    <span class="n">new_value</span> <span class="o">=</span> <span class="n">value1</span> <span class="o">**</span> <span class="n">value2</span>
+    <span class="k">return</span> <span class="n">new_value</span>
+</code></pre></div></div>
+<p>Google Style Docstring</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">count_letter</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="n">letter</span><span class="p">):</span>
+     <span class="s">'''Count the number of times 'letter' appears in 'content'
+
+        Args:
+            content (str): The string to search.
+            letter (str): The letter to search for.
+
+        Returns:
+            int
+ 
+        Raises:
+             ValueError: If 'letter' is not a one-character string.
+        '''</span>
+        <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">letter</span><span class="p">,</span> <span class="nb">str</span><span class="p">))</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">letter</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="nb">ValueError</span><span class="p">(</span><span class="s">'`letter` must be a signle character string.'</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">([</span><span class="n">char</span> <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">content</span> <span class="k">if</span> <span class="n">char</span> <span class="o">==</span> <span class="n">letter</span><span class="p">])</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">phrase</span> <span class="o">=</span> <span class="s">'Every goal is possible from here'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">count_letter</span><span class="p">(</span><span class="n">phrase</span><span class="p">,</span> <span class="s">'e'</span><span class="p">)</span>
+<span class="mi">4</span>
+</code></pre></div></div>
+<p>Get a Docstring using <code class="language-plaintext highlighter-rouge">__doc__</code></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">count_letter</span><span class="p">.</span><span class="n">__doc__</span>
+    <span class="n">Count</span> <span class="n">the</span> <span class="n">number</span> <span class="n">of</span> <span class="n">times</span> <span class="s">'letter'</span> <span class="n">appears</span> <span class="ow">in</span> <span class="s">'content'</span>
+    
+    <span class="n">Args</span><span class="p">:</span>
+        <span class="n">content</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">The</span> <span class="n">string</span> <span class="n">to</span> <span class="n">search</span><span class="p">.</span>
+        <span class="n">letter</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">The</span> <span class="n">letter</span> <span class="n">to</span> <span class="n">search</span> <span class="k">for</span><span class="p">.</span>
+        
+    <span class="n">Returns</span><span class="p">:</span>
+        <span class="nb">int</span>
+
+    <span class="n">Raises</span><span class="p">:</span>
+        <span class="nb">ValueError</span><span class="p">:</span> <span class="n">If</span> <span class="s">'letter'</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">a</span> <span class="n">one</span><span class="o">-</span><span class="n">character</span> <span class="n">string</span><span class="p">.</span>
+</code></pre></div></div>
+<p>Get Docstring using <code class="language-plaintext highlighter-rouge">inspect.getdoc()</code></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">inspect</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">inspect</span><span class="p">.</span><span class="n">getdoc</span><span class="p">(</span><span class="n">count_letter</span><span class="p">)</span>
+<span class="n">Count</span> <span class="n">the</span> <span class="n">number</span> <span class="n">of</span> <span class="n">times</span> <span class="s">'letter'</span> <span class="n">appears</span> <span class="ow">in</span> <span class="s">'content'</span>
+
+<span class="n">Args</span><span class="p">:</span>
+    <span class="n">content</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">The</span> <span class="n">string</span> <span class="n">to</span> <span class="n">search</span><span class="p">.</span>
+    <span class="n">letter</span> <span class="p">(</span><span class="nb">str</span><span class="p">):</span> <span class="n">The</span> <span class="n">letter</span> <span class="n">to</span> <span class="n">search</span> <span class="k">for</span><span class="p">.</span>
+
+<span class="n">Returns</span><span class="p">:</span>
+    <span class="nb">int</span>
+
+<span class="n">Raises</span><span class="p">:</span>
+    <span class="nb">ValueError</span><span class="p">:</span> <span class="n">If</span> <span class="s">'letter'</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">a</span> <span class="n">one</span><span class="o">-</span><span class="n">character</span> <span class="n">string</span><span class="p">.</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p><strong><code class="language-plaintext highlighter-rouge">Note #1:</code></strong> Even functions that do not have arguments require empty parentheses <code class="language-plaintext highlighter-rouge">()</code>.</p>
+</blockquote>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="scope">Scope</h2>
+<p>There are different scopes that are present when running Python code.</p>
+<ul>
+  <li>Global Scope: Defined in the main body of a script</li>
+  <li>Local Scope: Defined inside of a function. Any parameter defined in a function only exists while the function executes</li>
+  <li>Built-in: Names of pre-defined built-in functions and modules</li>
+</ul>
+
+<p>In general scope determines which variables can be accessed in various parts of the code, and which variables can be accessed is determined by the following rules:</p>
+<ol>
+  <li>The Python interpreter looks first in the local scope
+    <ul>
+      <li>When within a function the local scope includes any arguments of, and variables defined, inside the function</li>
+    </ul>
+  </li>
+  <li>If the variable cannot be found within the local scope, the interpreter searches the non-local scope (i.e. the parent function when a nested function is present)</li>
+  <li>If the variable cannot be found in the non-local scope, the interpreter searches the global scope (i.e. variables defined outside the function)</li>
+  <li>If the variable cannot be found in the global scope, the interpreter searches the built-in scope. The built-in scope includes things that are always accessible (e.g. <code class="language-plaintext highlighter-rouge">print()</code>)</li>
+</ol>
+
+<p>When accessing a variable defined outside the current scope Python only grants read access</p>
+<ul>
+  <li>Given the following example, when <code class="language-plaintext highlighter-rouge">x</code> is set to 50 within <code class="language-plaintext highlighter-rouge">func()</code> Python assumes the desired action is to create a new variable within the local scope</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">func</span><span class="p">():</span>
+	<span class="n">x</span> <span class="o">=</span> <span class="mi">50</span>
+	<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+	
+<span class="o">&gt;&gt;&gt;</span> <span class="n">func</span><span class="p">()</span>
+<span class="mi">50</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="mi">10</span>
+
+<span class="c1"># Another Example
+</span><span class="o">&gt;&gt;&gt;</span> <span class="n">s</span> <span class="o">=</span> <span class="s">'global_scope'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">print_value</span><span class="p">():</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="s">'local_scope'</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+
+<span class="c1"># Print the value of n (outside of the function)
+</span><span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="n">global_scope</span>
+<span class="c1"># Call the function which prints the value of n (inside of the function)
+</span><span class="o">&gt;&gt;&gt;</span> <span class="n">print_value</span><span class="p">()</span>
+<span class="n">local_scope</span>
+<span class="c1"># Print the value of n (outside of the function) - The global n remains unchanged
+</span><span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="n">global_scope</span>
+</code></pre></div></div>
+<p>The second example above shows the following:</p>
+<ol>
+  <li>The global variable <code class="language-plaintext highlighter-rouge">s</code> is assigned the value <code class="language-plaintext highlighter-rouge">global_scope</code></li>
+  <li>Defines a function <code class="language-plaintext highlighter-rouge">print_value()</code> which assigns a local variable (or function parameter) <code class="language-plaintext highlighter-rouge">s</code> the value of <code class="language-plaintext highlighter-rouge">local_scope</code></li>
+  <li>Prints the value of <code class="language-plaintext highlighter-rouge">s</code> outside of the function <code class="language-plaintext highlighter-rouge">print_value()</code> so it prints the string <code class="language-plaintext highlighter-rouge">global_scope</code></li>
+  <li>Calls the function <code class="language-plaintext highlighter-rouge">print_value()</code>, which prints the value of the local variable <code class="language-plaintext highlighter-rouge">s</code>, <code class="language-plaintext highlighter-rouge">local_scope</code></li>
+  <li>Again prints the value of <code class="language-plaintext highlighter-rouge">s</code> outside of the function which shows the the global variable <code class="language-plaintext highlighter-rouge">s</code> remains unchanged because the second assignment (<code class="language-plaintext highlighter-rouge">s = 'local_scope'</code>) impacts the local scope but does not impact the enclosing global scope</li>
+</ol>
+
+<p>Rather, if the desired action is to change the value of <code class="language-plaintext highlighter-rouge">s</code> in the global scope (defined outside of the function) then this must be explicitly declared within the function using the keyword <code class="language-plaintext highlighter-rouge">global</code></p>
+<ul>
+  <li>Modifying global variables in this manner should be used with caution as it can make debugging more challenging</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Updating global variable inside of a function
+</span><span class="o">&gt;&gt;&gt;</span> <span class="n">s</span> <span class="o">=</span> <span class="s">'global_scope'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">print_value</span><span class="p">():</span>
+        <span class="k">global</span> <span class="n">s</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="s">'updated_inside_function'</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+
+<span class="c1"># Print the value of n (outside of function) 
+</span><span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="n">global_scope</span>
+<span class="c1"># Call the function which prints the value of n (inside the function)
+</span><span class="o">&gt;&gt;&gt;</span> <span class="n">print_value</span><span class="p">()</span>
+<span class="n">updated_inside_function</span>
+<span class="c1"># Print the value of n (outside of the function)
+</span><span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="n">updated_inside_function</span>
+</code></pre></div></div>
+
+<p>Similarly, scopes must also be considered when nesting functions. To change the value of a variable in the non-local scope the <code class="language-plaintext highlighter-rouge">nonlocal</code> keyword must be used to modify the variable in the  enclosing scope.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">outer_func</span><span class="p">():</span>
+	<span class="n">x</span> <span class="o">=</span> <span class="mi">15</span>
+	<span class="k">def</span> <span class="nf">inner_func</span><span class="p">():</span>
+		<span class="n">x</span> <span class="o">=</span> <span class="mi">150</span>
+		<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+	<span class="n">inner_func</span><span class="p">()</span>
+	<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">outer_func</span><span class="p">()</span>
+<span class="mi">150</span>
+<span class="mi">15</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">outer_func</span><span class="p">():</span>
+	<span class="n">x</span> <span class="o">=</span> <span class="mi">15</span>
+	<span class="k">def</span> <span class="nf">inner_func</span><span class="p">():</span>
+		<span class="k">nonlocal</span> <span class="n">x</span>
+		<span class="n">x</span> <span class="o">=</span> <span class="mi">150</span>
+		<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+	<span class="n">inner_func</span><span class="p">()</span>
+	<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">outer_func</span><span class="p">()</span>
+<span class="mi">150</span>
+<span class="mi">150</span>
+</code></pre></div></div>
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="positional-keyword-and-default-arguments">Positional, Keyword, and Default Arguments</h2>
+<p><em>Arguments</em> are the values passed to the function when it is called (<code class="language-plaintext highlighter-rouge">raise_to_power(3,2)</code>), <code class="language-plaintext highlighter-rouge">3</code> and <code class="language-plaintext highlighter-rouge">2</code> are the arguments passed to the function <code class="language-plaintext highlighter-rouge">raise_to_power</code>. The values of the arguments are copied to the corresponding <em>Parameters</em> (<code class="language-plaintext highlighter-rouge">value_1</code> and <code class="language-plaintext highlighter-rouge">value_2</code>) inside of the function.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">return</code> statement returns the value of <code class="language-plaintext highlighter-rouge">new_value</code> back to the caller of the function.</p>
+
+<p>Calling <code class="language-plaintext highlighter-rouge">raise_to_power</code> and passing in the values of <code class="language-plaintext highlighter-rouge">3</code> and <code class="language-plaintext highlighter-rouge">2</code> does the following:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">raise_to_power</span><span class="p">(</span><span class="n">value_1</span><span class="p">,</span> <span class="n">value_2</span><span class="p">):</span>
+        <span class="s">'''Raises value_1 to the power of value_2'''</span>
+
+        <span class="n">new_value</span> <span class="o">=</span> <span class="n">value_1</span> <span class="o">**</span> <span class="n">value_2</span>
+        <span class="k">return</span> <span class="n">new_value</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">three_squared</span> <span class="o">=</span> <span class="n">raise_to_power</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">three_squared</span><span class="p">)</span>
+<span class="mi">9</span>
+</code></pre></div></div>
+<p>1) Assigns the value of <code class="language-plaintext highlighter-rouge">3</code> to the parameter <code class="language-plaintext highlighter-rouge">value_1</code> and <code class="language-plaintext highlighter-rouge">2</code> to the parameter <code class="language-plaintext highlighter-rouge">value_2</code> <strong>inside</strong> of the function. <br />
+2) Performs the calculation <code class="language-plaintext highlighter-rouge">3</code> raised (<code class="language-plaintext highlighter-rouge">**</code>) to the power of <code class="language-plaintext highlighter-rouge">2</code> <br />
+3) Returns the value <code class="language-plaintext highlighter-rouge">9</code> to the caller which then assigns it to the variable <code class="language-plaintext highlighter-rouge">three_squared</code></p>
+
+<p>Python handles function arguments in flexible manner. The most common types include positional arguments, keyword arguments, and default arguments.</p>
+
+<p><br /></p>
+
+<h3 id="positional-arguments">Positional Arguments</h3>
+<p>Positional argument values are copied to the function parameters in the order they are passed to the function.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">meals</span><span class="p">(</span><span class="n">breakfast</span><span class="p">,</span> <span class="n">lunch</span><span class="p">,</span> <span class="n">dinner</span><span class="p">):</span>
+        <span class="s">'''Builds a dictionary from the positional arguments and returns the dictionary'''</span>
+
+        <span class="k">return</span> <span class="p">{</span><span class="s">'breakfast'</span><span class="p">:</span> <span class="n">breakfast</span><span class="p">,</span> <span class="s">'lunch'</span><span class="p">:</span> <span class="n">lunch</span><span class="p">,</span> <span class="s">'dinner'</span><span class="p">:</span> <span class="n">dinner</span><span class="p">}</span>
+ 
+<span class="o">&gt;&gt;&gt;</span> <span class="n">meals</span><span class="p">(</span><span class="s">'toast'</span><span class="p">,</span> <span class="s">'sandwich'</span><span class="p">,</span> <span class="s">'tacos'</span><span class="p">)</span>
+<span class="p">{</span><span class="s">'breakfast'</span><span class="p">:</span> <span class="s">'toast'</span><span class="p">,</span> <span class="s">'lunch'</span><span class="p">:</span> <span class="s">'sandwich'</span><span class="p">,</span> <span class="s">'dinner'</span><span class="p">:</span> <span class="s">'tacos'</span><span class="p">}</span>
+</code></pre></div></div>
+<p>Positional arguments are common, however carry the downside. Each time the function is called requires remembering the meaning and what value must go into what position. For example in the function above if <code class="language-plaintext highlighter-rouge">meals()</code> is called with tacos as the first argument the meals for the day would be very different.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">meals</span><span class="p">(</span><span class="s">'tacos'</span><span class="p">,</span> <span class="s">'sandwich'</span><span class="p">,</span> <span class="s">'toast'</span><span class="p">)</span>
+<span class="p">{</span><span class="s">'breakfast'</span><span class="p">:</span> <span class="s">'tacos'</span><span class="p">,</span> <span class="s">'lunch'</span><span class="p">:</span> <span class="s">'sandwich'</span><span class="p">,</span> <span class="s">'dinner'</span><span class="p">:</span> <span class="s">'toast'</span><span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h3 id="keyword-arguments">Keyword Arguments</h3>
+<p>To avoid the potential confusion noted above, arguments can be passed to the function by specifying the arguments by the name of their corresponding function parameters.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">meals</span><span class="p">(</span><span class="n">dinner</span><span class="o">=</span><span class="s">'tacos'</span><span class="p">,</span> <span class="n">breakfast</span><span class="o">=</span><span class="s">'toast'</span><span class="p">,</span> <span class="n">lunch</span><span class="o">=</span><span class="s">'sandwich'</span><span class="p">)</span>
+<span class="p">{</span><span class="s">'breakfast'</span><span class="p">:</span> <span class="s">'toast'</span><span class="p">,</span> <span class="s">'lunch'</span><span class="p">:</span> <span class="s">'sandwich'</span><span class="p">,</span> <span class="s">'dinner'</span><span class="p">:</span> <span class="s">'tacos'</span><span class="p">}</span>
+</code></pre></div></div>
+<p>When using keyword arguments the arguments do not have to be passed to the function in the same order that the parameters are defined within the function.</p>
+
+<p>Additionally a function can be called using both positional and keyword arguments.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">meals</span><span class="p">(</span><span class="s">'toast'</span><span class="p">,</span> <span class="n">dinner</span><span class="o">=</span><span class="s">'tacos'</span><span class="p">,</span> <span class="n">lunch</span><span class="o">=</span><span class="s">'sandwich'</span><span class="p">)</span>
+<span class="p">{</span><span class="s">'breakfast'</span><span class="p">:</span> <span class="s">'toast'</span><span class="p">,</span> <span class="s">'lunch'</span><span class="p">:</span> <span class="s">'sandwich'</span><span class="p">,</span> <span class="s">'dinner'</span><span class="p">:</span> <span class="s">'tacos'</span><span class="p">}</span>
+</code></pre></div></div>
+<p>When utilizing both positional and keyword arguments the positional arguments must come before the keyword arguments. Providing a positional argument after a keyword argument will result in a <code class="language-plaintext highlighter-rouge">SyntaxError</code></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">meals</span><span class="p">(</span><span class="n">breakfast</span><span class="o">=</span><span class="s">'toast'</span><span class="p">,</span> <span class="s">'sandwich'</span><span class="p">,</span> <span class="n">dinner</span><span class="o">=</span><span class="s">'tacos'</span><span class="p">)</span>
+  <span class="n">File</span> <span class="s">"&lt;stdin&gt;"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="nb">SyntaxError</span><span class="p">:</span> <span class="n">positional</span> <span class="n">argument</span> <span class="n">follows</span> <span class="n">keyword</span> <span class="n">argument</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h3 id="default-arguments">Default Arguments</h3>
+<p>Default values for parameters can be defined and the default value will be used if no corresponding argument was provided when calling the function. To set a default value follow the parameter of interest with an equals sign (<code class="language-plaintext highlighter-rouge">=</code>) and the default value.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">meals</span><span class="p">(</span><span class="n">breakfast</span><span class="p">,</span> <span class="n">lunch</span><span class="p">,</span> <span class="n">dinner</span><span class="o">=</span><span class="s">'tacos'</span><span class="p">):</span>
+        <span class="s">'''Builds a dictionary from the positional arguments and returns the dictionary'''</span>
+
+        <span class="k">return</span> <span class="p">{</span><span class="s">'breakfast'</span><span class="p">:</span> <span class="n">breakfast</span><span class="p">,</span> <span class="s">'lunch'</span><span class="p">:</span> <span class="n">lunch</span><span class="p">,</span> <span class="s">'dinner'</span><span class="p">:</span> <span class="n">dinner</span><span class="p">}</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">meals</span><span class="p">(</span><span class="s">'toast'</span><span class="p">,</span> <span class="s">'sandwich'</span><span class="p">)</span>
+<span class="p">{</span><span class="s">'breakfast'</span><span class="p">:</span> <span class="s">'toast'</span><span class="p">,</span> <span class="s">'lunch'</span><span class="p">:</span> <span class="s">'sandwich'</span><span class="p">,</span> <span class="s">'dinner'</span><span class="p">:</span> <span class="s">'tacos'</span><span class="p">}</span>
+</code></pre></div></div>
+<blockquote>
+  <p><strong><code class="language-plaintext highlighter-rouge">Note #2:</code></strong>  When default arguments are defined they must follow non-default arguments</p>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">meals</span><span class="p">(</span><span class="n">breakfast</span><span class="o">=</span><span class="s">'toast'</span><span class="p">,</span> <span class="n">lunch</span><span class="p">,</span> <span class="n">dinner</span><span class="p">):</span>
+        <span class="s">'''Builds a dictionary from the positional arguments and returns the dictionary'''</span>
+
+        <span class="k">return</span> <span class="p">{</span><span class="s">'breakfast'</span><span class="p">:</span> <span class="n">breakfast</span><span class="p">,</span> <span class="s">'lunch'</span><span class="p">:</span> <span class="n">lunch</span><span class="p">,</span> <span class="s">'dinner'</span><span class="p">:</span> <span class="n">dinner</span><span class="p">}</span>
+ 
+  <span class="n">File</span> <span class="s">"&lt;stdin&gt;"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span>
+<span class="nb">SyntaxError</span><span class="p">:</span> <span class="n">non</span><span class="o">-</span><span class="n">default</span> <span class="n">argument</span> <span class="n">follows</span> <span class="n">default</span> <span class="n">argument</span>
+</code></pre></div></div>
+<blockquote>
+  <p><strong><code class="language-plaintext highlighter-rouge">Note #3:</code></strong> Default parameter values are calculated when the function is defined, not when the function is ran. This can result in the common error of using a mutable data type (e.g. list) as a default parameter, remember python uses pass by assignment as was noted above.</p>
+</blockquote>
+
+<p>To further demonstrate this, revisit the examples provided in the <a href="#pass-by-assignment">Pass by Assignment</a> section. The expected behavior of <code class="language-plaintext highlighter-rouge">broken_function()</code> is that each time the function is called it runs with an empty list <code class="language-plaintext highlighter-rouge">var</code>, then appends the value of <code class="language-plaintext highlighter-rouge">arg</code> to this list, and prints the single-item list.</p>
+
+<p>However, it does not work as intended. The list <code class="language-plaintext highlighter-rouge">var</code> is only empty the first time <code class="language-plaintext highlighter-rouge">broken_function()</code> is called.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">broken_function</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">var</span><span class="o">=</span><span class="p">[]):</span>
+	<span class="n">var</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
+	<span class="k">print</span><span class="p">(</span><span class="n">var</span><span class="p">)</span>
+	
+<span class="o">&gt;&gt;&gt;</span> <span class="n">broken_function</span><span class="p">(</span><span class="s">'first call'</span><span class="p">)</span>
+<span class="p">[</span><span class="s">'first call'</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">broken_function</span><span class="p">(</span><span class="s">'second call'</span><span class="p">)</span>
+<span class="p">[</span><span class="s">'first call'</span><span class="p">,</span> <span class="s">'second call'</span><span class="p">]</span>
+</code></pre></div></div>
+
+<p>A solution to this problem is to set the default value of <code class="language-plaintext highlighter-rouge">var</code> to the immutable value <code class="language-plaintext highlighter-rouge">None</code> and setting the value of <code class="language-plaintext highlighter-rouge">var</code> to an empty list inside of the function.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">improved_function</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">var</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+	<span class="k">if</span> <span class="n">var</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+		<span class="n">var</span> <span class="o">=</span> <span class="p">[]</span>
+	<span class="n">var</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
+	<span class="k">print</span><span class="p">(</span><span class="n">var</span><span class="p">)</span>
+	
+<span class="o">&gt;&gt;&gt;</span> <span class="n">improved_function</span><span class="p">(</span><span class="s">'first call'</span><span class="p">)</span>
+<span class="p">[</span><span class="s">'first call'</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">improved_function</span><span class="p">(</span><span class="s">'second call'</span><span class="p">)</span>
+<span class="p">[</span><span class="s">'second call'</span><span class="p">]</span>
+</code></pre></div></div>
+<blockquote>
+  <p><strong><code class="language-plaintext highlighter-rouge">Note #4:</code></strong> <code class="language-plaintext highlighter-rouge">None</code> is a special value in Python. <code class="language-plaintext highlighter-rouge">None</code> can be used as a placeholder when there is nothing and is not the same as the boolean value <code class="language-plaintext highlighter-rouge">False</code>. However when evaluated as a boolean it will appear false, but can be distinguished from <code class="language-plaintext highlighter-rouge">False</code> using the <code class="language-plaintext highlighter-rouge">is</code> operator.</p>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">var</span> <span class="o">=</span> <span class="bp">None</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">if</span> <span class="n">var</span><span class="p">:</span>
+	<span class="k">print</span><span class="p">(</span><span class="s">'var is nothing'</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+	<span class="k">print</span><span class="p">(</span><span class="s">'var is something'</span><span class="p">)</span>
+
+<span class="n">var</span> <span class="ow">is</span> <span class="n">something</span>
+<span class="o">&gt;&gt;&gt;</span> 
+<span class="o">&gt;&gt;&gt;</span> <span class="c1"># Distinguish None and False
+</span><span class="o">&gt;&gt;&gt;</span> <span class="k">if</span> <span class="n">var</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+	<span class="k">print</span><span class="p">(</span><span class="s">'var is nothing'</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+	<span class="k">print</span><span class="p">(</span><span class="s">'var is something'</span><span class="p">)</span>
+	
+<span class="n">var</span> <span class="ow">is</span> <span class="n">nothing</span>
+</code></pre></div></div>
+<blockquote>
+  <p><strong><code class="language-plaintext highlighter-rouge">Note #4.1:</code></strong> Zero-value integer or floats, empty strings (<code class="language-plaintext highlighter-rouge">''</code>), empty lists (<code class="language-plaintext highlighter-rouge">[]</code>), empty tuples(<code class="language-plaintext highlighter-rouge">()</code>), dictionaries (<code class="language-plaintext highlighter-rouge">{}</code>), and sets (<code class="language-plaintext highlighter-rouge">set()</code>) are all <code class="language-plaintext highlighter-rouge">False</code> when evaluated as a boolean but are not the same as <code class="language-plaintext highlighter-rouge">None</code></p>
+</blockquote>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">what_is_it</span><span class="p">(</span><span class="n">it</span><span class="p">):</span>
+	<span class="k">if</span> <span class="n">it</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">:</span>
+		<span class="k">print</span><span class="p">(</span><span class="n">it</span><span class="p">,</span> <span class="s">'is None'</span><span class="p">)</span>
+	<span class="k">elif</span> <span class="n">it</span><span class="p">:</span>
+		<span class="k">print</span><span class="p">(</span><span class="n">it</span><span class="p">,</span> <span class="s">'is True'</span><span class="p">)</span>
+	<span class="k">else</span><span class="p">:</span>
+		<span class="k">print</span><span class="p">(</span><span class="n">it</span><span class="p">,</span> <span class="s">'is False'</span><span class="p">)</span>
+	
+<span class="o">&gt;&gt;&gt;</span> <span class="n">what_is_it</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
+<span class="bp">None</span> <span class="ow">is</span> <span class="bp">None</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">what_is_it</span><span class="p">([])</span>
+<span class="p">[]</span> <span class="ow">is</span> <span class="bp">False</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">what_is_it</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="mi">1</span> <span class="ow">is</span> <span class="bp">True</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="flexible-arguments">Flexible Arguments</h2>
+<p>Flexible arguments allow a variable number of arguments to be passed to a function.</p>
+
+<h3 id="positional-arguments-">Positional Arguments <code class="language-plaintext highlighter-rouge">*</code></h3>
+<p><code class="language-plaintext highlighter-rouge">*</code> groups all the arguments passed to a function into a tuple of parameter values. It is common practice to use <code class="language-plaintext highlighter-rouge">*args</code> for this purpose but <code class="language-plaintext highlighter-rouge">args</code> does not have to be used. The name <code class="language-plaintext highlighter-rouge">args</code> is not what is important, what is important is that it is preceded with a single asterisk ( <code class="language-plaintext highlighter-rouge">*</code> ). If the function has a mix of <em>required</em> positional arguments and flexible arguments, list the required arguments first and <code class="language-plaintext highlighter-rouge">*args</code> goes at the end.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">add_all</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+	<span class="s">'''Sums all the values in *args and returns the sum'''</span>
+
+	<span class="n">sum_all</span> <span class="o">=</span> <span class="mi">0</span>
+	<span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
+		<span class="n">sum_all</span> <span class="o">+=</span> <span class="n">number</span>
+	<span class="k">return</span> <span class="n">sum_all</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">add_all</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+<span class="mi">6</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">add_all</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="mi">35</span>
+</code></pre></div></div>
+<p><br /></p>
+
+<h3 id="keyword-arguments-">Keyword Arguments <code class="language-plaintext highlighter-rouge">**</code></h3>
+<p><code class="language-plaintext highlighter-rouge">**</code> groups all the keyword arguments passed to a function into a dictionary, where the keys are the argument names and their values are the corresponding values in the dictionary. It is common practice to use <code class="language-plaintext highlighter-rouge">**kwargs</code> (keyword arguments) for this purpose but is not required, again what is important is the name is preceded by double asterisks ( <code class="language-plaintext highlighter-rouge">**</code> ) not the name itself.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">print_all</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="s">'''Prints the key value pairs of **kwargs'''</span>
+
+	<span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">.</span><span class="n">items</span><span class="p">():</span>
+		<span class="k">print</span><span class="p">(</span><span class="n">key</span> <span class="o">+</span> <span class="s">' : '</span> <span class="o">+</span> <span class="n">value</span><span class="p">)</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">print_all</span><span class="p">(</span><span class="n">breakfast</span><span class="o">=</span><span class="s">'toast'</span><span class="p">,</span> <span class="n">lunch</span><span class="o">=</span><span class="s">'sandwich'</span><span class="p">)</span>
+<span class="n">breakfast</span> <span class="p">:</span> <span class="n">toast</span>
+<span class="n">lunch</span> <span class="p">:</span> <span class="n">sandwich</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">print_all</span><span class="p">(</span><span class="n">breakfast</span><span class="o">=</span><span class="s">'toast'</span><span class="p">,</span> <span class="n">lunch</span><span class="o">=</span><span class="s">'sandwich'</span><span class="p">,</span> <span class="n">dinner</span><span class="o">=</span><span class="s">'tacos'</span><span class="p">)</span>
+<span class="n">breakfast</span> <span class="p">:</span> <span class="n">toast</span>
+<span class="n">lunch</span> <span class="p">:</span> <span class="n">sandwich</span>
+<span class="n">dinner</span> <span class="p">:</span> <span class="n">tacos</span>
+</code></pre></div></div>
+<blockquote>
+  <p><strong><code class="language-plaintext highlighter-rouge">Note #5:</code></strong> When using <code class="language-plaintext highlighter-rouge">*args</code> and <code class="language-plaintext highlighter-rouge">**kwargs</code> it is important to remember it is not the names <code class="language-plaintext highlighter-rouge">args</code> and <code class="language-plaintext highlighter-rouge">kwargs</code> that are important, rather it is that the name are preceded by a single <code class="language-plaintext highlighter-rouge">*</code> or double <code class="language-plaintext highlighter-rouge">**</code> asterisk</p>
+</blockquote>
+
+<blockquote>
+  <p><strong><code class="language-plaintext highlighter-rouge">Note #6:</code></strong> When using a combination of argument types the order is (1) Required positional arguments, (2) Optional positional arguments (<code class="language-plaintext highlighter-rouge">*args</code>), and (3) Optional keyword arguments (<code class="language-plaintext highlighter-rouge">**kwargs</code>)</p>
+</blockquote>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="functions-are-objects">Functions are Objects</h2>
+<p>Like strings, tuples, lists, dictionaries, and many other things in Python, functions are also objects.  Functions can be assigned to variables, and item in a list or dictionary, used as arguments to other functions, and be returned from functions.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">add_args</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
+        <span class="s">'''Print the value of arg1 +arg2'''</span>
+
+	<span class="k">print</span><span class="p">(</span><span class="n">arg1</span> <span class="o">+</span> <span class="n">arg2</span><span class="p">)</span>
+
+	
+<span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">multiply_args</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
+        <span class="s">'''Print the value of arg1 * arg2'''</span>
+
+	<span class="k">print</span><span class="p">(</span><span class="n">arg1</span> <span class="o">*</span> <span class="n">arg2</span><span class="p">)</span>
+
+	
+<span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">compute</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
+        <span class="s">'''Call the function passed in and pass arg1 and arg2 to that function'''</span>
+
+	<span class="n">func</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span>
+
+	
+<span class="o">&gt;&gt;&gt;</span> <span class="c1"># Call add_args passing in the values of 5 and 3
+</span><span class="o">&gt;&gt;&gt;</span> <span class="n">add_args</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="mi">8</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="c1"># Call compute passing in the function add_args and the values 5 and 3
+</span><span class="o">&gt;&gt;&gt;</span> <span class="n">compute</span><span class="p">(</span><span class="n">add_args</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="mi">8</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="c1"># Call multiply_args passing in the values 2 and 5
+</span><span class="o">&gt;&gt;&gt;</span> <span class="n">multiply_args</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="mi">10</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="c1"># Call computer passing in the function multiply_args and the values 2 and 5
+</span><span class="o">&gt;&gt;&gt;</span> <span class="n">compute</span><span class="p">(</span><span class="n">multiply_args</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="mi">10</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="c1"># Create a list of the functions add_args and multiply_args
+</span><span class="o">&gt;&gt;&gt;</span> <span class="n">math_functions</span> <span class="o">=</span> <span class="p">[</span><span class="n">add_args</span><span class="p">,</span> <span class="n">multiply_args</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="c1"># Call the add_args function using the list math_functions and passing in the values 5 and 3
+</span><span class="o">&gt;&gt;&gt;</span> <span class="n">math_functions</span><span class="p">[</span><span class="mi">0</span><span class="p">](</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="mi">8</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="c1"># Call the multiply_args function using the list math_functions and passing in the values 2 and 5
+</span><span class="o">&gt;&gt;&gt;</span> <span class="n">math_functions</span><span class="p">[</span><span class="mi">1</span><span class="p">](</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="mi">10</span>
+</code></pre></div></div>
+<p>This can also be combined with the use of <code class="language-plaintext highlighter-rouge">*args</code> and <code class="language-plaintext highlighter-rouge">**kwargs</code></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">sum_args</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="s">'''Sum all the values in *args'''</span>
+
+        <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">use_positional_args</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="s">'''Call the function passed in as func and pass *args to that function'''</span>
+
+        <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">use_positional_args</span><span class="p">(</span><span class="n">sum_args</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="mi">6</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">use_positional_args</span><span class="p">(</span><span class="n">sum_args</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="mi">15</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="anonymous-lambda-functions">Anonymous <code class="language-plaintext highlighter-rouge">lambda</code> Functions</h2>
+<p>A lambda function is an anonymous function because it is not given a name when defined (<code class="language-plaintext highlighter-rouge">def name_of_function:</code>) as has been shown in all previous examples. These functions provide a quick, and potentially dirty, way to write function that may not be suitable for all uses but do have helpful implementations. Generally they can be useful to anonymously implement simple functionalities embedded within larger expressions.</p>
+
+<p>The syntax of a lambda function is the keyword <code class="language-plaintext highlighter-rouge">lambda</code> followed the name of the arguments, a colon <code class="language-plaintext highlighter-rouge">:</code> and then the function definition.</p>
+
+<p>To compare use the prior add_arg functions:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">add_args</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">arg1</span> <span class="o">+</span> <span class="n">arg2</span><span class="p">)</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">add_args</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="mi">8</span>
+</code></pre></div></div>
+<p>This basic normal function can be rewritten as a lambda function:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">add_args_2</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">:</span> <span class="n">arg1</span> <span class="o">+</span> <span class="n">arg2</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">add_args_2</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+<span class="mi">8</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="generator-functions">Generator Functions</h2>
+<p><strong>Generator:</strong> a Python sequence creation object.</p>
+
+<p>A generator object can be used to iterate over large sequences when it is inefficient to store the entire source of data in memory. Generators differ from normal functions in that each time a generator is iterated over the generator tracks where it was each time it is called in contrast to normal function which have no memory of previous calls (i.e. a normal function starts at the first line of function and at the same state).</p>
+
+<p><strong>Generator Function:</strong> a function that when called produces a generator object.</p>
+
+<p>Similar to normal functions a generator function is defined using <code class="language-plaintext highlighter-rouge">def</code>, however to return a value use the keyword <code class="language-plaintext highlighter-rouge">yield</code> rather than <code class="language-plaintext highlighter-rouge">return</code>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">number_sequence</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="s">'''Generates values from 0 up to (not including) n'''</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">i</span>
+            <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">number_sequence</span>
+<span class="o">&lt;</span><span class="n">function</span> <span class="n">number_sequence</span> <span class="n">at</span> <span class="mh">0x7f8c75903160</span><span class="o">&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">generator_sequence</span> <span class="o">=</span> <span class="n">number_sequence</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">generator_sequence</span>
+<span class="o">&lt;</span><span class="n">generator</span> <span class="nb">object</span> <span class="n">number_sequence</span> <span class="n">at</span> <span class="mh">0x7f8c759026d0</span><span class="o">&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">generator_sequence</span><span class="p">:</span>
+         <span class="k">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+
+<span class="mi">0</span>
+<span class="mi">1</span>
+<span class="mi">2</span>
+</code></pre></div></div>
+<blockquote>
+  <p><strong><code class="language-plaintext highlighter-rouge">Note #7:</code></strong> A generator can only be ran a single time since the generator object is not stored in memory. A generator object creates the values only when called (i.e. on the fly) and does not remember its values (i.e. cannot restart or back up a generator). This differs from, for example, a list can be iterated over multiple times since its values are store in memory.</p>
+</blockquote>
+
+<p>Trying to iterator over generator_sequence again there are no values to print. Contrasted with printing the elements of a list multiple times.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Iterator over generator_sequence again.
+</span><span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">generator_sequence</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+
+<span class="o">&gt;&gt;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="c1"># Iterator over list twice
+</span><span class="o">&gt;&gt;&gt;</span> <span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">my_list</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+
+<span class="mi">1</span>
+<span class="mi">2</span>
+<span class="mi">3</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">my_list</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+
+<span class="mi">1</span>
+<span class="mi">2</span>
+<span class="mi">3</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="closures">Closures</h2>
+<p><strong>Closure:</strong> is a tuple of variables that are no longer in scope but are required by a function to run</p>
+
+<p>Below the function <code class="language-plaintext highlighter-rouge">outer_function()</code> defines the nested function <code class="language-plaintext highlighter-rouge">inner_function()</code> which prints the value of <code class="language-plaintext highlighter-rouge">x</code>, and <code class="language-plaintext highlighter-rouge">outer_function()</code> returns <code class="language-plaintext highlighter-rouge">inner_function()</code></p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">function = outer_function()</code> assigns the <code class="language-plaintext highlighter-rouge">inner_function()</code> to the variable <code class="language-plaintext highlighter-rouge">function</code></li>
+  <li>When <code class="language-plaintext highlighter-rouge">function()</code> is then called it prints the value of <code class="language-plaintext highlighter-rouge">x</code>, the closure makes <code class="language-plaintext highlighter-rouge">x</code> observable when <code class="language-plaintext highlighter-rouge">function()</code> (i.e. <code class="language-plaintext highlighter-rouge">inner_function()</code>) is called</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">outer_function</span><span class="p">():</span>
+	<span class="n">x</span> <span class="o">=</span> <span class="mi">15</span>
+	<span class="k">def</span> <span class="nf">inner_function</span><span class="p">():</span>
+		<span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+	<span class="k">return</span> <span class="n">inner_function</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">function</span> <span class="o">=</span> <span class="n">outer_function</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">function</span><span class="p">()</span>
+<span class="mi">15</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">type</span><span class="p">(</span><span class="n">function</span><span class="p">.</span><span class="n">__closure__</span><span class="p">)</span>
+<span class="o">&lt;</span><span class="k">class</span> <span class="err">'</span><span class="nc">tuple</span><span class="s">'&gt;
+&gt;&gt;&gt; function.__closure__[0].cell_contents
+15
+</span></code></pre></div></div>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">x</span> <span class="o">=</span> <span class="mi">150</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">outer_function</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
+	<span class="k">def</span> <span class="nf">inner_function</span><span class="p">():</span>
+		<span class="k">print</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+	<span class="k">return</span> <span class="n">inner_function</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">function</span> <span class="o">=</span> <span class="n">outer_function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">function</span><span class="p">()</span>
+<span class="mi">150</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="c1"># Delete the variable x
+</span><span class="o">&gt;&gt;&gt;</span> <span class="k">del</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+  <span class="n">File</span> <span class="s">"&lt;pyshell#185&gt;"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nb">NameError</span><span class="p">:</span> <span class="n">name</span> <span class="s">'x'</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">defined</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="c1"># The value of x persists in the function's closure
+</span><span class="o">&gt;&gt;&gt;</span> <span class="n">function</span><span class="p">()</span>
+<span class="mi">150</span>
+</code></pre></div></div>
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="decorators">Decorators</h2>
+<p><strong>Decorator:</strong> a function that takes a function as an input and returns a modified version of the function with modified behavior. Decorators can become useful when an existing function needs to be modified/updated with out changing the source code for the function (e.g. adding debugging statements).</p>
+<ul>
+  <li>Use <code class="language-plaintext highlighter-rouge">@</code> followed by the decorator name</li>
+  <li>For the decorator to return a modified function it is generally helpful to define a new function that is returned (e.g. <code class="language-plaintext highlighter-rouge">wrapper()</code>)</li>
+  <li>Decorators make use of nested functions, non-local variables, and closures.</li>
+</ul>
+
+<p>First define a function that will be decorated <code class="language-plaintext highlighter-rouge">add()</code></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+	<span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+</code></pre></div></div>
+<p>Define the decorator function (<code class="language-plaintext highlighter-rouge">double()</code>) and within it define the new function (<code class="language-plaintext highlighter-rouge">wrapper()</code>) that will be returned</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">wrapper()</code> takes the two arguments and passes them to the function that was passed to <code class="language-plaintext highlighter-rouge">double()</code></li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">double</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+	<span class="c1"># Define the new function that will be modified
+</span>	<span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+		<span class="c1"># Call the passed in function with modified arguments
+</span>		<span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="n">y</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
+	<span class="c1"># Return the modified function
+</span>	<span class="k">return</span> <span class="n">wrapper</span>
+</code></pre></div></div>
+<p>Now <code class="language-plaintext highlighter-rouge">add()</code> can be passed to the function <code class="language-plaintext highlighter-rouge">double()</code> and assign the result to <code class="language-plaintext highlighter-rouge">new_addition()</code></p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">new_addition()</code> is equal to <code class="language-plaintext highlighter-rouge">wrapper()</code> which calls <code class="language-plaintext highlighter-rouge">add()</code> after doubling each argument</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">new_addition</span> <span class="o">=</span> <span class="n">double</span><span class="p">(</span><span class="n">add</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">new_addition</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="mi">12</span>
+</code></pre></div></div>
+<p>Using <code class="language-plaintext highlighter-rouge">@double</code> prior to the definition of add is equivalent to <code class="language-plaintext highlighter-rouge">add = double_args(add)</code></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="o">@</span><span class="n">double</span>
+<span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="mi">12</span>
+</code></pre></div></div>
+<p>More than one decorator can be used on a function</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">document_a_function</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+	<span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+	    <span class="k">print</span><span class="p">(</span><span class="s">'Running:'</span><span class="p">,</span> <span class="n">func</span><span class="p">.</span><span class="n">__name__</span><span class="p">)</span>
+	    <span class="k">print</span><span class="p">(</span><span class="s">'Positional args:'</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+	    <span class="k">print</span><span class="p">(</span><span class="s">'Keyword args:'</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
+	    <span class="n">result</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+	    <span class="k">print</span><span class="p">(</span><span class="s">'Result:'</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+	    <span class="k">return</span> <span class="n">result</span>
+	    <span class="k">return</span> <span class="n">wrapper</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="o">@</span><span class="n">document_a_function</span>
+<span class="o">@</span><span class="n">double</span>
+<span class="k">def</span> <span class="nf">add</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+	<span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">Running</span><span class="p">:</span> <span class="n">wrapper</span>
+<span class="n">Positional</span> <span class="n">args</span><span class="p">:</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">Keyword</span> <span class="n">args</span><span class="p">:</span> <span class="p">{}</span>
+<span class="n">Result</span><span class="p">:</span> <span class="mi">12</span>
+<span class="mi">12</span>
+</code></pre></div></div>
+<h3 id="function-metadata">Function Metadata</h3>
+<p>One potential issue with the use of decorators is the decorator obscures the decorated function’s metadata (e.g. the function docstring or name)</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">sleep_n_seconds</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+	<span class="s">'''Pause processing for n seconds
+
+	Args:
+		n (int): The number of seconds to pause for.
+	'''</span>
+	<span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+	
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">sleep_n_seconds</span><span class="p">.</span><span class="n">__doc__</span><span class="p">)</span>
+<span class="n">Pause</span> <span class="n">processing</span> <span class="k">for</span> <span class="n">n</span> <span class="n">seconds</span>
+
+	<span class="n">Args</span><span class="p">:</span>
+		<span class="n">n</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">The</span> <span class="n">number</span> <span class="n">of</span> <span class="n">seconds</span> <span class="n">to</span> <span class="n">pause</span> <span class="k">for</span><span class="p">.</span>
+	
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">sleep_n_seconds</span><span class="p">.</span><span class="n">__name__</span><span class="p">)</span>
+<span class="n">sleep_n_seconds</span>
+</code></pre></div></div>
+<p>If <code class="language-plaintext highlighter-rouge">sleep_n_seconds()</code> is decorated, the decorator will obscure <code class="language-plaintext highlighter-rouge">sleep_n_seconds()</code>’s metadata. Below <code class="language-plaintext highlighter-rouge">sleep_n_seconds()</code> gets decorated with <code class="language-plaintext highlighter-rouge">timer()</code>.</p>
+<ul>
+  <li>Printing the <code class="language-plaintext highlighter-rouge">__name__</code> attribute shows the name of the function is <code class="language-plaintext highlighter-rouge">wrapper</code>
+    <ul>
+      <li>This is because when defining the <code class="language-plaintext highlighter-rouge">timer</code> decorator the nested function <code class="language-plaintext highlighter-rouge">wrapper()</code> is returned
+        <ul>
+          <li>The decorator overwrites the <code class="language-plaintext highlighter-rouge">sleep_n_seconds()</code> function</li>
+          <li>Trying to then access <code class="language-plaintext highlighter-rouge">sleep_n_seconds()</code> docstring the code is now referencing the nested function <code class="language-plaintext highlighter-rouge">wrapper()</code> which is returned by the decorator</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">timer</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+	<span class="s">'''A decorator that prints how long a function takes to run.
+
+	Args:
+		func(callable): The function being decorated
+	Returns:
+		callable: The decorated function
+	'''</span>
+	<span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+		<span class="c1"># Get the current time
+</span>		<span class="n">t_start</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="n">time</span><span class="p">()</span>
+		<span class="c1"># Call the decorated function and store the result
+</span>		<span class="n">result</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+		<span class="c1"># Get the total time it took to run the function
+</span>		<span class="n">t_total</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">t_start</span>
+		<span class="k">print</span><span class="p">(</span><span class="s">'{} took {}s'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">func</span><span class="p">.</span><span class="n">__name__</span><span class="p">,</span> <span class="n">t_total</span><span class="p">))</span>
+	<span class="k">return</span> <span class="n">wrapper</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="o">@</span><span class="n">timer</span>
+<span class="k">def</span> <span class="nf">sleep_n_seconds</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="s">'''Pause processing for n seconds
+
+	Args:
+		n (int): The number of seconds to pause for.
+	'''</span>
+	<span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+	
+<span class="o">&gt;&gt;&gt;</span> <span class="n">sleep_n_seconds</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">sleep_n_seconds</span> <span class="n">took</span> <span class="mf">5.004786729812622</span><span class="n">s</span>
+<span class="o">&gt;&gt;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">sleep_n_seconds</span><span class="p">.</span><span class="n">__name__</span><span class="p">)</span>
+<span class="n">wrapper</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">sleep_n_seconds</span><span class="p">.</span><span class="n">__doc__</span><span class="p">)</span>
+<span class="bp">None</span>
+</code></pre></div></div>
+<p>This limitation can be overcome using the <code class="language-plaintext highlighter-rouge">wraps</code> function from the <code class="language-plaintext highlighter-rouge">functools</code> module</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wraps</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">timer</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+	<span class="s">'''A decorator that prints how long a function takes to run.
+
+	Args:
+		func(callable): The function being decorated
+	Returns:
+		callable: The decorated function
+	'''</span>
+	<span class="o">@</span><span class="n">wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+	<span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+		<span class="c1"># Get the current time
+</span>		<span class="n">t_start</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="n">time</span><span class="p">()</span>
+		<span class="c1"># Call the decorated function and store the result
+</span>		<span class="n">result</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+		<span class="c1"># Get the total time it took to run the function
+</span>		<span class="n">t_total</span> <span class="o">=</span> <span class="n">time</span><span class="p">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">t_start</span>
+		<span class="k">print</span><span class="p">(</span><span class="s">'{} took {}s'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">func</span><span class="p">.</span><span class="n">__name__</span><span class="p">,</span> <span class="n">t_total</span><span class="p">))</span>
+	<span class="k">return</span> <span class="n">wrapper</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="o">@</span><span class="n">timer</span>
+<span class="k">def</span> <span class="nf">sleep_n_seconds</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+	<span class="s">'''Pause processing for n seconds.
+
+	Args:
+		n (int): The number of seconds to pause for.
+	'''</span>
+	<span class="n">time</span><span class="p">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+	
+<span class="o">&gt;&gt;&gt;</span> <span class="k">print</span><span class="p">(</span><span class="n">sleep_n_seconds</span><span class="p">.</span><span class="n">__doc__</span><span class="p">)</span>
+<span class="n">Pause</span> <span class="n">processing</span> <span class="k">for</span> <span class="n">n</span> <span class="n">seconds</span><span class="p">.</span>
+
+	<span class="n">Args</span><span class="p">:</span>
+		<span class="n">n</span> <span class="p">(</span><span class="nb">int</span><span class="p">):</span> <span class="n">The</span> <span class="n">number</span> <span class="n">of</span> <span class="n">seconds</span> <span class="n">to</span> <span class="n">pause</span> <span class="k">for</span><span class="p">.</span>
+</code></pre></div></div>
+<p><br /></p>
+
+<h3 id="decorators-with-arguments">Decorators with Arguments</h3>
+<p>For a decorator to incorporate arguments the decorator function (<code class="language-plaintext highlighter-rouge">run_n_times</code>) must return a decorator, rather than a function that is a decorator</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">decorator(func)</code>: the new decorator defined inside the function
+    <ul>
+      <li>This function has a nested <code class="language-plaintext highlighter-rouge">wrapper()</code> function like all other decorator examples</li>
+    </ul>
+  </li>
+  <li>Since <code class="language-plaintext highlighter-rouge">wrapper()</code> is in the <code class="language-plaintext highlighter-rouge">run_n_times()</code> scope the function has access to <code class="language-plaintext highlighter-rouge">n</code> to run the function <code class="language-plaintext highlighter-rouge">n</code> amount of times</li>
+  <li>Then <code class="language-plaintext highlighter-rouge">wrapper()</code> is returned</li>
+  <li><code class="language-plaintext highlighter-rouge">run_n_times()</code> then returns the <code class="language-plaintext highlighter-rouge">decorator()</code> function which can then be used as a decorator</li>
+  <li><code class="language-plaintext highlighter-rouge">@run_n_times(n)</code> indicates that <code class="language-plaintext highlighter-rouge">run_n_times()</code> is being called and is decorating <code class="language-plaintext highlighter-rouge">print_sum()</code>
+    <ul>
+      <li>Since <code class="language-plaintext highlighter-rouge">run_n_times()</code> returns a decorator function it can be used to decorate <code class="language-plaintext highlighter-rouge">print_sum()</code></li>
+    </ul>
+  </li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">run_n_times</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+	<span class="s">'''Define and return a decorator'''</span>
+	<span class="k">def</span> <span class="nf">decorator</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+		<span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+			<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+				<span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+		<span class="k">return</span> <span class="n">wrapper</span>
+	<span class="k">return</span> <span class="n">decorator</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="o">@</span><span class="n">run_n_times</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">print_sum</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+	<span class="k">print</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">)</span>
+
+	
+<span class="o">&gt;&gt;&gt;</span> <span class="n">print_sum</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="mi">5</span>
+<span class="mi">5</span>
+<span class="mi">5</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="exceptions">Exceptions</h2>
+<p><strong>Exceptions:</strong> are specific code that is executed when a corresponding error occurs during code execution.</p>
+
+<p>An example would include attempting to access a out-of-range index of a list.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">my_list</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+  <span class="n">File</span> <span class="s">"&lt;pyshell#368&gt;"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+    <span class="n">my_list</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+<span class="nb">IndexError</span><span class="p">:</span> <span class="nb">list</span> <span class="n">index</span> <span class="n">out</span> <span class="n">of</span> <span class="nb">range</span>
+</code></pre></div></div>
+<p>It is best practice to include exception handling throughout code anywhere an exception may occur. An exception handling can provide helpful information about the error that occurred and stop the execution of the code.</p>
+
+<p>Error handling can be implemented by wrapping code with <code class="language-plaintext highlighter-rouge">try</code>, and using <code class="language-plaintext highlighter-rouge">except</code> for the error handling.</p>
+
+<p>When using <code class="language-plaintext highlighter-rouge">try-except</code>:</p>
+<ol>
+  <li>First Python runs the code contained within the <code class="language-plaintext highlighter-rouge">try</code> block (<code class="language-plaintext highlighter-rouge">return x ** 0.5</code>)</li>
+  <li>If, and only if, the code cannot execute successfully due to an error an exception is raised and the code within the <code class="language-plaintext highlighter-rouge">except</code> block (<code class="language-plaintext highlighter-rouge">print('x must be an int or float')</code>) is executed</li>
+</ol>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="s">'''Returns the square root of a number (x)'''</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">x</span> <span class="o">**</span> <span class="mf">0.5</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">'x must be an int or float'</span><span class="p">)</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="mf">2.0</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">sqrt</span><span class="p">(</span><span class="s">'four'</span><span class="p">)</span>
+<span class="n">x</span> <span class="n">must</span> <span class="n">be</span> <span class="n">an</span> <span class="nb">int</span> <span class="ow">or</span> <span class="nb">float</span>
+</code></pre></div></div>
+<p>When <code class="language-plaintext highlighter-rouge">except</code> is used, without any additional arguments, it will catch any type of exception. However, to provide more detailed information on the error that occurred it can be helpful to include an exception handler for each type of exception. There is not a limit in the number of specific exception handlers that can be used.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="s">'four'</span><span class="p">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="s">'''Returns the square root of a number(x)'''</span>
+        <span class="k">try</span><span class="p">:</span> 
+            <span class="k">return</span> <span class="n">x</span> <span class="o">**</span> <span class="mf">0.5</span>
+        <span class="k">except</span> <span class="nb">TypeError</span> <span class="k">as</span> <span class="n">type_err</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">'Type Error:'</span><span class="p">,</span> <span class="n">type_err</span><span class="p">)</span>
+        <span class="k">except</span> <span class="nb">IndexError</span> <span class="k">as</span> <span class="n">index_err</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">'Index Error:'</span><span class="p">,</span> <span class="n">index_err</span><span class="p">)</span>
+        <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">other</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">'Other Error:'</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">my_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="mf">2.0</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">my_list</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="n">Type</span> <span class="n">Error</span><span class="p">:</span> <span class="n">unsupported</span> <span class="n">operand</span> <span class="nb">type</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="o">**</span> <span class="ow">or</span> <span class="nb">pow</span><span class="p">():</span> <span class="s">'str'</span> <span class="ow">and</span> <span class="s">'float'</span>
+<span class="o">&gt;&gt;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">sqrt</span><span class="p">(</span><span class="n">my_list</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+  <span class="n">File</span> <span class="s">"&lt;stdin&gt;"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+<span class="nb">IndexError</span><span class="p">:</span> <span class="nb">list</span> <span class="n">index</span> <span class="n">out</span> <span class="n">of</span> <span class="nb">range</span>
+</code></pre></div></div>
+<p>The keyword <code class="language-plaintext highlighter-rouge">raise</code> can be used to throw and exception if a specific condition occurs that should not be executed.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="s">'''Returns the square root of a number (x)'''</span>
+        <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="nb">ValueError</span> <span class="p">(</span><span class="s">'x should be a non-negative integer. The value of x was: {}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">x</span> <span class="o">**</span> <span class="mf">0.5</span>
+        <span class="k">except</span> <span class="nb">TypeError</span> <span class="k">as</span> <span class="n">type_err</span><span class="p">:</span>
+             <span class="k">print</span><span class="p">(</span><span class="s">'Type Error:'</span><span class="p">,</span> <span class="n">type_err</span><span class="p">)</span>
+        <span class="k">except</span> <span class="nb">IndexError</span> <span class="k">as</span> <span class="n">index_err</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">'Index Error:'</span><span class="p">,</span> <span class="n">index_err</span><span class="p">)</span>
+        <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">other</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">'Other Error:'</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="n">sqrt</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+  <span class="n">File</span> <span class="s">"&lt;stdin&gt;"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+  <span class="n">File</span> <span class="s">"&lt;stdin&gt;"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">4</span><span class="p">,</span> <span class="ow">in</span> <span class="n">sqrt</span>
+<span class="nb">ValueError</span><span class="p">:</span> <span class="n">x</span> <span class="n">should</span> <span class="n">be</span> <span class="n">a</span> <span class="n">non</span><span class="o">-</span><span class="n">negative</span> <span class="n">integer</span><span class="p">.</span> <span class="n">The</span> <span class="n">value</span> <span class="n">of</span> <span class="n">x</span> <span class="n">was</span><span class="p">:</span> <span class="o">-</span><span class="mi">4</span>
+</code></pre></div></div>
+
+    </div><a class="u-url" href="/deep%20dive/intro-to-functions.html" hidden></a>
+  </article>
+</div>
+      </div>
+    </main><footer class="footer">
+    <!-- replace with your own email address 
+    <a href="mailto:info@ethanguyant.com" class="footer__link">info@ethanguyant.com</a>-->
+    <ul class="social-list">
+        <li class="social-list__item">
+            <a class="social-list__link" href="mailto:emguyant@gmail.com">
+                <i class="fas fa-envelope"></i>
+            </a>
+        </li>
+        <li class="social-list__item">
+            <a class="social-list__link" href="https://www.linkedin.com/in/ethan-guyant/">
+                <i class="fab fa-linkedin"></i>
+            </a>
+        </li>
+        <li class="social-list__item">
+            <a class="social-list__link" href="https://github.com/EMGuyant">
+                <i class="fab fa-github"></i>
+            </a>
+        </li>
+    </ul>
+</footer><script src="https://kit.fontawesome.com/c9965d23bb.js" crossorigin="anonymous"></script>
+<script src="/assets/js/script.js"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+</body>
+
+</html>

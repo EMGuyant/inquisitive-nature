@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Logical Query Processing Order | Ethan Guyant’s Data Science Blog</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="Logical Query Processing Order" />
+<meta name="author" content="Ethan Guyant" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A SQL query declares what data is expected to be returned. The impact of this is that the oder a query is written is not the order that the query is process. This article aims to explain the differences in the order SQL is written vs the order in which it is processed." />
+<meta property="og:description" content="A SQL query declares what data is expected to be returned. The impact of this is that the oder a query is written is not the order that the query is process. This article aims to explain the differences in the order SQL is written vs the order in which it is processed." />
+<link rel="canonical" href="http://blog.ethanguyant.com/quick%20start/logical-query-processing.html" />
+<meta property="og:url" content="http://blog.ethanguyant.com/quick%20start/logical-query-processing.html" />
+<meta property="og:site_name" content="Ethan Guyant’s Data Science Blog" />
+<meta property="og:image" content="http://blog.ethanguyant.com/assets/img/post_img/logical-sql.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-10-19T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="http://blog.ethanguyant.com/assets/img/post_img/logical-sql.jpg" />
+<meta property="twitter:title" content="Logical Query Processing Order" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"Ethan Guyant"},"description":"A SQL query declares what data is expected to be returned. The impact of this is that the oder a query is written is not the order that the query is process. This article aims to explain the differences in the order SQL is written vs the order in which it is processed.","url":"http://blog.ethanguyant.com/quick%20start/logical-query-processing.html","@type":"BlogPosting","image":"http://blog.ethanguyant.com/assets/img/post_img/logical-sql.jpg","headline":"Logical Query Processing Order","dateModified":"2020-10-19T00:00:00+00:00","datePublished":"2020-10-19T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://blog.ethanguyant.com/quick%20start/logical-query-processing.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<title>Ethan Guyant's Personal Blog</title>
+  <!-- Normalize CSS file irons out some difference between browsers -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+  <!-- Google Fonts-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,900|Source+Sans+Pro:300,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Arvo:wght@700&display=swap" rel="stylesheet">
+  <!-- CSS Styles -->
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <!-- Animation on Scroll-->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <!-- Font Awesome Kit -->
+  <script src="https://kit.fontawesome.com/c9965d23bb.js" crossorigin="anonymous"></script><link type="application/atom+xml" rel="alternate" href="http://blog.ethanguyant.com/feed.xml" title="Ethan Guyant's Data Science Blog" /></head>
+<body><header class="header sticky">
+    <div class="wrapper">
+        <div>
+            <div class="scroll-logo"> 
+                <a href="/">  
+                    <svg id="EG" viewBox="0 0 152 216">
+                        <g>
+                            <path id="hex"d="M 76.342 4 L 147.685 41.377 L 147.685 116.13 L 76.342 153.506 L 5 116.13 L 5 41.377 Z" style="stroke-width: 8.37394px; fill-opacity: 0; fill: none; stroke: #39ace7;"></path>         
+                            <polygon class="logo"style="stroke-width: 3.58883px; stroke: #39ace7; fill: #39ace7;" points="41.001 38.501 112.012 38.501 112.012 62.884 97.474 62.884 97.474 54.976 41.001 54.976"></polygon>
+                            <polygon class="logo" style="stroke-width: 3.58883px; stroke: #39ace7; fill: #39ace7;" points="40.671 102.9 97.81 102.9 97.81 86.796 83.604 86.796 83.604 70.701 112.014 70.701 112.014 102.92 112.014 119.004 40.939 119.004"></polygon>
+                            <polygon class="logo" style="stroke-width: 3.58883px; stroke: #39ace7; fill: #39ace7;" points="41.001 70.701 69.753 70.701 63.532 87.725 41.317 87.725"></polygon>
+                        </g> 
+                    </svg>
+                </a>
+            </div>
+
+            <div class="header__title">
+                <a href="/">EthanGuyant.com</a>
+            </div>
+            
+        </div>
+        
+        <div class="nav__menu">
+            <div class="nav__toggle">
+                <div class="nav__icon">
+                    <span></span>
+                </div>
+            </div>
+        </div>
+        <div class="nav__menu__wrapper">
+            <ul class="nav__menu__list">
+                <li class="nav__menu__list__item">
+                    <a href="/" class="nav__menu__list__item__link">Home</a>
+                </li>
+                <li class="nav__menu__list__item">
+                    <a href="/blog" class="nav__menu__list__item__link">Blog</a>
+                </li>
+                <li class="nav__menu__list__item">
+                    <a href="/about" class="nav__menu__list__item__link">About</a>
+                </li>
+                <li class="nav__menu__list__item">
+                    <a href="/projects" class="nav__menu__list__item__link">Projects</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header><main class="page" aria-label="Content">
+      <div class="page__content">
+        <section class="blog__header">
+    <div class="blog__img">
+      <div class="blog__img__over"></div>
+    </div>
+    <div class="wrapper">
+      <h1 class="blog__title"><span class="inquisitive">INQUISITIVE</span> <span class="nature">NATURE</span></h1>
+      <p class="blog__subtitle">Learn  Explore  <strong>Share</strong></p>
+      <p class="post__categories">
+    </div>
+  </section><div class="wrapper">
+  <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+    <section class="article__header">
+        <h1 class="post-title p-name" itemprop="name headline">Logical Query Processing Order</h1>
+        <p class="post-meta">
+          <time class="dt-published" datetime="2020-10-19T00:00:00+00:00" itemprop="datePublished">Oct 19, 2020
+          </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">Ethan Guyant</span></span></p>
+          <p class="post-category">
+            Category: 
+            <a href="/category/quick-start">
+              <i class="fa-solid fa-folder"></i>
+              Quick Start
+            </a> 
+          </p>
+          <p class="post-tags">
+          Tags: 
+           
+              
+              <a href="/tag/sql">
+                <i class="fa-solid fa-tag"></i>
+                SQL
+              </a> 
+            
+          
+        </p>
+    </section>
+    <div class="post-content e-content" itemprop="articleBody">
+      <h2 id="logical-query-process">Logical Query Process</h2>
+
+<p>To better understand the logical processing order a general form query is
+provided below. In this query the numbers (<code class="language-plaintext highlighter-rouge">#.#</code>) indicate the logical 
+processing order. It is also
+important to note that the logical processing order does differ from the typed
+order of the query and can differ from the physical processing order.</p>
+
+<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="mi">5</span><span class="p">)</span> <span class="k">SELECT</span> <span class="p">(</span><span class="mi">5</span><span class="p">.</span><span class="mi">2</span><span class="p">)</span> <span class="k">DISTINCT</span> <span class="p">(</span><span class="mi">7</span><span class="p">)</span> <span class="n">TOP</span><span class="p">(</span><span class="o">&lt;</span><span class="n">top_specification</span><span class="o">&gt;</span><span class="p">)</span> <span class="p">(</span><span class="mi">5</span><span class="p">.</span><span class="mi">1</span><span class="p">)</span> <span class="o">&lt;</span><span class="n">select_list</span><span class="o">&gt;</span>
+<span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="k">FROM</span> <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">J</span><span class="p">)</span> <span class="o">&lt;</span><span class="n">left_table</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">join_type</span><span class="o">&gt;</span> <span class="k">JOIN</span> <span class="o">&lt;</span><span class="n">right_table</span><span class="o">&gt;</span> <span class="k">ON</span> <span class="o">&lt;</span><span class="n">on_predicate</span><span class="o">&gt;</span>
+         <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">A</span><span class="p">)</span> <span class="o">&lt;</span><span class="n">left_table</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">apply_type</span><span class="o">&gt;</span> <span class="n">APPLY</span> <span class="o">&lt;</span><span class="n">right_input_table</span><span class="o">&gt;</span> <span class="k">AS</span> <span class="o">&lt;</span><span class="k">alias</span><span class="o">&gt;</span>
+         <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">P</span><span class="p">)</span> <span class="o">&lt;</span><span class="n">left_table</span><span class="o">&gt;</span> <span class="n">PIVOT</span><span class="p">(</span><span class="o">&lt;</span><span class="n">pivot_specification</span><span class="o">&gt;</span><span class="p">)</span> <span class="k">AS</span> <span class="o">&lt;</span><span class="k">alias</span><span class="o">&gt;</span>
+         <span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">U</span><span class="p">)</span> <span class="o">&lt;</span><span class="n">left_table</span><span class="o">&gt;</span> <span class="n">UNPIVOT</span><span class="p">(</span><span class="o">&lt;</span><span class="n">unpivot_specifcation</span><span class="o">&gt;</span><span class="p">)</span> <span class="k">AS</span> <span class="o">&lt;</span><span class="k">alias</span><span class="o">&gt;</span>
+<span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="k">WHERE</span> <span class="o">&lt;</span><span class="n">where_predicate</span><span class="o">&gt;</span>
+<span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="k">GROUP</span> <span class="k">BY</span> <span class="o">&lt;</span><span class="n">group_by_specification</span><span class="o">&gt;</span>
+<span class="p">(</span><span class="mi">4</span><span class="p">)</span> <span class="k">HAVING</span> <span class="o">&lt;</span><span class="n">having_predicate</span><span class="o">&gt;</span>
+<span class="p">(</span><span class="mi">6</span><span class="p">)</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="o">&lt;</span><span class="n">order_by_list</span><span class="o">&gt;</span>
+<span class="p">(</span><span class="mi">7</span><span class="p">)</span> <span class="k">OFFSET</span> <span class="o">&lt;</span><span class="n">offset_specification</span><span class="o">&gt;</span> <span class="k">ROWS</span> <span class="k">FETCH</span> <span class="k">NEXT</span> <span class="o">&lt;</span><span class="n">fetch_specifications</span><span class="o">&gt;</span> <span class="k">ROWS</span> 
+<span class="k">ONLY</span><span class="p">;</span> 
+</code></pre></div></div>
+
+<h2 id="logical-vs-typed-vs-physical-processing-order">Logical vs Typed vs Physical processing Order</h2>
+<p><em>The differences between the logical processing order, the typed order, and the
+physical processing order are key to further you understanding of SQL queries.</em></p>
+
+<ul>
+  <li><strong>Logical Processing Order:</strong> conceptual understanding of the query order
+which defines the correct result set</li>
+  <li><strong>Typed Order:</strong> the order in which the query is written</li>
+  <li><strong>Physical Processing Order:</strong> the processing order of the elements in the
+physical-query execution plan
+    <ul>
+      <li>The component that generates the execution in SQL Server is the query
+optimizer, and determines things such as the order the tables are accessed,
+which indexes to use, or which join algorithms to apply.</li>
+    </ul>
+  </li>
+</ul>
+
+    </div><a class="u-url" href="/quick%20start/logical-query-processing.html" hidden></a>
+  </article>
+</div>
+      </div>
+    </main><footer class="footer">
+    <!-- replace with your own email address 
+    <a href="mailto:info@ethanguyant.com" class="footer__link">info@ethanguyant.com</a>-->
+    <ul class="social-list">
+        <li class="social-list__item">
+            <a class="social-list__link" href="mailto:emguyant@gmail.com">
+                <i class="fas fa-envelope"></i>
+            </a>
+        </li>
+        <li class="social-list__item">
+            <a class="social-list__link" href="https://www.linkedin.com/in/ethan-guyant/">
+                <i class="fab fa-linkedin"></i>
+            </a>
+        </li>
+        <li class="social-list__item">
+            <a class="social-list__link" href="https://github.com/EMGuyant">
+                <i class="fab fa-github"></i>
+            </a>
+        </li>
+    </ul>
+</footer><script src="https://kit.fontawesome.com/c9965d23bb.js" crossorigin="anonymous"></script>
+<script src="/assets/js/script.js"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+</body>
+
+</html>

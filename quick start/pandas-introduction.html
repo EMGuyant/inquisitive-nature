@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Introduction to the Pandas Library | Ethan Guyant’s Data Science Blog</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="Introduction to the Pandas Library" />
+<meta name="author" content="Ethan Guyant" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="An overview of various data manipulation functions and methods utilizing pandas dataframes." />
+<meta property="og:description" content="An overview of various data manipulation functions and methods utilizing pandas dataframes." />
+<link rel="canonical" href="http://blog.ethanguyant.com/quick%20start/pandas-introduction.html" />
+<meta property="og:url" content="http://blog.ethanguyant.com/quick%20start/pandas-introduction.html" />
+<meta property="og:site_name" content="Ethan Guyant’s Data Science Blog" />
+<meta property="og:image" content="http://blog.ethanguyant.com/assets/img/post_img/introduction-pandas.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-06-05T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="http://blog.ethanguyant.com/assets/img/post_img/introduction-pandas.jpg" />
+<meta property="twitter:title" content="Introduction to the Pandas Library" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"Ethan Guyant"},"description":"An overview of various data manipulation functions and methods utilizing pandas dataframes.","url":"http://blog.ethanguyant.com/quick%20start/pandas-introduction.html","@type":"BlogPosting","image":"http://blog.ethanguyant.com/assets/img/post_img/introduction-pandas.jpg","headline":"Introduction to the Pandas Library","dateModified":"2022-06-05T00:00:00+00:00","datePublished":"2022-06-05T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://blog.ethanguyant.com/quick%20start/pandas-introduction.html"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<title>Ethan Guyant's Personal Blog</title>
+  <!-- Normalize CSS file irons out some difference between browsers -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+  <!-- Google Fonts-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,900|Source+Sans+Pro:300,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Arvo:wght@700&display=swap" rel="stylesheet">
+  <!-- CSS Styles -->
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <!-- Animation on Scroll-->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <!-- Font Awesome Kit -->
+  <script src="https://kit.fontawesome.com/c9965d23bb.js" crossorigin="anonymous"></script><link type="application/atom+xml" rel="alternate" href="http://blog.ethanguyant.com/feed.xml" title="Ethan Guyant's Data Science Blog" /></head>
+<body><header class="header sticky">
+    <div class="wrapper">
+        <div>
+            <div class="scroll-logo"> 
+                <a href="/">  
+                    <svg id="EG" viewBox="0 0 152 216">
+                        <g>
+                            <path id="hex"d="M 76.342 4 L 147.685 41.377 L 147.685 116.13 L 76.342 153.506 L 5 116.13 L 5 41.377 Z" style="stroke-width: 8.37394px; fill-opacity: 0; fill: none; stroke: #39ace7;"></path>         
+                            <polygon class="logo"style="stroke-width: 3.58883px; stroke: #39ace7; fill: #39ace7;" points="41.001 38.501 112.012 38.501 112.012 62.884 97.474 62.884 97.474 54.976 41.001 54.976"></polygon>
+                            <polygon class="logo" style="stroke-width: 3.58883px; stroke: #39ace7; fill: #39ace7;" points="40.671 102.9 97.81 102.9 97.81 86.796 83.604 86.796 83.604 70.701 112.014 70.701 112.014 102.92 112.014 119.004 40.939 119.004"></polygon>
+                            <polygon class="logo" style="stroke-width: 3.58883px; stroke: #39ace7; fill: #39ace7;" points="41.001 70.701 69.753 70.701 63.532 87.725 41.317 87.725"></polygon>
+                        </g> 
+                    </svg>
+                </a>
+            </div>
+
+            <div class="header__title">
+                <a href="/">EthanGuyant.com</a>
+            </div>
+            
+        </div>
+        
+        <div class="nav__menu">
+            <div class="nav__toggle">
+                <div class="nav__icon">
+                    <span></span>
+                </div>
+            </div>
+        </div>
+        <div class="nav__menu__wrapper">
+            <ul class="nav__menu__list">
+                <li class="nav__menu__list__item">
+                    <a href="/" class="nav__menu__list__item__link">Home</a>
+                </li>
+                <li class="nav__menu__list__item">
+                    <a href="/blog" class="nav__menu__list__item__link">Blog</a>
+                </li>
+                <li class="nav__menu__list__item">
+                    <a href="/about" class="nav__menu__list__item__link">About</a>
+                </li>
+                <li class="nav__menu__list__item">
+                    <a href="/projects" class="nav__menu__list__item__link">Projects</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header><main class="page" aria-label="Content">
+      <div class="page__content">
+        <section class="blog__header">
+    <div class="blog__img">
+      <div class="blog__img__over"></div>
+    </div>
+    <div class="wrapper">
+      <h1 class="blog__title"><span class="inquisitive">INQUISITIVE</span> <span class="nature">NATURE</span></h1>
+      <p class="blog__subtitle">Learn  Explore  <strong>Share</strong></p>
+      <p class="post__categories">
+    </div>
+  </section><div class="wrapper">
+  <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+    <section class="article__header">
+        <h1 class="post-title p-name" itemprop="name headline">Introduction to the Pandas Library</h1>
+        <p class="post-meta">
+          <time class="dt-published" datetime="2022-06-05T00:00:00+00:00" itemprop="datePublished">Jun 5, 2022
+          </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">Ethan Guyant</span></span></p>
+          <p class="post-category">
+            Category: 
+            <a href="/category/quick-start">
+              <i class="fa-solid fa-folder"></i>
+              Quick Start
+            </a> 
+          </p>
+          <p class="post-tags">
+          Tags: 
+           
+              
+              <a href="/tag/python">
+                <i class="fa-solid fa-tag"></i>
+                Python
+              </a> 
+              
+              <a href="/tag/pandas">
+                <i class="fa-solid fa-tag"></i>
+                Pandas
+              </a> 
+            
+          
+        </p>
+    </section>
+    <div class="post-content e-content" itemprop="articleBody">
+      <h3 id="contents">Contents</h3>
+<ul>
+  <li><a href="#overview">Overview</a></li>
+  <li><a href="#installing-and-using-pandas">Installation and Use</a></li>
+  <li><a href="#pandas-data-structures">Pandas Data Structures</a>
+    <ul>
+      <li><a href="#pandas-index">Index</a></li>
+      <li><a href="#pandas-series">Series</a></li>
+      <li><a href="#pandas-dataframe">DataFrame</a></li>
+    </ul>
+  </li>
+  <li><a href="#summary">Summary</a></li>
+</ul>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="overview">Overview</h2>
+<p>Pandas is a fast, powerful, flexible and easy to use open source data analysis and manipulation tool, built on top of the Python programming language (<a href="https://pandas.pydata.org/" class="post__link">pandas</a>). Pandas excels at working with tabular data which can be stored using pandas <code class="language-plaintext highlighter-rouge">DataFrames</code>. <code class="language-plaintext highlighter-rouge">DataFrames</code> are multidimensional arrays which contain row and column labels and can store various data types including missing data. In addition to providing <code class="language-plaintext highlighter-rouge">DataFrame</code> as an advantageous data storage interface, pandas also offers numerous data operations that will be familiar to users of databases and spreadsheets.</p>
+<blockquote>
+  <p>Pandas <code class="language-plaintext highlighter-rouge">Series</code> and <code class="language-plaintext highlighter-rouge">DataFrame</code> objects build upon the NumPy array structure and provide flexibility (e.g. attaching data labels), data cleaning operations (e.g. working with missing data), and data transformation operations (e.g. groupings).</p>
+</blockquote>
+
+<h3 id="types-of-data">Types of Data</h3>
+<ul>
+  <li>Tabular data with heterogeneous data type columns</li>
+  <li>Time series data (ordered and unordered)</li>
+  <li>Matrix data with row and column labels</li>
+  <li>Observation or statistical datasets</li>
+</ul>
+
+<h3 id="task-pandas-excels-at">Task Pandas Excels At</h3>
+<ul>
+  <li>Handling of missing data (<code class="language-plaintext highlighter-rouge">NaN</code>)</li>
+  <li>The addition or deletion of columns from DataFrames (size mutable)</li>
+  <li>Data alignment, can be explicit with a set of labels or automatic (ignoring labels)</li>
+  <li>Group by functionality for aggregating and transforming data</li>
+  <li>Label-based slicing, indexing, and subsetting of datasets</li>
+  <li>Merging and Joining datasets</li>
+</ul>
+
+<blockquote>
+  <p>A data science project typically includes an iterative cycle of data cleaning, data modeling, data analysis, and formatting of result suitable for communicating results - Pandas is an excellent tool for each of these tasks.</p>
+</blockquote>
+
+<p>For more details on how Pandas can be used for these tasks see:</p>
+<ul>
+  <li><a href="/quick%20start/pandas-data-selection.html" class="post__link">DataFrame Subsetting - Pandas</a></li>
+  <li><a href="/quick%20start/pandas-data-transform-agg.html" class="post__link">Data Transformation - Pandas</a></li>
+  <li><a href="/quick%20start/pandas-eda.html" class="post__link">Exploratory Data Analysis - Pandas</a></li>
+</ul>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="installing-and-using-pandas">Installing and Using Pandas</h2>
+<p><br /></p>
+
+<h3 id="install-from-pypi">Install from PyPI</h3>
+<p>Pandas can be installed via pip from <a href="https://pypi.org/project/pandas/" class="post__link">PyPI</a> using:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">~</span><span class="err">$</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">pandas</span>
+</code></pre></div></div>
+
+<p>Further detail and other installation instructions, including as part of the <a href="https://docs.continuum.io/anaconda/" class="post__link">Anaconda</a> distribution, can be found in the <a href="https://pandas.pydata.org/docs/getting_started/install.html" class="post__link">Pandas Documentation</a></p>
+
+<h3 id="import-pandas">Import Pandas</h3>
+<p>Following the installation of Pandas it can be imported, typically Pandas in imported under the alias <code class="language-plaintext highlighter-rouge">pd</code>.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+</code></pre></div></div>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="pandas-data-structures">Pandas Data Structures</h2>
+<p>There are three basic fundamental Pandas data structures, <code class="language-plaintext highlighter-rouge">Series</code>, <code class="language-plaintext highlighter-rouge">DataFrame</code>, and <code class="language-plaintext highlighter-rouge">Index</code>. Pandas offers numerous useful tools, method, and functionality on top of these fundamental structures.</p>
+<ul>
+  <li>Series: 1D labeled homogeneously-typed array of indexed data</li>
+  <li>DataFrame: General 2D labeled, size-mutable tabular structure with potentially heterogeneously-typed columns</li>
+  <li>Index: Can be viewed as a <em>immutable array</em> or an <em>ordered set</em></li>
+</ul>
+
+<blockquote>
+  <p>Conceptually it can be helpful to think of Pandas data structures as flexible containers of lower dimensional data (e.g. a DataFrame is a container for Series), and objects can be added to or removed from the containers.</p>
+</blockquote>
+
+<h3 id="pandas-index">Pandas Index</h3>
+<p>A <code class="language-plaintext highlighter-rouge">Index</code> object is the basic object for storing axis (row and column) labels for all pandas object. The <code class="language-plaintext highlighter-rouge">Index</code> object is an immutable sequence.</p>
+
+<p>Both the <code class="language-plaintext highlighter-rouge">Series</code> and <code class="language-plaintext highlighter-rouge">DataFrame</code> objects contain an explicit index which can be utilized to reference and modify the data that higher level objects contain.</p>
+
+<p>The general syntax for constructing a <code class="language-plaintext highlighter-rouge">Index</code> is <br />
+<code class="language-plaintext highlighter-rouge">&gt;&gt;&gt; pd.Index(data=None, dtype=None, copy=False, name=None, tupleize_cols=True, **kwargs)</code></p>
+
+<p><strong>Parameters:</strong></p>
+<ul>
+  <li>data: array-like (1D)</li>
+  <li>Can contain a <code class="language-plaintext highlighter-rouge">Series</code>, arrays, constants, dataclass or list-like objects</li>
+  <li>dtype: NumPy dtype, default of object
+    <ul>
+      <li>If dtype is None pandas identifies the best fit and when a dtype is provide pandas coerces to the specified dtype</li>
+    </ul>
+  </li>
+  <li>copy: boolean value to copy input data</li>
+  <li>name: name to be stored in the index</li>
+  <li>tupleize_col: boolean value, when <code class="language-plaintext highlighter-rouge">True</code> pandas attempts to create a multi-index</li>
+</ul>
+
+<p>Construct an <code class="language-plaintext highlighter-rouge">Index</code> object of integers</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">Index</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">index</span>
+<span class="n">Int64Index</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s">'int64'</span><span class="p">)</span>
+</code></pre></div></div>
+<p>Values of an <code class="language-plaintext highlighter-rouge">Index</code> object can be selected using standard Python indexing notation</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">index</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+<span class="mi">7</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">index</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span>
+<span class="n">Int64Index</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s">'int64'</span><span class="p">)</span>
+</code></pre></div></div>
+<p><code class="language-plaintext highlighter-rouge">Index</code> objects are immutable, meaning the values cannot be modified</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">index</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">17</span>
+<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
+  <span class="n">File</span> <span class="s">"&lt;pyshell#72&gt;"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
+    <span class="n">index</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">17</span>
+  <span class="n">File</span> <span class="s">"C:\Users\emguy\AppData\Local\Programs\Python\Python38-32\lib\site-packages\pandas\core\indexes</span><span class="se">\b</span><span class="s">ase.py"</span><span class="p">,</span> <span class="n">line</span> <span class="mi">4277</span><span class="p">,</span> <span class="ow">in</span> <span class="n">__setitem__</span>
+    <span class="k">raise</span> <span class="nb">TypeError</span><span class="p">(</span><span class="s">"Index does not support mutable operations"</span><span class="p">)</span>
+<span class="nb">TypeError</span><span class="p">:</span> <span class="n">Index</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">support</span> <span class="n">mutable</span> <span class="n">operations</span>
+</code></pre></div></div>
+<p>Pandas object are aimed at facilitating cross dataset operations (e.g. joins). The <code class="language-plaintext highlighter-rouge">Index</code> object aids in this by following typical conventions used by Python’s built-in <code class="language-plaintext highlighter-rouge">set</code> data structure facilitating unions, intersections, differences, and other combinations to be computed in a familiar way.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">index_1</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">Index</span><span class="p">([</span><span class="s">'A'</span><span class="p">,</span> <span class="s">'B'</span><span class="p">,</span> <span class="s">'A'</span><span class="p">,</span> <span class="s">'C'</span><span class="p">,</span> <span class="s">'C'</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">index_2</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">Index</span><span class="p">([</span><span class="s">'E'</span><span class="p">,</span> <span class="s">'A'</span><span class="p">,</span> <span class="s">'C'</span><span class="p">,</span> <span class="s">'F'</span><span class="p">,</span> <span class="s">'G'</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">index_1</span><span class="p">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">index_2</span><span class="p">)</span>
+<span class="n">Index</span><span class="p">([</span><span class="s">'A'</span><span class="p">,</span> <span class="s">'C'</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s">'object'</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">index_1</span><span class="p">.</span><span class="n">union</span><span class="p">(</span><span class="n">index_2</span><span class="p">)</span>
+<span class="n">Index</span><span class="p">([</span><span class="s">'A'</span><span class="p">,</span> <span class="s">'A'</span><span class="p">,</span> <span class="s">'B'</span><span class="p">,</span> <span class="s">'C'</span><span class="p">,</span> <span class="s">'C'</span><span class="p">,</span> <span class="s">'E'</span><span class="p">,</span> <span class="s">'F'</span><span class="p">,</span> <span class="s">'G'</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s">'object'</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">index_1</span><span class="p">.</span><span class="n">symmetric_difference</span><span class="p">(</span><span class="n">index_2</span><span class="p">)</span>
+<span class="n">Index</span><span class="p">([</span><span class="s">'B'</span><span class="p">,</span> <span class="s">'E'</span><span class="p">,</span> <span class="s">'F'</span><span class="p">,</span> <span class="s">'G'</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s">'object'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>For more information on <code class="language-plaintext highlighter-rouge">Index</code> attributes (e.g. <code class="language-plaintext highlighter-rouge">.size</code>), methods (e.g. <code class="language-plaintext highlighter-rouge">.fillna()</code>), and examples visit <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html?highlight=dataframe#pandas.DataFrame" class="post__link">Pandas Documentation</a></p>
+
+<hr />
+
+<p><br /></p>
+
+<h3 id="pandas-series">Pandas Series</h3>
+<p>A <code class="language-plaintext highlighter-rouge">Series</code> object contains two main components, the sequence of indices and the sequences of values which can be accessed with the <code class="language-plaintext highlighter-rouge">.index</code> and <code class="language-plaintext highlighter-rouge">.values</code> attributes. A <code class="language-plaintext highlighter-rouge">Series</code> supports integer and label indexing and has a wide variety of methods for performing index based operations.</p>
+
+<p>The general syntax for constructing a <code class="language-plaintext highlighter-rouge">Series</code> is <br />
+<code class="language-plaintext highlighter-rouge">&gt;&gt;&gt; pd.Series(data=None, index=None, dtype=None, name=None, copy=False)</code></p>
+
+<p><strong>Parameters:</strong></p>
+<ul>
+  <li>data: array-like, iterable, dict or scalar value</li>
+  <li>The data that is stored in the series, if dict argument order is maintained</li>
+  <li>index: array-like or index (1d)
+    <ul>
+      <li>Hashable values that must be the same length as <em>data</em>
+        <ul>
+          <li>Will default to RangeIndex (0, 1, …, n)</li>
+          <li>If <em>data</em> is a dict-like and no index is provided the keys of the data will utilized for the index</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>dtype: data type of the output series, if not specified <em>data</em> will be used to infer dtype</li>
+  <li>copy: boolean value to copy input data</li>
+</ul>
+
+<p>A <code class="language-plaintext highlighter-rouge">Series</code> can be created from a list or an array</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="n">pd</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">data_series</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">Series</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">data_series</span>
+<span class="mi">0</span>    <span class="mf">0.0</span>
+<span class="mi">1</span>    <span class="mf">0.2</span>
+<span class="mi">2</span>    <span class="mf">0.4</span>
+<span class="mi">3</span>    <span class="mf">0.6</span>
+<span class="mi">4</span>    <span class="mf">0.8</span>
+<span class="mi">5</span>    <span class="mf">1.0</span>
+<span class="n">dtype</span><span class="p">:</span> <span class="n">float64</span>
+<span class="o">&gt;&gt;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">data_series</span><span class="p">.</span><span class="n">index</span>
+<span class="n">RangeIndex</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">data_series</span><span class="p">.</span><span class="n">values</span>
+<span class="n">array</span><span class="p">([</span><span class="mf">0.0</span> <span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">1.0</span> <span class="p">])</span>
+</code></pre></div></div>
+<p>The elements of a <code class="language-plaintext highlighter-rouge">Series</code> can be accessed using the common square bracket <code class="language-plaintext highlighter-rouge">[ ]</code> notation. For more details see: <a href="/quick%20start/pandas-data-selection.html" class="post__link">Data Subsetting - Pandas</a></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">data_series</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="mf">0.2</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">data_series</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>
+<span class="mi">2</span>    <span class="mf">0.4</span>
+<span class="mi">3</span>    <span class="mf">0.6</span>
+<span class="n">dtype</span><span class="p">:</span> <span class="n">float64</span>
+</code></pre></div></div>
+<p>The pandas <code class="language-plaintext highlighter-rouge">Series</code> object has an explicitly defined index for each element of the series. This index does not have to be an integer and does not need to be contiguous or sequential. The explicitly defined index functionality provide flexibility and is a major difference between a NumPy array (implicit index) and a pandas <code class="language-plaintext highlighter-rouge">Series</code> (explicit index).</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">data_series</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">Series</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s">'A'</span><span class="p">,</span> <span class="s">'B'</span><span class="p">,</span> <span class="s">'C'</span><span class="p">,</span> <span class="s">'D'</span><span class="p">,</span> <span class="s">'E'</span><span class="p">,</span> <span class="s">'F'</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">data_series</span>
+<span class="n">A</span>    <span class="mf">0.0</span>
+<span class="n">B</span>    <span class="mf">0.2</span>
+<span class="n">C</span>    <span class="mf">0.4</span>
+<span class="n">D</span>    <span class="mf">0.6</span>
+<span class="n">E</span>    <span class="mf">0.8</span>
+<span class="n">F</span>    <span class="mf">1.0</span>
+<span class="n">dtype</span><span class="p">:</span> <span class="n">float64</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">data_series</span><span class="p">[</span><span class="s">'C'</span><span class="p">:</span><span class="s">'E'</span><span class="p">]</span>
+<span class="n">C</span>    <span class="mf">0.4</span>
+<span class="n">D</span>    <span class="mf">0.6</span>
+<span class="n">E</span>    <span class="mf">0.8</span>
+<span class="n">dtype</span><span class="p">:</span> <span class="n">float64</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">data_series</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">Series</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">data_series</span>
+<span class="mi">0</span>     <span class="mf">0.0</span>
+<span class="mi">2</span>     <span class="mf">0.2</span>
+<span class="mi">4</span>     <span class="mf">0.4</span>
+<span class="mi">6</span>     <span class="mf">0.6</span>
+<span class="mi">8</span>     <span class="mf">0.8</span>
+<span class="mi">10</span>    <span class="mf">1.0</span>
+</code></pre></div></div>
+<p>The explicit index of the <code class="language-plaintext highlighter-rouge">Series</code> provides similarities to a dictionary data structure, where typed keys are mapped to typed values. A Pandas <code class="language-plaintext highlighter-rouge">Series</code> can be created from a Python dictionary, by default the index will be constructed from the dictionary’s sorted keys. Similar to a dictionary, the selection of an element can be done using square bracket <code class="language-plaintext highlighter-rouge">[ ]</code> notation, however unlike a dictionary the <code class="language-plaintext highlighter-rouge">Series</code> supports slicing operations</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">capitals_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Alaska'</span><span class="p">:</span> <span class="s">'Juneau'</span><span class="p">,</span>
+		     <span class="s">'Arizona'</span><span class="p">:</span> <span class="s">'Phoenix'</span><span class="p">,</span>
+		     <span class="s">'Arkansas'</span><span class="p">:</span> <span class="s">'Little Rock'</span><span class="p">,</span>
+		     <span class="s">'California'</span><span class="p">:</span> <span class="s">'Sacramento'</span><span class="p">}</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">capitals</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">Series</span><span class="p">(</span><span class="n">capitals_dict</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">capitals</span>
+<span class="n">Alaska</span>             <span class="n">Juneau</span>
+<span class="n">Arizona</span>           <span class="n">Phoenix</span>
+<span class="n">Arkansas</span>      <span class="n">Little</span> <span class="n">Rock</span>
+<span class="n">California</span>     <span class="n">Sacramento</span>
+<span class="n">dtype</span><span class="p">:</span> <span class="nb">object</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">capitals</span><span class="p">[</span><span class="s">'Arkansas'</span><span class="p">]</span>
+<span class="s">'Little Rock'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">capitals</span><span class="p">[</span><span class="s">'Alaska'</span><span class="p">:</span><span class="s">'Arkansas'</span><span class="p">]</span>
+<span class="n">Alaska</span>           <span class="n">Juneau</span>
+<span class="n">Arizona</span>         <span class="n">Phoenix</span>
+<span class="n">Arkansas</span>    <span class="n">Little</span> <span class="n">Rock</span>
+<span class="n">dtype</span><span class="p">:</span> <span class="nb">object</span>
+</code></pre></div></div>
+
+<p>For more information on <code class="language-plaintext highlighter-rouge">Series</code> attributes (e.g. <code class="language-plaintext highlighter-rouge">.index</code>), methods (e.g. <code class="language-plaintext highlighter-rouge">.count()</code>), and examples visit <a href="https://pandas.pydata.org/docs/reference/api/pandas.Series.html?highlight=series#pandas.Series" class="post__link">Pandas Documentation</a></p>
+
+<hr />
+
+<p><br /></p>
+
+<h3 id="pandas-dataframe">Pandas DataFrame</h3>
+<p>A <code class="language-plaintext highlighter-rouge">DataFrame</code> is a two-dimensional, size-mutable, tabular data object. The <code class="language-plaintext highlighter-rouge">DataFrame</code> is essentially a dictionary-like container for a <code class="language-plaintext highlighter-rouge">Series</code> which contains labeled rows and columns</p>
+<blockquote>
+  <p>Conceptually a <code class="language-plaintext highlighter-rouge">DataFrame</code> is a sequence of <code class="language-plaintext highlighter-rouge">Series</code> objects which share the same index.</p>
+</blockquote>
+
+<p>The general syntax for constructing a <code class="language-plaintext highlighter-rouge">DataFrame</code> is <br />
+<code class="language-plaintext highlighter-rouge">&gt;&gt;&gt; pd.DataFrame(data=None, index=None, columns=None, dtype=None, copy=False)</code></p>
+
+<p><strong>Parameters:</strong></p>
+<ul>
+  <li>data: ndarray, iterable, dict or DataFrame
+    <ul>
+      <li>Can contain a <code class="language-plaintext highlighter-rouge">Series</code>, arrays, constants, dataclass or list-like objects</li>
+    </ul>
+  </li>
+  <li>index: array-like or index
+    <ul>
+      <li>Will default to RangeIndex if there is not index information in the input data and no index is provided</li>
+    </ul>
+  </li>
+  <li>columns: labels used in the resulting <code class="language-plaintext highlighter-rouge">DataFrame</code> which defaults to RangeIndex (0, 1, …, n)</li>
+  <li>dtype: data type of the output, only a single dtype is allowed</li>
+  <li>copy: boolean value to copy input data</li>
+</ul>
+
+<p>Creating a <code class="language-plaintext highlighter-rouge">DataFrame</code> from two <code class="language-plaintext highlighter-rouge">Series</code></p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">capitals_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Alaska'</span><span class="p">:</span> <span class="s">'Juneau'</span><span class="p">,</span>
+		     <span class="s">'Arizona'</span><span class="p">:</span> <span class="s">'Phoenix'</span><span class="p">,</span>
+		     <span class="s">'Arkansas'</span><span class="p">:</span> <span class="s">'Little Rock'</span><span class="p">,</span>
+		     <span class="s">'California'</span><span class="p">:</span> <span class="s">'Sacramento'</span><span class="p">}</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">capitals</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">Series</span><span class="p">(</span><span class="n">capitals_dict</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">capitals</span>
+<span class="n">Alaska</span>             <span class="n">Juneau</span>
+<span class="n">Arizona</span>           <span class="n">Phoenix</span>
+<span class="n">Arkansas</span>      <span class="n">Little</span> <span class="n">Rock</span>
+<span class="n">California</span>     <span class="n">Sacramento</span>
+<span class="n">dtype</span><span class="p">:</span> <span class="nb">object</span>
+<span class="o">&gt;&gt;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">pop_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Alaska'</span><span class="p">:</span> <span class="mi">31275</span><span class="p">,</span> <span class="s">'Arizona'</span><span class="p">:</span> <span class="mi">1608139</span><span class="p">,</span> <span class="s">'Arkansas'</span><span class="p">:</span> <span class="mi">202591</span><span class="p">,</span> <span class="s">'California'</span><span class="p">:</span><span class="mi">524943</span><span class="p">}</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">cap_pop</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">Series</span><span class="p">(</span><span class="n">pop_dict</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">cap_pop</span>
+<span class="n">Alaska</span>          <span class="mi">31275</span>
+<span class="n">Arizona</span>       <span class="mi">1608139</span>
+<span class="n">Arkansas</span>       <span class="mi">202591</span>
+<span class="n">California</span>     <span class="mi">524943</span>
+<span class="n">dtype</span><span class="p">:</span> <span class="n">int64</span>
+<span class="o">&gt;&gt;&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">capital_info</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s">'Name'</span><span class="p">:</span><span class="n">capitals</span><span class="p">,</span> <span class="s">'Population'</span><span class="p">:</span><span class="n">cap_pop</span><span class="p">})</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">capital_info</span>
+                   <span class="n">Name</span>  <span class="n">Population</span>
+<span class="n">Alaska</span>           <span class="n">Juneau</span>       <span class="mi">31275</span>
+<span class="n">Arizona</span>         <span class="n">Phoenix</span>     <span class="mi">1608139</span>
+<span class="n">Arkansas</span>    <span class="n">Little</span> <span class="n">Rock</span>      <span class="mi">202591</span>
+<span class="n">California</span>   <span class="n">Sacramento</span>      <span class="mi">524943</span>
+</code></pre></div></div>
+<p>Similar to the <code class="language-plaintext highlighter-rouge">Series</code> object the <code class="language-plaintext highlighter-rouge">DataFrame</code> has index and values attribute and also columns attribute. The columns attribute is an Index object which contains the column names.</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">capital_info</span><span class="p">.</span><span class="n">index</span>
+<span class="n">Index</span><span class="p">([</span><span class="s">'Alaska'</span><span class="p">,</span> <span class="s">'Arizona'</span><span class="p">,</span> <span class="s">'Arkansas'</span><span class="p">,</span> <span class="s">'California'</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s">'object'</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">capital_info</span><span class="p">.</span><span class="n">values</span>
+<span class="n">array</span><span class="p">([[</span><span class="s">'Juneau'</span><span class="p">,</span> <span class="mi">31275</span><span class="p">],</span>
+       <span class="p">[</span><span class="s">'Phoenix'</span><span class="p">,</span> <span class="mi">1608139</span><span class="p">],</span>
+       <span class="p">[</span><span class="s">'Little Rock'</span><span class="p">,</span> <span class="mi">202591</span><span class="p">],</span>
+       <span class="p">[</span><span class="s">'Sacramento'</span><span class="p">,</span> <span class="mi">524943</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">capital_info</span><span class="p">.</span><span class="n">columns</span>
+<span class="n">Index</span><span class="p">([</span><span class="s">'Name'</span><span class="p">,</span> <span class="s">'Population'</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s">'object'</span><span class="p">)</span>
+</code></pre></div></div>
+<p>A <code class="language-plaintext highlighter-rouge">DataFrame</code> can also be constructed from a list of dictionary objects</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">AK</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Capital Name'</span><span class="p">:</span> <span class="s">'Juneau'</span><span class="p">,</span> <span class="s">'Capital Population'</span><span class="p">:</span> <span class="mi">31275</span><span class="p">}</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">AZ</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Capital Name'</span><span class="p">:</span> <span class="s">'Phoenix'</span><span class="p">,</span> <span class="s">'Capital Population'</span><span class="p">:</span> <span class="mi">1608139</span><span class="p">}</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">AR</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Capital Name'</span><span class="p">:</span> <span class="s">'Little Rock'</span><span class="p">,</span> <span class="s">'Capital Population'</span><span class="p">:</span> <span class="mi">202591</span><span class="p">}</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">CA</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Capital Name'</span><span class="p">:</span> <span class="s">'Sacramento'</span><span class="p">,</span> <span class="s">'Capital Population'</span><span class="p">:</span> <span class="mi">524943</span><span class="p">}</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">df_capital_info</span> <span class="o">=</span> <span class="n">pd</span><span class="p">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">AK</span><span class="p">,</span> <span class="n">AZ</span><span class="p">,</span> <span class="n">AR</span><span class="p">,</span> <span class="n">CA</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s">'Alaska'</span><span class="p">,</span> <span class="s">'Arizona'</span><span class="p">,</span> <span class="s">'Arkansas'</span><span class="p">,</span> <span class="s">'California'</span><span class="p">])</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">df_capital_info</span>
+           <span class="n">Capital</span> <span class="n">Name</span>  <span class="n">Capital</span> <span class="n">Population</span>
+<span class="n">Alaska</span>           <span class="n">Juneau</span>               <span class="mi">31275</span>
+<span class="n">Arizona</span>         <span class="n">Phoenix</span>             <span class="mi">1608139</span>
+<span class="n">Arkansas</span>    <span class="n">Little</span> <span class="n">Rock</span>              <span class="mi">202591</span>
+<span class="n">California</span>   <span class="n">Sacramento</span>              <span class="mi">524943</span>
+</code></pre></div></div>
+<p>A <code class="language-plaintext highlighter-rouge">DataFrame</code> can be thought of as a specialized dictionary where the <code class="language-plaintext highlighter-rouge">DataFrame</code> maps a column name (key) to a <code class="language-plaintext highlighter-rouge">Series</code> of columnar data (value). Using the <code class="language-plaintext highlighter-rouge">capital_info</code> DataFrame the selection of Population returns the <code class="language-plaintext highlighter-rouge">Series</code> object which contain the column of Population Data</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="n">capital_info</span><span class="p">[</span><span class="s">'Population'</span><span class="p">]</span>
+<span class="n">Alaska</span>          <span class="mi">31275</span>
+<span class="n">Arizona</span>       <span class="mi">1608139</span>
+<span class="n">Arkansas</span>       <span class="mi">202591</span>
+<span class="n">California</span>     <span class="mi">524943</span>
+<span class="n">Name</span><span class="p">:</span> <span class="n">Population</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="n">int64</span>
+</code></pre></div></div>
+
+<p>For more information on <code class="language-plaintext highlighter-rouge">DataFrame</code> attributes (e.g. <code class="language-plaintext highlighter-rouge">.index</code>), methods (e.g. <code class="language-plaintext highlighter-rouge">.count()</code>), and examples visit <a href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html?highlight=dataframe#pandas.DataFrame" class="post__link">Pandas Documentation</a></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="summary">Summary</h2>
+<p>Pandas offers a powerful and flexible data analytics tool which excels at the various stages of a data science project including data cleaning, data modeling, data analysis, and formatting of final results for visualizations. The pandas library offers three fundamental data structures: <code class="language-plaintext highlighter-rouge">Index</code>, <code class="language-plaintext highlighter-rouge">Series</code>, and <code class="language-plaintext highlighter-rouge">DataFrame</code>. Each of these data structures come with numerous tools, attributes, and methods. In general the pandas data structures can be thought of as flexible containers of lower dimensional data that allow for objects to be added to or removed from the container.</p>
+
+<p>More details and examples can be found in the <a href="https://pandas.pydata.org/docs/index.html" class="post__link">Pandas Documentation</a> or for more information on subsetting of <code class="language-plaintext highlighter-rouge">Series</code> and <code class="language-plaintext highlighter-rouge">DataFrames</code>, data transformation tools, and exploratory analysis with pandas please visit the articles below:</p>
+
+<ul>
+  <li><a href="/quick%20start/pandas-data-selection.html" class="post__link">Data Subsetting - Pandas</a></li>
+  <li><a href="/quick%20start/pandas-data-transform-agg.html" class="post__link">Data Transformation - Pandas</a></li>
+  <li><a href="/quick%20start/pandas-eda.html" class="post__link">Exploratory Data Analysis - Pandas</a></li>
+</ul>
+
+    </div><a class="u-url" href="/quick%20start/pandas-introduction.html" hidden></a>
+  </article>
+</div>
+      </div>
+    </main><footer class="footer">
+    <!-- replace with your own email address 
+    <a href="mailto:info@ethanguyant.com" class="footer__link">info@ethanguyant.com</a>-->
+    <ul class="social-list">
+        <li class="social-list__item">
+            <a class="social-list__link" href="mailto:emguyant@gmail.com">
+                <i class="fas fa-envelope"></i>
+            </a>
+        </li>
+        <li class="social-list__item">
+            <a class="social-list__link" href="https://www.linkedin.com/in/ethan-guyant/">
+                <i class="fab fa-linkedin"></i>
+            </a>
+        </li>
+        <li class="social-list__item">
+            <a class="social-list__link" href="https://github.com/EMGuyant">
+                <i class="fab fa-github"></i>
+            </a>
+        </li>
+    </ul>
+</footer><script src="https://kit.fontawesome.com/c9965d23bb.js" crossorigin="anonymous"></script>
+<script src="/assets/js/script.js"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+</body>
+
+</html>
