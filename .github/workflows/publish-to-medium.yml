@@ -36,4 +36,4 @@ jobs:
           access_token: ${{ secrets.MEDIUM_ACCESS_TOKEN }}
           markdown_file: ${{ steps.posts.outputs.post0 }}
           base_url: https://ethanguyant.com
-          post_url: https://ethanguyant.com/posts
+          post_url: https://ethanguyant.com
