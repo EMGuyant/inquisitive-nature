@@ -17,101 +17,6 @@ image_by_link: https://unsplash.com/@brandsandpeople?utm_source=unsplash&utm_med
 
 <br>
 
-### Sorting (`.sort_values`)
-* The sorting order is controlled by the `ascending` key word argument and is set to `ascending=True` by default, pass in `ascending=False` to sort in a descending order
-```python
->>> df.sort_values('Col C')
-  Col A  Col B  Col C
-5     C      6    5.0
-4     B      5    6.0
-2     A      3    7.0
-1     A      2    8.0
-0     A      1    9.0
-3     B      4    NaN
->>> df.sort_values('Col A', ascending=False)
-  Col A  Col B  Col C
-5     C      6    5.0
-3     B      4    NaN
-4     B      5    6.0
-0     A      1    9.0
-1     A      2    8.0
-2     A      3    7.0
-```
-* The Dataframe can be sorted by multiple columns by passing a list `[ ]` of columns to sort by in the desired sorting order
-  * Each column can be sorted differently by passing a list of `True` or `False` to the ascending keyword argument
-```python
->>> df.sort_values(['Col A', 'Col C'], ascending=[False, True])
-  Col A  Col B  Col C
-5     C      6    5.0
-4     B      5    6.0
-3     B      4    NaN
-2     A      3    7.0
-1     A      2    8.0
-0     A      1    9.0
-```
-* Position of any `NaN` values in the column utilized for sorting is controlled by the keyword argument `na_position` (default=last)
-```python
->>> df.sort_values('Col C', na_position='first')
-  Col A  Col B  Col C
-3     B      4    NaN
-5     C      6    5.0
-4     B      5    6.0
-2     A      3    7.0
-1     A      2    8.0
-0     A      1    9.0
-```
-* It can be seen in the above example that the returned result from `.sort_value()` maintain there initial index values. This behavior can be changed by using the `ignore_index` keyword argument (default: `ignore_index=False`)
-  * Setting `ignore_index=True` will result in the returned axis being labeled 0,1, .., n-1
-```python
->>> df.sort_values('Col A', ascending=False, ignore_index=True)
-  Col A  Col B  Col C
-0     C      6    5.0
-1     B      4    NaN
-2     B      5    6.0
-3     A      1    9.0
-4     A      2    8.0
-5     A      3    7.0
-```
-* Also it is important to note that `df.sort_values(....)` does not hold or maintain the sorted values in `df`
-```python
->>> df.sort_values('Col A', ascending=False, ignore_index=True)
-  Col A  Col B  Col C
-0     C      6    5.0
-1     B      4    NaN
-2     B      5    6.0
-3     A      1    9.0
-4     A      2    8.0
-5     A      3    7.0
->>> df
-  Col A  Col B  Col C
-0     A      1    9.0
-1     A      2    8.0
-2     A      3    7.0
-3     B      4    NaN
-4     B      5    6.0
-5     C      6    5.0
-```
-* To modify this behavior `df.sort_values(...)` can be assigned to another variable or the `inplace` keyword argument can be set to `True`
-```python
->>> df2 = df.sort_values('Col A', ascending=False, ignore_index=True)
->>> df2
-  Col A  Col B  Col C
-0     C      6    5.0
-1     B      4    NaN
-2     B      5    6.0
-3     A      1    9.0
-4     A      2    8.0
-5     A      3    7.0
->>> df.sort_values('Col A', ascending=False, ignore_index=True, inplace=True)
->>> df
-  Col A  Col B  Col C
-0     C      6    5.0
-1     B      4    NaN
-2     B      5    6.0
-3     A      1    9.0
-4     A      2    8.0
-5     A      3    7.0
-```
 ### Subsetting Columns
 * Selection of a single column within a DataFrame can be done by using the name of the DataFrame followed by square brackets (`[]`) encompassing the name of the column
 ```python
@@ -171,25 +76,9 @@ Name: Col B, dtype: bool
 
 <br>
 
-## Aggregating DataFrames
-
-
----
-
-<br>
-
 ## Slicing and Indexing DataFrames
-
-
----
-
-<br>
-
-## Joining DataFrames
-
+Coming Soon...
 
 ---
 
-<br>
 
-## Visualizing DataFrames

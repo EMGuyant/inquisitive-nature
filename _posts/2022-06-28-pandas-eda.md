@@ -11,9 +11,6 @@ image_by_link: https://unsplash.com/@andrewtneel?utm_source=unsplash&utm_medium=
   
 ---
 
-### Contents   
-[Transforming DataFrames](#transforming-dataframes)   
-
 ---
 
 <br>
@@ -67,4 +64,5 @@ min    1.000000  5.000000
 max    6.000000  9.000000
 ```
 
+## More to Come
 ---

@@ -44,7 +44,7 @@ Pandas is a fast, powerful, flexible and easy to use open source data analysis a
 >A data science project typically includes an iterative cycle of data cleaning, data modeling, data analysis, and formatting of result suitable for communicating results - Pandas is an excellent tool for each of these tasks.
 
 For more details on how Pandas can be used for these tasks see:
-* [Data Subsetting - Pandas](/quick%20start/pandas-data-selection.html){: .post__link}
+* [DataFrame Subsetting - Pandas](/quick%20start/pandas-data-selection.html){: .post__link}
 * [Data Transformation - Pandas](/quick%20start/pandas-data-transform-agg.html){: .post__link}
 * [Exploratory Data Analysis - Pandas](/quick%20start/pandas-eda.html){: .post__link}
 
