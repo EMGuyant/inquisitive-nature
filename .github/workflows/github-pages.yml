@@ -1,38 +1,38 @@
-name: GH Pages Deploy
+name: build site with jekyll and deploy on github pages
 
 on:
-  push:
-    branches: [main]
-    paths-ignore:
-      - README.md
-
+  push: 
+    branches: 
+      - master
   pull_request:
-    branches: [main]
-    paths-ignore:
-      - README.md
+    branches: 
+      - master
 
 jobs:
-  build-deploy:
-    name: Build and deploy
-
-    runs-on: ubuntu-latest
-
+  jekyll:
+    runs-on: ubuntu-18.04 # ubuntu-latest is now 20.04 and doesn't seem to work
     steps:
-      - name: Checkout 🛎️
-        uses: actions/checkout@v2
+      # checkout code
+      - uses: actions/checkout@v2
 
-      - name: Set up Ruby 💎
-        uses: ruby/setup-ruby@v1
+      # Use ruby/setup-ruby to shorten build times
+      # https://github.com/ruby/setup-ruby
+      - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3"
-          bundler-cache: true
+          ruby-version: 2.7 # Not needed with a .ruby-version file
+          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
 
-      - name: Build 🏗
-        run: bundle exec jekyll build --trace
+      # use jekyll-action-ts to build
+      # https://github.com/limjh16/jekyll-action-ts
+      - uses: limjh16/jekyll-action-ts@v2
+        with:
+          enable_cache: true
 
-      - name: Deploy to GH Pages 🚀
-        if: ${{ github.event_name != 'pull_request' }}
+      # use actions-gh-pages to deploy
+      # https://github.com/peaceiris/actions-gh-pages
+      - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
+          # GITHUB_TOKEN secret is set up automatically
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: _site
+          publish_dir: ./_site
