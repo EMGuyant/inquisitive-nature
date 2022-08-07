@@ -41,7 +41,7 @@ blockquote { color: #0784b5; background-color: #2d383c; border-left: 4px solid #
 blockquote > :last-child { margin-bottom: 0; }
 
 /** Code formatting */
-pre, code { font-size: 15px; border: 1px solid #2d383c; border-radius: 3px; background-color: #192428; }
+pre, code { font-size: 15px; border-radius: 3px; color: #39ace7; }
 
 code { padding: 1px 5px; }
 
@@ -204,7 +204,7 @@ table td { border: 1px solid #2d383c; }
 
 .highlight .nl { color: #8BC9E1; }
 
-.highlight .n { color: #c0c0c0; }
+.highlight .n { color: #b5c2d9; }
 
 .highlight .m { color: #C26F60; }
 
@@ -220,9 +220,9 @@ table td { border: 1px solid #2d383c; }
 
 .highlight .nb { color: #67aee9; }
 
-.highlight .ow { color: #a1c6e4; font-weight: bold; }
+.highlight .ow { color: #CAA6EC; }
 
-.highlight .o { color: #a1c6e4; font-weight: bold; }
+.highlight .o { color: #a1c6e4; }
 
 .highlight .bp { color: #C26F60; }
 

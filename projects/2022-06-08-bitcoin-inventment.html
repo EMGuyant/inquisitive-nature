@@ -20,7 +20,7 @@
 <meta property="twitter:image" content="http://blog.ethanguyant.com/assets/img/project_img/bitcoin_analysis.jpg" />
 <meta property="twitter:title" content="Bitcoin Portfolio Analysis" />
 <script type="application/ld+json">
-{"author":{"@type":"Person","name":"Ethan Guyant"},"description":"The analysis of historic performance of a hypothetical 3 asset portfolio. The historic prices of Bitcoin, the S&amp;P 500, and gold since 2014 were analyzed to answer (1) how does the historic performance of Bitcoin compare to that of the S&amp;P 500 and gold, (2) How does the inclusion of Bitcoin impact a portfolios characteristics, (3) could Bitcoin be used as a hedge against inflation, and (4) what allocation of the three asset classes produced the minimum volatility portfolio and what allocation produced the maximized risk-adjusted return.","url":"http://blog.ethanguyant.com/projects/2022-06-08-bitcoin-inventment.html","@type":"BlogPosting","image":"http://blog.ethanguyant.com/assets/img/project_img/bitcoin_analysis.jpg","headline":"Bitcoin Portfolio Analysis","dateModified":"2022-06-08T00:00:00+00:00","datePublished":"2022-06-08T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://blog.ethanguyant.com/projects/2022-06-08-bitcoin-inventment.html"},"@context":"https://schema.org"}</script>
+{"author":{"@type":"Person","name":"Ethan Guyant"},"description":"The analysis of historic performance of a hypothetical 3 asset portfolio. The historic prices of Bitcoin, the S&amp;P 500, and gold since 2014 were analyzed to answer (1) how does the historic performance of Bitcoin compare to that of the S&amp;P 500 and gold, (2) How does the inclusion of Bitcoin impact a portfolios characteristics, (3) could Bitcoin be used as a hedge against inflation, and (4) what allocation of the three asset classes produced the minimum volatility portfolio and what allocation produced the maximized risk-adjusted return.","url":"http://blog.ethanguyant.com/projects/2022-06-08-bitcoin-inventment.html","image":"http://blog.ethanguyant.com/assets/img/project_img/bitcoin_analysis.jpg","@type":"BlogPosting","headline":"Bitcoin Portfolio Analysis","dateModified":"2022-06-08T00:00:00+00:00","datePublished":"2022-06-08T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://blog.ethanguyant.com/projects/2022-06-08-bitcoin-inventment.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <title>Ethan Guyant's Personal Blog</title>
   <!-- Normalize CSS file irons out some difference between browsers -->
@@ -33,6 +33,27 @@
   <!-- CSS Styles -->
   <link rel="stylesheet" href="/assets/main.css">
   <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/notebook_default.css">
+  <link rel="stylesheet" href="/assets/css/notebook_custom.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
+  <!-- MathJax configuration -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+  </script>
   <!-- Animation on Scroll-->
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   <!-- Font Awesome Kit -->

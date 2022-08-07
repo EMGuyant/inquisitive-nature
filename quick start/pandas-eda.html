@@ -20,7 +20,7 @@
 <meta property="twitter:image" content="http://blog.ethanguyant.com/assets/img/post_img/eda-pandas.jpg" />
 <meta property="twitter:title" content="Exploratory Data Analysis - Pandas" />
 <script type="application/ld+json">
-{"author":{"@type":"Person","name":"Ethan Guyant"},"description":"An overview of various data manipulation functions and methods utilizing pandas dataframes.","url":"http://blog.ethanguyant.com/quick%20start/pandas-eda.html","@type":"BlogPosting","image":"http://blog.ethanguyant.com/assets/img/post_img/eda-pandas.jpg","headline":"Exploratory Data Analysis - Pandas","dateModified":"2022-06-28T00:00:00+00:00","datePublished":"2022-06-28T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://blog.ethanguyant.com/quick%20start/pandas-eda.html"},"@context":"https://schema.org"}</script>
+{"author":{"@type":"Person","name":"Ethan Guyant"},"description":"An overview of various data manipulation functions and methods utilizing pandas dataframes.","url":"http://blog.ethanguyant.com/quick%20start/pandas-eda.html","image":"http://blog.ethanguyant.com/assets/img/post_img/eda-pandas.jpg","@type":"BlogPosting","headline":"Exploratory Data Analysis - Pandas","dateModified":"2022-06-28T00:00:00+00:00","datePublished":"2022-06-28T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://blog.ethanguyant.com/quick%20start/pandas-eda.html"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <title>Ethan Guyant's Personal Blog</title>
   <!-- Normalize CSS file irons out some difference between browsers -->
@@ -33,6 +33,27 @@
   <!-- CSS Styles -->
   <link rel="stylesheet" href="/assets/main.css">
   <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/notebook_default.css">
+  <link rel="stylesheet" href="/assets/css/notebook_custom.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
+  <!-- MathJax configuration -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+  </script>
   <!-- Animation on Scroll-->
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   <!-- Font Awesome Kit -->
