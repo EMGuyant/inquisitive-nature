@@ -1,0 +1,1454 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Pandas: Introduction to the Library | Ethan Guyant’s Data Science Blog</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="Pandas: Introduction to the Library" />
+<meta name="author" content="Ethan Guyant" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="An overview of various data manipulation functions and methods utilizing pandas dataframes." />
+<meta property="og:description" content="An overview of various data manipulation functions and methods utilizing pandas dataframes." />
+<link rel="canonical" href="http://ethanguyant.com/blog/2022-06-05-pandas-introduction/" />
+<meta property="og:url" content="http://ethanguyant.com/blog/2022-06-05-pandas-introduction/" />
+<meta property="og:site_name" content="Ethan Guyant’s Data Science Blog" />
+<meta property="og:image" content="http://ethanguyant.com/assets/img/post_img/introduction-pandas.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-06-05T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="http://ethanguyant.com/assets/img/post_img/introduction-pandas.jpg" />
+<meta property="twitter:title" content="Pandas: Introduction to the Library" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"Ethan Guyant"},"description":"An overview of various data manipulation functions and methods utilizing pandas dataframes.","url":"http://ethanguyant.com/blog/2022-06-05-pandas-introduction/","image":"http://ethanguyant.com/assets/img/post_img/introduction-pandas.jpg","@type":"BlogPosting","headline":"Pandas: Introduction to the Library","dateModified":"2022-06-05T00:00:00+00:00","datePublished":"2022-06-05T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://ethanguyant.com/blog/2022-06-05-pandas-introduction/"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<title>Ethan Guyant's Personal Blog</title>
+  <!-- Normalize CSS file irons out some difference between browsers -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+  <!-- Google Fonts-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,900|Source+Sans+Pro:300,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Arvo:wght@700&display=swap" rel="stylesheet">
+  <!-- CSS Styles -->
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/notebook_default.css">
+  <link rel="stylesheet" href="/assets/css/notebook_custom.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
+  <!-- MathJax configuration -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+  </script>
+  <!-- Animation on Scroll-->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <!-- Font Awesome Kit -->
+  <script src="https://kit.fontawesome.com/c9965d23bb.js" crossorigin="anonymous"></script><link type="application/atom+xml" rel="alternate" href="http://ethanguyant.com/feed.xml" title="Ethan Guyant's Data Science Blog" /></head>
+<body><header class="header sticky">
+    <div class="wrapper">
+        <div>
+            <div class="scroll-logo"> 
+                <a href="/">  
+                    <svg id="EG" viewBox="0 0 152 216">
+                        <g>
+                            <path id="hex"d="M 76.342 4 L 147.685 41.377 L 147.685 116.13 L 76.342 153.506 L 5 116.13 L 5 41.377 Z" style="stroke-width: 8.37394px; fill-opacity: 0; fill: none; stroke: #39ace7;"></path>         
+                            <polygon class="logo"style="stroke-width: 3.58883px; stroke: #39ace7; fill: #39ace7;" points="41.001 38.501 112.012 38.501 112.012 62.884 97.474 62.884 97.474 54.976 41.001 54.976"></polygon>
+                            <polygon class="logo" style="stroke-width: 3.58883px; stroke: #39ace7; fill: #39ace7;" points="40.671 102.9 97.81 102.9 97.81 86.796 83.604 86.796 83.604 70.701 112.014 70.701 112.014 102.92 112.014 119.004 40.939 119.004"></polygon>
+                            <polygon class="logo" style="stroke-width: 3.58883px; stroke: #39ace7; fill: #39ace7;" points="41.001 70.701 69.753 70.701 63.532 87.725 41.317 87.725"></polygon>
+                        </g> 
+                    </svg>
+                </a>
+            </div>
+
+            <div class="header__title">
+                <a href="/">EthanGuyant.com</a>
+            </div>
+            
+        </div>
+        
+        <div class="nav__menu">
+            <div class="nav__toggle">
+                <div class="nav__icon">
+                    <span></span>
+                </div>
+            </div>
+        </div>
+        <div class="nav__menu__wrapper">
+            <ul class="nav__menu__list">
+                <li class="nav__menu__list__item">
+                    <a href="/" class="nav__menu__list__item__link">Home</a>
+                </li>
+                <li class="nav__menu__list__item">
+                    <a href="/blog" class="nav__menu__list__item__link">Blog</a>
+                </li>
+                <li class="nav__menu__list__item">
+                    <a href="/about" class="nav__menu__list__item__link">About</a>
+                </li>
+                <li class="nav__menu__list__item">
+                    <a href="/category/project/" class="nav__menu__list__item__link">Projects</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header><main class="page" aria-label="Content">
+      <div class="page__content">
+        <section class="blog__header">
+    <div class="blog__img">
+      <div class="blog__img__over"></div>
+    </div>
+    <div class="wrapper">
+      <h1 class="blog__title"><span class="inquisitive">INQUISITIVE</span> <span class="nature">NATURE</span></h1>
+      <p class="blog__subtitle">Learn  Explore  <strong>Share</strong></p>
+      <p class="post__categories">
+    </div>
+  </section><div class="wrapper">
+  <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+    <section class="article__header">
+        <h1 class="post-title p-name" itemprop="name headline">Pandas: Introduction to the Library</h1>
+        <p class="post-meta">
+          <time class="dt-published" datetime="2022-06-05T00:00:00+00:00" itemprop="datePublished">Jun 5, 2022
+          </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">Ethan Guyant</span></span></p>
+          <p class="post-category">
+            Category: 
+            <a href="/category/quick-start">
+              <i class="fa-solid fa-folder"></i>
+              Quick Start
+            </a> 
+          </p>
+          <p class="post-tags">
+          Tags: 
+           
+              
+              <a href="/tag/python">
+                <i class="fa-solid fa-tag"></i>
+                Python
+              </a> 
+              
+              <a href="/tag/pandas">
+                <i class="fa-solid fa-tag"></i>
+                Pandas
+              </a> 
+            
+          
+        </p>
+    </section>
+    <div class="post-content e-content" itemprop="articleBody">
+      <body>
+  <div tabindex="-1" id="notebook" class="border-box-sizing">
+    <div class="container" id="notebook-container">
+        <div class="cell border-box-sizing text_cell rendered">
+            <div class="inner_cell">
+                <div class="text_cell_render border-box-sizing rendered_html">
+                    <h2 id="Contents">Contents<a class="anchor-link" href="#Contents"></a></h2>
+                    <ul>
+                        <li><a href="#Overview">Overview</a></li>
+                        <li><a href="#Installing-and-Using-Pandas">Installation and Use</a></li>
+                        <li><a href="#Pandas-Data-Structures">Pandas Data Structures</a>
+                            <ul>
+                                <li><a href="#Pandas-Index">Index</a></li>
+                                <li><a href="#Pandas-Series">Series</a></li>
+                                <li><a href="#Pandas-DataFrame">DataFrame</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#Summary">Summary</a></li>
+                    </ul>
+
+                </div>
+            </div>
+        </div>
+        <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Overview">Overview<a class="anchor-link" href="#Overview"></a></h2><p>Pandas is a fast, powerful, flexible and easy to use open source data analysis and manipulation tool, built on top of the Python programming language (<a style="text-decoration: underline;" href="https://pandas.pydata.org/">pandas</a>). Pandas excels at working with tabular data which can be stored using pandas <code>DataFrames</code>. <code>DataFrames</code> are multidimensional arrays which contain row and column labels and can store various data types including missing data. In addition to providing <code>DataFrame</code> as an advantageous data storage interface, pandas also offers numerous data operations that will be familiar to users of databases and spreadsheets.</p>
+<blockquote><p>Pandas <code>Series</code> and <code>DataFrame</code> objects build upon the NumPy array structure and provide flexibility (e.g. attaching data labels), data cleaning operations (e.g. working with missing data), and data transformation operations (e.g. groupings).</p>
+</blockquote>
+<h3 id="Types-of-Data">Types of Data<a class="anchor-link" href="#Types-of-Data"></a></h3><ul>
+<li>Tabular data with heterogeneous data type columns</li>
+<li>Time series data (ordered and unordered)</li>
+<li>Matrix data with row and column labels</li>
+<li>Observation or statistical datasets</li>
+</ul>
+<h3 id="Task-Pandas-Excels-At">Task Pandas Excels At<a class="anchor-link" href="#Task-Pandas-Excels-At"></a></h3><ul>
+<li>Handling of missing data (<code>NaN</code>)</li>
+<li>The addition or deletion of columns from DataFrames (size mutable)</li>
+<li>Data alignment, can be explicit with a set of labels or automatic (ignoring labels)</li>
+<li>Group by functionality for aggregating and transforming data</li>
+<li>Label-based slicing, indexing, and subsetting of datasets</li>
+<li>Merging and Joining datasets</li>
+</ul>
+<blockquote><p>A data science project typically includes an iterative cycle of data cleaning, data modeling, data analysis, and formatting of result suitable for communicating results - Pandas is an excellent tool for each of these tasks.</p>
+</blockquote>
+<p>For more details on how Pandas can be used for these tasks see:</p>
+<ul>
+<li><a style="text-decoration: underline;" href="/quick%20start/pandas-slicing-dataframe.html">Pandas: Indexing and Slicing</a></li>
+<li><a style="text-decoration: underline;" href="/quick%20start/pandas-data-transform-agg.html">Pandas: Data Transformation</a></li>
+
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<br>
+<hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<br>
+<h2 id="Installing-and-Using-Pandas">Installing and Using Pandas<a class="anchor-link" href="#Installing-and-Using-Pandas"></a></h2>
+<br>
+<h3 id="Install-from-PyPI">Install from PyPI<a class="anchor-link" href="#Install-from-PyPI"></a></h3><p>Pandas can be installed via pip from <a style="text-decoration: underline;" href="https://pypi.org/project/pandas/">PyPI</a> using:</p>
+<div class="highlight"><pre><span></span><span class="o">~</span><span class="err">$</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">pandas</span>
+</pre></div>
+<br>
+<h3 id="Import-Pandas">Import Pandas<a class="anchor-link" href="#Import-Pandas"></a></h3><p>Following the installation of Pandas it can be imported, typically Pandas in imported under the alias <code>pd</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<br>
+<hr>
+<br>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Pandas-Data-Structures">Pandas Data Structures<a class="anchor-link" href="#Pandas-Data-Structures"></a></h2><p>There are three basic fundamental Pandas data structures, <code>Series</code>, <code>DataFrame</code>, and <code>Index</code>. Pandas offers numerous useful tools, method, and functionality on top of these fundamental structures.</p>
+<ul>
+<li>Series: 1D labeled homogeneously-typed array of indexed data</li>
+<li>DataFrame: General 2D labeled, size-mutable tabular structure with potentially heterogeneously-typed columns</li>
+<li>Index: Can be viewed as a <em>immutable array</em> or an <em>ordered set</em></li>
+</ul>
+<blockquote><p>Conceptually it can be helpful to think of Pandas data structures as flexible containers of lower dimensional data (e.g. a DataFrame is a container for Series), and objects can be added to or removed from the containers.</p>
+</blockquote>
+<h3 id="Pandas-Index">Pandas Index<a class="anchor-link" href="#Pandas-Index"></a></h3><p>A <code>Index</code> object is the basic object for storing axis (row and column) labels for all pandas object. The <code>Index</code> object is an immutable sequence.</p>
+<p>Both the <code>Series</code> and <code>DataFrame</code> objects contain an explicit index which can be utilized to reference and modify the data that higher level objects contain.</p>
+<p>The general syntax for constructing a <code>Index</code> is <br>
+<code>pd.Index(data=None, dtype=None, copy=False, name=None, tupleize_cols=True, **kwargs)</code></p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li>data: array-like (1D)<ul>
+<li>Can contain a <code>Series</code>, arrays, constants, dataclass or list-like objects</li>
+</ul>
+</li>
+<li>dtype: NumPy dtype, default of object<ul>
+<li>If dtype is None pandas identifies the best fit and when a dtype is provide pandas coerces to the specified dtype</li>
+</ul>
+</li>
+<li>copy: boolean value to copy input data</li>
+<li>name: name to be stored in the index</li>
+<li>tupleize_col: boolean value, when <code>True</code> pandas attempts to create a multi-index</li>
+</ul>
+<p>Construct an <code>Index</code> object of integers</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">])</span>
+<span class="n">index</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Int64Index([1, 3, 5, 7, 9], dtype=&#39;int64&#39;)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Values of an <code>Index</code> object can be selected using standard Python indexing notation</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">index</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>7</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">index</span><span class="p">[:</span><span class="mi">4</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Int64Index([1, 3, 5, 7], dtype=&#39;int64&#39;)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><code>Index</code> objects are immutable, meaning the values cannot be modified</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">index</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="mi">17</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-fg">/tmp/ipykernel_12114/2209125174.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>index<span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">3</span><span class="ansi-blue-fg">]</span> <span class="ansi-blue-fg">=</span> <span class="ansi-cyan-fg">17</span>
+
+<span class="ansi-green-fg">~/.local/lib/python3.8/site-packages/pandas/core/indexes/base.py</span> in <span class="ansi-cyan-fg">__setitem__</span><span class="ansi-blue-fg">(self, key, value)</span>
+<span class="ansi-green-intense-fg ansi-bold">   4583</span>     <span class="ansi-blue-fg">@</span>final
+<span class="ansi-green-intense-fg ansi-bold">   4584</span>     <span class="ansi-green-fg">def</span> __setitem__<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> key<span class="ansi-blue-fg">,</span> value<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">-&gt; 4585</span><span class="ansi-red-fg">         </span><span class="ansi-green-fg">raise</span> TypeError<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#34;Index does not support mutable operations&#34;</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">   4586</span> 
+<span class="ansi-green-intense-fg ansi-bold">   4587</span>     <span class="ansi-green-fg">def</span> __getitem__<span class="ansi-blue-fg">(</span>self<span class="ansi-blue-fg">,</span> key<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">:</span>
+
+<span class="ansi-red-fg">TypeError</span>: Index does not support mutable operations</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Pandas object are aimed at facilitating cross dataset operations (e.g. joins). The <code>Index</code> object aids in this by following typical conventions used by Python's built-in <code>set</code> data structure facilitating unions, intersections, differences, and other combinations to be computed in a familiar way.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">index_1</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">([</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">])</span>
+<span class="n">index_2</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Index</span><span class="p">([</span><span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;F&#39;</span><span class="p">,</span> <span class="s1">&#39;G&#39;</span><span class="p">])</span>
+<span class="n">index_1</span><span class="o">.</span><span class="n">intersection</span><span class="p">(</span><span class="n">index_2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Index([&#39;A&#39;, &#39;C&#39;], dtype=&#39;object&#39;)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">index_1</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">index_2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Index([&#39;A&#39;, &#39;A&#39;, &#39;B&#39;, &#39;C&#39;, &#39;C&#39;, &#39;E&#39;, &#39;F&#39;, &#39;G&#39;], dtype=&#39;object&#39;)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">index_1</span><span class="o">.</span><span class="n">symmetric_difference</span><span class="p">(</span><span class="n">index_2</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Index([&#39;B&#39;, &#39;E&#39;, &#39;F&#39;, &#39;G&#39;], dtype=&#39;object&#39;)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>For more information on <code>Index</code> attributes (e.g. <code>.size</code>), methods (e.g. <code>.fillna()</code>), and examples visit <a style="text-decoration: underline;" href="https://pandas.pydata.org/docs/reference/api/pandas.Index.html?highlight=index#pandas.Index">Pandas Documentation</a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+
+</div>
+</div>
+</div>
+<br>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Pandas-Series">Pandas Series<a class="anchor-link" href="#Pandas-Series"></a></h3><p>A <code>Series</code> object contains two main components, the sequence of indices and the sequences of values which can be accessed with the <code>.index</code> and <code>.values</code> attributes. A <code>Series</code> supports integer and label indexing and has a wide variety of methods for performing index based operations.</p>
+<p>The general syntax for constructing a <code>Series</code> is <br>
+<code>pd.Series(data=None, index=None, dtype=None, name=None, copy=False)</code></p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li>data: array-like, iterable, dict or scalar value<ul>
+<li>The data that is stored in the series, if dict argument order is maintained</li>
+</ul>
+</li>
+<li>index: array-like or index (1d)<ul>
+<li>Hashable values that must be the same length as <em>data</em><ul>
+<li>Will default to RangeIndex (0, 1, ..., n)</li>
+<li>If <em>data</em> is a dict-like and no index is provided the keys of the data will utilized for the index</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>dtype: data type of the output series, if not specified <em>data</em> will be used to infer dtype</li>
+<li>copy: boolean value to copy input data</li>
+</ul>
+<p>A <code>Series</code> can be created from a list or an array</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data_series</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span>
+<span class="n">data_series</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0    0.0
+1    0.2
+2    0.4
+3    0.6
+4    0.8
+5    1.0
+dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data_series</span><span class="o">.</span><span class="n">index</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>RangeIndex(start=0, stop=6, step=1)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data_series</span><span class="o">.</span><span class="n">values</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([0. , 0.2, 0.4, 0.6, 0.8, 1. ])</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The elements of a <code>Series</code> can be accessed using the common square bracket <code>[ ]</code> notation. For more details see: <a class="post__link" href="/quick%20start/pandas-slicing-dataframe.html">Pandas: Indexing and Slicing</a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data_series</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0.2</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data_series</span><span class="p">[</span><span class="mi">2</span><span class="p">:</span><span class="mi">4</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>2    0.4
+3    0.6
+dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The pandas <code>Series</code> object has an explicitly defined index for each element of the series. This index does not have to be an integer and does not need to be contiguous or sequential. The explicitly defined index functionality provides flexibility and is a major difference between a NumPy array (implicit index) and a pandas <code>Series</code> (explicit index).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data_series</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> 
+                        <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="s1">&#39;B&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;D&#39;</span><span class="p">,</span> <span class="s1">&#39;E&#39;</span><span class="p">,</span> <span class="s1">&#39;F&#39;</span><span class="p">])</span>
+<span class="n">data_series</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>A    0.0
+B    0.2
+C    0.4
+D    0.6
+E    0.8
+F    1.0
+dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data_series</span><span class="p">[</span><span class="s1">&#39;C&#39;</span><span class="p">:</span><span class="s1">&#39;E&#39;</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>C    0.4
+D    0.6
+E    0.8
+dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">data_series</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">([</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> 
+                        <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">10</span><span class="p">])</span>
+<span class="n">data_series</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>0     0.0
+2     0.2
+4     0.4
+6     0.6
+8     0.8
+10    1.0
+dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The explicit index of the <code>Series</code> provides similarities to a dictionary data structure, where typed keys are mapped to typed values. A Pandas <code>Series</code> can be created from a Python dictionary, by default the index will be constructed from the dictionary's sorted keys. Similar to a dictionary, the selection of an element can be done using square bracket <code>[ ]</code> notation, however unlike a dictionary the <code>Series</code> supports slicing operations.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">capitals_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Alaska&#39;</span><span class="p">:</span> <span class="s1">&#39;Juneau&#39;</span><span class="p">,</span>
+		     <span class="s1">&#39;Arizona&#39;</span><span class="p">:</span> <span class="s1">&#39;Phoenix&#39;</span><span class="p">,</span>
+		     <span class="s1">&#39;Arkansas&#39;</span><span class="p">:</span> <span class="s1">&#39;Little Rock&#39;</span><span class="p">,</span>
+		     <span class="s1">&#39;California&#39;</span><span class="p">:</span> <span class="s1">&#39;Sacramento&#39;</span><span class="p">}</span>
+<span class="n">capitals</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">capitals_dict</span><span class="p">)</span>
+<span class="n">capitals</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Alaska             Juneau
+Arizona           Phoenix
+Arkansas      Little Rock
+California     Sacramento
+dtype: object</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">capitals</span><span class="p">[</span><span class="s1">&#39;Arkansas&#39;</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;Little Rock&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">capitals</span><span class="p">[</span><span class="s1">&#39;Alaska&#39;</span><span class="p">:</span><span class="s1">&#39;Arkansas&#39;</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Alaska           Juneau
+Arizona         Phoenix
+Arkansas    Little Rock
+dtype: object</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>For more information on <code>Series</code> attributes (e.g. <code>.index</code>), methods (e.g. <code>.count()</code>), and examples visit <a style="text-decoration: underline;" href="https://pandas.pydata.org/docs/reference/api/pandas.Series.html?highlight=series#pandas.Series">Pandas Documentation</a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+
+</div>
+</div>
+</div>
+<br>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Pandas-DataFrame">Pandas DataFrame<a class="anchor-link" href="#Pandas-DataFrame"></a></h3><p>A <code>DataFrame</code> is a two-dimensional, size-mutable, tabular data object. The <code>DataFrame</code> is essentially a dictionary-like container for a <code>Series</code> which contains labeled rows and columns</p>
+<blockquote><p>Conceptually a <code>DataFrame</code> is a sequence of <code>Series</code> objects which share the same index.</p>
+</blockquote>
+<p>The general syntax for constructing a <code>DataFrame</code> is <br>
+<code>pd.DataFrame(data=None, index=None, columns=None, dtype=None, copy=False)</code></p>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li>data: ndarray, iterable, dict or DataFrame<ul>
+<li>Can contain a <code>Series</code>, arrays, constants, dataclass or list-like objects</li>
+</ul>
+</li>
+<li>index: array-like or index <ul>
+<li>Will default to RangeIndex if there is not index information in the input data and no index is provided</li>
+</ul>
+</li>
+<li>columns: labels used in the resulting <code>DataFrame</code> which defaults to RangeIndex (0, 1, ..., n)</li>
+<li>dtype: data type of the output, only a single dtype is allowed</li>
+<li>copy: boolean value to copy input data</li>
+</ul>
+<p>Creating a <code>DataFrame</code> from two <code>Series</code></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">capitals_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Alaska&#39;</span><span class="p">:</span> <span class="s1">&#39;Juneau&#39;</span><span class="p">,</span>
+		     <span class="s1">&#39;Arizona&#39;</span><span class="p">:</span> <span class="s1">&#39;Phoenix&#39;</span><span class="p">,</span>
+		     <span class="s1">&#39;Arkansas&#39;</span><span class="p">:</span> <span class="s1">&#39;Little Rock&#39;</span><span class="p">,</span>
+		     <span class="s1">&#39;California&#39;</span><span class="p">:</span> <span class="s1">&#39;Sacramento&#39;</span><span class="p">}</span>
+<span class="n">capitals</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">capitals_dict</span><span class="p">)</span>
+<span class="n">capitals</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Alaska             Juneau
+Arizona           Phoenix
+Arkansas      Little Rock
+California     Sacramento
+dtype: object</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">pop_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Alaska&#39;</span><span class="p">:</span> <span class="mi">31275</span><span class="p">,</span> <span class="s1">&#39;Arizona&#39;</span><span class="p">:</span> <span class="mi">1608139</span><span class="p">,</span> <span class="s1">&#39;Arkansas&#39;</span><span class="p">:</span> <span class="mi">202591</span><span class="p">,</span> <span class="s1">&#39;California&#39;</span><span class="p">:</span><span class="mi">524943</span><span class="p">}</span>
+<span class="n">cap_pop</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">pop_dict</span><span class="p">)</span>
+<span class="n">cap_pop</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Alaska          31275
+Arizona       1608139
+Arkansas       202591
+California     524943
+dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">capital_info</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;Name&#39;</span><span class="p">:</span><span class="n">capitals</span><span class="p">,</span> <span class="s1">&#39;Population&#39;</span><span class="p">:</span><span class="n">cap_pop</span><span class="p">})</span>
+<span class="n">capital_info</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Name</th>
+      <th>Population</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Alaska</th>
+      <td>Juneau</td>
+      <td>31275</td>
+    </tr>
+    <tr>
+      <th>Arizona</th>
+      <td>Phoenix</td>
+      <td>1608139</td>
+    </tr>
+    <tr>
+      <th>Arkansas</th>
+      <td>Little Rock</td>
+      <td>202591</td>
+    </tr>
+    <tr>
+      <th>California</th>
+      <td>Sacramento</td>
+      <td>524943</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Similar to the <code>Series</code> object the <code>DataFrame</code> has index and values attribute and also columns attribute. The columns attribute is an Index object which contains the column names.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">capital_info</span><span class="o">.</span><span class="n">index</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Index([&#39;Alaska&#39;, &#39;Arizona&#39;, &#39;Arkansas&#39;, &#39;California&#39;], dtype=&#39;object&#39;)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">capital_info</span><span class="o">.</span><span class="n">values</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>array([[&#39;Juneau&#39;, 31275],
+       [&#39;Phoenix&#39;, 1608139],
+       [&#39;Little Rock&#39;, 202591],
+       [&#39;Sacramento&#39;, 524943]], dtype=object)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">capital_info</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Index([&#39;Name&#39;, &#39;Population&#39;], dtype=&#39;object&#39;)</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A <code>DataFrame</code> can also be constructed from a list of dictionary objects</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">AK</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Capital Name&#39;</span><span class="p">:</span> <span class="s1">&#39;Juneau&#39;</span><span class="p">,</span> <span class="s1">&#39;Capital Population&#39;</span><span class="p">:</span> <span class="mi">31275</span><span class="p">}</span>
+<span class="n">AZ</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Capital Name&#39;</span><span class="p">:</span> <span class="s1">&#39;Phoenix&#39;</span><span class="p">,</span> <span class="s1">&#39;Capital Population&#39;</span><span class="p">:</span> <span class="mi">1608139</span><span class="p">}</span>
+<span class="n">AR</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Capital Name&#39;</span><span class="p">:</span> <span class="s1">&#39;Little Rock&#39;</span><span class="p">,</span> <span class="s1">&#39;Capital Population&#39;</span><span class="p">:</span> <span class="mi">202591</span><span class="p">}</span>
+<span class="n">CA</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Capital Name&#39;</span><span class="p">:</span> <span class="s1">&#39;Sacramento&#39;</span><span class="p">,</span> <span class="s1">&#39;Capital Population&#39;</span><span class="p">:</span> <span class="mi">524943</span><span class="p">}</span>
+<span class="n">df_capital_info</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">([</span><span class="n">AK</span><span class="p">,</span> <span class="n">AZ</span><span class="p">,</span> <span class="n">AR</span><span class="p">,</span> <span class="n">CA</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Alaska&#39;</span><span class="p">,</span> <span class="s1">&#39;Arizona&#39;</span><span class="p">,</span> <span class="s1">&#39;Arkansas&#39;</span><span class="p">,</span> <span class="s1">&#39;California&#39;</span><span class="p">])</span>
+<span class="n">df_capital_info</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Capital Name</th>
+      <th>Capital Population</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Alaska</th>
+      <td>Juneau</td>
+      <td>31275</td>
+    </tr>
+    <tr>
+      <th>Arizona</th>
+      <td>Phoenix</td>
+      <td>1608139</td>
+    </tr>
+    <tr>
+      <th>Arkansas</th>
+      <td>Little Rock</td>
+      <td>202591</td>
+    </tr>
+    <tr>
+      <th>California</th>
+      <td>Sacramento</td>
+      <td>524943</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A <code>DataFrame</code> can be thought of as a specialized dictionary where the <code>DataFrame</code> maps a column name (key) to a <code>Series</code> of columnar data (value). Using the <code>capital_info</code> DataFrame the selection of Population returns the <code>Series</code> object which contain the column of Population Data.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">capital_info</span><span class="p">[</span><span class="s1">&#39;Population&#39;</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Alaska          31275
+Arizona       1608139
+Arkansas       202591
+California     524943
+Name: Population, dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>For more information on <code>DataFrame</code> attributes (e.g. <code>.index</code>), methods (e.g. <code>.count()</code>), and examples visit <a style="text-decoration: underline;" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html?highlight=dataframe#pandas.DataFrame">Pandas Documentation</a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+</div>
+</div>
+</div>
+<br>
+<div class="cell border-box-sizing text_cell rendered">
+    <div class="inner_cell">
+        <div class="text_cell_render border-box-sizing rendered_html">
+            <h2 id="Summary">Summary<a class="anchor-link" href="#Summary"></a></h2>
+            <p>Pandas offers a powerful and flexible data analytics tool which excels at the various stages of a data 
+                science project including data cleaning, data modeling, data analysis, and formatting of final results 
+                for visualizations. The pandas library offers three fundamental data structures: <code>Index</code>, 
+                <code>Series</code>, and <code>DataFrame</code>. Each of these data structures come with numerous tools, 
+                attributes, and methods. In general the pandas data structures can be thought of as flexible containers 
+                of lower dimensional data that allow for objects to be added to or removed from the container.
+            </p>
+            <p>More details and examples can be found in the <a style="text-decoration: underline;" href="https://pandas.pydata.org/docs/index.html">
+                Pandas Documentation</a> or for more information on subsetting of <code>Series</code> and <code>DataFrames</code>, 
+                data transformation tools, and exploratory analysis with pandas please visit the articles below:
+            </p>
+            <ul>
+                <li><a style="text-decoration: underline;" href="/quick%20start/pandas-slicing-dataframe.html">Pandas: Indexing and Slicing</a></li>
+                <li><a style="text-decoration: underline;" href="/quick%20start/pandas-data-transform-agg.html">Pandas: Data Transformation</a></li>
+            </ul>
+
+        </div>
+    </div>
+</div>  
+<br>
+<hr>
+<br>    
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+    <div class="text_cell_render border-box-sizing rendered_html">
+        <p>If you enjoy what you read and find it helpful please check back, and check back often. Follow me on <a class="post__link" href="https://medium.com/@emguyant"><i class="fab fa-medium"></i> Medium</a> while giving a clap to the article! Also don't forget to subscribe to the <a class="post__link" href="https://medium.com/inquisitive-nature"><b>INQUISITIVE NATURE</b></a> publication.</p>
+    
+    </div>
+    </div>
+</div>
+    </div>
+  </div>
+</body>
+
+ 
+
+
+</html>
+
+    </div><a class="u-url" href="/blog/2022-06-05-pandas-introduction/" hidden></a>
+  </article>
+</div>
+      </div>
+    </main><footer class="footer">
+    <!-- replace with your own email address 
+    <a href="mailto:info@ethanguyant.com" class="footer__link">info@ethanguyant.com</a>-->
+    <ul class="social-list">
+        <li class="social-list__item">
+            <a class="social-list__link" href="mailto:emguyant@gmail.com">
+                <i class="fas fa-envelope"></i>
+            </a>
+        </li>
+        <li class="social-list__item">
+            <a class="social-list__link" href="https://www.linkedin.com/in/ethan-guyant/">
+                <i class="fab fa-linkedin"></i>
+            </a>
+        </li>
+        <li class="social-list__item">
+            <a class="social-list__link" href="https://github.com/EMGuyant">
+                <i class="fab fa-github"></i>
+            </a>
+        </li>
+        <li class="social-list__item">
+            <a class="social-list__link" href="https://medium.com/@emguyant">
+                <i class="fab fa-medium"></i>
+            </a>
+        </li>
+        <li class="social-list__item">
+            <a class="social-list__link" href="https://medium.com/inquisitive-nature">
+                <i class="fa-solid fa-book"></i>
+            </a>
+        </li>
+    </ul>
+</footer><script src="https://kit.fontawesome.com/c9965d23bb.js" crossorigin="anonymous"></script>
+<script src="/assets/js/script.js"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+</body>
+
+</html>

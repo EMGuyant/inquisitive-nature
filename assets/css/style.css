@@ -5,7 +5,20 @@
     margin: 0;
     padding: 0;
 }
-
+.dataframe{
+    margin-bottom: 0px;
+    width:0%;
+    text-align: center;
+}
+.dataframe th {
+    font-size: 0.8rem;
+    color: 2.5px 5px;
+}
+.dataframe td {
+    padding: 2.5px 5px;
+    font-size: 0.75rem;
+    color: var(--clr-text-dark);
+}
 /* =============================== CUSTOM PROPERTIES =============================== */
 :root {
     --ff-primary: 'Source Sans', sans-serif;
@@ -18,7 +31,7 @@
     --clr-light: #414c50;
     --clr-mid: #2d383c;
     --clr-dark: #192428;
-    --clr-darkest: #;
+    --clr-darkest: #0c1113;
     --clr-accent-light: #39ace7;
     --clr-accent-dark: #0784b5;
     --clr-text-light: whitesmoke;
@@ -531,7 +544,6 @@ svg|a:hover {
     width:100%;
     margin-top:30px;
     padding-bottom: 30px;
-    cursor:pointer
 }
 .about__image{
     position:absolute;
@@ -1392,7 +1404,7 @@ svg circle:nth-child(2) {
     border-radius: 2px;
 }
 .post__link{
-    text-decoration: underline;;
+    text-decoration: underline;
 }
 
 .post-meta {

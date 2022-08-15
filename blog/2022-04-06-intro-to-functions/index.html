@@ -1,0 +1,3437 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Python: Introduction to Functions | Ethan Guyant’s Data Science Blog</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="Python: Introduction to Functions" />
+<meta name="author" content="Ethan Guyant" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="An introduction to python user-defined functions, their syntax, arguments, documentation, different types of functions, and much more." />
+<meta property="og:description" content="An introduction to python user-defined functions, their syntax, arguments, documentation, different types of functions, and much more." />
+<link rel="canonical" href="http://ethanguyant.com/blog/2022-04-06-intro-to-functions/" />
+<meta property="og:url" content="http://ethanguyant.com/blog/2022-04-06-intro-to-functions/" />
+<meta property="og:site_name" content="Ethan Guyant’s Data Science Blog" />
+<meta property="og:image" content="http://ethanguyant.com/assets/img/post_img/introduction-functions.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-04-06T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="http://ethanguyant.com/assets/img/post_img/introduction-functions.jpg" />
+<meta property="twitter:title" content="Python: Introduction to Functions" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"Ethan Guyant"},"description":"An introduction to python user-defined functions, their syntax, arguments, documentation, different types of functions, and much more.","url":"http://ethanguyant.com/blog/2022-04-06-intro-to-functions/","image":"http://ethanguyant.com/assets/img/post_img/introduction-functions.jpg","@type":"BlogPosting","headline":"Python: Introduction to Functions","dateModified":"2022-04-06T00:00:00+00:00","datePublished":"2022-04-06T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://ethanguyant.com/blog/2022-04-06-intro-to-functions/"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<title>Ethan Guyant's Personal Blog</title>
+  <!-- Normalize CSS file irons out some difference between browsers -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+  <!-- Google Fonts-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,900|Source+Sans+Pro:300,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Arvo:wght@700&display=swap" rel="stylesheet">
+  <!-- CSS Styles -->
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/notebook_default.css">
+  <link rel="stylesheet" href="/assets/css/notebook_custom.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
+  <!-- MathJax configuration -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+  </script>
+  <!-- Animation on Scroll-->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <!-- Font Awesome Kit -->
+  <script src="https://kit.fontawesome.com/c9965d23bb.js" crossorigin="anonymous"></script><link type="application/atom+xml" rel="alternate" href="http://ethanguyant.com/feed.xml" title="Ethan Guyant's Data Science Blog" /></head>
+<body><header class="header sticky">
+    <div class="wrapper">
+        <div>
+            <div class="scroll-logo"> 
+                <a href="/">  
+                    <svg id="EG" viewBox="0 0 152 216">
+                        <g>
+                            <path id="hex"d="M 76.342 4 L 147.685 41.377 L 147.685 116.13 L 76.342 153.506 L 5 116.13 L 5 41.377 Z" style="stroke-width: 8.37394px; fill-opacity: 0; fill: none; stroke: #39ace7;"></path>         
+                            <polygon class="logo"style="stroke-width: 3.58883px; stroke: #39ace7; fill: #39ace7;" points="41.001 38.501 112.012 38.501 112.012 62.884 97.474 62.884 97.474 54.976 41.001 54.976"></polygon>
+                            <polygon class="logo" style="stroke-width: 3.58883px; stroke: #39ace7; fill: #39ace7;" points="40.671 102.9 97.81 102.9 97.81 86.796 83.604 86.796 83.604 70.701 112.014 70.701 112.014 102.92 112.014 119.004 40.939 119.004"></polygon>
+                            <polygon class="logo" style="stroke-width: 3.58883px; stroke: #39ace7; fill: #39ace7;" points="41.001 70.701 69.753 70.701 63.532 87.725 41.317 87.725"></polygon>
+                        </g> 
+                    </svg>
+                </a>
+            </div>
+
+            <div class="header__title">
+                <a href="/">EthanGuyant.com</a>
+            </div>
+            
+        </div>
+        
+        <div class="nav__menu">
+            <div class="nav__toggle">
+                <div class="nav__icon">
+                    <span></span>
+                </div>
+            </div>
+        </div>
+        <div class="nav__menu__wrapper">
+            <ul class="nav__menu__list">
+                <li class="nav__menu__list__item">
+                    <a href="/" class="nav__menu__list__item__link">Home</a>
+                </li>
+                <li class="nav__menu__list__item">
+                    <a href="/blog" class="nav__menu__list__item__link">Blog</a>
+                </li>
+                <li class="nav__menu__list__item">
+                    <a href="/about" class="nav__menu__list__item__link">About</a>
+                </li>
+                <li class="nav__menu__list__item">
+                    <a href="/category/project/" class="nav__menu__list__item__link">Projects</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header><main class="page" aria-label="Content">
+      <div class="page__content">
+        <section class="blog__header">
+    <div class="blog__img">
+      <div class="blog__img__over"></div>
+    </div>
+    <div class="wrapper">
+      <h1 class="blog__title"><span class="inquisitive">INQUISITIVE</span> <span class="nature">NATURE</span></h1>
+      <p class="blog__subtitle">Learn  Explore  <strong>Share</strong></p>
+      <p class="post__categories">
+    </div>
+  </section><div class="wrapper">
+  <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+    <section class="article__header">
+        <h1 class="post-title p-name" itemprop="name headline">Python: Introduction to Functions</h1>
+        <p class="post-meta">
+          <time class="dt-published" datetime="2022-04-06T00:00:00+00:00" itemprop="datePublished">Apr 6, 2022
+          </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">Ethan Guyant</span></span></p>
+          <p class="post-category">
+            Category: 
+            <a href="/category/quick-start">
+              <i class="fa-solid fa-folder"></i>
+              Quick Start
+            </a> 
+          </p>
+          <p class="post-tags">
+          Tags: 
+           
+              
+              <a href="/tag/python">
+                <i class="fa-solid fa-tag"></i>
+                Python
+              </a> 
+              
+              <a href="/tag/pandas">
+                <i class="fa-solid fa-tag"></i>
+                Pandas
+              </a> 
+            
+          
+        </p>
+    </section>
+    <div class="post-content e-content" itemprop="articleBody">
+      <body>
+  <div tabindex="-1" id="notebook" class="border-box-sizing">
+    <div class="container" id="notebook-container">
+
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Contents">Contents<a class="anchor-link" href="#Contents"></a></h2><ul>
+<li><a href="#naming-and-syntax">Naming and Syntax</a></li>
+<li><a href="#general-notes">General Notes</a><ul>
+<li><a href="#pass-by-assignment">Pass by Assignment</a></li>
+</ul>
+</li>
+<li><a href="#inclusion-of-docstrings">Inclusion of Docstrings</a></li>
+<li><a href="#scope">Scope</a></li>
+<li><a href="#positional-keyword-and-default-arguments">Function Arguments</a><ul>
+<li><a href="#positional-arguments">Positional Arguments</a></li>
+<li><a href="#keyword-arguments">Keyword Arguments</a></li>
+<li><a href="#default-arguments">Default Arguments</a></li>
+</ul>
+</li>
+<li><a href="#flexible-arguments">Flexible Arguments</a></li>
+<li><a href="#functions-are-objects">Functions are Object</a></li>
+<li><a href="#anonymous-lambda-functions">Anonymous lambda Functions</a></li>
+<li><a href="#generator-functions">Generator Functions</a></li>
+<li><a href="#closures">Closures</a></li>
+<li><a href="#decorators">Decorators</a><ul>
+<li><a href="#function-metadata">Function Metadata</a></li>
+<li><a href="#decorators-with-arguments">Decorators with Arguments</a></li>
+</ul>
+</li>
+<li><a href="#exceptions">Exceptions</a></li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Naming-and-Syntax">Naming and Syntax<a class="anchor-link" href="#Naming-and-Syntax"></a></h2><p>A user defined function begins with the reserved keyword <code>def</code> followed by parentheses which inclose input parameters to the function and lastly a colon (<code>:</code>). Naming of these user-defined functions follow the same rules as the naming of variables. Including the name must not be a reserved keyword (e.g. <code>def</code>), must start with a letter or underscore, etc., as well as typically following certain conventions (e.g. lowercase_words_separated_with_underscores). For more details see <a href="https://www.python.org/dev/peps/pep-0008/#function-and-variable-names">PEP 8 - Naming Conventions</a>. The function body (i.e. all function statements) must be indented.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="General-Notes">General Notes<a class="anchor-link" href="#General-Notes"></a></h2><h3 id="DRY-(Don't-Repeat-Yourself)-&amp;-Do-One-Thing">DRY (Don't Repeat Yourself) &amp; Do One Thing<a class="anchor-link" href="#DRY-(Don't-Repeat-Yourself)-&amp;-Do-One-Thing"></a></h3><ul>
+<li>When repeated code is identified it commonly indicates that a function should be utilized</li>
+<li>Each function should complete a single task<ul>
+<li>Large complex functions should typically be broken up into multiple smaller functions</li>
+<li>Advantages:<ul>
+<li>Code will become more flexible</li>
+<li>Easier to read and understand</li>
+<li>Simplified debugging</li>
+<li>Allow for easier updates</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Pass-by-Assignment">Pass by Assignment<a class="anchor-link" href="#Pass-by-Assignment"></a></h3><p>Also referred to by pass by object or pass by object reference. Information is passed to the function using 'pass by assignment'. See the below examples to better understand this.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">a</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>At this point both <code>a</code> and <code>b</code> point to the same object or location in memory</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">b</span> <span class="ow">is</span> <span class="n">a</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>True</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Since a list is a mutable object what happens to <code>b</code> will also happen to <code>a</code></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[1, 2, 3, 4]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">b</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[1, 2, 3, 4, 5]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>However if <code>a</code> is changed to a different object in memory, this does not change what object in memory <code>b</code> is pointing to. After this things that happen to <code>a</code> will no longer happen to <code>b</code></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">5</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>25
+[1, 2, 3, 4, 5]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The above behavior of appending a value to the list <code>a</code> effecting the list <code>b</code> is due to a list being a mutable object. This behavior is not seen if <code>a</code> and <code>b</code> are assigned to a immutable object.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">a</span>
+<span class="n">b</span> <span class="ow">is</span> <span class="n">a</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>True</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">b</span> <span class="o">=</span> <span class="n">b</span> <span class="o">+</span> <span class="mi">5</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;b: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">b</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;a: &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">a</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>b: 25
+a: 20
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This is because <code>b = b + 5</code> assigns <code>b</code> to a different object in memory due to a <code>int</code> object being immutable. Immutable and mutable types are listed below:</p>
+<ul>
+<li>Immutable<ul>
+<li>int, float, bool, string, bytes, tuples, None</li>
+</ul>
+</li>
+<li>Mutable<ul>
+<li>list, dict, set, bytearray, objects, functions, many other things</li>
+</ul>
+</li>
+</ul>
+<p>Due to this behavior mutable default arguments to a function should be avoided.</p>
+<ul>
+<li>If a default mutable variable is required, defaulting to a value of <code>None</code> should be used and the variable can then be set within the function<ul>
+<li>More details below in the <a href="#default-arguments">Default Arguments</a> section.</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">broken_function</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">var</span><span class="o">=</span><span class="p">[]):</span>
+    <span class="n">var</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">var</span><span class="p">)</span>
+
+<span class="n">broken_function</span><span class="p">(</span><span class="s1">&#39;first call&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[&#39;first call&#39;]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Calling the function a single time returns the expected result. However, calling the function again shows the default value of <code>var</code> has been modified by the first call to the function</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">broken_function</span><span class="p">(</span><span class="s1">&#39;second call&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[&#39;first call&#39;, &#39;second call&#39;]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Improve the function by setting the default argument to None</span>
+<span class="k">def</span> <span class="nf">improved_function</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">var</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">var</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">var</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">var</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">var</span><span class="p">)</span>
+
+<span class="n">improved_function</span><span class="p">(</span><span class="s1">&#39;first call&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[&#39;first call&#39;]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">improved_function</span><span class="p">(</span><span class="s1">&#39;second call&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[&#39;second call&#39;]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<br>
+<hr>
+
+</div>
+</div>
+</div>
+<br>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Inclusion-of-Docstrings">Inclusion of Docstrings<a class="anchor-link" href="#Inclusion-of-Docstrings"></a></h2><p>In addition to the required syntax described above it is typically best practice to include a function docstring directly following the line of code which defines the function (<code>def function_name():</code>). Docstrings are string literals typically enclosed by triple quotes (either <code>'''</code> or <code>"""</code>) and are used to document the function. Enclosing the docstring in triple quotes allows for the documentation to expand more than a single line.</p>
+<p>Helpful information to include in a docstring consists of:</p>
+<ul>
+<li>What the function does</li>
+<li>What the arguments of the function are</li>
+<li>What should be returned by the function</li>
+<li>Information regarding any errors the function may raise</li>
+<li>Any other relevant information about the function </li>
+</ul>
+<p><strong>At minimum the docstring should include what the function does and what it returns</strong></p>
+<p>Docstrings should follow a consistent style. Two common styles include Google Style and Numpydoc style.</p>
+<h3 id="Google-Style">Google Style<a class="anchor-link" href="#Google-Style"></a></h3><p>A Google Style docstring consists of:</p>
+<ul>
+<li>A concise description of what the function does</li>
+<li>An argument section if there are any arguments<ul>
+<li>If a given argument has a default value include "optional" when describing this argument</li>
+</ul>
+</li>
+<li>A returns section that lists the expected type(s) of what the function returns</li>
+<li>Followed by any errors raises and extra notes</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">function</span><span class="p">(</span><span class="n">arg_1</span><span class="p">,</span> <span class="n">arg_2</span><span class="o">=</span><span class="mi">42</span><span class="p">):</span>
+  <span class="sd">&#39;&#39;&#39;Description of what the function does.</span>
+
+<span class="sd">  Args:</span>
+<span class="sd">    arg_1 (str): Description of arg_1</span>
+<span class="sd">    arg_2 (int, optional): Write optional when an argument has a default value</span>
+
+<span class="sd">  Returns:</span>
+<span class="sd">    bool: Optional description of the returned value</span>
+
+<span class="sd">  Raises:</span>
+<span class="sd">    ValueError: Include any error types that the function intentionally raises</span>
+
+<span class="sd">  Notes:</span>
+<span class="sd">    Any additional notes about the function&#39;&#39;&#39;</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Numpydoc-Style">Numpydoc Style<a class="anchor-link" href="#Numpydoc-Style"></a></h3><p>Contains similar sections as the above described Google Style that is  formatted differently which can be easier to read, however tends to take up more vertical space</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">function</span><span class="p">(</span><span class="n">arg_1</span><span class="p">,</span> <span class="n">arg_2</span><span class="o">=</span><span class="mi">42</span><span class="p">):</span>
+  <span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">  Description of what the function does.</span>
+
+<span class="sd">  Parameters</span>
+<span class="sd">  ----------</span>
+<span class="sd">  arg_1: str</span>
+<span class="sd">    Description of arg_1.</span>
+<span class="sd">  arg_2: int, optional</span>
+<span class="sd">    Description of arg_2.</span>
+<span class="sd">    Default=42</span>
+<span class="sd">  </span>
+<span class="sd">  Returns</span>
+<span class="sd">  -------</span>
+<span class="sd">  The type of the return value</span>
+<span class="sd">    Can include a description of the return value.</span>
+<span class="sd">    Replace &quot;Returns&quot; with &quot;Yields&quot; if the function is a generator</span>
+<span class="sd">  &#39;&#39;&#39;</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A function's docstring can be accessed with the <code>__doc__</code> attribute (unformatted docstring) or by calling the <code>help()</code> function and passing in the functions name (<code>help(function_name)</code>, which returns a formatted version of the docstring). For simple functions it may be more appropriate to have a simplified single line docstring in the form of "Do something, Return something". For more information see <a href="https://www.python.org/dev/peps/pep-0257/#what-is-a-docstring">PEP 257 - What is a Docstring</a></p>
+<p>Simplified Docstring</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">raise_to_power</span><span class="p">(</span><span class="n">value1</span><span class="p">,</span> <span class="n">value2</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Raise value1 to the power of value2&#39;&#39;&#39;</span>
+    <span class="n">new_value</span> <span class="o">=</span> <span class="n">value1</span> <span class="o">**</span> <span class="n">value2</span>
+    <span class="k">return</span> <span class="n">new_value</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Google Style Docstring</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">count_letter</span><span class="p">(</span><span class="n">content</span><span class="p">,</span> <span class="n">letter</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Count the number of times &#39;letter&#39; appears in &#39;content&#39;</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        content (str): The string to search.</span>
+<span class="sd">        letter (str): The letter to search for.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        int</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">            ValueError: If &#39;letter&#39; is not a one-character string.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    
+    <span class="k">if</span> <span class="p">(</span><span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">letter</span><span class="p">,</span> <span class="nb">str</span><span class="p">))</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">letter</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;`letter` must be a signle character string.&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">len</span><span class="p">([</span><span class="n">char</span> <span class="k">for</span> <span class="n">char</span> <span class="ow">in</span> <span class="n">content</span> <span class="k">if</span> <span class="n">char</span> <span class="o">==</span> <span class="n">letter</span><span class="p">])</span>
+
+<span class="n">phrase</span> <span class="o">=</span> <span class="s1">&#39;Every goal is possible from here&#39;</span>
+<span class="n">count_letter</span><span class="p">(</span><span class="n">phrase</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>4</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Accessing a function's docstring with <code>.__doc__</code></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">raise_to_power</span><span class="o">.</span><span class="vm">__doc__</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#39;Raise value1 to the power of value2&#39;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>More complex docstrings can be challenging to read using <code>.__doc__</code>. To improve readability of a complex docstring use <code>help(&lt;function_name&gt;)</code></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">count_letter</span><span class="o">.</span><span class="vm">__doc__</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&#34;Count the number of times &#39;letter&#39; appears in &#39;content&#39;\n\n    Args:\n        content (str): The string to search.\n        letter (str): The letter to search for.\n\n    Returns:\n        int\n\n    Raises:\n            ValueError: If &#39;letter&#39; is not a one-character string.\n    &#34;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">count_letter</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Help on function count_letter in module __main__:
+
+count_letter(content, letter)
+    Count the number of times &#39;letter&#39; appears in &#39;content&#39;
+    
+    Args:
+        content (str): The string to search.
+        letter (str): The letter to search for.
+    
+    Returns:
+        int
+    
+    Raises:
+            ValueError: If &#39;letter&#39; is not a one-character string.
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<br>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Scope">Scope<a class="anchor-link" href="#Scope"></a></h2><p>There are different scopes that are present when running Python code.</p>
+<ul>
+<li>Global Scope: Defined in the main body of a script</li>
+<li>Local Scope: Defined inside of a function. Any parameter defined in a function only exists while the function executes</li>
+<li>Built-in: Names of pre-defined built-in functions and modules</li>
+</ul>
+<p>In general scope determines which variables can be accessed in various parts of the code, and which variables can be accessed is determined by the following rules:</p>
+<ol>
+<li>The Python interpreter looks first in the local scope<ul>
+<li>When within a function the local scope includes any arguments of, and variables defined, inside the function</li>
+</ul>
+</li>
+<li>If the variable cannot be found within the local scope, the interpreter searches the non-local scope (i.e. the parent function when a nested function is present)</li>
+<li>If the variable cannot be found in the non-local scope, the interpreter searches the global scope (i.e. variables defined outside the function)</li>
+<li>If the variable cannot be found in the global scope, the interpreter searches the built-in scope. The built-in scope includes things that are always accessible (e.g. <code>print()</code>)</li>
+</ol>
+<p>When accessing a variable defined outside the current scope Python only grants read access</p>
+<ul>
+<li>Given the following example, when <code>x</code> is set to 50 within <code>func()</code> Python assumes the desired action is to create a new variable within the local scope</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="k">def</span> <span class="nf">func</span><span class="p">():</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="mi">50</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>10
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;global_scope&#39;</span>
+<span class="k">def</span> <span class="nf">print_value</span><span class="p">():</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;local_scope&#39;</span>
+    <span class="k">return</span> <span class="n">s</span>
+
+<span class="c1"># (1) Print the value of s (outside the function)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;(1): &#39;</span> <span class="o">+</span> <span class="n">s</span><span class="p">)</span>
+<span class="c1"># (2) Call the function which sets the value of s (inside the function)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;(2): &#39;</span> <span class="o">+</span> <span class="n">print_value</span><span class="p">())</span>
+<span class="c1"># (3) Print the value of s (outside the function) - The global `s` remains unchanged</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;(3): &#39;</span> <span class="o">+</span> <span class="n">s</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>(1): global_scope
+(2): local_scope
+(3): global_scope
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The second example above shows the following:</p>
+<ol>
+<li>The global variable <code>s</code> is assigned the value <code>global_scope</code></li>
+<li>Defines a function <code>print_value()</code> which assigns a local variable (or function parameter) <code>s</code> the value of <code>local_scope</code></li>
+<li>Prints the value of <code>s</code> outside of the function <code>print_value()</code> so it prints the string <code>global_scope</code></li>
+<li>Calls the function <code>print_value()</code>, which prints the value of the local variable <code>s</code>, <code>local_scope</code></li>
+<li>Again prints the value of <code>s</code> outside of the function which shows the the global variable <code>s</code> remains unchanged because the second assignment (<code>s = 'local_scope'</code>) impacts the local scope but does not impact the enclosing global scope</li>
+</ol>
+<p>Rather, if the desired action is to change the value of <code>s</code> in the global scope (defined outside of the function) then this must be explicitly declared within the function using the keyword <code>global</code></p>
+<ul>
+<li>Modifying global variables in this manner should be used with caution as it can make debugging more challenging</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;global_scope&#39;</span>
+<span class="k">def</span> <span class="nf">print_value</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">s</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="s1">&#39;updated_inside_function&#39;</span>
+    <span class="k">return</span> <span class="n">s</span>
+
+<span class="c1"># (1) Print the value of s (outside the function)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;(1): &#39;</span> <span class="o">+</span> <span class="n">s</span><span class="p">)</span>
+<span class="c1"># (2) Call the function which sets the value of s (inside the function)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;(2): &#39;</span> <span class="o">+</span> <span class="n">print_value</span><span class="p">())</span>
+<span class="c1"># (3) Print the value of s (outside the function) </span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;(3): &#39;</span> <span class="o">+</span> <span class="n">s</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>(1): global_scope
+(2): updated_inside_function
+(3): updated_inside_function
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Similarly, scopes must also be considered when nesting functions. To change the value of a variable in the non-local scope the <code>nonlocal</code> keyword must be used to modify the variable in the  enclosing scope.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">outer_function</span><span class="p">():</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="mi">15</span>
+    <span class="k">def</span> <span class="nf">inner_function</span><span class="p">():</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="mi">150</span>
+        <span class="k">return</span> <span class="n">x</span>
+    
+    <span class="c1"># (1) call the inner function and print the value of x</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;(1): &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">inner_function</span><span class="p">()))</span>
+    <span class="c1"># (2) print the value of x within the outer function scope</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;(2): &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+<span class="n">outer_function</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>(1): 150
+(2): 15
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">outer_function</span><span class="p">():</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="mi">15</span>
+    <span class="k">def</span> <span class="nf">inner_function</span><span class="p">():</span>
+        <span class="k">nonlocal</span> <span class="n">x</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="mi">150</span>
+        <span class="k">return</span> <span class="n">x</span>
+    
+    <span class="c1"># (1) call the inner function and print the value of x</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;(1): &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">inner_function</span><span class="p">()))</span>
+    <span class="c1"># (2) print the value of x within the outer function scope</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;(2): &#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+<span class="n">outer_function</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>(1): 150
+(2): 150
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<br>
+    <hr>
+
+</div>
+</div>
+</div>
+<br>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Positional,-Keyword,-and-Default-Arguments">Positional, Keyword, and Default Arguments<a class="anchor-link" href="#Positional,-Keyword,-and-Default-Arguments"></a></h2><p><em>Arguments</em> are the values passed to the function when it is called (<code>raise_to_power(3,2)</code>), <code>3</code> and <code>2</code> are the arguments passed to the function <code>raise_to_power</code>. The values of the arguments are copied to the corresponding <em>Parameters</em> (<code>value_1</code> and <code>value_2</code>) inside of the function.</p>
+<p>The <code>return</code> statement returns the value of <code>new_value</code> back to the caller of the function.</p>
+<p>Calling <code>raise_to_power</code> and passing in the values of <code>3</code> and <code>2</code> does the following:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">raise_to_power</span><span class="p">(</span><span class="n">value1</span><span class="p">,</span> <span class="n">value2</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Raise value1 to the power of value2&#39;&#39;&#39;</span>
+    <span class="n">new_value</span> <span class="o">=</span> <span class="n">value1</span> <span class="o">**</span> <span class="n">value2</span>
+    <span class="k">return</span> <span class="n">new_value</span>
+
+<span class="n">three_squared</span> <span class="o">=</span> <span class="n">raise_to_power</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">three_squared</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>9</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>1) Assigns the value of <code>3</code> to the parameter <code>value_1</code> and <code>2</code> to the parameter <code>value_2</code> <strong>inside</strong> of the function.<br>
+2) Performs the calculation <code>3</code> raised (<code>**</code>) to the power of <code>2</code><br>
+3) Returns the value <code>9</code> to the caller which then assigns it to the variable <code>three_squared</code></p>
+<p>Python handles function arguments in flexible manner. The most common types include positional arguments, keyword arguments, and default arguments.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Positional-Arguments">Positional Arguments<a class="anchor-link" href="#Positional-Arguments"></a></h3><p>Positional argument values are copied to the function parameters in the order they are passed to the function.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">meals</span><span class="p">(</span><span class="n">breakfast</span><span class="p">,</span> <span class="n">lunch</span><span class="p">,</span> <span class="n">dinner</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Builds a dictionary from the positional arguments and returns the dictionary&#39;&#39;&#39;</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;breakfast&#39;</span><span class="p">:</span><span class="n">breakfast</span><span class="p">,</span> <span class="s1">&#39;lunch&#39;</span><span class="p">:</span><span class="n">lunch</span><span class="p">,</span> <span class="s1">&#39;dinner&#39;</span><span class="p">:</span><span class="n">dinner</span><span class="p">}</span>
+
+<span class="n">meals</span><span class="p">(</span><span class="s1">&#39;toast&#39;</span><span class="p">,</span> <span class="s1">&#39;sandwich&#39;</span><span class="p">,</span> <span class="s1">&#39;tacos&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{&#39;breakfast&#39;: &#39;toast&#39;, &#39;lunch&#39;: &#39;sandwich&#39;, &#39;dinner&#39;: &#39;tacos&#39;}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Positional arguments are common, however carry the downside. Each time the function is called requires remembering the meaning and what value must go into what position. For example in the function above if <code>meals()</code> is called with tacos as the first argument the meals for the day would be very different.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">meals</span><span class="p">(</span><span class="s1">&#39;tacos&#39;</span><span class="p">,</span> <span class="s1">&#39;sandwich&#39;</span><span class="p">,</span> <span class="s1">&#39;toast&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{&#39;breakfast&#39;: &#39;tacos&#39;, &#39;lunch&#39;: &#39;sandwich&#39;, &#39;dinner&#39;: &#39;toast&#39;}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<br>
+    <h3 id="Keyword-Arguments">Keyword Arguments<a class="anchor-link" href="#Keyword-Arguments"></a></h3><p>To avoid the potential confusion noted above, arguments can be passed to the function by specifying the arguments by the name of their corresponding function parameters.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">meals</span><span class="p">(</span><span class="n">dinner</span><span class="o">=</span><span class="s1">&#39;tacos&#39;</span><span class="p">,</span> <span class="n">breakfast</span><span class="o">=</span><span class="s1">&#39;toast&#39;</span><span class="p">,</span> <span class="n">lunch</span><span class="o">=</span><span class="s1">&#39;sandwich&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{&#39;breakfast&#39;: &#39;toast&#39;, &#39;lunch&#39;: &#39;sandwich&#39;, &#39;dinner&#39;: &#39;tacos&#39;}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>When using keyword arguments the arguments do not have to be passed to the function in the same order that the parameters are defined within the function.</p>
+<p>Additionally a function can be called using both positional and keyword arguments.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">meals</span><span class="p">(</span><span class="s1">&#39;toast&#39;</span><span class="p">,</span> <span class="n">dinner</span><span class="o">=</span><span class="s1">&#39;tacos&#39;</span><span class="p">,</span> <span class="n">lunch</span><span class="o">=</span><span class="s1">&#39;sandwich&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{&#39;breakfast&#39;: &#39;toast&#39;, &#39;lunch&#39;: &#39;sandwich&#39;, &#39;dinner&#39;: &#39;tacos&#39;}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>When utilizing both positional and keyword arguments the positional arguments must come before the keyword arguments. Providing a positional argument after a keyword argument will result in a <code>SyntaxError</code></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">meals</span><span class="p">(</span><span class="n">breakfast</span><span class="o">=</span><span class="s1">&#39;toast&#39;</span><span class="p">,</span> <span class="s1">&#39;sandwich&#39;</span><span class="p">,</span> <span class="n">dinner</span><span class="o">=</span><span class="s1">&#39;tacos&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-cyan-fg">  File </span><span class="ansi-green-fg">&#34;/tmp/ipykernel_5785/4261814175.py&#34;</span><span class="ansi-cyan-fg">, line </span><span class="ansi-green-fg">1</span>
+<span class="ansi-red-fg">    meals(breakfast=&#39;toast&#39;, &#39;sandwich&#39;, dinner=&#39;tacos&#39;)</span>
+                             ^
+<span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> positional argument follows keyword argument
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<br>
+    <h3 id="Default-Arguments">Default Arguments<a class="anchor-link" href="#Default-Arguments"></a></h3><p>Default values for parameters can be defined and the default value will be used if no corresponding argument was provided when calling the function. To set a default value follow the parameter of interest with an equals sign (<code>=</code>) and the default value.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">meals</span><span class="p">(</span><span class="n">breakfast</span><span class="p">,</span> <span class="n">lunch</span><span class="p">,</span> <span class="n">dinner</span><span class="o">=</span><span class="s1">&#39;tacos&#39;</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Builds a dictionary from the positional arguments and returns the dictionary&#39;&#39;&#39;</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;breakfast&#39;</span><span class="p">:</span> <span class="n">breakfast</span><span class="p">,</span> <span class="s1">&#39;lunch&#39;</span><span class="p">:</span> <span class="n">lunch</span><span class="p">,</span> <span class="s1">&#39;dinner&#39;</span><span class="p">:</span> <span class="n">dinner</span><span class="p">}</span> 
+
+<span class="n">meals</span><span class="p">(</span><span class="s1">&#39;toast&#39;</span><span class="p">,</span> <span class="s1">&#39;sandwich&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>{&#39;breakfast&#39;: &#39;toast&#39;, &#39;lunch&#39;: &#39;sandwich&#39;, &#39;dinner&#39;: &#39;tacos&#39;}</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p><strong><code>Note #2:</code></strong>  When default arguments are defined they must follow non-default arguments</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">meals</span><span class="p">(</span><span class="n">breakfast</span><span class="o">=</span><span class="s1">&#39;toast&#39;</span><span class="p">,</span> <span class="n">lunch</span><span class="p">,</span> <span class="n">dinner</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Builds a dictionary from the positional arguments and returns the dictionary&#39;&#39;&#39;</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;breakfast&#39;</span><span class="p">:</span> <span class="n">breakfast</span><span class="p">,</span> <span class="s1">&#39;lunch&#39;</span><span class="p">:</span> <span class="n">lunch</span><span class="p">,</span> <span class="s1">&#39;dinner&#39;</span><span class="p">:</span> <span class="n">dinner</span><span class="p">}</span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-cyan-fg">  File </span><span class="ansi-green-fg">&#34;/tmp/ipykernel_5785/443568823.py&#34;</span><span class="ansi-cyan-fg">, line </span><span class="ansi-green-fg">1</span>
+<span class="ansi-red-fg">    def meals(breakfast=&#39;toast&#39;, lunch, dinner):</span>
+              ^
+<span class="ansi-red-fg">SyntaxError</span><span class="ansi-red-fg">:</span> non-default argument follows default argument
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p><strong><code>Note #3:</code></strong> Default parameter values are calculated when the function is defined, not when the function is ran. This can result in the common error of using a mutable data type (e.g. list) as a default parameter, remember python uses pass by assignment as was noted above.</p>
+</blockquote>
+<p>To further demonstrate this, revisit the examples provided in the <a href="#pass-by-assignment">Pass by Assignment</a> section. The expected behavior of <code>broken_function()</code> is that each time the function is called it runs with an empty list <code>var</code>, then appends the value of <code>arg</code> to this list, and prints the single-item list.</p>
+<p>However, it does not work as intended. The list <code>var</code> is only empty the first time <code>broken_function()</code> is called.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">broken_function</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">var</span><span class="o">=</span><span class="p">[]):</span>
+	<span class="n">var</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
+	<span class="nb">print</span><span class="p">(</span><span class="n">var</span><span class="p">)</span>
+
+<span class="n">broken_function</span><span class="p">(</span><span class="s1">&#39;first call&#39;</span><span class="p">)</span>
+<span class="n">broken_function</span><span class="p">(</span><span class="s1">&#39;second call&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[&#39;first call&#39;]
+[&#39;first call&#39;, &#39;second call&#39;]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>A solution to this problem is to set the default value of <code>var</code> to the immutable value <code>None</code> and setting the value of <code>var</code> to an empty list inside of the function.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">improved_function</span><span class="p">(</span><span class="n">arg</span><span class="p">,</span> <span class="n">var</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+	<span class="k">if</span> <span class="n">var</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+		<span class="n">var</span> <span class="o">=</span> <span class="p">[]</span>
+	<span class="n">var</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arg</span><span class="p">)</span>
+	<span class="nb">print</span><span class="p">(</span><span class="n">var</span><span class="p">)</span>
+
+<span class="n">improved_function</span><span class="p">(</span><span class="s1">&#39;fist call&#39;</span><span class="p">)</span>
+<span class="n">improved_function</span><span class="p">(</span><span class="s1">&#39;second call&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[&#39;fist call&#39;]
+[&#39;second call&#39;]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p><strong><code>Note #4:</code></strong> <code>None</code> is a special value in Python. <code>None</code> can be used as a placeholder when there is nothing and is not the same as the boolean value <code>False</code>. However when evaluated as a boolean it will appear false, but can be distinguished from <code>False</code> using the <code>is</code> operator.</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">var</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="k">if</span> <span class="n">var</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;var is nothing&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;var is something&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>var is something
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Distinguish None and False</span>
+<span class="k">if</span> <span class="n">var</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+	<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;var is nothing&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+	<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;var is something&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>var is nothing
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p><strong><code>Note #4.1:</code></strong> Zero-value integer or floats, empty strings (<code>''</code>), empty lists (<code>[]</code>), empty tuples(<code>()</code>), dictionaries (<code>{}</code>), and sets (<code>set()</code>) are all <code>False</code> when evaluated as a boolean but are not the same as <code>None</code></p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">what_is_it</span><span class="p">(</span><span class="n">it</span><span class="p">):</span>
+	<span class="k">if</span> <span class="n">it</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+		<span class="nb">print</span><span class="p">(</span><span class="n">it</span><span class="p">,</span> <span class="s1">&#39;is None&#39;</span><span class="p">)</span>
+	<span class="k">elif</span> <span class="n">it</span><span class="p">:</span>
+		<span class="nb">print</span><span class="p">(</span><span class="n">it</span><span class="p">,</span> <span class="s1">&#39;is True&#39;</span><span class="p">)</span>
+	<span class="k">else</span><span class="p">:</span>
+		<span class="nb">print</span><span class="p">(</span><span class="n">it</span><span class="p">,</span> <span class="s1">&#39;is False&#39;</span><span class="p">)</span>
+
+<span class="n">what_is_it</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+<span class="n">what_is_it</span><span class="p">([])</span>
+<span class="n">what_is_it</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>None is None
+[] is False
+1 is True
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<br>
+    <h2 id="Flexible-Arguments">Flexible Arguments<a class="anchor-link" href="#Flexible-Arguments"></a></h2><p>Flexible arguments allow a variable number of arguments to be passed to a function.</p>
+<br>
+    <h3 id="Positional-Arguments-*">Positional Arguments <code>*</code><a class="anchor-link" href="#Positional-Arguments-*"></a></h3><p><code>*</code> groups all the arguments passed to a function into a tuple of parameter values. It is common practice to use <code>*args</code> for this purpose but <code>args</code> does not have to be used. The name <code>args</code> is not what is important, what is important is that it is preceded with a single asterisk ( <code>*</code> ). If the function has a mix of <em>required</em> positional arguments and flexible arguments, list the required arguments first and <code>*args</code> goes at the end.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">add_all</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+	<span class="sd">&#39;&#39;&#39;Sums all the values in *args and returns the sum&#39;&#39;&#39;</span>
+
+	<span class="n">sum_all</span> <span class="o">=</span> <span class="mi">0</span>
+	<span class="k">for</span> <span class="n">number</span> <span class="ow">in</span> <span class="n">args</span><span class="p">:</span>
+		<span class="n">sum_all</span> <span class="o">+=</span> <span class="n">number</span>
+	<span class="k">return</span> <span class="n">sum_all</span>
+
+<span class="c1"># (1) Call add_all with two arguments</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;(1): </span><span class="si">{</span><span class="n">add_all</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+<span class="c1"># (2) Call add_all with three arguments</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;(2): </span><span class="si">{</span><span class="n">add_all</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>(1): 6
+(2): 30
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<br>
+    <h3 id="Keyword-Arguments-**">Keyword Arguments <code>**</code><a class="anchor-link" href="#Keyword-Arguments-**"></a></h3><p><code>**</code> groups all the keyword arguments passed to a function into a dictionary, where the keys are the argument names and their values are the corresponding values in the dictionary. It is common practice to use <code>**kwargs</code> (keyword arguments) for this purpose but is not required, again what is important is the name is preceded by double asterisks ( <code>**</code> ) not the name itself.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">print_all</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Prints the key value pairs of **kwargs&#39;&#39;&#39;</span>
+
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">key</span> <span class="o">+</span> <span class="s1">&#39; : &#39;</span> <span class="o">+</span> <span class="n">value</span><span class="p">)</span>
+
+<span class="c1"># Call print_all with two keyword arguments</span>
+<span class="n">print_all</span><span class="p">(</span><span class="n">breakfast</span><span class="o">=</span><span class="s1">&#39;toast&#39;</span><span class="p">,</span> <span class="n">lunch</span><span class="o">=</span><span class="s1">&#39;sandwich&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>breakfast : toast
+lunch : sandwich
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Call print_all with three keyword arguments</span>
+<span class="n">print_all</span><span class="p">(</span><span class="n">breakfast</span><span class="o">=</span><span class="s1">&#39;toast&#39;</span><span class="p">,</span> <span class="n">lunch</span><span class="o">=</span><span class="s1">&#39;sandwich&#39;</span><span class="p">,</span> <span class="n">dinner</span><span class="o">=</span><span class="s1">&#39;tacos&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>breakfast : toast
+lunch : sandwich
+dinner : tacos
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p><strong><code>Note #5:</code></strong> When using <code>*args</code> and <code>**kwargs</code> it is important to remember it is not the names <code>args</code> and <code>kwargs</code> that are important, rather it is that the name are preceded by a single <code>*</code> or double <code>**</code> asterisk</p>
+<p><strong><code>Note #6:</code></strong> When using a combination of argument types the order is (1) Required positional arguments, (2) Optional positional arguments (<code>*args</code>), and (3) Optional keyword arguments (<code>**kwargs</code>)</p>
+</blockquote>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<br>
+    <hr>
+
+</div>
+</div>
+</div>
+<br>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Functions-are-Objects">Functions are Objects<a class="anchor-link" href="#Functions-are-Objects"></a></h2><p>Like strings, tuples, lists, dictionaries, and many other things in Python, functions are also objects.  Functions can be assigned to variables, and item in a list or dictionary, used as arguments to other functions, and be returned from functions.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">add_args</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Print the value of arg1 +arg2&#39;&#39;&#39;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">arg1</span> <span class="o">+</span> <span class="n">arg2</span><span class="p">)</span>
+
+	
+<span class="k">def</span> <span class="nf">multiply_args</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Print the value of arg1 * arg2&#39;&#39;&#39;</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">arg1</span> <span class="o">*</span> <span class="n">arg2</span><span class="p">)</span>
+	
+<span class="k">def</span> <span class="nf">compute</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Call the function passed in and pass arg1 and arg2 to that function&#39;&#39;&#39;</span>
+    <span class="n">func</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">)</span>
+
+<span class="c1"># Call add_args passing in the values of 5 and 3</span>
+<span class="n">add_args</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>8
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Call compute passing in the function add_args adn the values 5 and 3</span>
+<span class="n">compute</span><span class="p">(</span><span class="n">add_args</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>8
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Call multiply_args passing in the values 2 and 5</span>
+<span class="n">multiply_args</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>10
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Call computer passing in the function multiply_args and the values 2 and 5</span>
+<span class="n">compute</span><span class="p">(</span><span class="n">multiply_args</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>10
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Create a list of the functions add_args and multiply_args</span>
+<span class="n">math_functions</span> <span class="o">=</span> <span class="p">[</span><span class="n">add_args</span><span class="p">,</span> <span class="n">multiply_args</span><span class="p">]</span>
+<span class="c1"># Call the add_args function using the list math_functions and passing </span>
+<span class="c1"># in the values 5 and 3</span>
+<span class="n">math_functions</span><span class="p">[</span><span class="mi">0</span><span class="p">](</span><span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>8
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Call the multiply_args function using the list math_functions and passing </span>
+<span class="c1"># in the values 2 and 5</span>
+<span class="n">math_functions</span><span class="p">[</span><span class="mi">1</span><span class="p">](</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>10
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This can also be combined with the use of <code>*args</code> and <code>**kwargs</code></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">sum_args</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Sum all the values in *args&#39;&#39;&#39;</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">args</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">use_positional_args</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Call the function passed in as func and pass *args to that function&#39;&#39;&#39;</span>
+    <span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">use_positional_args</span><span class="p">(</span><span class="n">sum_args</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">use_positional_args</span><span class="p">(</span><span class="n">sum_args</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>6
+15
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<br>
+    <hr>
+
+</div>
+</div>
+</div>
+<br>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Anonymous-lambda-Functions">Anonymous <code>lambda</code> Functions<a class="anchor-link" href="#Anonymous-lambda-Functions"></a></h2><p>A lambda function is an anonymous function because it is not given a name when defined (<code>def name_of_function:</code>) as has been shown in all previous examples. These functions provide a quick, and potentially dirty, way to write function that may not be suitable for all uses but do have helpful implementations. Generally they can be useful to anonymously implement simple functionalities embedded within larger expressions.</p>
+<p>The syntax of a lambda function is the keyword <code>lambda</code> followed the name of the arguments, a colon <code>:</code> and then the function definition.</p>
+<p>To compare use the prior add_arg functions:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">add_args</span><span class="p">(</span><span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">arg1</span> <span class="o">+</span> <span class="n">arg2</span><span class="p">)</span>
+
+<span class="n">add_args</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>8
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This basic normal function can be rewritten as a lambda function:</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">add_args_2</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">arg1</span><span class="p">,</span> <span class="n">arg2</span><span class="p">:</span> <span class="n">arg1</span> <span class="o">+</span> <span class="n">arg2</span>
+<span class="n">add_args_2</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>8</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<br>
+    <hr>
+
+</div>
+</div>
+</div>
+<br>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Generator-Functions">Generator Functions<a class="anchor-link" href="#Generator-Functions"></a></h2><p><strong>Generator:</strong> a Python sequence creation object.</p>
+<p>A generator object can be used to iterate over large sequences when it is inefficient to store the entire source of data in memory. Generators differ from normal functions in that each time a generator is iterated over the generator tracks where it was each time it is called in contrast to normal function which have no memory of previous calls (i.e. a normal function starts at the first line of function and at the same state).</p>
+<p><strong>Generator Function:</strong> a function that when called produces a generator object.</p>
+<p>Similar to normal functions a generator function is defined using <code>def</code>, however to return a value use the keyword <code>yield</code> rather than <code>return</code>.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">number_sequence</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Generates values from 0 up to (not including) n&#39;&#39;&#39;</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">i</span>
+        <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="n">generator_sequence</span> <span class="o">=</span> <span class="n">number_sequence</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">generator_sequence</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>&lt;generator object number_sequence at 0x7f88d10e1c10&gt;</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">generator_sequence</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>0
+1
+2
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<blockquote><p><strong><code>Note #7:</code></strong> A generator can only be ran a single time since the generator object is not stored in memory. A generator object creates the values only when called (i.e. on the fly) and does not remember its values (i.e. cannot restart or back up a generator). This differs from, for example, a list can be iterated over multiple times since its values are store in memory.</p>
+</blockquote>
+<p>Trying to iterator over generator_sequence again there are no values to print. Contrasted with printing the elements of a list multiple times.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Iterator over generator_sequence again.</span>
+<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">generator_sequence</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Iterator over list twice</span>
+<span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">my_list</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>1
+2
+3
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">num</span> <span class="ow">in</span> <span class="n">my_list</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>1
+2
+3
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<br>
+    <hr>
+
+</div>
+</div>
+</div>
+<br>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+
+    <h2 id="Closures">Closures<a class="anchor-link" href="#Closures"></a></h2><p><strong>Closure:</strong> is a tuple of variables that are no longer in scope but are required by a function to run</p>
+<p>Below the function <code>outer_function()</code> defines the nested function <code>inner_function()</code> which prints the value of <code>x</code>, and <code>outer_function()</code> returns <code>inner_function()</code></p>
+<ul>
+<li><code>function = outer_function()</code> assigns the <code>inner_function()</code> to the variable <code>function</code></li>
+<li>When <code>function()</code> is then called it prints the value of <code>x</code>, the closure makes <code>x</code> observable when <code>function()</code> (i.e. <code>inner_function()</code>) is called</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">outer_function</span><span class="p">():</span>
+	<span class="n">x</span> <span class="o">=</span> <span class="mi">15</span>
+	<span class="k">def</span> <span class="nf">inner_function</span><span class="p">():</span>
+		<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+	<span class="k">return</span> <span class="n">inner_function</span>
+
+<span class="n">function</span> <span class="o">=</span> <span class="n">outer_function</span><span class="p">()</span>
+<span class="n">function</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>15
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">function</span><span class="o">.</span><span class="vm">__closure__</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>tuple</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">function</span><span class="o">.</span><span class="vm">__closure__</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">cell_contents</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>15</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">150</span>
+<span class="k">def</span> <span class="nf">outer_function</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
+	<span class="k">def</span> <span class="nf">inner_function</span><span class="p">():</span>
+		<span class="nb">print</span><span class="p">(</span><span class="n">number</span><span class="p">)</span>
+	<span class="k">return</span> <span class="n">inner_function</span>
+
+<span class="n">function</span> <span class="o">=</span> <span class="n">outer_function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">function</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>150
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Delete the variable x</span>
+<span class="k">del</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">NameError</span>                                 Traceback (most recent call last)
+<span class="ansi-green-fg">/tmp/ipykernel_5785/2859752125.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">      1</span> <span class="ansi-red-fg"># Delete the variable x</span>
+<span class="ansi-green-intense-fg ansi-bold">      2</span> <span class="ansi-green-fg">del</span><span class="ansi-blue-fg">(</span>x<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-fg">----&gt; 3</span><span class="ansi-red-fg"> </span>print<span class="ansi-blue-fg">(</span>x<span class="ansi-blue-fg">)</span>
+
+<span class="ansi-red-fg">NameError</span>: name &#39;x&#39; is not defined</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># The value of x persists in the function&#39;s closure</span>
+<span class="n">function</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>150
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<br>
+    <hr>
+
+</div>
+</div>
+</div>
+<br>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Decorators">Decorators<a class="anchor-link" href="#Decorators"></a></h2><p><strong>Decorator:</strong> a function that takes a function as an input and returns a modified version of the function with modified behavior. Decorators can become useful when an existing function needs to be modified/updated with out changing the source code for the function (e.g. adding debugging statements).</p>
+<ul>
+<li>Use <code>@</code> followed by the decorator name</li>
+<li>For the decorator to return a modified function it is generally helpful to define a new function that is returned (e.g. <code>wrapper()</code>)</li>
+<li>Decorators make use of nested functions, non-local variables, and closures.</li>
+</ul>
+<p>First define a function that will be decorated <code>add()</code></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+	<span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Define the decorator function (<code>double()</code>) and within it define the new function (<code>wrapper()</code>) that will be returned</p>
+<ul>
+<li><code>wrapper()</code> takes the two arguments and passes them to the function that was passed to <code>double()</code></li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">double</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+	<span class="c1"># Define the new function that will be modified</span>
+	<span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+		<span class="c1"># Call the passed in function with modified arguments</span>
+		<span class="k">return</span> <span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="n">y</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span>
+	<span class="c1"># Return the modified function</span>
+	<span class="k">return</span> <span class="n">wrapper</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now <code>add()</code> can be passed to the function <code>double()</code> and assign the result to <code>new_addition()</code></p>
+<ul>
+<li><code>new_addition()</code> is equal to <code>wrapper()</code> which calls <code>add()</code> after doubling each argument</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">new_addition</span> <span class="o">=</span> <span class="n">double</span><span class="p">(</span><span class="n">add</span><span class="p">)</span>
+<span class="n">new_addition</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>12</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Using <code>@double</code> prior to the definition of add is equivalent to <code>add = double_args(add)</code></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nd">@double</span>
+<span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+
+<span class="n">add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>12</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>More than one decorator can be used on a function</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">document_a_function</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Running:&#39;</span><span class="p">,</span> <span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Positional args:&#39;</span><span class="p">,</span> <span class="n">args</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Keyword args:&#39;</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Result:&#39;</span><span class="p">,</span> <span class="n">result</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span>
+    <span class="k">return</span> <span class="n">wrapper</span>
+
+
+<span class="nd">@document_a_function</span>
+<span class="nd">@double</span>
+<span class="k">def</span> <span class="nf">add</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+	<span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+
+<span class="n">add</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Running: wrapper
+Positional args: (2, 4)
+Keyword args: {}
+Result: 12
+</pre>
+</div>
+</div>
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>12</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<br>
+    <h3 id="Function-Metadata">Function Metadata<a class="anchor-link" href="#Function-Metadata"></a></h3><p>One potential issue with the use of decorators is the decorator obscures the decorated function's metadata (e.g. the function docstring or name)</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">time</span>
+<span class="k">def</span> <span class="nf">sleep_n_seconds</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Pause processing for n seconds</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        n (int): The number of seconds to pause for.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">sleep_n_seconds</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>sleep_n_seconds
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>If <code>sleep_n_seconds()</code> is decorated, the decorator will obscure <code>sleep_n_seconds()</code>'s metadata. Below <code>sleep_n_seconds()</code> gets decorated with <code>timer()</code>.</p>
+<ul>
+<li>Printing the <code>__name__</code> attribute shows the name of the function is <code>wrapper</code><ul>
+<li>This is because when defining the <code>timer</code> decorator the nested function <code>wrapper()</code> is returned<ul>
+<li>The decorator overwrites the <code>sleep_n_seconds()</code> function</li>
+<li>Trying to then access <code>sleep_n_seconds()</code> docstring the code is now referencing the nested function <code>wrapper()</code> which is returned by the decorator</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">timer</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;A decorator that prints how long a function takes to run.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        func(callable): The function being decorated</span>
+<span class="sd">    Returns:</span>
+<span class="sd">        callable: The decorated function</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="c1"># Get the current time</span>
+        <span class="n">t_start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="c1"># Call the decorated function and store the result</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="c1"># Get the total time it took to run the function</span>
+        <span class="n">t_total</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">t_start</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> took </span><span class="si">{}</span><span class="s1">s&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">t_total</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">wrapper</span>
+
+<span class="nd">@timer</span>
+<span class="k">def</span> <span class="nf">sleep_n_seconds</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Pause processing for n seconds</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        n (int): The number of seconds to pause for.</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+<span class="n">sleep_n_seconds</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>sleep_n_seconds took 3.003546714782715s
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">sleep_n_seconds</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>wrapper
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">sleep_n_seconds</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>None
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This limitation can be overcome using the <code>wraps</code> function from the <code>functools</code> module</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wraps</span>
+<span class="k">def</span> <span class="nf">timer</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+	<span class="sd">&#39;&#39;&#39;A decorator that prints how long a function takes to run.</span>
+
+<span class="sd">	Args:</span>
+<span class="sd">		func(callable): The function being decorated</span>
+<span class="sd">	Returns:</span>
+<span class="sd">		callable: The decorated function</span>
+<span class="sd">	&#39;&#39;&#39;</span>
+	<span class="nd">@wraps</span><span class="p">(</span><span class="n">func</span><span class="p">)</span>
+	<span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+		<span class="c1"># Get the current time</span>
+		<span class="n">t_start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+		<span class="c1"># Call the decorated function and store the result</span>
+		<span class="n">result</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+		<span class="c1"># Get the total time it took to run the function</span>
+		<span class="n">t_total</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">t_start</span>
+		<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;</span><span class="si">{}</span><span class="s1"> took </span><span class="si">{}</span><span class="s1">s&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">func</span><span class="o">.</span><span class="vm">__name__</span><span class="p">,</span> <span class="n">t_total</span><span class="p">))</span>
+	<span class="k">return</span> <span class="n">wrapper</span>
+
+<span class="nd">@timer</span>
+<span class="k">def</span> <span class="nf">sleep_n_seconds</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+	<span class="sd">&#39;&#39;&#39;Pause processing for n seconds.</span>
+
+<span class="sd">	Args:</span>
+<span class="sd">		n (int): The number of seconds to pause for.</span>
+<span class="sd">	&#39;&#39;&#39;</span>
+	<span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+
+<span class="n">sleep_n_seconds</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>sleep_n_seconds took 3.0032482147216797s
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">sleep_n_seconds</span><span class="o">.</span><span class="vm">__name__</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>sleep_n_seconds
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">sleep_n_seconds</span><span class="o">.</span><span class="vm">__doc__</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Pause processing for n seconds.
+
+	Args:
+		n (int): The number of seconds to pause for.
+	
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<br>
+    <h3 id="Decorators-with-Arguments">Decorators with Arguments<a class="anchor-link" href="#Decorators-with-Arguments"></a></h3><p>For a decorator to incorporate arguments the decorator function (<code>run_n_times</code>) must return a decorator, rather than a function that is a decorator</p>
+<ul>
+<li><code>decorator(func)</code>: the new decorator defined inside the function <ul>
+<li>This function has a nested <code>wrapper()</code> function like all other decorator examples</li>
+</ul>
+</li>
+<li>Since <code>wrapper()</code> is in the <code>run_n_times()</code> scope the function has access to <code>n</code> to run the function <code>n</code> amount of times</li>
+<li>Then <code>wrapper()</code> is returned</li>
+<li><code>run_n_times()</code> then returns the <code>decorator()</code> function which can then be used as a decorator</li>
+<li><code>@run_n_times(n)</code> indicates that <code>run_n_times()</code> is being called and is decorating <code>print_sum()</code><ul>
+<li>Since <code>run_n_times()</code> returns a decorator function it can be used to decorate <code>print_sum()</code></li>
+</ul>
+</li>
+</ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">run_n_times</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+	<span class="sd">&#39;&#39;&#39;Define and return a decorator&#39;&#39;&#39;</span>
+	<span class="k">def</span> <span class="nf">decorator</span><span class="p">(</span><span class="n">func</span><span class="p">):</span>
+		<span class="k">def</span> <span class="nf">wrapper</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+			<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+				<span class="n">func</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+		<span class="k">return</span> <span class="n">wrapper</span>
+	<span class="k">return</span> <span class="n">decorator</span>
+
+<span class="nd">@run_n_times</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">print_sum</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+	<span class="nb">print</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">)</span>
+
+	
+<span class="n">print_sum</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>5
+5
+5
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<br>
+    <hr>
+
+</div>
+</div>
+</div>
+<br>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Exceptions">Exceptions<a class="anchor-link" href="#Exceptions"></a></h2><p><strong>Exceptions:</strong> are specific code that is executed when a corresponding error occurs during code execution.</p>
+<p>An example would include attempting to access a out-of-range index of a list.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span>
+<span class="n">my_list</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">IndexError</span>                                Traceback (most recent call last)
+<span class="ansi-green-fg">/tmp/ipykernel_5785/2600307307.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">      1</span> my_list <span class="ansi-blue-fg">=</span> <span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">2</span><span class="ansi-blue-fg">,</span> <span class="ansi-cyan-fg">5</span><span class="ansi-blue-fg">,</span> <span class="ansi-cyan-fg">7</span><span class="ansi-blue-fg">]</span>
+<span class="ansi-green-fg">----&gt; 2</span><span class="ansi-red-fg"> </span>my_list<span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">5</span><span class="ansi-blue-fg">]</span>
+
+<span class="ansi-red-fg">IndexError</span>: list index out of range</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It is best practice to include exception handling throughout code anywhere an exception may occur. An exception handling can provide helpful information about the error that occurred and stop the execution of the code.</p>
+<p>Error handling can be implemented by wrapping code with <code>try</code>, and using <code>except</code> for the error handling.</p>
+<p>When using <code>try-except</code>:</p>
+<ol>
+<li>First Python runs the code contained within the <code>try</code> block (<code>return x ** 0.5</code>)</li>
+<li>If, and only if, the code cannot execute successfully due to an error an exception is raised and the code within the <code>except</code> block (<code>print('x must be an int or float')</code>) is executed</li>
+</ol>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Returns the square root of a number (x)&#39;&#39;&#39;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">x</span> <span class="o">**</span> <span class="mf">0.5</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;x must be an int or float&#39;</span><span class="p">)</span>
+
+<span class="n">sqrt</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>2.0</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">sqrt</span><span class="p">(</span><span class="s1">&#39;four&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>x must be an int or float
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>When <code>except</code> is used, without any additional arguments, it will catch any type of exception. However, to provide more detailed information on the error that occurred it can be helpful to include an exception handler for each type of exception. There is not a limit in the number of specific exception handlers that can be used.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="s1">&#39;four&#39;</span><span class="p">]</span>
+<span class="k">def</span> <span class="nf">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Returns the square root of a number(x)&#39;&#39;&#39;</span>
+    <span class="k">try</span><span class="p">:</span> 
+        <span class="k">return</span> <span class="n">x</span> <span class="o">**</span> <span class="mf">0.5</span>
+    <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">type_err</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Type Error:&#39;</span><span class="p">,</span> <span class="n">type_err</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">IndexError</span> <span class="k">as</span> <span class="n">index_err</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Index Error:&#39;</span><span class="p">,</span> <span class="n">index_err</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">other</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Other Error:&#39;</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">sqrt</span><span class="p">(</span><span class="n">my_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>2.0
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">sqrt</span><span class="p">(</span><span class="n">my_list</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>Type Error: unsupported operand type(s) for ** or pow(): &#39;str&#39; and &#39;float&#39;
+None
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">sqrt</span><span class="p">(</span><span class="n">my_list</span><span class="p">[</span><span class="mi">2</span><span class="p">]))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">IndexError</span>                                Traceback (most recent call last)
+<span class="ansi-green-fg">/tmp/ipykernel_5785/1990173502.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-fg">----&gt; 1</span><span class="ansi-red-fg"> </span>print<span class="ansi-blue-fg">(</span>sqrt<span class="ansi-blue-fg">(</span>my_list<span class="ansi-blue-fg">[</span><span class="ansi-cyan-fg">2</span><span class="ansi-blue-fg">]</span><span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-red-fg">IndexError</span>: list index out of range</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The keyword <code>raise</code> can be used to throw and exception if a specific condition occurs that should not be executed.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">def</span> <span class="nf">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Returns the square root of a number (x)&#39;&#39;&#39;</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span> <span class="p">(</span><span class="s1">&#39;x should be a non-negative integer. The value of x was: </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">x</span> <span class="o">**</span> <span class="mf">0.5</span>
+    <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">type_err</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Type Error:&#39;</span><span class="p">,</span> <span class="n">type_err</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">IndexError</span> <span class="k">as</span> <span class="n">index_err</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Index Error:&#39;</span><span class="p">,</span> <span class="n">index_err</span><span class="p">)</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">other</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Other Error:&#39;</span><span class="p">,</span> <span class="n">other</span><span class="p">)</span>
+
+<span class="n">sqrt</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+<div class="output_area">
+
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">ValueError</span>                                Traceback (most recent call last)
+<span class="ansi-green-fg">/tmp/ipykernel_5785/1164012046.py</span> in <span class="ansi-cyan-fg">&lt;module&gt;</span>
+<span class="ansi-green-intense-fg ansi-bold">     12</span>         print<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;Other Error:&#39;</span><span class="ansi-blue-fg">,</span> other<span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">     13</span> 
+<span class="ansi-green-fg">---&gt; 14</span><span class="ansi-red-fg"> </span>sqrt<span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">-</span><span class="ansi-cyan-fg">4</span><span class="ansi-blue-fg">)</span>
+
+<span class="ansi-green-fg">/tmp/ipykernel_5785/1164012046.py</span> in <span class="ansi-cyan-fg">sqrt</span><span class="ansi-blue-fg">(x)</span>
+<span class="ansi-green-intense-fg ansi-bold">      2</span>     <span class="ansi-blue-fg">&#39;&#39;&#39;Returns the square root of a number (x)&#39;&#39;&#39;</span>
+<span class="ansi-green-intense-fg ansi-bold">      3</span>     <span class="ansi-green-fg">if</span> x <span class="ansi-blue-fg">&lt;</span> <span class="ansi-cyan-fg">0</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-fg">----&gt; 4</span><span class="ansi-red-fg">         </span><span class="ansi-green-fg">raise</span> ValueError <span class="ansi-blue-fg">(</span><span class="ansi-blue-fg">&#39;x should be a non-negative integer. The value of x was: {}&#39;</span><span class="ansi-blue-fg">.</span>format<span class="ansi-blue-fg">(</span>x<span class="ansi-blue-fg">)</span><span class="ansi-blue-fg">)</span>
+<span class="ansi-green-intense-fg ansi-bold">      5</span>     <span class="ansi-green-fg">try</span><span class="ansi-blue-fg">:</span>
+<span class="ansi-green-intense-fg ansi-bold">      6</span>         <span class="ansi-green-fg">return</span> x <span class="ansi-blue-fg">**</span> <span class="ansi-cyan-fg">0.5</span>
+
+<span class="ansi-red-fg">ValueError</span>: x should be a non-negative integer. The value of x was: -4</pre>
+</div>
+</div>
+
+</div>
+</div>
+<br>
+<hr>
+<br>    
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+    <div class="text_cell_render border-box-sizing rendered_html">
+        <p>If you enjoy what you read and find it helpful please check back, and check back often. Follow me on <a class="post__link" href="https://medium.com/@emguyant"><i class="fab fa-medium"></i> Medium</a> while giving a clap to the article! Also don't forget to subscribe to the <a class="post__link" href="https://medium.com/inquisitive-nature"><b>INQUISITIVE NATURE</b></a> publication.</p>
+    
+    </div>
+    </div>
+</div>
+    </div>
+  </div>
+</body>
+
+ 
+
+
+</html>
+
+    </div><a class="u-url" href="/blog/2022-04-06-intro-to-functions/" hidden></a>
+  </article>
+</div>
+      </div>
+    </main><footer class="footer">
+    <!-- replace with your own email address 
+    <a href="mailto:info@ethanguyant.com" class="footer__link">info@ethanguyant.com</a>-->
+    <ul class="social-list">
+        <li class="social-list__item">
+            <a class="social-list__link" href="mailto:emguyant@gmail.com">
+                <i class="fas fa-envelope"></i>
+            </a>
+        </li>
+        <li class="social-list__item">
+            <a class="social-list__link" href="https://www.linkedin.com/in/ethan-guyant/">
+                <i class="fab fa-linkedin"></i>
+            </a>
+        </li>
+        <li class="social-list__item">
+            <a class="social-list__link" href="https://github.com/EMGuyant">
+                <i class="fab fa-github"></i>
+            </a>
+        </li>
+        <li class="social-list__item">
+            <a class="social-list__link" href="https://medium.com/@emguyant">
+                <i class="fab fa-medium"></i>
+            </a>
+        </li>
+        <li class="social-list__item">
+            <a class="social-list__link" href="https://medium.com/inquisitive-nature">
+                <i class="fa-solid fa-book"></i>
+            </a>
+        </li>
+    </ul>
+</footer><script src="https://kit.fontawesome.com/c9965d23bb.js" crossorigin="anonymous"></script>
+<script src="/assets/js/script.js"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+</body>
+
+</html>
