@@ -288,10 +288,7 @@ div.output_text {
   line-height: 1.21429em;
 }
 /* stdout/stderr are 'text' as well as 'stream', but execute_result/error are *not* streams */
-div.output_stderr {
-  background: rgb(255, 0, 0);
-  /* very light red background for stderr */
-}
+
 div.output_unrecognized {
   padding: 5px;
   font-weight: bold;

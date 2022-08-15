@@ -1,13 +1,14 @@
 ---
 layout: post
 author: Ethan Guyant
-title:  Introduction to Functions
-category: Deep Dive
-tags: Python
+title:  "Python: Introduction to Functions"
+category: Quick Start
+tags: Python Pandas
 description: An introduction to python user-defined functions, their syntax, arguments, documentation, different types of functions, and much more.
 image: /assets/img/post_img/introduction-functions.jpg
 image_by: Dan Cristian Păduret
 image_by_link: https://unsplash.com/@dancristianpaduret?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
+
 ---
 
 <body>
@@ -42,9 +43,33 @@ image_by_link: https://unsplash.com/@dancristianpaduret?utm_source=unsplash&utm_
 </li>
 <li><a href="#exceptions">Exceptions</a></li>
 </ul>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Naming-and-Syntax">Naming and Syntax<a class="anchor-link" href="#Naming-and-Syntax"></a></h2><p>A user defined function begins with the reserved keyword <code>def</code> followed by parentheses which inclose input parameters to the function and lastly a colon (<code>:</code>). Naming of these user-defined functions follow the same rules as the naming of variables. Including the name must not be a reserved keyword (e.g. <code>def</code>), must start with a letter or underscore, etc., as well as typically following certain conventions (e.g. lowercase_words_separated_with_underscores). For more details see <a href="https://www.python.org/dev/peps/pep-0008/#function-and-variable-names">PEP 8 - Naming Conventions</a>. The function body (i.e. all function statements) must be indented.</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <hr>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="General-Notes">General Notes<a class="anchor-link" href="#General-Notes"></a></h2><h3 id="DRY-(Don't-Repeat-Yourself)-&amp;-Do-One-Thing">DRY (Don't Repeat Yourself) &amp; Do One Thing<a class="anchor-link" href="#DRY-(Don't-Repeat-Yourself)-&amp;-Do-One-Thing"></a></h3><ul>
 <li>When repeated code is identified it commonly indicates that a function should be utilized</li>
 <li>Each function should complete a single task<ul>
@@ -435,11 +460,13 @@ a: 20
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<br>
 <hr>
 
 </div>
 </div>
 </div>
+<br>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Inclusion-of-Docstrings">Inclusion of Docstrings<a class="anchor-link" href="#Inclusion-of-Docstrings"></a></h2><p>In addition to the required syntax described above it is typically best practice to include a function docstring directly following the line of code which defines the function (<code>def function_name():</code>). Docstrings are string literals typically enclosed by triple quotes (either <code>'''</code> or <code>"""</code>) and are used to document the function. Enclosing the docstring in triple quotes allows for the documentation to expand more than a single line.</p>
@@ -723,6 +750,7 @@ count_letter(content, letter)
 </div>
 
 </div>
+<br>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Scope">Scope<a class="anchor-link" href="#Scope"></a></h2><p>There are different scopes that are present when running Python code.</p>
@@ -965,11 +993,13 @@ count_letter(content, letter)
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<hr>
+<br>
+    <hr>
 
 </div>
 </div>
 </div>
+<br>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Positional,-Keyword,-and-Default-Arguments">Positional, Keyword, and Default Arguments<a class="anchor-link" href="#Positional,-Keyword,-and-Default-Arguments"></a></h2><p><em>Arguments</em> are the values passed to the function when it is called (<code>raise_to_power(3,2)</code>), <code>3</code> and <code>2</code> are the arguments passed to the function <code>raise_to_power</code>. The values of the arguments are copied to the corresponding <em>Parameters</em> (<code>value_1</code> and <code>value_2</code>) inside of the function.</p>
@@ -1102,7 +1132,8 @@ count_letter(content, letter)
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Keyword-Arguments">Keyword Arguments<a class="anchor-link" href="#Keyword-Arguments"></a></h3><p>To avoid the potential confusion noted above, arguments can be passed to the function by specifying the arguments by the name of their corresponding function parameters.</p>
+<br>
+    <h3 id="Keyword-Arguments">Keyword Arguments<a class="anchor-link" href="#Keyword-Arguments"></a></h3><p>To avoid the potential confusion noted above, arguments can be passed to the function by specifying the arguments by the name of their corresponding function parameters.</p>
 
 </div>
 </div>
@@ -1213,7 +1244,8 @@ count_letter(content, letter)
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Default-Arguments">Default Arguments<a class="anchor-link" href="#Default-Arguments"></a></h3><p>Default values for parameters can be defined and the default value will be used if no corresponding argument was provided when calling the function. To set a default value follow the parameter of interest with an equals sign (<code>=</code>) and the default value.</p>
+<br>
+    <h3 id="Default-Arguments">Default Arguments<a class="anchor-link" href="#Default-Arguments"></a></h3><p>Default values for parameters can be defined and the default value will be used if no corresponding argument was provided when calling the function. To set a default value follow the parameter of interest with an equals sign (<code>=</code>) and the default value.</p>
 
 </div>
 </div>
@@ -1496,8 +1528,10 @@ count_letter(content, letter)
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Flexible-Arguments">Flexible Arguments<a class="anchor-link" href="#Flexible-Arguments"></a></h2><p>Flexible arguments allow a variable number of arguments to be passed to a function.</p>
-<h3 id="Positional-Arguments-*">Positional Arguments <code>*</code><a class="anchor-link" href="#Positional-Arguments-*"></a></h3><p><code>*</code> groups all the arguments passed to a function into a tuple of parameter values. It is common practice to use <code>*args</code> for this purpose but <code>args</code> does not have to be used. The name <code>args</code> is not what is important, what is important is that it is preceded with a single asterisk ( <code>*</code> ). If the function has a mix of <em>required</em> positional arguments and flexible arguments, list the required arguments first and <code>*args</code> goes at the end.</p>
+<br>
+    <h2 id="Flexible-Arguments">Flexible Arguments<a class="anchor-link" href="#Flexible-Arguments"></a></h2><p>Flexible arguments allow a variable number of arguments to be passed to a function.</p>
+<br>
+    <h3 id="Positional-Arguments-*">Positional Arguments <code>*</code><a class="anchor-link" href="#Positional-Arguments-*"></a></h3><p><code>*</code> groups all the arguments passed to a function into a tuple of parameter values. It is common practice to use <code>*args</code> for this purpose but <code>args</code> does not have to be used. The name <code>args</code> is not what is important, what is important is that it is preceded with a single asterisk ( <code>*</code> ). If the function has a mix of <em>required</em> positional arguments and flexible arguments, list the required arguments first and <code>*args</code> goes at the end.</p>
 
 </div>
 </div>
@@ -1543,7 +1577,8 @@ count_letter(content, letter)
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Keyword-Arguments-**">Keyword Arguments <code>**</code><a class="anchor-link" href="#Keyword-Arguments-**"></a></h3><p><code>**</code> groups all the keyword arguments passed to a function into a dictionary, where the keys are the argument names and their values are the corresponding values in the dictionary. It is common practice to use <code>**kwargs</code> (keyword arguments) for this purpose but is not required, again what is important is the name is preceded by double asterisks ( <code>**</code> ) not the name itself.</p>
+<br>
+    <h3 id="Keyword-Arguments-**">Keyword Arguments <code>**</code><a class="anchor-link" href="#Keyword-Arguments-**"></a></h3><p><code>**</code> groups all the keyword arguments passed to a function into a dictionary, where the keys are the argument names and their values are the corresponding values in the dictionary. It is common practice to use <code>**kwargs</code> (keyword arguments) for this purpose but is not required, again what is important is the name is preceded by double asterisks ( <code>**</code> ) not the name itself.</p>
 
 </div>
 </div>
@@ -1624,11 +1659,13 @@ dinner : tacos
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<hr>
+<br>
+    <hr>
 
 </div>
 </div>
 </div>
+<br>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Functions-are-Objects">Functions are Objects<a class="anchor-link" href="#Functions-are-Objects"></a></h2><p>Like strings, tuples, lists, dictionaries, and many other things in Python, functions are also objects.  Functions can be assigned to variables, and item in a list or dictionary, used as arguments to other functions, and be returned from functions.</p>
@@ -1867,11 +1904,13 @@ dinner : tacos
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<hr>
+<br>
+    <hr>
 
 </div>
 </div>
 </div>
+<br>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Anonymous-lambda-Functions">Anonymous <code>lambda</code> Functions<a class="anchor-link" href="#Anonymous-lambda-Functions"></a></h2><p>A lambda function is an anonymous function because it is not given a name when defined (<code>def name_of_function:</code>) as has been shown in all previous examples. These functions provide a quick, and potentially dirty, way to write function that may not be suitable for all uses but do have helpful implementations. Generally they can be useful to anonymously implement simple functionalities embedded within larger expressions.</p>
@@ -1950,11 +1989,13 @@ dinner : tacos
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<hr>
+<br>
+    <hr>
 
 </div>
 </div>
 </div>
+<br>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Generator-Functions">Generator Functions<a class="anchor-link" href="#Generator-Functions"></a></h2><p><strong>Generator:</strong> a Python sequence creation object.</p>
@@ -2132,14 +2173,17 @@ dinner : tacos
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<hr>
+<br>
+    <hr>
 
 </div>
 </div>
 </div>
+<br>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Closures">Closures<a class="anchor-link" href="#Closures"></a></h2><p><strong>Closure:</strong> is a tuple of variables that are no longer in scope but are required by a function to run</p>
+
+    <h2 id="Closures">Closures<a class="anchor-link" href="#Closures"></a></h2><p><strong>Closure:</strong> is a tuple of variables that are no longer in scope but are required by a function to run</p>
 <p>Below the function <code>outer_function()</code> defines the nested function <code>inner_function()</code> which prints the value of <code>x</code>, and <code>outer_function()</code> returns <code>inner_function()</code></p>
 <ul>
 <li><code>function = outer_function()</code> assigns the <code>inner_function()</code> to the variable <code>function</code></li>
@@ -2341,11 +2385,13 @@ dinner : tacos
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<hr>
+<br>
+    <hr>
 
 </div>
 </div>
 </div>
+<br>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Decorators">Decorators<a class="anchor-link" href="#Decorators"></a></h2><p><strong>Decorator:</strong> a function that takes a function as an input and returns a modified version of the function with modified behavior. Decorators can become useful when an existing function needs to be modified/updated with out changing the source code for the function (e.g. adding debugging statements).</p>
@@ -2547,7 +2593,8 @@ Result: 12
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Function-Metadata">Function Metadata<a class="anchor-link" href="#Function-Metadata"></a></h3><p>One potential issue with the use of decorators is the decorator obscures the decorated function's metadata (e.g. the function docstring or name)</p>
+<br>
+    <h3 id="Function-Metadata">Function Metadata<a class="anchor-link" href="#Function-Metadata"></a></h3><p>One potential issue with the use of decorators is the decorator obscures the decorated function's metadata (e.g. the function docstring or name)</p>
 
 </div>
 </div>
@@ -2836,7 +2883,8 @@ Result: 12
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Decorators-with-Arguments">Decorators with Arguments<a class="anchor-link" href="#Decorators-with-Arguments"></a></h3><p>For a decorator to incorporate arguments the decorator function (<code>run_n_times</code>) must return a decorator, rather than a function that is a decorator</p>
+<br>
+    <h3 id="Decorators-with-Arguments">Decorators with Arguments<a class="anchor-link" href="#Decorators-with-Arguments"></a></h3><p>For a decorator to incorporate arguments the decorator function (<code>run_n_times</code>) must return a decorator, rather than a function that is a decorator</p>
 <ul>
 <li><code>decorator(func)</code>: the new decorator defined inside the function <ul>
 <li>This function has a nested <code>wrapper()</code> function like all other decorator examples</li>
@@ -2899,11 +2947,13 @@ Result: 12
 </div>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<hr>
+<br>
+    <hr>
 
 </div>
 </div>
 </div>
+<br>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Exceptions">Exceptions<a class="anchor-link" href="#Exceptions"></a></h2><p><strong>Exceptions:</strong> are specific code that is executed when a corresponding error occurs during code execution.</p>
@@ -3187,7 +3237,15 @@ None
 
 </div>
 </div>
-
+<br>
+<hr>
+<br>    
+<div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
+    <div class="text_cell_render border-box-sizing rendered_html">
+        <p>If you enjoy what you read and find it helpful please check back, and check back often. Follow me on <a class="post__link" href="https://medium.com/@emguyant"><i class="fab fa-medium"></i> Medium</a> while giving a clap to the article! Also don't forget to subscribe to the <a class="post__link" href="https://medium.com/inquisitive-nature"><b>INQUISITIVE NATURE</b></a> publication.</p>
+    
+    </div>
+    </div>
 </div>
     </div>
   </div>
