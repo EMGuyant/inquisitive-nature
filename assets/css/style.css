@@ -9,20 +9,7 @@
     margin: 0;
     padding: 0;
 }
-.dataframe{
-    margin-bottom: 0px;
-    width:0%;
-    text-align: center;
-}
-.dataframe th {
-    font-size: 0.8rem;
-    color: 2.5px 5px;
-}
-.dataframe td {
-    padding: 2.5px 5px;
-    font-size: 0.75rem;
-    color: var(--clr-text-dark);
-}
+
 /* =============================== CUSTOM PROPERTIES =============================== */
 :root {
     --ff-primary: 'Source Sans', sans-serif;
@@ -63,6 +50,21 @@
 /* =============================== GENERAL STYLES =======o======================== */
 html {
     scroll-behavior: smooth;
+}
+
+.dataframe{
+    margin-bottom: 0px;
+    width:0%;
+    text-align: center;
+}
+.dataframe th {
+    font-size: 0.8rem;
+    color: 2.5px 5px;
+}
+.dataframe td {
+    padding: 2.5px 5px;
+    font-size: 0.75rem;
+    color: var(--clr-text-dark);
 }
 
 code.language-plaintext{

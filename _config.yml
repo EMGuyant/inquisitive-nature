@@ -31,6 +31,7 @@ github_username:  EMGuyant
 
 # Build settings
 theme: minima
+google_analytics: G-RTFP0V6X0G
 plugins:
   - jekyll-feed
   - jekyll-paginate-v2
