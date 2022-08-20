@@ -1,5 +1,6 @@
 ---
 layout: post
+permalink: /:categories/:title
 author: Ethan Guyant
 title:  Logical Query Processing Order
 category: Quick Start
