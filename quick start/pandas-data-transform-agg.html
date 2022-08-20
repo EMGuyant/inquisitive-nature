@@ -10,8 +10,8 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="An overview of various data manipulation functions and methods utilizing pandas dataframes." />
 <meta property="og:description" content="An overview of various data manipulation functions and methods utilizing pandas dataframes." />
-<link rel="canonical" href="http://ethanguyant.com/blog/2022-06-09-pandas-data-transform-agg/" />
-<meta property="og:url" content="http://ethanguyant.com/blog/2022-06-09-pandas-data-transform-agg/" />
+<link rel="canonical" href="http://ethanguyant.com/quick%20start/pandas-data-transform-agg" />
+<meta property="og:url" content="http://ethanguyant.com/quick%20start/pandas-data-transform-agg" />
 <meta property="og:site_name" content="Ethan Guyant’s Blog" />
 <meta property="og:image" content="http://ethanguyant.com/assets/img/post_img/transformation-pandas.jpg" />
 <meta property="og:type" content="article" />
@@ -20,7 +20,7 @@
 <meta property="twitter:image" content="http://ethanguyant.com/assets/img/post_img/transformation-pandas.jpg" />
 <meta property="twitter:title" content="Pandas: Data Transformation" />
 <script type="application/ld+json">
-{"author":{"@type":"Person","name":"Ethan Guyant"},"description":"An overview of various data manipulation functions and methods utilizing pandas dataframes.","url":"http://ethanguyant.com/blog/2022-06-09-pandas-data-transform-agg/","image":"http://ethanguyant.com/assets/img/post_img/transformation-pandas.jpg","@type":"BlogPosting","headline":"Pandas: Data Transformation","dateModified":"2022-06-09T00:00:00+00:00","datePublished":"2022-06-09T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://ethanguyant.com/blog/2022-06-09-pandas-data-transform-agg/"},"@context":"https://schema.org"}</script>
+{"author":{"@type":"Person","name":"Ethan Guyant"},"description":"An overview of various data manipulation functions and methods utilizing pandas dataframes.","url":"http://ethanguyant.com/quick%20start/pandas-data-transform-agg","image":"http://ethanguyant.com/assets/img/post_img/transformation-pandas.jpg","@type":"BlogPosting","headline":"Pandas: Data Transformation","dateModified":"2022-06-09T00:00:00+00:00","datePublished":"2022-06-09T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://ethanguyant.com/quick%20start/pandas-data-transform-agg"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <title>Ethan Guyant's Personal Blog</title>
   <!-- Normalize CSS file irons out some difference between browsers -->
@@ -57,16 +57,15 @@
   <!-- Animation on Scroll-->
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   <!-- Font Awesome Kit -->
-  <script src="https://kit.fontawesome.com/c9965d23bb.js" crossorigin="anonymous"></script><link type="application/atom+xml" rel="alternate" href="http://ethanguyant.com/feed.xml" title="Ethan Guyant's Blog" /><!-- Google Analytics --><script>
-if(!(window.doNotTrack === "1" || navigator.doNotTrack === "1" || navigator.doNotTrack === "yes" || navigator.msDoNotTrack === "1")) {
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  <script src="https://kit.fontawesome.com/c9965d23bb.js" crossorigin="anonymous"></script><link type="application/atom+xml" rel="alternate" href="http://ethanguyant.com/feed.xml" title="Ethan Guyant's Blog" />
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RTFP0V6X0G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-  ga('create', 'G-RTFP0V6X0G', 'auto');
-  ga('send', 'pageview');
-}
+  gtag('config', 'G-RTFP0V6X0G');
 </script>
   
 </head>
@@ -194,7 +193,7 @@ if(!(window.doNotTrack === "1" || navigator.doNotTrack === "1" || navigator.doNo
 <br>
 <div class="cell border-box-sizing text_cell rendered"><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Pandas is a data analysis and manipulation library which provides three fundamental data structures: <code>Index</code>, <code>Series</code>, and <code>DataFrame</code>. For more details on the data structures and an overview of the pandas library see the previous article - <a class="post__link" href="/quick%20start/pandas-introduction.html">Pandas: Introduction to the Library</a>.</p>
+<p>Pandas is a data analysis and manipulation library which provides three fundamental data structures: <code>Index</code>, <code>Series</code>, and <code>DataFrame</code>. For more details on the data structures and an overview of the pandas library see the previous article - <a class="post__link" href="/quick%20start/pandas-introduction">Pandas: Introduction to the Library</a>.</p>
 <p>The focus of this article is to service as a introduction and guide to the basic functions for modifying and manipulating the core data structures, including handling of missing data, DataFrame transformation, aggregating data, and joining DataFrames.</p>
 <hr>
 <p><br></p>
@@ -443,7 +442,7 @@ dtype: bool</pre>
 </ul>
 </li>
 <li>Boolean masks, like the object returned by <code>isna()</code>, can be used directly as a <code>Series</code> or <code>DataFrame</code> index<ul>
-<li>For more detail see: <a class="post__link" href="/quick%20start/pandas-slicing-dataframe.html">Pandas: Indexing and Slicing</a></li>
+<li>For more detail see: <a class="post__link" href="/quick%20start/pandas-slicing-dataframe">Pandas: Indexing and Slicing</a></li>
 </ul>
 </li>
 </ul>
@@ -4861,7 +4860,7 @@ The <code>.loc[]</code> property allows access to a group of rows or columns and
 </div>
 </div>
 </div>
-<blockquote><p>For for more details and examples of selecting and subsetting a <code>DataFrame</code> see the article <a class="post__link" href="/quick%20start/pandas-slicing-dataframe.html">Pandas: Indexing and Slicing</a></p>
+<blockquote><p>For more details and examples of selecting and subsetting a <code>DataFrame</code> see the article <a class="post__link" href="/quick%20start/pandas-slicing-dataframe.html">Pandas: Indexing and Slicing</a></p>
 </blockquote>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -9787,7 +9786,7 @@ df2:
 
 </html>
 
-    </div><a class="u-url" href="/blog/2022-06-09-pandas-data-transform-agg/" hidden></a>
+    </div><a class="u-url" href="/quick%20start/pandas-data-transform-agg" hidden></a>
   </article>
 </div>
       </div>

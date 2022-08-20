@@ -10,8 +10,8 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="An introduction to subsetting, selecting, indexing, and slicing DataFrames focused on the indexing operator, .loc, and .iloc methods." />
 <meta property="og:description" content="An introduction to subsetting, selecting, indexing, and slicing DataFrames focused on the indexing operator, .loc, and .iloc methods." />
-<link rel="canonical" href="http://ethanguyant.com/blog/2022-06-17-pandas-slicing-dataframe/" />
-<meta property="og:url" content="http://ethanguyant.com/blog/2022-06-17-pandas-slicing-dataframe/" />
+<link rel="canonical" href="http://ethanguyant.com/quick%20start/pandas-slicing-dataframe" />
+<meta property="og:url" content="http://ethanguyant.com/quick%20start/pandas-slicing-dataframe" />
 <meta property="og:site_name" content="Ethan Guyant’s Blog" />
 <meta property="og:image" content="http://ethanguyant.com/assets/img/post_img/subsetting-pandas.jpg" />
 <meta property="og:type" content="article" />
@@ -20,7 +20,7 @@
 <meta property="twitter:image" content="http://ethanguyant.com/assets/img/post_img/subsetting-pandas.jpg" />
 <meta property="twitter:title" content="Pandas: Indexing and Slicing" />
 <script type="application/ld+json">
-{"author":{"@type":"Person","name":"Ethan Guyant"},"description":"An introduction to subsetting, selecting, indexing, and slicing DataFrames focused on the indexing operator, .loc, and .iloc methods.","url":"http://ethanguyant.com/blog/2022-06-17-pandas-slicing-dataframe/","image":"http://ethanguyant.com/assets/img/post_img/subsetting-pandas.jpg","@type":"BlogPosting","headline":"Pandas: Indexing and Slicing","dateModified":"2022-06-17T00:00:00+00:00","datePublished":"2022-06-17T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://ethanguyant.com/blog/2022-06-17-pandas-slicing-dataframe/"},"@context":"https://schema.org"}</script>
+{"author":{"@type":"Person","name":"Ethan Guyant"},"description":"An introduction to subsetting, selecting, indexing, and slicing DataFrames focused on the indexing operator, .loc, and .iloc methods.","url":"http://ethanguyant.com/quick%20start/pandas-slicing-dataframe","image":"http://ethanguyant.com/assets/img/post_img/subsetting-pandas.jpg","@type":"BlogPosting","headline":"Pandas: Indexing and Slicing","dateModified":"2022-06-17T00:00:00+00:00","datePublished":"2022-06-17T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://ethanguyant.com/quick%20start/pandas-slicing-dataframe"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <title>Ethan Guyant's Personal Blog</title>
   <!-- Normalize CSS file irons out some difference between browsers -->
@@ -57,16 +57,15 @@
   <!-- Animation on Scroll-->
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   <!-- Font Awesome Kit -->
-  <script src="https://kit.fontawesome.com/c9965d23bb.js" crossorigin="anonymous"></script><link type="application/atom+xml" rel="alternate" href="http://ethanguyant.com/feed.xml" title="Ethan Guyant's Blog" /><!-- Google Analytics --><script>
-if(!(window.doNotTrack === "1" || navigator.doNotTrack === "1" || navigator.doNotTrack === "yes" || navigator.msDoNotTrack === "1")) {
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  <script src="https://kit.fontawesome.com/c9965d23bb.js" crossorigin="anonymous"></script><link type="application/atom+xml" rel="alternate" href="http://ethanguyant.com/feed.xml" title="Ethan Guyant's Blog" />
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RTFP0V6X0G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-  ga('create', 'G-RTFP0V6X0G', 'auto');
-  ga('send', 'pageview');
-}
+  gtag('config', 'G-RTFP0V6X0G');
 </script>
   
 </head>
@@ -194,7 +193,7 @@ will focus on selecting, indexing, and slicing <code>DataFrame</code> objects us
 <br>
 <p>The basic form of selecting data from a <code>DataFrame</code> is using the indexing <code>[]</code> operator, conceptually it is helpful to think of this operator as <code>get an item</code>. The indexing operator (<code>[]</code>) is a hybrid of using index labels and location offsets to select 
 certain columns and rows of a <code>DataFrame</code>. Using <code>.iloc</code> and <code>.loc</code> might be favorable as they provide more explicit indexing and slicing, see below sections for details and examples.</p>
-<h3 id="Indexing-Columns">Indexing Columns<a class="anchor-link" href="#Indexing-Columns"></a></h3><p>With a <code>DataFrame</code> the indexing operator <code>[]</code> is used for selecting columns, or more appropriately from the column index. Meaning when using <code>DataFrame[]</code>, column names should be passed in. For more information on the <code>DataFrame</code> object attributes see <a class="post__link" href="/quick%20start/pandas-introduction.html">Pandas: Introduction to the Library</a>.</p>
+<h3 id="Indexing-Columns">Indexing Columns<a class="anchor-link" href="#Indexing-Columns"></a></h3><p>With a <code>DataFrame</code> the indexing operator <code>[]</code> is used for selecting columns, or more appropriately from the column index. Meaning when using <code>DataFrame[]</code>, column names should be passed in. For more information on the <code>DataFrame</code> object attributes see <a class="post__link" href="/quick%20start/pandas-introduction">Pandas: Introduction to the Library</a>.</p>
 
 </div>
 </div>
@@ -2181,7 +2180,7 @@ Name: D, dtype: bool</pre>
 
 </html>
 
-    </div><a class="u-url" href="/blog/2022-06-17-pandas-slicing-dataframe/" hidden></a>
+    </div><a class="u-url" href="/quick%20start/pandas-slicing-dataframe" hidden></a>
   </article>
 </div>
       </div>
