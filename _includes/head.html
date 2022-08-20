@@ -41,6 +41,8 @@
   <script src="https://kit.fontawesome.com/c9965d23bb.js" crossorigin="anonymous"></script>
   
   {%- feed_meta -%}
-  <!-- Google Analytics -->
-  {%- include google-analytics.html -%}
+
+  {% if site.google_analytics and jekyll.environment == 'production' %}
+    {% include google_analytics.html %}
+  {% endif %}
 </head>
