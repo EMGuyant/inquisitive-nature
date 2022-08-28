@@ -1,4 +1,293 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://ethanguyant.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://ethanguyant.com/" rel="alternate" type="text/html" /><updated>2022-08-20T14:58:05+00:00</updated><id>http://ethanguyant.com/feed.xml</id><title type="html">Ethan Guyant’s Blog</title><subtitle>A data solution centric blog helping to fulfill the motto Learn, Explore, Share.</subtitle><entry><title type="html">Pandas: Indexing and Slicing</title><link href="http://ethanguyant.com/quick%20start/pandas-slicing-dataframe" rel="alternate" type="text/html" title="Pandas: Indexing and Slicing" /><published>2022-06-17T00:00:00+00:00</published><updated>2022-06-17T00:00:00+00:00</updated><id>http://ethanguyant.com/quick%20start/pandas-slicing-dataframe</id><content type="html" xml:base="http://ethanguyant.com/quick%20start/pandas-slicing-dataframe">&lt;body&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://ethanguyant.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://ethanguyant.com/" rel="alternate" type="text/html" /><updated>2022-08-28T16:31:34+00:00</updated><id>http://ethanguyant.com/feed.xml</id><title type="html">Ethan Guyant’s Blog</title><subtitle>A data solution centric blog helping to fulfill the motto Learn, Explore, Share.</subtitle><entry><title type="html">Microsoft Power Automate: Outlook Inbox Cleanup</title><link href="http://ethanguyant.com/blog/2022-08-19-powerautomate-inbox-cleanup/" rel="alternate" type="text/html" title="Microsoft Power Automate: Outlook Inbox Cleanup" /><published>2022-08-19T00:00:00+00:00</published><updated>2022-08-19T00:00:00+00:00</updated><id>http://ethanguyant.com/blog/powerautomate-inbox-cleanup</id><content type="html" xml:base="http://ethanguyant.com/blog/2022-08-19-powerautomate-inbox-cleanup/">&lt;h2 id=&quot;contents&quot;&gt;Contents&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;#office-365-outlook-actions&quot;&gt;Office 365 Outlook Actions&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#get-emails-v3&quot;&gt;Get emails&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#move-email-v2&quot;&gt;Move email&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#the-basics&quot;&gt;The Basics&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#flow-diagram&quot;&gt;Flow Diagram&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#power-automate-flow&quot;&gt;Power Automate Flow&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#limitations&quot;&gt;Limitations&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#outlook-inbox-cleanup-workflow&quot;&gt;Outlook Inbox Cleanup Workflow&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#workflow-diagram&quot;&gt;Workflow Diagram&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#outlook-folder-setup&quot;&gt;Outlook Folder Setup&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#get-folder-ids&quot;&gt;Get Folder IDs&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#power-automate-flow---variable&quot;&gt;Power Automate Flow - Variable&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#power-automate-flow---microsoft-graph&quot;&gt;Power Automate Flow - Microsoft Graph&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#summary&quot;&gt;Summary&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Power Automate offers a wide range of connectors for various services allowing for the automation of certain tasks. Managing and organizing emails is a common repetitive task that can take a fair amount of time and manual effort, and let’s face it’s not exciting work. Thankfully, Power Automate and the Outlook in Office 365 connector can provide some relief.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;When searching the Power Automate connectors and actions for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Outlook&lt;/code&gt; you will see both an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Office 365 Outlook&lt;/code&gt; and a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Outlook.com&lt;/code&gt; option. Microsoft recommends when using a work or school email account use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Office 365 Outlook&lt;/code&gt; and when using a personal account use the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Outlook.com&lt;/code&gt; connector&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;This article will provide an overview of the Outlook in Office 365 connector and some examples of how it can be used to conduct an Inbox Cleanup task.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;office-365-outlook-actions&quot;&gt;Office 365 Outlook Actions&lt;/h2&gt;
+&lt;p&gt;The Office 365 Outlook connector offers several actions or events that the Power Automate workflow could do - &lt;a href=&quot;https://docs.microsoft.com/en-us/connectors/office365/#actions&quot; class=&quot;post__link&quot;&gt;List of Office 365 Outlook Action&lt;/a&gt; -  below shows just a partial list.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2022-08-19-pwrauto-move-email/outlook_action_overview.png&quot; alt=&quot;Partial list of Outlook Actions&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Automating an Outlook inbox cleanup task will focus on the following actions.&lt;/p&gt;
+
+&lt;h3 id=&quot;get-emails-v3&quot;&gt;Get emails (V3)&lt;/h3&gt;
+&lt;p&gt;This action will retrieve emails from a folder (e.g. Inbox). This action can be configured to fetch both read and unread emails and for this workflow will return up to 10 emails to be processed in a batch until all emails have been processed.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2022-08-19-pwrauto-move-email/outlook_get_email_v3.png&quot; alt=&quot;Get Emails (V3) Action&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;move-email-v2&quot;&gt;Move email (V2)&lt;/h3&gt;
+&lt;p&gt;This action will move an email to the specified folder, within the same mailbox.&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Using the low-code interface the specified folder must be selected, to dynamically set the destination folder based on the characteristics of the email the folder ID must be specified, see below for details.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2022-08-19-pwrauto-move-email/outlook_move_email_v2.png&quot; alt=&quot;Move Email (V2)&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;the-basics&quot;&gt;The Basics&lt;/h2&gt;
+&lt;p&gt;To get started the workflow will fetch up to 10 emails, and process them based on the Read status. Unread emails will be moved to the Unread folder and Read emails will be moved to the Read folder.&lt;/p&gt;
+
+&lt;h3 id=&quot;flow-diagram&quot;&gt;Flow Diagram&lt;/h3&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2022-08-19-pwrauto-move-email/basic_workflow_diagram.png&quot; alt=&quot;Basic workflow diagram&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;power-automate-flow&quot;&gt;Power Automate Flow&lt;/h3&gt;
+&lt;p&gt;To start the Power Automate flow the trigger is defined, here it is a manual trigger, but could be scheduled. Following this, a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;noEmails&lt;/code&gt; variable is defined to be used to exit the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Do until&lt;/code&gt; loop which will continue to fetch 10 email batches from the inbox until there are no more emails (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;noEmails = True&lt;/code&gt;). After initializing the variable the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Do until&lt;/code&gt; flow control is added.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2022-08-19-pwrauto-move-email/flow_start.png&quot; alt=&quot;Basic workflow starting steps&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Within the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Do until&lt;/code&gt; loop, Do until noEmails = True, there are 3 main events.&lt;/p&gt;
+
+&lt;p&gt;1) The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Get emails&lt;/code&gt; action retrieves the top 10 emails from the Inbox. To configure this action, select the folder to retrieve the emails from, and then for this flow the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Fetch Only Unread Messages&lt;/code&gt; was set to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;No&lt;/code&gt; and the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Top&lt;/code&gt; option was set to 10 (pictured above in the &lt;a href=&quot;#get-emails-v3&quot;&gt;Get emails (V3)&lt;/a&gt; section).&lt;/p&gt;
+
+&lt;p&gt;2) Determine if there are emails to process and set the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;noEmails&lt;/code&gt; variable to the appropriate &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;True&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;False&lt;/code&gt; value. The set variable value is determined by the expression:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;if(
+    equals(
+        length(
+            outputs('Get_emails_(V3)_from_Inbox')?['body/value']
+        )
+        , 0
+    )
+    , true
+    , false
+)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;3) The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;For Each Email&lt;/code&gt; loop which iterates over each of the retrieved emails and moves the emails to the appropriate folder based on the email’s read status.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2022-08-19-pwrauto-move-email/flow_do_until.png&quot; alt=&quot;Until noEmail True Loop&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;For Each Email&lt;/code&gt; control structure applies the actions contained within it to each of the emails retrieved by the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Get emails&lt;/code&gt; action.&lt;/p&gt;
+
+&lt;p&gt;The first step is a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Condition&lt;/code&gt; flow control, this control evaluates the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Is Read&lt;/code&gt; status of the current email. If &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Is Read&lt;/code&gt; is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;True&lt;/code&gt; the email is moved to a Read folder and if &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;False&lt;/code&gt; the email is moved to the Unread folder.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2022-08-19-pwrauto-move-email/flow_for_each_email.png&quot; alt=&quot;For Each Email Loop&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;limitations&quot;&gt;Limitations&lt;/h3&gt;
+&lt;p&gt;A limitation of the above flow is that the destination folder for the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Move email&lt;/code&gt; actions had to be explicitly selected. This will likely be fine if there are only a few potential mailbox folders, however can easily become unmanageable when the number of potential Inbox folders grows.&lt;/p&gt;
+
+&lt;p&gt;The limitation can be addressed by using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Id:: &amp;lt;folder_id&amp;gt;&lt;/code&gt; for the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Folder&lt;/code&gt; option within the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Move email&lt;/code&gt; action. This solution comes with two main points to address.&lt;/p&gt;
+
+&lt;p&gt;1) Where to find the Outlook folder IDs&lt;/p&gt;
+
+&lt;p&gt;2) How to store/search for the folder IDs based on specific email characteristics (e.g. from specific people or domains).&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;outlook-inbox-cleanup-workflow&quot;&gt;Outlook Inbox Cleanup Workflow&lt;/h2&gt;
+
+&lt;p&gt;The first example shown in this article explicitly selected the destination folder, in this example, the folder display names and IDs will be stored in an object variable. The workflow will then process the email, identifying which property from the object variable should be retrieved. Then the returned value (the folder ID) will be used in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Move email&lt;/code&gt; action. In this example, an object variable was used to store the display name and folder IDs, a &lt;a href=&quot;https://www.microsoft.com/en-us/microsoft-365/microsoft-lists&quot; class=&quot;post__link&quot;&gt;Microsoft List&lt;/a&gt; could also be used. Retrieving the folder ID using this option would require a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Get items&lt;/code&gt; action with the appropriate OData filter query.&lt;/p&gt;
+
+&lt;h3 id=&quot;workflow-diagram&quot;&gt;Workflow Diagram&lt;/h3&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/2022-08-19-pwrauto-move-email/workflow_diagram_2.png&quot; alt=&quot;Outlook Inbox Cleanup Workflow Diagram&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;outlook-folder-setup&quot;&gt;Outlook Folder Setup&lt;/h3&gt;
+&lt;p&gt;The outlook mailbox used by this flow has the following folders to which the emails will be moved from the inbox. Internal emails will be moved into the Departments subfolder based on the sender’s department. External emails will be moved into the External subfolder based on the sender’s domain.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2022-08-19-pwrauto-move-email/outlook_folder_setup.png&quot; alt=&quot;Outlook Folder Setup&quot; class=&quot;post__small__img&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;get-folder-ids&quot;&gt;Get Folder IDs&lt;/h3&gt;
+&lt;p&gt;Getting the folder IDs of an Outlook mailbox folder can involve using the Microsoft Graph API or using the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;peak code&lt;/code&gt; setting within Power  Automate. Using Microsoft Graph can be a bit more advanced but still approachable when manually retrieving the folder IDs using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;peak code&lt;/code&gt; is unmanageable.&lt;/p&gt;
+
+&lt;h4 id=&quot;peak-code&quot;&gt;Peak Code&lt;/h4&gt;
+&lt;p&gt;This method requires manually identifying each destination folder’s ID and adding it to the object variable. This can be an appropriate method when first starting or if the number of destination folders is low and does not change frequently. The organizing of emails in this example primarily focuses on sorting into department folders which can be a good use case for this method because the number of departments in an organization is likely to be relatively stable.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Move email&lt;/code&gt; actions in the above example and shown below show that the folder is selected (HR).
+&lt;img src=&quot;/assets/img/2022-08-19-pwrauto-move-email/peak_code_1.png&quot; alt=&quot;Move Email Folder Selection&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;After selecting the destination folder, in the upper right of the action select the ellipses and then &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Peak code&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2022-08-19-pwrauto-move-email/peak_code_2.png&quot; alt=&quot;Move Email Peak Code&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This will reveal the inputs to this action. Under the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;parameters&lt;/code&gt; property the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;folderPath&lt;/code&gt; can be seen. What is required to be stored for this flow is the entire folder path following &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Id::&lt;/code&gt;, this ID and the folders display name are what is stored and accessed by the workflow. See the &lt;a href=&quot;#power-automate-flow---variable&quot; class=&quot;post__link&quot;&gt;Power Automate Flow - Variable&lt;/a&gt; section for an example.&lt;/p&gt;
+
+&lt;h4 id=&quot;microsoft-graph&quot;&gt;Microsoft Graph&lt;/h4&gt;
+&lt;p&gt;When using Microsoft Graph approach the &lt;a href=&quot;https://developer.microsoft.com/en-us/graph/graph-explorer&quot; class=&quot;post__link&quot;&gt;Graph Explorer&lt;/a&gt; is a helpful tool. This method can also be used to get the display names and IDs of child folders. See the &lt;a href=&quot;#power-automate-flow---microsoft-graph&quot; class=&quot;post__link&quot;&gt;Power Automate Flow - Microsoft Graph&lt;/a&gt; section for an example.&lt;/p&gt;
+
+&lt;h3 id=&quot;power-automate-flow---variable&quot;&gt;Power Automate Flow - Variable&lt;/h3&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2022-08-19-pwrauto-move-email/flow_example_2.png&quot; alt=&quot;Flow Example 1 Starting Actions&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Again the workflow is started with a manual trigger but could be set to a scheduled trigger. The first few actions of the flow initialize four variables utilized by the flow: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;noEmails&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;folderIDs&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;propertyName&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sorted&lt;/code&gt;.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;noEmails: boolean variable used to exit the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Do until&lt;/code&gt; loop which continues to retrieve emails from the Inbox until &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;noEmails=True&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;folderIDs: an object variable that stores a folder’s display name (key) and folder id (value)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2022-08-19-pwrauto-move-email/variable_folderIDs.png&quot; alt=&quot;folderIDs variable&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;propertyName: string variable used to get the corresponding folderIDs from the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;folderIDs&lt;/code&gt; object&lt;/li&gt;
+  &lt;li&gt;sorted: boolean variable used to determine if the current email has been sorted by a prior step&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Do until noEmail=True&lt;/code&gt; is a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Do until&lt;/code&gt; flow control action which will continue to process and sort emails in the Inbox until there are no more emails to be processed. This contains the same three actions that were described above &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Get emails&lt;/code&gt;, determine if there are emails to process, then process each email. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;For Each Email&lt;/code&gt; loop is where a majority of the Inbox management actions occur.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2022-08-19-pwrauto-move-email/flow_for_each_email_2_0.png&quot; alt=&quot;Flow Example 2 For Each Email Loop&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;For each&lt;/code&gt; loop contains 4 main steps:&lt;/p&gt;
+
+&lt;p&gt;1) Get the current email object, this will make attributes of the email accessible through dynamic content&lt;/p&gt;
+
+&lt;p&gt;2) Set the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sorted&lt;/code&gt; variable to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;False&lt;/code&gt; and split the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;From&lt;/code&gt; email address into the Domain and the User Id (everything after &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@&lt;/code&gt; and everything before &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@&lt;/code&gt;, respectively)&lt;/p&gt;
+
+&lt;p&gt;3) Move Unread emails into an Unread folder. These will be moved back to the Inbox after all emails have been processed&lt;/p&gt;
+
+&lt;p&gt;4) Check if the email was sorted into the Unread folder and if not evaluate email characteristics and move the email to the appropriate folder&lt;/p&gt;
+
+&lt;h4 id=&quot;action-step-1&quot;&gt;Action Step #1&lt;/h4&gt;
+&lt;p&gt;The first step gets the current email and makes the properties of the email accessible through dynamic content.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2022-08-19-pwrauto-move-email/flow_for_each_email_2_1.png&quot; alt=&quot;Flow Example 2 Get email&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;action-step-2&quot;&gt;Action Step #2&lt;/h4&gt;
+&lt;p&gt;This step consists of setting the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sorted&lt;/code&gt; value and two &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Compose&lt;/code&gt; data operations which splits the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;From&lt;/code&gt; email address into two parts, before the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@&lt;/code&gt; and after. The output of these two actions will be used to determine if the email came from an internal source which will be sorted by the sender’s department or an external source which will be sorted by domain.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2022-08-19-pwrauto-move-email/flow_for_each_email_2_2.png&quot; alt=&quot;Flow Example 2 Set Characteristics&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The inputs expressions used are:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Compose - Domain: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;last(split(outputs('Get_email_(V2)_-_Current_Email_Object')?['body/from'], '@'))&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;Compose - User Id: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;first(split(outputs('Get_email_(V2)_-_Current_Email_Object')?['body/from'], '@'))&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4 id=&quot;action-step-3&quot;&gt;Action Step #3&lt;/h4&gt;
+&lt;p&gt;This set of actions uses a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Condition&lt;/code&gt; flow control to check the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Is Read&lt;/code&gt; status of the current email. If &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;False&lt;/code&gt; the email is moved to an Unread folder to be moved back to the Inbox folder later in the flow and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sorted&lt;/code&gt; is set to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;True&lt;/code&gt;. If &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;True&lt;/code&gt; no action is taken and the flow moves to the next set of actions.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2022-08-19-pwrauto-move-email/flow_for_each_email_2_3.png&quot; alt=&quot;Flow Example 2 Read Status&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;action-step-4&quot;&gt;Action Step #4&lt;/h4&gt;
+&lt;p&gt;This step carries out the processing and sorting of each of the read emails. First, the flow checks the value of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sorted&lt;/code&gt;, if &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sorted&lt;/code&gt; equals &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;True&lt;/code&gt; no additional actions are taken, if &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;False&lt;/code&gt; the email is sorted based on the attributes of the email.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2022-08-19-pwrauto-move-email/flow_for_each_email_2_3_5.png&quot; alt=&quot;Flow Example 2 Check Sorted Status&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;When sorting actions are needed (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sorted = False&lt;/code&gt;) the first action is another &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Condition&lt;/code&gt; flow control which checks if the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Domain&lt;/code&gt; is equal to an internal domain.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2022-08-19-pwrauto-move-email/flow_for_each_email_2_4.png&quot; alt=&quot;Flow Example 2 Process Emails&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;If the above condition is met the email is sorted into a department folder by searching for the user profile of who sent the email using the Office 365 connector and setting the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;propertyName&lt;/code&gt; variable equal to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;department&lt;/code&gt; attribute. Then the folder argument of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Move email&lt;/code&gt; action is set to:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;variables('folderIds')?['departments'][variables('propertyName')]&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2022-08-19-pwrauto-move-email/flow_for_each_email_2_5.png&quot; alt=&quot;Flow Example 2 Internal Sorting&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;It is important to now that the folder ID in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Move email&lt;/code&gt; actions is preceded by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Id::&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;If the above condition is not met, the email is sorted by domain. This sorting involves three steps. First, a compose action is used to get the folderID of the corresponding domain folder with the inputs argument set to:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;variables('folderIds')?['domain'][variables('propertyName')]&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;This is then followed by two &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Move email&lt;/code&gt; actions that have different configure after run settings. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Sorting Needed&lt;/code&gt; is configured to run only when the compose &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Get propertName&lt;/code&gt; action fails (i.e. a property matching the domain does not exist in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;folderIDs&lt;/code&gt; variable) and the email is moved into a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Sorting Needed&lt;/code&gt; folder to be manually sorted.&lt;/p&gt;
+
+&lt;p&gt;The following &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;External Sorting&lt;/code&gt; action is configured to run only when the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Sorting Needed&lt;/code&gt; action is skipped (i.e. the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Get propertName&lt;/code&gt; action was successful). The folder argument of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Move email&lt;/code&gt; action is set to the same expression as the above &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Get propertyName&lt;/code&gt; action.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2022-08-19-pwrauto-move-email/flow_for_each_email_2_6.png&quot; alt=&quot;Flow Example 2 External Sorting&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;After all emails in the Inbox have been processed the flow retrieves all emails that were moved to the Unread folder and moves them back to the Inbox.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2022-08-19-pwrauto-move-email/flow_move_back_inbox.png&quot; alt=&quot;Flow Example 3 Move Unread to Inbox&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;limitation&quot;&gt;Limitation&lt;/h4&gt;
+&lt;p&gt;A main advantage of the approach is that the destination folder can be dynamically set without nesting &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Condition&lt;/code&gt; flow controls. However, this approach may become unmanageable if the destination folders change or if new folders are frequently added. To continue sorting into new folders would require a manual update of the folder name and ID storage source (variable or Microsoft List).&lt;/p&gt;
+
+&lt;h3 id=&quot;power-automate-flow---microsoft-graph&quot;&gt;Power Automate Flow - Microsoft Graph&lt;/h3&gt;
+
+&lt;p&gt;This approach has the same general layout as the previous flow, the only difference occurs within the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Check if Internal Email&lt;/code&gt; flow control.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2022-08-19-pwrauto-move-email/flow_for_each_email_3_0.png&quot; alt=&quot;Flow Example 3 Check If Internal Email&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Here there are additional actions: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Send an HTTP request&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Parse JSON&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;For Each Child Folder&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets//img/2022-08-19-pwrauto-move-email/flow_for_each_email_3_1.png&quot; alt=&quot;Flow Example 3 Internal Email&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Send an HTTP request&lt;/code&gt; Outlook action requires a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;URI&lt;/code&gt; this can be explored and created using the &lt;a href=&quot;https://developer.microsoft.com/en-us/graph/graph-explorer&quot; class=&quot;post__link&quot;&gt;Graph Explorer&lt;/a&gt; tool. The generalized query used here is:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;https://graph.microsoft.com/v1.0/me/mailFolders/&amp;lt;ParentFolderId&amp;gt;/childFolders&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The returned body of this action is then parsed with the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Parse JSON&lt;/code&gt; action which allows properties of child folders (folders within Department and External) to be utilized as dynamic content.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The Schema of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Parse JSON&lt;/code&gt; action can be generated from a sample by testing the workflow before adding this action. Following the test, the output of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Send an HTTP request&lt;/code&gt; can be copied, then add the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Parse JSON&lt;/code&gt; action and paste the output into the Insert a sample JSON Payload dialog box&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;After these actions, there is a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;For Each&lt;/code&gt; flow control that iterates through each child folder and compares the display name of the folder with the department of the sender. If the two are equal the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;folderID&lt;/code&gt; variable is set to the id of the corresponding folder.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2022-08-19-pwrauto-move-email/flow_for_each_email_3_3.png&quot; alt=&quot;Flow Example 3 For Each Folder&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;folderID&lt;/code&gt; variable is then used in the following &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Move email&lt;/code&gt; action in the same way as the prior flow example.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;False&lt;/code&gt; branch of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Check if Internal Email&lt;/code&gt; operates in the same way, with the only changes being there is no need to search for users (external email) and the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;ParentFolderID&amp;gt;&lt;/code&gt; is the folder ID corresponding to the External folder, rather than Department.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
+&lt;p&gt;This article covered various approaches using Power Automate to automate Outlook inbox cleanup and management. The three approaches shown in the article covered a basic application of sorting emails into a Read and Unread folder. The main limitations of this flow is that the destination folder was explicitly selected and set. The next two approaches in the article covered two methods of addressing this limitation by using a variable object and querying the folders present using Microsoft Graph.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;If you enjoy what you read and find it helpful please check back, and check back often. Follow me on &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/@emguyant&quot;&gt;&lt;i class=&quot;fab fa-medium&quot;&gt;&lt;/i&gt; Medium&lt;/a&gt; while giving a clap to the article! Also don’t forget to subscribe to the &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/inquisitive-nature&quot;&gt;&lt;b&gt;INQUISITIVE NATURE&lt;/b&gt;&lt;/a&gt; publication.&lt;/p&gt;</content><author><name>Ethan Guyant</name></author><category term="Quick Start" /><category term="Microsoft 365" /><category term="Power Automate" /><category term="Outlook" /><category term="Power Apps" /><summary type="html">Contents Office 365 Outlook Actions Get emails Move email The Basics Flow Diagram Power Automate Flow Limitations Outlook Inbox Cleanup Workflow Workflow Diagram Outlook Folder Setup Get Folder IDs Power Automate Flow - Variable Power Automate Flow - Microsoft Graph Summary</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://ethanguyant.com/assets/img/post_img/outlook-inbox-cleanup.jpg" /><media:content medium="image" url="http://ethanguyant.com/assets/img/post_img/outlook-inbox-cleanup.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Pandas: Indexing and Slicing</title><link href="http://ethanguyant.com/quick%20start/pandas-slicing-dataframe" rel="alternate" type="text/html" title="Pandas: Indexing and Slicing" /><published>2022-06-17T00:00:00+00:00</published><updated>2022-06-17T00:00:00+00:00</updated><id>http://ethanguyant.com/quick%20start/pandas-slicing-dataframe</id><content type="html" xml:base="http://ethanguyant.com/quick%20start/pandas-slicing-dataframe">&lt;body&gt;
   &lt;div tabindex=&quot;-1&quot; id=&quot;notebook&quot; class=&quot;border-box-sizing&quot;&gt;
     &lt;div class=&quot;container&quot; id=&quot;notebook-container&quot;&gt;
 
@@ -13533,7 +13822,7 @@ Mean-variance portfolio optimization was conducted utilizing the historic annual
 &lt;li&gt;Matrix data with row and column labels&lt;/li&gt;
 &lt;li&gt;Observation or statistical datasets&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h3 id=&quot;Task-Pandas-Excels-At&quot;&gt;Task Pandas Excels At&lt;a class=&quot;anchor-link&quot; href=&quot;#Task-Pandas-Excels-At&quot;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
+&lt;h3 id=&quot;Task-Pandas-Excels-At&quot;&gt;Tasks Pandas Excels At&lt;a class=&quot;anchor-link&quot; href=&quot;#Task-Pandas-Excels-At&quot;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
 &lt;li&gt;Handling of missing data (&lt;code&gt;NaN&lt;/code&gt;)&lt;/li&gt;
 &lt;li&gt;The addition or deletion of columns from DataFrames (size mutable)&lt;/li&gt;
 &lt;li&gt;Data alignment, can be explicit with a set of labels or automatic (ignoring labels)&lt;/li&gt;
@@ -23849,81 +24138,4 @@ topics of interest.&lt;/p&gt;</content><author><name></name></author><category t
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;visit-the-github-repository-for-more-details&quot;&gt;Visit the GitHub repository for more details&lt;/h4&gt;
-&lt;p&gt;&lt;a href=&quot;&quot; class=&quot;btn accent__button&quot;&gt;&lt;span&gt;Github &lt;/span&gt;&lt;i class=&quot;fab fa-github&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/p&gt;</content><author><name>Ethan Guyant</name></author><category term="Project" /><category term="Python" /><category term="Data Preparation" /><summary type="html">QA Metric Calculation QAData - Python program for processing raw input data files and produces an output file containing various Quality Assurance measures. This project was completed as part of a Python course, and is not maintained.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://ethanguyant.com/assets/img/project_img/qa_calculation.jpg" /><media:content medium="image" url="http://ethanguyant.com/assets/img/project_img/qa_calculation.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Numpy Fundamentals</title><link href="http://ethanguyant.com/quick%20start/numpy-fundamentals" rel="alternate" type="text/html" title="Numpy Fundamentals" /><published>2021-10-13T21:41:02+00:00</published><updated>2021-10-13T21:41:02+00:00</updated><id>http://ethanguyant.com/quick%20start/numpy-fundamentals</id><content type="html" xml:base="http://ethanguyant.com/quick%20start/numpy-fundamentals">&lt;h2 id=&quot;numpy-arrays&quot;&gt;Numpy Arrays&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;Similar to a List with the added ability to perform calculations over entire arrays&lt;/em&gt;&lt;/p&gt;
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;numpy&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;np.array()&lt;/code&gt;
-    &lt;ul&gt;
-      &lt;li&gt;Input: list object&lt;/li&gt;
-      &lt;li&gt;Allows for element wise calculations (vector arithmetic)&lt;/li&gt;
-      &lt;li&gt;Can perform calculations readily because there is an assumption that all elements are of the same type (e.g. an array of integers, or an array of strings)&lt;/li&gt;
-      &lt;li&gt;Subsetting
-        &lt;ul&gt;
-          &lt;li&gt;Get Elements from an Array
-            &lt;ul&gt;
-              &lt;li&gt;Square brackets &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;array_name[index]&lt;/code&gt;&lt;/li&gt;
-              &lt;li&gt;Returns the value(s) specified by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;index&lt;/code&gt;&lt;/li&gt;
-            &lt;/ul&gt;
-          &lt;/li&gt;
-          &lt;li&gt;Get all elements that meet a condition
-            &lt;ul&gt;
-              &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;array_name condition(&amp;gt;25)&lt;/code&gt;
-                &lt;ul&gt;
-                  &lt;li&gt;Returns a boolean array which can then be used with in square brackets
-                    &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arr1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;21&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;25&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;24&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;23&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arr1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arr1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;23&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;  &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;  &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arr1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;arr1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;23&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;25&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;24&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;                    &lt;/div&gt;
-                  &lt;/li&gt;
-                &lt;/ul&gt;
-              &lt;/li&gt;
-            &lt;/ul&gt;
-          &lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;numpy-2d-arrays&quot;&gt;Numpy 2D Arrays&lt;/h2&gt;
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;np.ndarray&lt;/code&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;An improved list of lists
-    &lt;ul&gt;
-      &lt;li&gt;Easily perform calculations&lt;/li&gt;
-      &lt;li&gt;More advanced subsetting
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;arrary[row, col]&lt;/code&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;basic-statistics&quot;&gt;Basic Statistics&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;Numpy provides basic statistic methods (e.g. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.mean()&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;median()&lt;/code&gt;) which can be more efficient than build in python function since a numpy arrays consist of only a single data type&lt;/em&gt;&lt;/p&gt;
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;#[row, column]
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mean&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array_name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[:,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:])&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;#All rows 1 column of the array
-&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mean&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;array_name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[:,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;ul&gt;
-  &lt;li&gt;Basic Statistics Methods
-    &lt;ul&gt;
-      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;np.medain()&lt;/code&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;np.corrcoef()&lt;/code&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;np.std()&lt;/code&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;np.sum()&lt;/code&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;np.sort()&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;Generate Data with Numpy
-    &lt;ul&gt;
-      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;np.random.normal()&lt;/code&gt;: generates data from a random normal distribution&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;</content><author><name></name></author><category term="Quick Start" /><category term="Python" /><category term="Numpy" /><summary type="html">Numpy Arrays Similar to a List with the added ability to perform calculations over entire arrays import numpy as np np.array() Input: list object Allows for element wise calculations (vector arithmetic) Can perform calculations readily because there is an assumption that all elements are of the same type (e.g. an array of integers, or an array of strings) Subsetting Get Elements from an Array Square brackets array_name[index] Returns the value(s) specified by index Get all elements that meet a condition array_name condition(&amp;gt;25) Returns a boolean array which can then be used with in square brackets &amp;gt;&amp;gt;&amp;gt; arr1 = np.array([21, 20, 25, 24, 23]) &amp;gt;&amp;gt;&amp;gt; arr1[1] 20 &amp;gt;&amp;gt;&amp;gt; arr1 &amp;gt; 23 array([False, False, True, True, False]) &amp;gt;&amp;gt;&amp;gt; &amp;gt;&amp;gt;&amp;gt; arr1[arr1 &amp;gt; 23] array([25, 24])</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://ethanguyant.com/assets/img/post_img/library.jpg" /><media:content medium="image" url="http://ethanguyant.com/assets/img/post_img/library.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;p&gt;&lt;a href=&quot;&quot; class=&quot;btn accent__button&quot;&gt;&lt;span&gt;Github &lt;/span&gt;&lt;i class=&quot;fab fa-github&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/p&gt;</content><author><name>Ethan Guyant</name></author><category term="Project" /><category term="Python" /><category term="Data Preparation" /><summary type="html">QA Metric Calculation QAData - Python program for processing raw input data files and produces an output file containing various Quality Assurance measures. This project was completed as part of a Python course, and is not maintained.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://ethanguyant.com/assets/img/project_img/qa_calculation.jpg" /><media:content medium="image" url="http://ethanguyant.com/assets/img/project_img/qa_calculation.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>

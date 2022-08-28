@@ -104,7 +104,7 @@ article {
 }
 img {
     display: block;
-    max-width: 100%
+    max-width: 100%;
 }
 canvas {
     position: absolute;
@@ -1419,6 +1419,17 @@ svg circle:nth-child(2) {
 .post-category {
     font-size: 0.8rem;
     margin: 0;
+}
+
+.post__img {
+    margin-left: auto;
+    margin-right: auto;
+    max-height: 500px;
+}
+.post__small__img {
+    margin-left: auto;
+    margin-right: auto;
+    max-height: 250px;
 }
 /* =============================== POST END ============================== */
 

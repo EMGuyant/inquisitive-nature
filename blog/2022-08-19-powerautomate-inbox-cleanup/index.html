@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Microsoft Power Automate: Outlook Inbox Cleanup | Ethan Guyant’s Blog</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="Microsoft Power Automate: Outlook Inbox Cleanup" />
+<meta name="author" content="Ethan Guyant" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Utilize Power Automate to automate Outlook inbox cleanup, management, and sorting of emails. The article covers three approaches ranging from a basic application to dynamically setting destination folders with the use of a variable object and Microsoft Graph." />
+<meta property="og:description" content="Utilize Power Automate to automate Outlook inbox cleanup, management, and sorting of emails. The article covers three approaches ranging from a basic application to dynamically setting destination folders with the use of a variable object and Microsoft Graph." />
+<link rel="canonical" href="http://ethanguyant.com/blog/2022-08-19-powerautomate-inbox-cleanup/" />
+<meta property="og:url" content="http://ethanguyant.com/blog/2022-08-19-powerautomate-inbox-cleanup/" />
+<meta property="og:site_name" content="Ethan Guyant’s Blog" />
+<meta property="og:image" content="http://ethanguyant.com/assets/img/post_img/outlook-inbox-cleanup.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-08-19T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="http://ethanguyant.com/assets/img/post_img/outlook-inbox-cleanup.jpg" />
+<meta property="twitter:title" content="Microsoft Power Automate: Outlook Inbox Cleanup" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"Ethan Guyant"},"description":"Utilize Power Automate to automate Outlook inbox cleanup, management, and sorting of emails. The article covers three approaches ranging from a basic application to dynamically setting destination folders with the use of a variable object and Microsoft Graph.","url":"http://ethanguyant.com/blog/2022-08-19-powerautomate-inbox-cleanup/","image":"http://ethanguyant.com/assets/img/post_img/outlook-inbox-cleanup.jpg","@type":"BlogPosting","headline":"Microsoft Power Automate: Outlook Inbox Cleanup","dateModified":"2022-08-19T00:00:00+00:00","datePublished":"2022-08-19T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://ethanguyant.com/blog/2022-08-19-powerautomate-inbox-cleanup/"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<title>Ethan Guyant's Blog</title>
+  <!-- Normalize CSS file irons out some difference between browsers -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+  <!-- Google Fonts-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,900|Source+Sans+Pro:300,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Arvo:wght@700&display=swap" rel="stylesheet">
+  <!-- CSS Styles -->
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/notebook_default.css">
+  <link rel="stylesheet" href="/assets/css/notebook_custom.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
+  <!-- MathJax configuration -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+  </script>
+  <!-- Animation on Scroll-->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <!-- Font Awesome Kit -->
+  <script src="https://kit.fontawesome.com/c9965d23bb.js" crossorigin="anonymous"></script><link type="application/atom+xml" rel="alternate" href="http://ethanguyant.com/feed.xml" title="Ethan Guyant's Blog" />
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RTFP0V6X0G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RTFP0V6X0G');
+</script>
+  
+</head>
+<body><header class="header sticky">
+    <div class="wrapper">
+        <div>
+            <div class="scroll-logo"> 
+                <a href="/">  
+                    <svg id="EG" viewBox="0 0 152 216">
+                        <g>
+                            <path id="hex"d="M 76.342 4 L 147.685 41.377 L 147.685 116.13 L 76.342 153.506 L 5 116.13 L 5 41.377 Z" style="stroke-width: 8.37394px; fill-opacity: 0; fill: none; stroke: #39ace7;"></path>         
+                            <polygon class="logo"style="stroke-width: 3.58883px; stroke: #39ace7; fill: #39ace7;" points="41.001 38.501 112.012 38.501 112.012 62.884 97.474 62.884 97.474 54.976 41.001 54.976"></polygon>
+                            <polygon class="logo" style="stroke-width: 3.58883px; stroke: #39ace7; fill: #39ace7;" points="40.671 102.9 97.81 102.9 97.81 86.796 83.604 86.796 83.604 70.701 112.014 70.701 112.014 102.92 112.014 119.004 40.939 119.004"></polygon>
+                            <polygon class="logo" style="stroke-width: 3.58883px; stroke: #39ace7; fill: #39ace7;" points="41.001 70.701 69.753 70.701 63.532 87.725 41.317 87.725"></polygon>
+                        </g> 
+                    </svg>
+                </a>
+            </div>
+
+            <div class="header__title">
+                <a href="/">EthanGuyant.com</a>
+            </div>
+            
+        </div>
+        
+        <div class="nav__menu">
+            <div class="nav__toggle">
+                <div class="nav__icon">
+                    <span></span>
+                </div>
+            </div>
+        </div>
+        <div class="nav__menu__wrapper">
+            <ul class="nav__menu__list">
+                <li class="nav__menu__list__item">
+                    <a href="/" class="nav__menu__list__item__link">Home</a>
+                </li>
+                <li class="nav__menu__list__item">
+                    <a href="/blog" class="nav__menu__list__item__link">Blog</a>
+                </li>
+                <li class="nav__menu__list__item">
+                    <a href="/about" class="nav__menu__list__item__link">About</a>
+                </li>
+                <li class="nav__menu__list__item">
+                    <a href="/category/project/" class="nav__menu__list__item__link">Projects</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header><main class="page" aria-label="Content">
+      <div class="page__content">
+        <section class="blog__header">
+    <div class="blog__img">
+      <div class="blog__img__over"></div>
+    </div>
+    <div class="wrapper">
+      <h1 class="blog__title"><span class="inquisitive">INQUISITIVE</span> <span class="nature">NATURE</span></h1>
+      <p class="blog__subtitle">Learn  Explore  <strong>Share</strong></p>
+      <p class="post__categories">
+    </div>
+  </section><div class="wrapper">
+  <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+    <section class="article__header">
+        <h1 class="post-title p-name" itemprop="name headline">Microsoft Power Automate: Outlook Inbox Cleanup</h1>
+        <p class="post-meta">
+          <time class="dt-published" datetime="2022-08-19T00:00:00+00:00" itemprop="datePublished">Aug 19, 2022
+          </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">Ethan Guyant</span></span></p>
+          <p class="post-category">
+            Category: 
+            <a href="/category/quick-start">
+              <i class="fa-solid fa-folder"></i>
+              Quick Start
+            </a> 
+          </p>
+          <p class="post-tags">
+          Tags: 
+           
+              
+              <a href="/tag/microsoft-365">
+                <i class="fa-solid fa-tag"></i>
+                Microsoft 365
+              </a> 
+              
+              <a href="/tag/power-automate">
+                <i class="fa-solid fa-tag"></i>
+                Power Automate
+              </a> 
+              
+              <a href="/tag/outlook">
+                <i class="fa-solid fa-tag"></i>
+                Outlook
+              </a> 
+              
+              <a href="/tag/power-apps">
+                <i class="fa-solid fa-tag"></i>
+                Power Apps
+              </a> 
+            
+          
+        </p>
+    </section>
+    <div class="post-content e-content" itemprop="articleBody">
+      <h2 id="contents">Contents</h2>
+<ul>
+  <li><a href="#office-365-outlook-actions">Office 365 Outlook Actions</a>
+    <ul>
+      <li><a href="#get-emails-v3">Get emails</a></li>
+      <li><a href="#move-email-v2">Move email</a></li>
+    </ul>
+  </li>
+  <li><a href="#the-basics">The Basics</a>
+    <ul>
+      <li><a href="#flow-diagram">Flow Diagram</a></li>
+      <li><a href="#power-automate-flow">Power Automate Flow</a></li>
+      <li><a href="#limitations">Limitations</a></li>
+    </ul>
+  </li>
+  <li><a href="#outlook-inbox-cleanup-workflow">Outlook Inbox Cleanup Workflow</a>
+    <ul>
+      <li><a href="#workflow-diagram">Workflow Diagram</a></li>
+      <li><a href="#outlook-folder-setup">Outlook Folder Setup</a></li>
+      <li><a href="#get-folder-ids">Get Folder IDs</a></li>
+      <li><a href="#power-automate-flow---variable">Power Automate Flow - Variable</a></li>
+      <li><a href="#power-automate-flow---microsoft-graph">Power Automate Flow - Microsoft Graph</a></li>
+    </ul>
+  </li>
+  <li><a href="#summary">Summary</a></li>
+</ul>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<p>Power Automate offers a wide range of connectors for various services allowing for the automation of certain tasks. Managing and organizing emails is a common repetitive task that can take a fair amount of time and manual effort, and let’s face it’s not exciting work. Thankfully, Power Automate and the Outlook in Office 365 connector can provide some relief.</p>
+
+<blockquote>
+  <p>When searching the Power Automate connectors and actions for <code class="language-plaintext highlighter-rouge">Outlook</code> you will see both an <code class="language-plaintext highlighter-rouge">Office 365 Outlook</code> and a <code class="language-plaintext highlighter-rouge">Outlook.com</code> option. Microsoft recommends when using a work or school email account use <code class="language-plaintext highlighter-rouge">Office 365 Outlook</code> and when using a personal account use the <code class="language-plaintext highlighter-rouge">Outlook.com</code> connector</p>
+</blockquote>
+
+<p>This article will provide an overview of the Outlook in Office 365 connector and some examples of how it can be used to conduct an Inbox Cleanup task.</p>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="office-365-outlook-actions">Office 365 Outlook Actions</h2>
+<p>The Office 365 Outlook connector offers several actions or events that the Power Automate workflow could do - <a href="https://docs.microsoft.com/en-us/connectors/office365/#actions" class="post__link">List of Office 365 Outlook Action</a> -  below shows just a partial list.</p>
+
+<p><img src="/assets/img/2022-08-19-pwrauto-move-email/outlook_action_overview.png" alt="Partial list of Outlook Actions" class="post__img" /></p>
+
+<p>Automating an Outlook inbox cleanup task will focus on the following actions.</p>
+
+<h3 id="get-emails-v3">Get emails (V3)</h3>
+<p>This action will retrieve emails from a folder (e.g. Inbox). This action can be configured to fetch both read and unread emails and for this workflow will return up to 10 emails to be processed in a batch until all emails have been processed.</p>
+
+<p><img src="/assets/img/2022-08-19-pwrauto-move-email/outlook_get_email_v3.png" alt="Get Emails (V3) Action" class="post__img" /></p>
+
+<h3 id="move-email-v2">Move email (V2)</h3>
+<p>This action will move an email to the specified folder, within the same mailbox.</p>
+<blockquote>
+  <p>Using the low-code interface the specified folder must be selected, to dynamically set the destination folder based on the characteristics of the email the folder ID must be specified, see below for details.</p>
+</blockquote>
+
+<p><img src="/assets/img/2022-08-19-pwrauto-move-email/outlook_move_email_v2.png" alt="Move Email (V2)" class="post__img" /></p>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="the-basics">The Basics</h2>
+<p>To get started the workflow will fetch up to 10 emails, and process them based on the Read status. Unread emails will be moved to the Unread folder and Read emails will be moved to the Read folder.</p>
+
+<h3 id="flow-diagram">Flow Diagram</h3>
+
+<p><img src="/assets/img/2022-08-19-pwrauto-move-email/basic_workflow_diagram.png" alt="Basic workflow diagram" class="post__img" /></p>
+
+<h3 id="power-automate-flow">Power Automate Flow</h3>
+<p>To start the Power Automate flow the trigger is defined, here it is a manual trigger, but could be scheduled. Following this, a <code class="language-plaintext highlighter-rouge">noEmails</code> variable is defined to be used to exit the <code class="language-plaintext highlighter-rouge">Do until</code> loop which will continue to fetch 10 email batches from the inbox until there are no more emails (<code class="language-plaintext highlighter-rouge">noEmails = True</code>). After initializing the variable the <code class="language-plaintext highlighter-rouge">Do until</code> flow control is added.</p>
+
+<p><img src="/assets/img/2022-08-19-pwrauto-move-email/flow_start.png" alt="Basic workflow starting steps" class="post__img" /></p>
+
+<p>Within the <code class="language-plaintext highlighter-rouge">Do until</code> loop, Do until noEmails = True, there are 3 main events.</p>
+
+<p>1) The <code class="language-plaintext highlighter-rouge">Get emails</code> action retrieves the top 10 emails from the Inbox. To configure this action, select the folder to retrieve the emails from, and then for this flow the <code class="language-plaintext highlighter-rouge">Fetch Only Unread Messages</code> was set to <code class="language-plaintext highlighter-rouge">No</code> and the <code class="language-plaintext highlighter-rouge">Top</code> option was set to 10 (pictured above in the <a href="#get-emails-v3">Get emails (V3)</a> section).</p>
+
+<p>2) Determine if there are emails to process and set the <code class="language-plaintext highlighter-rouge">noEmails</code> variable to the appropriate <code class="language-plaintext highlighter-rouge">True</code> or <code class="language-plaintext highlighter-rouge">False</code> value. The set variable value is determined by the expression:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>if(
+    equals(
+        length(
+            outputs('Get_emails_(V3)_from_Inbox')?['body/value']
+        )
+        , 0
+    )
+    , true
+    , false
+)
+</code></pre></div></div>
+
+<p>3) The <code class="language-plaintext highlighter-rouge">For Each Email</code> loop which iterates over each of the retrieved emails and moves the emails to the appropriate folder based on the email’s read status.</p>
+
+<p><img src="/assets/img/2022-08-19-pwrauto-move-email/flow_do_until.png" alt="Until noEmail True Loop" class="post__img" /></p>
+
+<p>The <code class="language-plaintext highlighter-rouge">For Each Email</code> control structure applies the actions contained within it to each of the emails retrieved by the <code class="language-plaintext highlighter-rouge">Get emails</code> action.</p>
+
+<p>The first step is a <code class="language-plaintext highlighter-rouge">Condition</code> flow control, this control evaluates the <code class="language-plaintext highlighter-rouge">Is Read</code> status of the current email. If <code class="language-plaintext highlighter-rouge">Is Read</code> is <code class="language-plaintext highlighter-rouge">True</code> the email is moved to a Read folder and if <code class="language-plaintext highlighter-rouge">False</code> the email is moved to the Unread folder.</p>
+
+<p><img src="/assets/img/2022-08-19-pwrauto-move-email/flow_for_each_email.png" alt="For Each Email Loop" class="post__img" /></p>
+
+<h3 id="limitations">Limitations</h3>
+<p>A limitation of the above flow is that the destination folder for the <code class="language-plaintext highlighter-rouge">Move email</code> actions had to be explicitly selected. This will likely be fine if there are only a few potential mailbox folders, however can easily become unmanageable when the number of potential Inbox folders grows.</p>
+
+<p>The limitation can be addressed by using <code class="language-plaintext highlighter-rouge">Id:: &lt;folder_id&gt;</code> for the <code class="language-plaintext highlighter-rouge">Folder</code> option within the <code class="language-plaintext highlighter-rouge">Move email</code> action. This solution comes with two main points to address.</p>
+
+<p>1) Where to find the Outlook folder IDs</p>
+
+<p>2) How to store/search for the folder IDs based on specific email characteristics (e.g. from specific people or domains).</p>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="outlook-inbox-cleanup-workflow">Outlook Inbox Cleanup Workflow</h2>
+
+<p>The first example shown in this article explicitly selected the destination folder, in this example, the folder display names and IDs will be stored in an object variable. The workflow will then process the email, identifying which property from the object variable should be retrieved. Then the returned value (the folder ID) will be used in the <code class="language-plaintext highlighter-rouge">Move email</code> action. In this example, an object variable was used to store the display name and folder IDs, a <a href="https://www.microsoft.com/en-us/microsoft-365/microsoft-lists" class="post__link">Microsoft List</a> could also be used. Retrieving the folder ID using this option would require a <code class="language-plaintext highlighter-rouge">Get items</code> action with the appropriate OData filter query.</p>
+
+<h3 id="workflow-diagram">Workflow Diagram</h3>
+<p><img src="/assets/img/2022-08-19-pwrauto-move-email/workflow_diagram_2.png" alt="Outlook Inbox Cleanup Workflow Diagram" class="post__img" /></p>
+
+<h3 id="outlook-folder-setup">Outlook Folder Setup</h3>
+<p>The outlook mailbox used by this flow has the following folders to which the emails will be moved from the inbox. Internal emails will be moved into the Departments subfolder based on the sender’s department. External emails will be moved into the External subfolder based on the sender’s domain.</p>
+
+<p><img src="/assets/img/2022-08-19-pwrauto-move-email/outlook_folder_setup.png" alt="Outlook Folder Setup" class="post__small__img" /></p>
+
+<h3 id="get-folder-ids">Get Folder IDs</h3>
+<p>Getting the folder IDs of an Outlook mailbox folder can involve using the Microsoft Graph API or using the <code class="language-plaintext highlighter-rouge">peak code</code> setting within Power  Automate. Using Microsoft Graph can be a bit more advanced but still approachable when manually retrieving the folder IDs using <code class="language-plaintext highlighter-rouge">peak code</code> is unmanageable.</p>
+
+<h4 id="peak-code">Peak Code</h4>
+<p>This method requires manually identifying each destination folder’s ID and adding it to the object variable. This can be an appropriate method when first starting or if the number of destination folders is low and does not change frequently. The organizing of emails in this example primarily focuses on sorting into department folders which can be a good use case for this method because the number of departments in an organization is likely to be relatively stable.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">Move email</code> actions in the above example and shown below show that the folder is selected (HR).
+<img src="/assets/img/2022-08-19-pwrauto-move-email/peak_code_1.png" alt="Move Email Folder Selection" class="post__img" /></p>
+
+<p>After selecting the destination folder, in the upper right of the action select the ellipses and then <code class="language-plaintext highlighter-rouge">Peak code</code>.</p>
+
+<p><img src="/assets/img/2022-08-19-pwrauto-move-email/peak_code_2.png" alt="Move Email Peak Code" class="post__img" /></p>
+
+<p>This will reveal the inputs to this action. Under the <code class="language-plaintext highlighter-rouge">parameters</code> property the <code class="language-plaintext highlighter-rouge">folderPath</code> can be seen. What is required to be stored for this flow is the entire folder path following <code class="language-plaintext highlighter-rouge">Id::</code>, this ID and the folders display name are what is stored and accessed by the workflow. See the <a href="#power-automate-flow---variable" class="post__link">Power Automate Flow - Variable</a> section for an example.</p>
+
+<h4 id="microsoft-graph">Microsoft Graph</h4>
+<p>When using Microsoft Graph approach the <a href="https://developer.microsoft.com/en-us/graph/graph-explorer" class="post__link">Graph Explorer</a> is a helpful tool. This method can also be used to get the display names and IDs of child folders. See the <a href="#power-automate-flow---microsoft-graph" class="post__link">Power Automate Flow - Microsoft Graph</a> section for an example.</p>
+
+<h3 id="power-automate-flow---variable">Power Automate Flow - Variable</h3>
+<p><br /></p>
+
+<p><img src="/assets/img/2022-08-19-pwrauto-move-email/flow_example_2.png" alt="Flow Example 1 Starting Actions" class="post__img" /></p>
+
+<p>Again the workflow is started with a manual trigger but could be set to a scheduled trigger. The first few actions of the flow initialize four variables utilized by the flow: <code class="language-plaintext highlighter-rouge">noEmails</code>, <code class="language-plaintext highlighter-rouge">folderIDs</code>, <code class="language-plaintext highlighter-rouge">propertyName</code>, and <code class="language-plaintext highlighter-rouge">sorted</code>.</p>
+<ul>
+  <li>noEmails: boolean variable used to exit the <code class="language-plaintext highlighter-rouge">Do until</code> loop which continues to retrieve emails from the Inbox until <code class="language-plaintext highlighter-rouge">noEmails=True</code></li>
+  <li>folderIDs: an object variable that stores a folder’s display name (key) and folder id (value)</li>
+</ul>
+
+<p><img src="/assets/img/2022-08-19-pwrauto-move-email/variable_folderIDs.png" alt="folderIDs variable" class="post__img" /></p>
+
+<ul>
+  <li>propertyName: string variable used to get the corresponding folderIDs from the <code class="language-plaintext highlighter-rouge">folderIDs</code> object</li>
+  <li>sorted: boolean variable used to determine if the current email has been sorted by a prior step</li>
+</ul>
+
+<p>The <code class="language-plaintext highlighter-rouge">Do until noEmail=True</code> is a <code class="language-plaintext highlighter-rouge">Do until</code> flow control action which will continue to process and sort emails in the Inbox until there are no more emails to be processed. This contains the same three actions that were described above <code class="language-plaintext highlighter-rouge">Get emails</code>, determine if there are emails to process, then process each email. The <code class="language-plaintext highlighter-rouge">For Each Email</code> loop is where a majority of the Inbox management actions occur.</p>
+
+<p><img src="/assets/img/2022-08-19-pwrauto-move-email/flow_for_each_email_2_0.png" alt="Flow Example 2 For Each Email Loop" class="post__img" /></p>
+
+<p>The <code class="language-plaintext highlighter-rouge">For each</code> loop contains 4 main steps:</p>
+
+<p>1) Get the current email object, this will make attributes of the email accessible through dynamic content</p>
+
+<p>2) Set the <code class="language-plaintext highlighter-rouge">sorted</code> variable to <code class="language-plaintext highlighter-rouge">False</code> and split the <code class="language-plaintext highlighter-rouge">From</code> email address into the Domain and the User Id (everything after <code class="language-plaintext highlighter-rouge">@</code> and everything before <code class="language-plaintext highlighter-rouge">@</code>, respectively)</p>
+
+<p>3) Move Unread emails into an Unread folder. These will be moved back to the Inbox after all emails have been processed</p>
+
+<p>4) Check if the email was sorted into the Unread folder and if not evaluate email characteristics and move the email to the appropriate folder</p>
+
+<h4 id="action-step-1">Action Step #1</h4>
+<p>The first step gets the current email and makes the properties of the email accessible through dynamic content.</p>
+
+<p><img src="/assets/img/2022-08-19-pwrauto-move-email/flow_for_each_email_2_1.png" alt="Flow Example 2 Get email" class="post__img" /></p>
+
+<h4 id="action-step-2">Action Step #2</h4>
+<p>This step consists of setting the <code class="language-plaintext highlighter-rouge">sorted</code> value and two <code class="language-plaintext highlighter-rouge">Compose</code> data operations which splits the <code class="language-plaintext highlighter-rouge">From</code> email address into two parts, before the <code class="language-plaintext highlighter-rouge">@</code> and after. The output of these two actions will be used to determine if the email came from an internal source which will be sorted by the sender’s department or an external source which will be sorted by domain.</p>
+
+<p><img src="/assets/img/2022-08-19-pwrauto-move-email/flow_for_each_email_2_2.png" alt="Flow Example 2 Set Characteristics" class="post__img" /></p>
+
+<p>The inputs expressions used are:</p>
+<ul>
+  <li>Compose - Domain: <code class="language-plaintext highlighter-rouge">last(split(outputs('Get_email_(V2)_-_Current_Email_Object')?['body/from'], '@'))</code></li>
+  <li>Compose - User Id: <code class="language-plaintext highlighter-rouge">first(split(outputs('Get_email_(V2)_-_Current_Email_Object')?['body/from'], '@'))</code></li>
+</ul>
+
+<h4 id="action-step-3">Action Step #3</h4>
+<p>This set of actions uses a <code class="language-plaintext highlighter-rouge">Condition</code> flow control to check the <code class="language-plaintext highlighter-rouge">Is Read</code> status of the current email. If <code class="language-plaintext highlighter-rouge">False</code> the email is moved to an Unread folder to be moved back to the Inbox folder later in the flow and <code class="language-plaintext highlighter-rouge">sorted</code> is set to <code class="language-plaintext highlighter-rouge">True</code>. If <code class="language-plaintext highlighter-rouge">True</code> no action is taken and the flow moves to the next set of actions.</p>
+
+<p><img src="/assets/img/2022-08-19-pwrauto-move-email/flow_for_each_email_2_3.png" alt="Flow Example 2 Read Status" class="post__img" /></p>
+
+<h4 id="action-step-4">Action Step #4</h4>
+<p>This step carries out the processing and sorting of each of the read emails. First, the flow checks the value of <code class="language-plaintext highlighter-rouge">sorted</code>, if <code class="language-plaintext highlighter-rouge">sorted</code> equals <code class="language-plaintext highlighter-rouge">True</code> no additional actions are taken, if <code class="language-plaintext highlighter-rouge">False</code> the email is sorted based on the attributes of the email.</p>
+
+<p><img src="/assets/img/2022-08-19-pwrauto-move-email/flow_for_each_email_2_3_5.png" alt="Flow Example 2 Check Sorted Status" class="post__img" /></p>
+
+<p>When sorting actions are needed (<code class="language-plaintext highlighter-rouge">sorted = False</code>) the first action is another <code class="language-plaintext highlighter-rouge">Condition</code> flow control which checks if the <code class="language-plaintext highlighter-rouge">Domain</code> is equal to an internal domain.</p>
+
+<p><img src="/assets/img/2022-08-19-pwrauto-move-email/flow_for_each_email_2_4.png" alt="Flow Example 2 Process Emails" class="post__img" /></p>
+
+<p>If the above condition is met the email is sorted into a department folder by searching for the user profile of who sent the email using the Office 365 connector and setting the <code class="language-plaintext highlighter-rouge">propertyName</code> variable equal to the <code class="language-plaintext highlighter-rouge">department</code> attribute. Then the folder argument of the <code class="language-plaintext highlighter-rouge">Move email</code> action is set to:</p>
+
+<p><code class="language-plaintext highlighter-rouge">variables('folderIds')?['departments'][variables('propertyName')]</code>.</p>
+
+<p><img src="/assets/img/2022-08-19-pwrauto-move-email/flow_for_each_email_2_5.png" alt="Flow Example 2 Internal Sorting" class="post__img" /></p>
+
+<blockquote>
+  <p>It is important to now that the folder ID in the <code class="language-plaintext highlighter-rouge">Move email</code> actions is preceded by <code class="language-plaintext highlighter-rouge">Id::</code></p>
+</blockquote>
+
+<p>If the above condition is not met, the email is sorted by domain. This sorting involves three steps. First, a compose action is used to get the folderID of the corresponding domain folder with the inputs argument set to:</p>
+
+<p><code class="language-plaintext highlighter-rouge">variables('folderIds')?['domain'][variables('propertyName')]</code></p>
+
+<p>This is then followed by two <code class="language-plaintext highlighter-rouge">Move email</code> actions that have different configure after run settings. The <code class="language-plaintext highlighter-rouge">Sorting Needed</code> is configured to run only when the compose <code class="language-plaintext highlighter-rouge">Get propertName</code> action fails (i.e. a property matching the domain does not exist in the <code class="language-plaintext highlighter-rouge">folderIDs</code> variable) and the email is moved into a <code class="language-plaintext highlighter-rouge">Sorting Needed</code> folder to be manually sorted.</p>
+
+<p>The following <code class="language-plaintext highlighter-rouge">External Sorting</code> action is configured to run only when the <code class="language-plaintext highlighter-rouge">Sorting Needed</code> action is skipped (i.e. the <code class="language-plaintext highlighter-rouge">Get propertName</code> action was successful). The folder argument of the <code class="language-plaintext highlighter-rouge">Move email</code> action is set to the same expression as the above <code class="language-plaintext highlighter-rouge">Get propertyName</code> action.</p>
+
+<p><img src="/assets/img/2022-08-19-pwrauto-move-email/flow_for_each_email_2_6.png" alt="Flow Example 2 External Sorting" class="post__img" /></p>
+
+<p>After all emails in the Inbox have been processed the flow retrieves all emails that were moved to the Unread folder and moves them back to the Inbox.</p>
+
+<p><img src="/assets/img/2022-08-19-pwrauto-move-email/flow_move_back_inbox.png" alt="Flow Example 3 Move Unread to Inbox" class="post__img" /></p>
+
+<h4 id="limitation">Limitation</h4>
+<p>A main advantage of the approach is that the destination folder can be dynamically set without nesting <code class="language-plaintext highlighter-rouge">Condition</code> flow controls. However, this approach may become unmanageable if the destination folders change or if new folders are frequently added. To continue sorting into new folders would require a manual update of the folder name and ID storage source (variable or Microsoft List).</p>
+
+<h3 id="power-automate-flow---microsoft-graph">Power Automate Flow - Microsoft Graph</h3>
+
+<p>This approach has the same general layout as the previous flow, the only difference occurs within the <code class="language-plaintext highlighter-rouge">Check if Internal Email</code> flow control.</p>
+
+<p><img src="/assets/img/2022-08-19-pwrauto-move-email/flow_for_each_email_3_0.png" alt="Flow Example 3 Check If Internal Email" class="post__img" /></p>
+
+<p>Here there are additional actions: <code class="language-plaintext highlighter-rouge">Send an HTTP request</code>, <code class="language-plaintext highlighter-rouge">Parse JSON</code>, and <code class="language-plaintext highlighter-rouge">For Each Child Folder</code>.</p>
+
+<p><img src="/assets//img/2022-08-19-pwrauto-move-email/flow_for_each_email_3_1.png" alt="Flow Example 3 Internal Email" class="post__img" /></p>
+
+<p>The <code class="language-plaintext highlighter-rouge">Send an HTTP request</code> Outlook action requires a <code class="language-plaintext highlighter-rouge">URI</code> this can be explored and created using the <a href="https://developer.microsoft.com/en-us/graph/graph-explorer" class="post__link">Graph Explorer</a> tool. The generalized query used here is:</p>
+
+<p><code class="language-plaintext highlighter-rouge">https://graph.microsoft.com/v1.0/me/mailFolders/&lt;ParentFolderId&gt;/childFolders</code>.</p>
+
+<p>The returned body of this action is then parsed with the <code class="language-plaintext highlighter-rouge">Parse JSON</code> action which allows properties of child folders (folders within Department and External) to be utilized as dynamic content.</p>
+
+<blockquote>
+  <p>The Schema of the <code class="language-plaintext highlighter-rouge">Parse JSON</code> action can be generated from a sample by testing the workflow before adding this action. Following the test, the output of the <code class="language-plaintext highlighter-rouge">Send an HTTP request</code> can be copied, then add the <code class="language-plaintext highlighter-rouge">Parse JSON</code> action and paste the output into the Insert a sample JSON Payload dialog box</p>
+</blockquote>
+
+<p>After these actions, there is a <code class="language-plaintext highlighter-rouge">For Each</code> flow control that iterates through each child folder and compares the display name of the folder with the department of the sender. If the two are equal the <code class="language-plaintext highlighter-rouge">folderID</code> variable is set to the id of the corresponding folder.</p>
+
+<p><img src="/assets/img/2022-08-19-pwrauto-move-email/flow_for_each_email_3_3.png" alt="Flow Example 3 For Each Folder" class="post__img" /></p>
+
+<p>The <code class="language-plaintext highlighter-rouge">folderID</code> variable is then used in the following <code class="language-plaintext highlighter-rouge">Move email</code> action in the same way as the prior flow example.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">False</code> branch of the <code class="language-plaintext highlighter-rouge">Check if Internal Email</code> operates in the same way, with the only changes being there is no need to search for users (external email) and the <code class="language-plaintext highlighter-rouge">&lt;ParentFolderID&gt;</code> is the folder ID corresponding to the External folder, rather than Department.</p>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="summary">Summary</h2>
+<p>This article covered various approaches using Power Automate to automate Outlook inbox cleanup and management. The three approaches shown in the article covered a basic application of sorting emails into a Read and Unread folder. The main limitations of this flow is that the destination folder was explicitly selected and set. The next two approaches in the article covered two methods of addressing this limitation by using a variable object and querying the folders present using Microsoft Graph.</p>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<p>If you enjoy what you read and find it helpful please check back, and check back often. Follow me on <a class="post__link" href="https://medium.com/@emguyant"><i class="fab fa-medium"></i> Medium</a> while giving a clap to the article! Also don’t forget to subscribe to the <a class="post__link" href="https://medium.com/inquisitive-nature"><b>INQUISITIVE NATURE</b></a> publication.</p>
+
+    </div><a class="u-url" href="/blog/2022-08-19-powerautomate-inbox-cleanup/" hidden></a>
+  </article>
+</div>
+      </div>
+    </main><footer class="footer">
+    <!-- replace with your own email address 
+    <a href="mailto:info@ethanguyant.com" class="footer__link">info@ethanguyant.com</a>-->
+    <ul class="social-list">
+        <li class="social-list__item">
+            <a class="social-list__link" href="mailto:emguyant@gmail.com">
+                <i class="fas fa-envelope"></i>
+            </a>
+        </li>
+        <li class="social-list__item">
+            <a class="social-list__link" href="https://www.linkedin.com/in/ethan-guyant/">
+                <i class="fab fa-linkedin"></i>
+            </a>
+        </li>
+        <li class="social-list__item">
+            <a class="social-list__link" href="https://github.com/EMGuyant">
+                <i class="fab fa-github"></i>
+            </a>
+        </li>
+        <li class="social-list__item">
+            <a class="social-list__link" href="https://medium.com/@emguyant">
+                <i class="fab fa-medium"></i>
+            </a>
+        </li>
+        <li class="social-list__item">
+            <a class="social-list__link" href="https://medium.com/inquisitive-nature">
+                <i class="fa-solid fa-book"></i>
+            </a>
+        </li>
+    </ul>
+</footer><script src="https://kit.fontawesome.com/c9965d23bb.js" crossorigin="anonymous"></script>
+<script src="/assets/js/script.js"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+</body>
+
+</html>
