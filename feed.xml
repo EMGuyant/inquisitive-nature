@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://ethanguyant.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://ethanguyant.com/" rel="alternate" type="text/html" /><updated>2022-08-28T16:31:34+00:00</updated><id>http://ethanguyant.com/feed.xml</id><title type="html">Ethan Guyant’s Blog</title><subtitle>A data solution centric blog helping to fulfill the motto Learn, Explore, Share.</subtitle><entry><title type="html">Microsoft Power Automate: Outlook Inbox Cleanup</title><link href="http://ethanguyant.com/blog/2022-08-19-powerautomate-inbox-cleanup/" rel="alternate" type="text/html" title="Microsoft Power Automate: Outlook Inbox Cleanup" /><published>2022-08-19T00:00:00+00:00</published><updated>2022-08-19T00:00:00+00:00</updated><id>http://ethanguyant.com/blog/powerautomate-inbox-cleanup</id><content type="html" xml:base="http://ethanguyant.com/blog/2022-08-19-powerautomate-inbox-cleanup/">&lt;h2 id=&quot;contents&quot;&gt;Contents&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://ethanguyant.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://ethanguyant.com/" rel="alternate" type="text/html" /><updated>2022-08-29T10:32:15+00:00</updated><id>http://ethanguyant.com/feed.xml</id><title type="html">Ethan Guyant’s Blog</title><subtitle>A data solution centric blog helping to fulfill the motto Learn, Explore, Share.</subtitle><entry><title type="html">Microsoft Power Automate: Outlook Inbox Cleanup</title><link href="http://ethanguyant.com/blog/2022-08-19-powerautomate-inbox-cleanup/" rel="alternate" type="text/html" title="Microsoft Power Automate: Outlook Inbox Cleanup" /><published>2022-08-19T00:00:00+00:00</published><updated>2022-08-19T00:00:00+00:00</updated><id>http://ethanguyant.com/blog/powerautomate-inbox-cleanup</id><content type="html" xml:base="http://ethanguyant.com/blog/2022-08-19-powerautomate-inbox-cleanup/">&lt;h2 id=&quot;contents&quot;&gt;Contents&lt;/h2&gt;
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;#office-365-outlook-actions&quot;&gt;Office 365 Outlook Actions&lt;/a&gt;
     &lt;ul&gt;
@@ -34,7 +34,7 @@
 &lt;p&gt;Power Automate offers a wide range of connectors for various services allowing for the automation of certain tasks. Managing and organizing emails is a common repetitive task that can take a fair amount of time and manual effort, and let’s face it’s not exciting work. Thankfully, Power Automate and the Outlook in Office 365 connector can provide some relief.&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;When searching the Power Automate connectors and actions for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Outlook&lt;/code&gt; you will see both an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Office 365 Outlook&lt;/code&gt; and a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Outlook.com&lt;/code&gt; option. Microsoft recommends when using a work or school email account use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Office 365 Outlook&lt;/code&gt; and when using a personal account use the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Outlook.com&lt;/code&gt; connector&lt;/p&gt;
+  &lt;p&gt;When searching the Power Automate connectors and actions for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Outlook&lt;/code&gt; there is an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Office 365 Outlook&lt;/code&gt; and an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Outlook.com&lt;/code&gt; option. Microsoft recommends when using a work or school email account use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Office 365 Outlook&lt;/code&gt; and when using a personal account use the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Outlook.com&lt;/code&gt; connector&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;This article will provide an overview of the Outlook in Office 365 connector and some examples of how it can be used to conduct an Inbox Cleanup task.&lt;/p&gt;
@@ -46,14 +46,14 @@
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h2 id=&quot;office-365-outlook-actions&quot;&gt;Office 365 Outlook Actions&lt;/h2&gt;
-&lt;p&gt;The Office 365 Outlook connector offers several actions or events that the Power Automate workflow could do - &lt;a href=&quot;https://docs.microsoft.com/en-us/connectors/office365/#actions&quot; class=&quot;post__link&quot;&gt;List of Office 365 Outlook Action&lt;/a&gt; -  below shows just a partial list.&lt;/p&gt;
+&lt;p&gt;The Office 365 Outlook connector offers several actions or events that the Power Automate workflow could do - &lt;a href=&quot;https://docs.microsoft.com/en-us/connectors/office365/#actions&quot; class=&quot;post__link&quot;&gt;List of Office 365 Outlook Actions&lt;/a&gt; -  below shows just a partial list.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/2022-08-19-pwrauto-move-email/outlook_action_overview.png&quot; alt=&quot;Partial list of Outlook Actions&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Automating an Outlook inbox cleanup task will focus on the following actions.&lt;/p&gt;
 
 &lt;h3 id=&quot;get-emails-v3&quot;&gt;Get emails (V3)&lt;/h3&gt;
-&lt;p&gt;This action will retrieve emails from a folder (e.g. Inbox). This action can be configured to fetch both read and unread emails and for this workflow will return up to 10 emails to be processed in a batch until all emails have been processed.&lt;/p&gt;
+&lt;p&gt;This action will retrieve emails from a folder (e.g. Inbox). This action can be configured to fetch both read and unread emails.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/2022-08-19-pwrauto-move-email/outlook_get_email_v3.png&quot; alt=&quot;Get Emails (V3) Action&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
 
@@ -83,7 +83,7 @@
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/2022-08-19-pwrauto-move-email/flow_start.png&quot; alt=&quot;Basic workflow starting steps&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Within the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Do until&lt;/code&gt; loop, Do until noEmails = True, there are 3 main events.&lt;/p&gt;
+&lt;p&gt;Within the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Do until&lt;/code&gt; loop, there are 3 main events:&lt;/p&gt;
 
 &lt;p&gt;1) The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Get emails&lt;/code&gt; action retrieves the top 10 emails from the Inbox. To configure this action, select the folder to retrieve the emails from, and then for this flow the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Fetch Only Unread Messages&lt;/code&gt; was set to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;No&lt;/code&gt; and the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Top&lt;/code&gt; option was set to 10 (pictured above in the &lt;a href=&quot;#get-emails-v3&quot;&gt;Get emails (V3)&lt;/a&gt; section).&lt;/p&gt;
 
@@ -100,7 +100,7 @@
 )
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;3) The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;For Each Email&lt;/code&gt; loop which iterates over each of the retrieved emails and moves the emails to the appropriate folder based on the email’s read status.&lt;/p&gt;
+&lt;p&gt;3) The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;For Each Email&lt;/code&gt; loop iterates over each of the retrieved emails and moves the emails to the appropriate folder based on the email’s read status.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/2022-08-19-pwrauto-move-email/flow_do_until.png&quot; alt=&quot;Until noEmail True Loop&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
 
@@ -127,7 +127,7 @@
 
 &lt;h2 id=&quot;outlook-inbox-cleanup-workflow&quot;&gt;Outlook Inbox Cleanup Workflow&lt;/h2&gt;
 
-&lt;p&gt;The first example shown in this article explicitly selected the destination folder, in this example, the folder display names and IDs will be stored in an object variable. The workflow will then process the email, identifying which property from the object variable should be retrieved. Then the returned value (the folder ID) will be used in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Move email&lt;/code&gt; action. In this example, an object variable was used to store the display name and folder IDs, a &lt;a href=&quot;https://www.microsoft.com/en-us/microsoft-365/microsoft-lists&quot; class=&quot;post__link&quot;&gt;Microsoft List&lt;/a&gt; could also be used. Retrieving the folder ID using this option would require a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Get items&lt;/code&gt; action with the appropriate OData filter query.&lt;/p&gt;
+&lt;p&gt;The first example shown in this article explicitly selected the destination folder, in this example, the folder display names and IDs will be stored in an object variable. The workflow will then process the email, identifying which property from the object variable should be retrieved. Then the returned value (the folder ID) will be used in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Move email&lt;/code&gt; action. In this example, an object variable was used to store the display name and folder IDs, a &lt;a href=&quot;https://www.microsoft.com/en-us/microsoft-365/microsoft-lists&quot; class=&quot;post__link&quot;&gt;Microsoft List&lt;/a&gt; could also be used. Retrieving the folder ID using this option would require a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Get items&lt;/code&gt; action with the appropriate filter query.&lt;/p&gt;
 
 &lt;h3 id=&quot;workflow-diagram&quot;&gt;Workflow Diagram&lt;/h3&gt;
 &lt;p&gt;&lt;img src=&quot;/assets/img/2022-08-19-pwrauto-move-email/workflow_diagram_2.png&quot; alt=&quot;Outlook Inbox Cleanup Workflow Diagram&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
@@ -141,19 +141,19 @@
 &lt;p&gt;Getting the folder IDs of an Outlook mailbox folder can involve using the Microsoft Graph API or using the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;peak code&lt;/code&gt; setting within Power  Automate. Using Microsoft Graph can be a bit more advanced but still approachable when manually retrieving the folder IDs using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;peak code&lt;/code&gt; is unmanageable.&lt;/p&gt;
 
 &lt;h4 id=&quot;peak-code&quot;&gt;Peak Code&lt;/h4&gt;
-&lt;p&gt;This method requires manually identifying each destination folder’s ID and adding it to the object variable. This can be an appropriate method when first starting or if the number of destination folders is low and does not change frequently. The organizing of emails in this example primarily focuses on sorting into department folders which can be a good use case for this method because the number of departments in an organization is likely to be relatively stable.&lt;/p&gt;
+&lt;p&gt;This method requires manually identifying each destination folder’s ID and adding it to the object variable. This can be an appropriate method when the number of destination folders is low and does not change frequently. The organizing of emails in this example primarily focuses on sorting into department folders which can be a good use case for this method because the number of departments in an organization is likely to be relatively stable.&lt;/p&gt;
 
-&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Move email&lt;/code&gt; actions in the above example and shown below show that the folder is selected (HR).
+&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Move email&lt;/code&gt; action, shown below, shows that the folder is selected (HR).
 &lt;img src=&quot;/assets/img/2022-08-19-pwrauto-move-email/peak_code_1.png&quot; alt=&quot;Move Email Folder Selection&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;After selecting the destination folder, in the upper right of the action select the ellipses and then &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Peak code&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/2022-08-19-pwrauto-move-email/peak_code_2.png&quot; alt=&quot;Move Email Peak Code&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;This will reveal the inputs to this action. Under the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;parameters&lt;/code&gt; property the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;folderPath&lt;/code&gt; can be seen. What is required to be stored for this flow is the entire folder path following &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Id::&lt;/code&gt;, this ID and the folders display name are what is stored and accessed by the workflow. See the &lt;a href=&quot;#power-automate-flow---variable&quot; class=&quot;post__link&quot;&gt;Power Automate Flow - Variable&lt;/a&gt; section for an example.&lt;/p&gt;
+&lt;p&gt;This will reveal the inputs to this action. Under the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;parameters&lt;/code&gt; property, the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;folderPath&lt;/code&gt; can be seen. What is required to be stored for this flow is the entire folder path following &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Id::&lt;/code&gt;, this ID and the folders display name are what is stored and accessed by the workflow. See the &lt;a href=&quot;#power-automate-flow---variable&quot; class=&quot;post__link&quot;&gt;Power Automate Flow - Variable&lt;/a&gt; section for an example.&lt;/p&gt;
 
 &lt;h4 id=&quot;microsoft-graph&quot;&gt;Microsoft Graph&lt;/h4&gt;
-&lt;p&gt;When using Microsoft Graph approach the &lt;a href=&quot;https://developer.microsoft.com/en-us/graph/graph-explorer&quot; class=&quot;post__link&quot;&gt;Graph Explorer&lt;/a&gt; is a helpful tool. This method can also be used to get the display names and IDs of child folders. See the &lt;a href=&quot;#power-automate-flow---microsoft-graph&quot; class=&quot;post__link&quot;&gt;Power Automate Flow - Microsoft Graph&lt;/a&gt; section for an example.&lt;/p&gt;
+&lt;p&gt;When using the Microsoft Graph approach &lt;a href=&quot;https://developer.microsoft.com/en-us/graph/graph-explorer&quot; class=&quot;post__link&quot;&gt;Graph Explorer&lt;/a&gt; is a helpful tool. This method can also be used to get the display names and IDs of child folders. See the &lt;a href=&quot;#power-automate-flow---microsoft-graph&quot; class=&quot;post__link&quot;&gt;Power Automate Flow - Microsoft Graph&lt;/a&gt; section for an example.&lt;/p&gt;
 
 &lt;h3 id=&quot;power-automate-flow---variable&quot;&gt;Power Automate Flow - Variable&lt;/h3&gt;
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
@@ -181,7 +181,7 @@
 
 &lt;p&gt;1) Get the current email object, this will make attributes of the email accessible through dynamic content&lt;/p&gt;
 
-&lt;p&gt;2) Set the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sorted&lt;/code&gt; variable to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;False&lt;/code&gt; and split the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;From&lt;/code&gt; email address into the Domain and the User Id (everything after &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@&lt;/code&gt; and everything before &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@&lt;/code&gt;, respectively)&lt;/p&gt;
+&lt;p&gt;2) Set the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;sorted&lt;/code&gt; variable to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;False&lt;/code&gt; and split the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;From&lt;/code&gt; email address into the domain and the user Id (everything after &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@&lt;/code&gt; and everything before &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;@&lt;/code&gt;, respectively)&lt;/p&gt;
 
 &lt;p&gt;3) Move Unread emails into an Unread folder. These will be moved back to the Inbox after all emails have been processed&lt;/p&gt;
 
@@ -224,7 +224,7 @@
 &lt;p&gt;&lt;img src=&quot;/assets/img/2022-08-19-pwrauto-move-email/flow_for_each_email_2_5.png&quot; alt=&quot;Flow Example 2 Internal Sorting&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;It is important to now that the folder ID in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Move email&lt;/code&gt; actions is preceded by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Id::&lt;/code&gt;&lt;/p&gt;
+  &lt;p&gt;It is important to note that the folder ID in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Move email&lt;/code&gt; actions is preceded by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Id::&lt;/code&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;If the above condition is not met, the email is sorted by domain. This sorting involves three steps. First, a compose action is used to get the folderID of the corresponding domain folder with the inputs argument set to:&lt;/p&gt;
