@@ -34,7 +34,7 @@ image_by_link: https://unsplash.com/@alvarordesign?utm_source=unsplash&utm_mediu
 
 Power Automate offers a wide range of connectors for various services allowing for the automation of certain tasks. Managing and organizing emails is a common repetitive task that can take a fair amount of time and manual effort, and let's face it's not exciting work. Thankfully, Power Automate and the Outlook in Office 365 connector can provide some relief.
 
->When searching the Power Automate connectors and actions for `Outlook` you will see both an `Office 365 Outlook` and a `Outlook.com` option. Microsoft recommends when using a work or school email account use `Office 365 Outlook` and when using a personal account use the `Outlook.com` connector
+>When searching the Power Automate connectors and actions for `Outlook` there is an `Office 365 Outlook` and an `Outlook.com` option. Microsoft recommends when using a work or school email account use `Office 365 Outlook` and when using a personal account use the `Outlook.com` connector
 
 This article will provide an overview of the Outlook in Office 365 connector and some examples of how it can be used to conduct an Inbox Cleanup task.
 
@@ -45,14 +45,14 @@ This article will provide an overview of the Outlook in Office 365 connector and
 <br>
 
 ## Office 365 Outlook Actions
-The Office 365 Outlook connector offers several actions or events that the Power Automate workflow could do - [List of Office 365 Outlook Action](https://docs.microsoft.com/en-us/connectors/office365/#actions){: .post__link} -  below shows just a partial list. 
+The Office 365 Outlook connector offers several actions or events that the Power Automate workflow could do - [List of Office 365 Outlook Actions](https://docs.microsoft.com/en-us/connectors/office365/#actions){: .post__link} -  below shows just a partial list. 
 
 ![Partial list of Outlook Actions](/assets/img/2022-08-19-pwrauto-move-email/outlook_action_overview.png){: .post__img}
 
 Automating an Outlook inbox cleanup task will focus on the following actions.
 
 ### Get emails (V3)
-This action will retrieve emails from a folder (e.g. Inbox). This action can be configured to fetch both read and unread emails and for this workflow will return up to 10 emails to be processed in a batch until all emails have been processed.
+This action will retrieve emails from a folder (e.g. Inbox). This action can be configured to fetch both read and unread emails.
 
 ![Get Emails (V3) Action](/assets/img/2022-08-19-pwrauto-move-email/outlook_get_email_v3.png){: .post__img}
 
@@ -80,7 +80,7 @@ To start the Power Automate flow the trigger is defined, here it is a manual tri
 
 ![Basic workflow starting steps](/assets/img/2022-08-19-pwrauto-move-email/flow_start.png){: .post__img}
 
-Within the `Do until` loop, Do until noEmails = True, there are 3 main events. 
+Within the `Do until` loop, there are 3 main events:
 
 1) The `Get emails` action retrieves the top 10 emails from the Inbox. To configure this action, select the folder to retrieve the emails from, and then for this flow the `Fetch Only Unread Messages` was set to `No` and the `Top` option was set to 10 (pictured above in the [Get emails (V3)](#get-emails-v3) section).
 
@@ -98,7 +98,7 @@ if(
 )
 ```
 
-3) The `For Each Email` loop which iterates over each of the retrieved emails and moves the emails to the appropriate folder based on the email's read status.
+3) The `For Each Email` loop iterates over each of the retrieved emails and moves the emails to the appropriate folder based on the email's read status.
 
 ![Until noEmail True Loop](/assets/img/2022-08-19-pwrauto-move-email/flow_do_until.png){: .post__img}
 
@@ -125,7 +125,7 @@ The limitation can be addressed by using `Id:: <folder_id>` for the `Folder` opt
 
 ## Outlook Inbox Cleanup Workflow
 
-The first example shown in this article explicitly selected the destination folder, in this example, the folder display names and IDs will be stored in an object variable. The workflow will then process the email, identifying which property from the object variable should be retrieved. Then the returned value (the folder ID) will be used in the `Move email` action. In this example, an object variable was used to store the display name and folder IDs, a [Microsoft List](https://www.microsoft.com/en-us/microsoft-365/microsoft-lists){: .post__link} could also be used. Retrieving the folder ID using this option would require a `Get items` action with the appropriate OData filter query.
+The first example shown in this article explicitly selected the destination folder, in this example, the folder display names and IDs will be stored in an object variable. The workflow will then process the email, identifying which property from the object variable should be retrieved. Then the returned value (the folder ID) will be used in the `Move email` action. In this example, an object variable was used to store the display name and folder IDs, a [Microsoft List](https://www.microsoft.com/en-us/microsoft-365/microsoft-lists){: .post__link} could also be used. Retrieving the folder ID using this option would require a `Get items` action with the appropriate filter query.
 
 ### Workflow Diagram
 ![Outlook Inbox Cleanup Workflow Diagram](/assets/img/2022-08-19-pwrauto-move-email/workflow_diagram_2.png){: .post__img}
@@ -139,19 +139,19 @@ The outlook mailbox used by this flow has the following folders to which the ema
 Getting the folder IDs of an Outlook mailbox folder can involve using the Microsoft Graph API or using the `peak code` setting within Power  Automate. Using Microsoft Graph can be a bit more advanced but still approachable when manually retrieving the folder IDs using `peak code` is unmanageable. 
 
 #### Peak Code
-This method requires manually identifying each destination folder's ID and adding it to the object variable. This can be an appropriate method when first starting or if the number of destination folders is low and does not change frequently. The organizing of emails in this example primarily focuses on sorting into department folders which can be a good use case for this method because the number of departments in an organization is likely to be relatively stable.
+This method requires manually identifying each destination folder's ID and adding it to the object variable. This can be an appropriate method when the number of destination folders is low and does not change frequently. The organizing of emails in this example primarily focuses on sorting into department folders which can be a good use case for this method because the number of departments in an organization is likely to be relatively stable.
 
-The `Move email` actions in the above example and shown below show that the folder is selected (HR).
+The `Move email` action, shown below, shows that the folder is selected (HR).
 ![Move Email Folder Selection](/assets/img/2022-08-19-pwrauto-move-email/peak_code_1.png){: .post__img}
 
 After selecting the destination folder, in the upper right of the action select the ellipses and then `Peak code`.
 
 ![Move Email Peak Code](/assets/img/2022-08-19-pwrauto-move-email/peak_code_2.png){: .post__img}
 
-This will reveal the inputs to this action. Under the `parameters` property the `folderPath` can be seen. What is required to be stored for this flow is the entire folder path following `Id::`, this ID and the folders display name are what is stored and accessed by the workflow. See the [Power Automate Flow - Variable](#power-automate-flow---variable){: .post__link} section for an example.
+This will reveal the inputs to this action. Under the `parameters` property, the `folderPath` can be seen. What is required to be stored for this flow is the entire folder path following `Id::`, this ID and the folders display name are what is stored and accessed by the workflow. See the [Power Automate Flow - Variable](#power-automate-flow---variable){: .post__link} section for an example.
 
 #### Microsoft Graph
-When using Microsoft Graph approach the [Graph Explorer](https://developer.microsoft.com/en-us/graph/graph-explorer){: .post__link} is a helpful tool. This method can also be used to get the display names and IDs of child folders. See the [Power Automate Flow - Microsoft Graph](#power-automate-flow---microsoft-graph){: .post__link} section for an example.
+When using the Microsoft Graph approach [Graph Explorer](https://developer.microsoft.com/en-us/graph/graph-explorer){: .post__link} is a helpful tool. This method can also be used to get the display names and IDs of child folders. See the [Power Automate Flow - Microsoft Graph](#power-automate-flow---microsoft-graph){: .post__link} section for an example.
 
 ### Power Automate Flow - Variable
 <br>
@@ -175,7 +175,7 @@ The `For each` loop contains 4 main steps:
 
 1) Get the current email object, this will make attributes of the email accessible through dynamic content
 
-2) Set the `sorted` variable to `False` and split the `From` email address into the Domain and the User Id (everything after `@` and everything before `@`, respectively)
+2) Set the `sorted` variable to `False` and split the `From` email address into the domain and the user Id (everything after `@` and everything before `@`, respectively)
 
 3) Move Unread emails into an Unread folder. These will be moved back to the Inbox after all emails have been processed
 
@@ -215,7 +215,7 @@ If the above condition is met the email is sorted into a department folder by se
 
 ![Flow Example 2 Internal Sorting](/assets/img/2022-08-19-pwrauto-move-email/flow_for_each_email_2_5.png){: .post__img}
 
->It is important to now that the folder ID in the `Move email` actions is preceded by `Id::`
+>It is important to note that the folder ID in the `Move email` actions is preceded by `Id::`
 
 If the above condition is not met, the email is sorted by domain. This sorting involves three steps. First, a compose action is used to get the folderID of the corresponding domain folder with the inputs argument set to:
 
