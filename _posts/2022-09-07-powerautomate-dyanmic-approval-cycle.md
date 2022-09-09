@@ -33,7 +33,7 @@ For a process that only requires a single or sequential approvals, please see th
 * [Get started with approval (single)](https://docs.microsoft.com/en-us/power-automate/get-started-approvals){: .post__link}
 * [Manage sequential approval with Power Automate](https://docs.microsoft.com/en-us/power-automate/sequential-modern-approvals){: .post__link}
 
-The focus of this article is on creating a dynamic document approval cycle. This process will allow for a feedback cycle when a higher-level approver may have a question or require clarification on the document requested for approval. The need for the dynamic feedback cycle arises when during the approval of a document a minor error is identified, with a sequential approval workflow the document would have to be rejected and an entirely new workflow would have to be triggered. The flexibility to request feedback or correction of minor errors can streamline and make the overall approval process more efficient and effective.
+The focus of this article is on creating a dynamic document approval cycle. This process will allow for a feedback cycle when a higher-level approver may have a question or require clarification on the document requested for approval. The need for the dynamic feedback cycle arises when during the approval of a document a minor error is identified (e.g. spelling error), with a sequential approval workflow the document would have to be rejected and an entirely new workflow would have to be triggered following the correction. The flexibility to request feedback or correction of minor errors can streamline and make the overall approval process more efficient and effective.
 
 This process will consist of 2-3 approval levels based on the approver's position and leverage a `Switch` flow control to implement a state machine solution.  
 
@@ -57,7 +57,7 @@ The Power Automate `Approvals` action enables the ability to incorporate approva
 ## Flow Control Actions
 The workflow will leverage the functionality of two flow control actions. The first, `Do until`, will continue to execute a series of contained actions until a specified condition is met. The second, `Switch`, evaluates an expression and determines whether the result matches any of the specified values.
 
-In the context of this workflow the `Do until` will continue to execute until a workflow variable (e.g. `swithExit`) is equal to `True`, indicating that the workflow should exit the approval loop. The `Switch` control will evaluate the value of an `approvalState` variable and execute the specific actions of the corresponding branch. 
+In the context of this workflow the `Do until` will continue to execute until a workflow variable (`swithExit`) is equal to `True`, indicating that the workflow should exit the approval loop. The `Switch` control will evaluate the value of the `approvalState` variable and execute the specific actions of the corresponding branch. 
 
 <br>
 
@@ -83,8 +83,8 @@ Following this, the workflow initializes a series of workflow variables that wil
 
 ![Approval Variable Initialization](/assets/img/2022-09-09-dynamic-approval-cycle/approval_variables.png){: .post__img}
 
-* The `approvalState` of the workflow, is initially set to `Level 1` and will be updated as needed dependent on approval outcomes
-* A `switchExit` boolean variable which is used to exit or end the `Do until` approval Loop
+* An `approvalState` string variable initially set to `Level 1` and will be updated as needed dependent on approval outcomes
+* A `switchExit` boolean variable is updated in the `Switch` control and is used to exit or end the `Do until` approval Loop
 * An `approvalOutcome` string variable which will store the overall outcome of the sequence of approvals
 
 ![Approval Variable Initialization](/assets/img/2022-09-09-dynamic-approval-cycle/approval_variables_2.png){: .post__img}
@@ -104,7 +104,7 @@ The only action within the `Do until` loop is the `Switch` flow control. The `Sw
 
 ![Do until  loop overview](/assets/img/2022-09-09-dynamic-approval-cycle/do_until.png){: .post__img}
 
-For each iteration of the `Do until` loop the `Switch` flow control evaluates the value of the `approvalState` variable and then executes the actions contained within the branch whose condition is equal to this value. There are four main branches contained within the `Switch` with the conditions of: `Level 1`, `Level 2`, `Level 3`, and `Exit`. It is the functionality of the `Switch` flow control that allows for feedback or the cyclic nature of the approval workflow.
+For each iteration of the `Do until` loop the `Switch` flow control evaluates the value of the `approvalState` variable and then executes the actions contained within the branch whose condition is equal to this value. There are four main branches contained within the `Switch` with the conditions of `Level 1`, `Level 2`, `Level 3`, and `Exit`. It is the functionality of the `Switch` flow control that allows for feedback or the cyclic nature of the approval workflow.
 
 >In general the Level 1 approval is a preliminary approval conducted by the initial user. The Level 2 approval is conducted by the manager of the Level 1 approval however, the Level 2 approval action has an option to request feedback from Level 1 in addition to approving/rejecting the approval. Following the Level 2 approval the Level 3 approval is assigned to the manager of the Level 2 approval (if they have one, i.e. the Level 2 approver is not the president of the organization). Similar to the Level 2 approval, Level 3 can request feedback from any of the prior approvals.
 
@@ -113,7 +113,7 @@ For each iteration of the `Do until` loop the `Switch` flow control evaluates th
 #### **Level 1 Approval**   
 The Level 1 branch is the first approval in the sequence of approvals needed. The branch starts with the `Start and wait` Approval action. 
 
-Following the approval, the `approvalOutcome` is updated to the value of the Approval outcome property and the `level1Approval` is set to the value of the Approval response summary value. The `level1Approval` variable is used in the final notification email and documents the final approval history.
+Following the approval, the `approvalOutcome` variable is updated to the value of the Approval outcome property and the `level1Approval` is set to the value of the Approval response summary value. In general the `level#Approval` variable is used in the final notification email and documents the final approval history.
 
 ![Level 1 Initial Actions](/assets/img/2022-09-09-dynamic-approval-cycle/level_1_1.png){: .post__img}
 
@@ -130,9 +130,9 @@ The level 2 branch is executed any time during the workflow when the `approvalSt
 
 The branch has three main sections: 1) the approval, 2) updating and setting workflow variables, and 3) evaluating the `Outcome` property of the approval to move the workflow to the next branch of actions.
 
-![Level 2 Initial Actions](/assets/img/2022-09-09-dynamic-approval-cycle/level_2_1.png){: .post__img}
-
 The level 2 approval action is a Custom Response - Wait for one response type, this differs from the level 1 approval. The custom responses type is needed to provide the `Feedback - Level 1` response option, this option indicates that the workflow should be sent back and execute the `Level 1` branch actions. Following the approval, the `approvalOutcome` and `level2Approval` variables are set, the same as they were in the `Level 1` branch.
+
+![Level 2 Initial Actions](/assets/img/2022-09-09-dynamic-approval-cycle/level_2_1.png){: .post__img}
 
 After setting the variables the level 2 branch has a nested `Switch` flow control: `Evaluate Approval Outcome Level 2`
 
