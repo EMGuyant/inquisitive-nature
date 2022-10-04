@@ -69,9 +69,9 @@ table tr:nth-child(even) { background-color: #25353b; }
 
 table th, table td { padding: 10px 15px; }
 
-table th { background-color: #131c1f; border: 1px solid #242d30; border-bottom-color: #131719; }
+table th { background-color: #131c1f; border: 1px solid #242d30; border-bottom-color: #131719; color: #b4b4b4; }
 
-table td { border: 1px solid #2d383c; }
+table td { border: 1px solid #2d383c; color: #888888; }
 
 /** Site header */
 .site-header { border-top: 5px solid #192428; border-bottom: 1px solid #2d383c; min-height: 55.95px; position: relative; }
