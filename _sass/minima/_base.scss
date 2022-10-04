@@ -243,8 +243,10 @@ table {
     background-color: darken($grey-color-dark, 3%);
     border: 1px solid darken($grey-color-light, 4%);
     border-bottom-color: darken($grey-color-light, 12%);
+    color: lighten($text-color, 5%);
   }
   td {
     border: 1px solid $grey-color-light;
+    color: darken($text-color, 12%);
   }
 }
