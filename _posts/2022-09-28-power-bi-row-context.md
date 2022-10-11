@@ -9,6 +9,18 @@ image: /assets/img/post_img/powerbi_fundamentals_part1.jpg
 image_by: Florian Müller
 image_by_link: https://unsplash.com/@flo93m?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
 ---
+## Contents
+* [Understanding Row Context](#understanding-row-context)
+* [Creating a Calculated Column](#creating-a-calculated-column)
+* [Limitation](#limitation)
+  * [Replacing a Calculated Column with a Measure](#replacing-a-calculated-column-with-a-measure)
+
+<br>
+
+---
+
+<br>
+
 In order to facilitate analysis and visualization in Power BI, a data model must first be created. The data model will consist of individual data tables, relationships between the tables, and calculations to aid in the analysis. Calculations typically come in the form of either calculated columns or measures.
 
 A few key differences between calculated columns and measures include:
@@ -106,7 +118,7 @@ The table columns are not available because by default a measure *does not* have
 
 An iterator function can retrieve values from other columns in a table based on the row context, then perform an operation on the column values row-by-row, and finally aggregate the results.
 
-Check back for Part 2 of this series for an exploration of iterators.
+Check out [Part 2](https://ethanguyant.com/blog/2022-10-11-power-bi-iterators/){: .post__link} of this series for an exploration of iterators.
 
 <br>
 
