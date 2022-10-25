@@ -22,10 +22,10 @@ image_by_link: https://unsplash.com/@roman_lazygeek?utm_source=unsplash&utm_medi
 
 <br>
 
-## Overview
+## Review
 In order to facilitate analysis and visualization in Power BI a data model must first be created. The data model consists of individual data tables, relationships, and calculations. Calculations come in the form of either calculated columns or measures. 
 
-Check out [Power BI Fundaments: Part 1 - Row Context](https://ethanguyant.com/blog/2022-09-28-power-bi-row-context/){: .post__link} for key differences between calculated columns and measures.
+Check out [Power BI Fundamentals: Part 1 - Row Context](https://ethanguyant.com/blog/2022-09-28-power-bi-row-context/){: .post__link} for key differences between calculated columns and measures.
 
 The evaluation context limits the values in the current scope when Power BI evaluates a DAX expression. There are two types of evaluation context, filter and row, that can be active during the evaluation of a DAX expression.
 
