@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Power BI Fundaments: Part 3 - Filter Functions | Ethan Guyant’s Blog</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="Power BI Fundaments: Part 3 - Filter Functions" />
+<meta name="author" content="Ethan Guyant" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Explore the concept of filter context within Power BI, how it can be created and the impacts it has on evaluating measures. Part three of this series looks at creating filter context with the use of visuals and how the filter context can be set or modified using functions." />
+<meta property="og:description" content="Explore the concept of filter context within Power BI, how it can be created and the impacts it has on evaluating measures. Part three of this series looks at creating filter context with the use of visuals and how the filter context can be set or modified using functions." />
+<link rel="canonical" href="http://ethanguyant.com/blog/2022-10-24-power-bi-filter-context/" />
+<meta property="og:url" content="http://ethanguyant.com/blog/2022-10-24-power-bi-filter-context/" />
+<meta property="og:site_name" content="Ethan Guyant’s Blog" />
+<meta property="og:image" content="http://ethanguyant.com/assets/img/post_img/powerbi-filter-context.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-10-24T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="http://ethanguyant.com/assets/img/post_img/powerbi-filter-context.jpg" />
+<meta property="twitter:title" content="Power BI Fundaments: Part 3 - Filter Functions" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"Ethan Guyant"},"description":"Explore the concept of filter context within Power BI, how it can be created and the impacts it has on evaluating measures. Part three of this series looks at creating filter context with the use of visuals and how the filter context can be set or modified using functions.","url":"http://ethanguyant.com/blog/2022-10-24-power-bi-filter-context/","image":"http://ethanguyant.com/assets/img/post_img/powerbi-filter-context.jpg","@type":"BlogPosting","headline":"Power BI Fundaments: Part 3 - Filter Functions","dateModified":"2022-10-24T00:00:00+00:00","datePublished":"2022-10-24T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://ethanguyant.com/blog/2022-10-24-power-bi-filter-context/"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<title>Ethan Guyant's Blog</title>
+  <!-- Normalize CSS file irons out some difference between browsers -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+  <!-- Google Fonts-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,900|Source+Sans+Pro:300,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Arvo:wght@700&display=swap" rel="stylesheet">
+  <!-- CSS Styles -->
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/notebook_default.css">
+  <link rel="stylesheet" href="/assets/css/notebook_custom.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
+  <!-- MathJax configuration -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+  </script>
+  <!-- Animation on Scroll-->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <!-- Font Awesome Kit -->
+  <script src="https://kit.fontawesome.com/c9965d23bb.js" crossorigin="anonymous"></script><link type="application/atom+xml" rel="alternate" href="http://ethanguyant.com/feed.xml" title="Ethan Guyant's Blog" /><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7356875210051999"
+  crossorigin="anonymous">
+  </script>
+  
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RTFP0V6X0G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RTFP0V6X0G');
+</script>
+  
+</head>
+<body><header class="header sticky">
+    <div class="wrapper">
+        <div>
+            <div class="scroll-logo"> 
+                <a href="/">  
+                    <svg id="EG" viewBox="0 0 152 216">
+                        <g>
+                            <path id="hex"d="M 76.342 4 L 147.685 41.377 L 147.685 116.13 L 76.342 153.506 L 5 116.13 L 5 41.377 Z" style="stroke-width: 8.37394px; fill-opacity: 0; fill: none; stroke: #39ace7;"></path>         
+                            <polygon class="logo"style="stroke-width: 3.58883px; stroke: #39ace7; fill: #39ace7;" points="41.001 38.501 112.012 38.501 112.012 62.884 97.474 62.884 97.474 54.976 41.001 54.976"></polygon>
+                            <polygon class="logo" style="stroke-width: 3.58883px; stroke: #39ace7; fill: #39ace7;" points="40.671 102.9 97.81 102.9 97.81 86.796 83.604 86.796 83.604 70.701 112.014 70.701 112.014 102.92 112.014 119.004 40.939 119.004"></polygon>
+                            <polygon class="logo" style="stroke-width: 3.58883px; stroke: #39ace7; fill: #39ace7;" points="41.001 70.701 69.753 70.701 63.532 87.725 41.317 87.725"></polygon>
+                        </g> 
+                    </svg>
+                </a>
+            </div>
+
+            <div class="header__title">
+                <a href="/">EthanGuyant.com</a>
+            </div>
+            
+        </div>
+        
+        <div class="nav__menu">
+            <div class="nav__toggle">
+                <div class="nav__icon">
+                    <span></span>
+                </div>
+            </div>
+        </div>
+        <div class="nav__menu__wrapper">
+            <ul class="nav__menu__list">
+                <li class="nav__menu__list__item">
+                    <a href="/" class="nav__menu__list__item__link">Home</a>
+                </li>
+                <li class="nav__menu__list__item">
+                    <a href="/blog" class="nav__menu__list__item__link">Blog</a>
+                </li>
+                <li class="nav__menu__list__item">
+                    <a href="/about" class="nav__menu__list__item__link">About</a>
+                </li>
+                <li class="nav__menu__list__item">
+                    <a href="/category/project/" class="nav__menu__list__item__link">Projects</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header><main class="page" aria-label="Content">
+      <div class="page__content">
+        <section class="blog__header">
+    <div class="blog__img">
+      <div class="blog__img__over"></div>
+    </div>
+    <div class="wrapper">
+      <h1 class="blog__title"><span class="inquisitive">INQUISITIVE</span> <span class="nature">NATURE</span></h1>
+      <p class="blog__subtitle">Learn  Explore  <strong>Share</strong></p>
+      <p class="post__categories">
+    </div>
+  </section><div class="wrapper">
+  <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+    <section class="article__header">
+        <h1 class="post-title p-name" itemprop="name headline">Power BI Fundaments: Part 3 - Filter Functions</h1>
+        <p class="post-meta">
+          <time class="dt-published" datetime="2022-10-24T00:00:00+00:00" itemprop="datePublished">Oct 24, 2022
+          </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">Ethan Guyant</span></span></p>
+          <p class="post-category">
+            Category: 
+            <a href="/category/deep-dive">
+              <i class="fa-solid fa-folder"></i>
+              Deep Dive
+            </a> 
+          </p>
+          <p class="post-tags">
+          Tags: 
+           
+              
+              <a href="/tag/microsoft-365">
+                <i class="fa-solid fa-tag"></i>
+                Microsoft 365
+              </a> 
+              
+              <a href="/tag/power-bi">
+                <i class="fa-solid fa-tag"></i>
+                Power BI
+              </a> 
+              
+              <a href="/tag/power-platform">
+                <i class="fa-solid fa-tag"></i>
+                Power Platform
+              </a> 
+              
+              <a href="/tag/power-bi-fundamentals-series">
+                <i class="fa-solid fa-tag"></i>
+                Power BI Fundamentals Series
+              </a> 
+            
+          
+        </p>
+    </section>
+    <div class="post-content e-content" itemprop="articleBody">
+      <h2 id="contents">Contents</h2>
+<ul>
+  <li><a href="#review">Review</a></li>
+  <li><a href="#introduction-to-filter-context">Introduction to Filter Context</a></li>
+  <li><a href="#the-calculate-function">The CALCULATE Function</a></li>
+  <li><a href="#exploring-filter-context">Exploring Filter Context</a></li>
+  <li><a href="#create-filter-context-with-slicers">Create Filter Context with Slicers</a></li>
+  <li><a href="#create-filter-context-with-calculate">Create Filter Context with CALCULATE</a>
+    <ul>
+      <li><a href="#keep-external-filters-with-calculate">Keep External Filters with CALCULATE</a></li>
+    </ul>
+  </li>
+  <li><a href="#more-calculate-examples">More CALCULATE Examples</a>
+    <ul>
+      <li><a href="#creating-a-measure-of-high-quantity-sales">Create a Measure of High Quantity Sales</a></li>
+      <li><a href="#percentage-of-sales-by-product-color">Percentage of Sales by Product Color</a></li>
+    </ul>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="review">Review</h2>
+<p>One of the early stages of creating any Power BI report is the development of the data model. The data model will consist of data tables, relationships, and calculations. There are two types of calculations: calculated columns, and measures.</p>
+
+<p>Check out <a href="https://ethanguyant.com/blog/2022-09-28-power-bi-row-context/" class="post__link">Power BI Fundamentals: Part 1 - Row Context</a> for key differences between calculated columns and measures.</p>
+
+<p>All expressions, either from a calculated column or a measure, get evaluated within the evaluation context. The evaluation context limits the values in the current scope when evaluating an expression. The filter context and/or the row context make up the evaluation context.</p>
+
+<p><a href="https://ethanguyant.com/blog/2022-09-28-power-bi-row-context/" class="post__link">Power BI Fundamentals: Part 1 - Row Context</a> of this series explores the row context in depth. While <a href="https://ethanguyant.com/blog/2022-10-11-power-bi-iterators/" class="post__link">Power BI Fundamentals: Part 2 - Iterator Functions</a> explores iterator functions, which are functions that create row context.</p>
+
+<p>This post is the third of a Power BI Fundamental series with a focus on the filter context. The example file used in this post is located here -<a class="social-list__link" href="https://github.com/EMGuyant/power-bi-key-fundamentals"><i class="fab fa-github"></i> GitHub</a>.</p>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="introduction-to-filter-context">Introduction to Filter Context</h2>
+<p>Filter context refers to the filters applied before evaluating an expression. This filter context limits the set of rows of a table available to the calculation. There are two types of filters to consider, the first is implicit filters or filters applied by the user via the report canvas. The second type is explicit filters which use functions such as <code class="language-plaintext highlighter-rouge">CALCULATE()</code> or <code class="language-plaintext highlighter-rouge">CALCULATETABLE()</code>.</p>
+
+<p>The applied filter context can contain one or many filters. When there are many filters the filter context will be the intersection of all the filters. When the filter context is empty all the data is used during the evaluation.</p>
+
+<blockquote>
+  <p>The filter context does not iterate - this is a key difference between the filter context and the row context</p>
+</blockquote>
+
+<p>See <a href="https://ethanguyant.com/blog/2022-09-28-power-bi-row-context/" class="post__link">Part 1 - Row Context</a> and <a href="https://ethanguyant.com/blog/2022-10-11-power-bi-iterators/" class="post__link">Part 2 - Iterators</a> for more details on the row context.</p>
+
+<p>Filter context propagates through the data model relationships.  When defining each model relationship the cross-filter direction is set. This setting determines the direction(s) the filters will propagate. The available cross-filter options depend on the cardinality type of the relationship. See available documentation for more information on <a href="https://learn.microsoft.com/en-us/power-bi/transform-model/desktop-relationships-understand#cross-filter-direction" class="post__link">Cross-filter Direction</a> and <a href="https://learn.microsoft.com/en-us/power-bi/transform-model/desktop-bidirectional-filtering" class="post__link">Enabling Bidirectional Cross-filtering</a>.</p>
+
+<p>Measures only have filter context. Meaning, unlike a calculated column, they have no implicit row context. When a measure refers to a table column, it must be from within an explicit aggregation function (e.g. <code class="language-plaintext highlighter-rouge">SUM</code>, <code class="language-plaintext highlighter-rouge">AVERAGE</code>, etc.). When using a measure within a calculated column expression, the row context becomes the initial filter context. This initial filter context (containing a single row) is then used for the measure calculation.</p>
+
+<p>It is important to be familiar with certain DAX functions which can modify the filter context. Some example used in the post include <code class="language-plaintext highlighter-rouge">CALCULATE()</code>, <code class="language-plaintext highlighter-rouge">ALL()</code>, and <code class="language-plaintext highlighter-rouge">FILTER()</code>.</p>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="the-calculate-function">The CALCULATE Function</h2>
+<p>The <code class="language-plaintext highlighter-rouge">CALCULATE()</code> function can add filters to a measure expression, ignore filters applied to a table, or overwrite filters applied from within the report visuals.</p>
+
+<p>The syntax of <code class="language-plaintext highlighter-rouge">CALCULATE()</code> is:
+<code class="language-plaintext highlighter-rouge">CALCULATE(&lt;expression&gt;, &lt;filter1&gt;, &lt;filter2&gt;, ...)</code></p>
+
+<p>The <code class="language-plaintext highlighter-rouge">CALCULATE()</code> function can include many filter expressions or no filter expressions. When there are multiple filter expressions <code class="language-plaintext highlighter-rouge">CALCULATE()</code> implements the intersection of all filters. The <code class="language-plaintext highlighter-rouge">CALCULATE()</code> function applies an internal <code class="language-plaintext highlighter-rouge">AND</code> logic between filters. Evaluation of the <code class="language-plaintext highlighter-rouge">&lt;expression&gt;</code> occurs after evaluating the <code class="language-plaintext highlighter-rouge">&lt;filter&gt;</code> expressions.</p>
+
+<p>Use the <code class="language-plaintext highlighter-rouge">CALCULATE()</code> function when modifying the filter context of an expression that returns a scalar value. Use <code class="language-plaintext highlighter-rouge">CALCULATETABLE()</code> when modifying the filter context of an expression that returns a table.</p>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="exploring-filter-context">Exploring Filter Context</h2>
+<p>The table below is a visualization of the total sales amount for each product color.</p>
+
+<p><img src="/assets/img/2022-10-23-power-bi-filter-context/total-sales-table.png" alt="Total Sales Table" class="post__img" /></p>
+
+<p>The table visual creates filter context, as seen by the total sales amount for each color or row. Evaluating <code class="language-plaintext highlighter-rouge">SalesAmount2</code> occurs by first filtering the <code class="language-plaintext highlighter-rouge">SalesOrderDetail</code> table by the color, and then evaluating the measure with the filtered table. This is then repeated for each product color in the <code class="language-plaintext highlighter-rouge">SalesOrderDetail</code> table.</p>
+
+<p>The above example only contained the single product color filter. However, as mentioned previously the filter context can contain multiple filters. The example table below adds the <code class="language-plaintext highlighter-rouge">ProductType</code> to the table. The addition of this field breaks down the total sales first by color and then by product type. For each row the underlying <code class="language-plaintext highlighter-rouge">SalesOrderDetail</code> table is first filtered by color and product type before evaluating the <code class="language-plaintext highlighter-rouge">SalesAmount2</code> measure. In these examples it is the table visual that is creating the filter context.</p>
+
+<p><img src="/assets/img/2022-10-23-power-bi-filter-context/total-sales-product-type-table.png" alt="Total Sales by Color and Product Type" class="post__img" /></p>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="create-filter-context-with-slicers">Create Filter Context with Slicers</h2>
+<p>Another way to create filter context is through the use of slicer visuals. For this example, a slicer of the <code class="language-plaintext highlighter-rouge">ProductType</code> is created.</p>
+
+<p><img src="/assets/img/2022-10-23-power-bi-filter-context/filter-context-slicer.gif" alt="Product Type Slicer" /></p>
+
+<p>When there is no value selected in the slicer the filter context from the slicer visual is <code class="language-plaintext highlighter-rouge">null</code>. Meaning at first the card visual shows the <code class="language-plaintext highlighter-rouge">SalesAmount2</code> value evaluated for all data. Additionally, when no value is selected in the slicer the only filter context on the table visual is the <code class="language-plaintext highlighter-rouge">ProductColor</code>.</p>
+
+<p>Following the selection of <code class="language-plaintext highlighter-rouge">BK</code> in the product type slicer the values in both the table and the card visual are updated. The card visual now has one filter context which is the product type <code class="language-plaintext highlighter-rouge">BK</code>. This is evaluated by creating a filtered table and the <code class="language-plaintext highlighter-rouge">SalesAmount2</code> measure is evaluated for this filtered table.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">SalesAmount2</code> measure is defined by: <br />
+<code class="language-plaintext highlighter-rouge">SalesAmount2 = SUMX(SalesOrderDetail, SalesOrderDetail[OrderQty] * SalesOrderDetail[UnitPrice] * (1 - SalesOrderDetail[UnitPriceDiscount]))</code></p>
+
+<p>After selecting an option from the slicer the measure is re-evaluated. The re-evaluation occurs to account for the newly created filter context. The filter context creates a subset of the <code class="language-plaintext highlighter-rouge">SalesOrderDetail</code> table that matches the slicer selection. Then the row context evaluates the expression row-by-row for the filtered table and is summed. The updated value is then displayed on the card visual.</p>
+
+<p>The table visual works in a similar fashion but, there are two filters applied. The table visual has an initial filter context of the product color. After the selection of <code class="language-plaintext highlighter-rouge">BK</code>, the table gets updated to visualize the intersection of the product color filter and the product type filter.</p>
+
+<p>Following a selection in the slicer visual if a row in the table visual is selected this will also apply a filter. The filter context is the intersection of the table selection filters and the slicer. The updated filter context gets applied to all other visuals (e.g. the card visual).</p>
+
+<blockquote>
+  <p>The filter context can contain one or many filters. The filter can come from one or many visuals and gets applied before evaluating the expression. Meaning the filter context get applied before using the row context to evaluate an expression row-by-row.</p>
+</blockquote>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="create-filter-context-with-calculate">Create Filter Context with CALCULATE</h2>
+<p>Previous examples created the filter context using implicit filters. Generally, the user creates these filters through the user interface. Another way to create filter context is by using explicit filters. Explicit filter get created through the use of functions such as <code class="language-plaintext highlighter-rouge">CALCULATE()</code>. For this example, rather than having to select <code class="language-plaintext highlighter-rouge">BK</code> in the slicer to view total bike sales, we will you <code class="language-plaintext highlighter-rouge">CALCULATE()</code>. We will create a new measure that will force the filter context. We can do this because <code class="language-plaintext highlighter-rouge">CALCULATE()</code> allows us to set the filter context for an expression.</p>
+
+<p>We define the <code class="language-plaintext highlighter-rouge">BikeSales</code> measure as: <br />
+<code class="language-plaintext highlighter-rouge">BikeSales = CALCULATE(SalesOrderDetail[SalesAmount2], Products[ProductType]="BK")</code></p>
+<ul>
+  <li>Expression: <code class="language-plaintext highlighter-rouge">SalesOrderDetails[SalesAmount2]</code></li>
+  <li>Filter: <code class="language-plaintext highlighter-rouge">Products[ProductType]="BK"</code></li>
+</ul>
+
+<p><img src="/assets/img/2022-10-23-power-bi-filter-context/calculate-function.gif" alt="Bike Sales Measure" /></p>
+
+<p><code class="language-plaintext highlighter-rouge">BikeSales</code> is then added to the table visual alongside <code class="language-plaintext highlighter-rouge">SalesAmount2</code>. When the <code class="language-plaintext highlighter-rouge">BK</code> product type is the slicer selection the two table columns are equal. Both measures have the same filter context created by product color and product type. Removing the implicit product type filter by unselecting a product type updates the filter context. The <code class="language-plaintext highlighter-rouge">SalesAmount2</code> expression is re-evaluated with the updated filter context. Since the filter context created by the slicer is now <code class="language-plaintext highlighter-rouge">null</code> the <code class="language-plaintext highlighter-rouge">SalesAmount2</code> value calculates using all the data. The <code class="language-plaintext highlighter-rouge">BikeSales</code> values do not change. This is because of the explicit filter used by the <code class="language-plaintext highlighter-rouge">CALCULATE()</code> function when we defined the measure.  The <code class="language-plaintext highlighter-rouge">BikeSales</code> measure still has the filter  <code class="language-plaintext highlighter-rouge">Products[ProductType]="BK"</code> applied regardless of the product type slicer.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">CALCULATE()</code> function only creates filter context and does not create row context. So an important question to ask is why or how does the <code class="language-plaintext highlighter-rouge">BikeSales</code> measure work. The <code class="language-plaintext highlighter-rouge">CALCULATE()</code> function references a specific column value,  <code class="language-plaintext highlighter-rouge">Products[ProductType]="BK"</code>. Yet, the <code class="language-plaintext highlighter-rouge">CALCULATE()</code> function does not have row context. So how does Power BI know which row it is working with? The answer is that the <code class="language-plaintext highlighter-rouge">CALCULATE()</code> function applies the <code class="language-plaintext highlighter-rouge">FILTER()</code> function. And the <code class="language-plaintext highlighter-rouge">FILTER</code> function creates the row context required to evaluate the measure.</p>
+
+<p>See <a href="https://ethanguyant.com/blog/2022-10-11-power-bi-iterators/" class="post__link">Part 2 - Iterators</a> for details on iterator functions.</p>
+
+<p>Within the <code class="language-plaintext highlighter-rouge">CALCULATE()</code> function the <code class="language-plaintext highlighter-rouge">Products[ProductType]="BK"</code> filter is shorten syntax. The filter argument passed to <code class="language-plaintext highlighter-rouge">CALCULATE()</code> is equivalent to <code class="language-plaintext highlighter-rouge">FILTER(ALL(Products[ProductType]), Products[ProductType]="BK"))</code>.  The <code class="language-plaintext highlighter-rouge">ALL()</code> function removes any external filters on the <code class="language-plaintext highlighter-rouge">ProductType</code> column and is another example of a function that can modify the filter context.</p>
+
+<h3 id="keep-external-filters-with-calculate">Keep External filters with CALCULATE</h3>
+<p>The <code class="language-plaintext highlighter-rouge">CALCULATE()</code> function evaluates the filter context both outside of and within the function. The filter context outside of the function can come from user interaction with visuals. The filter context within the function is the filter expression(s).</p>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">CALCULATE()</code> overwrites external filters or filters that are outside of the function</p>
+</blockquote>
+
+<p>To explore this we create a table with the Product Type, <code class="language-plaintext highlighter-rouge">SalesAmount2</code>, and <code class="language-plaintext highlighter-rouge">SalesBike</code>.</p>
+
+<p><img src="/assets/img/2022-10-23-power-bi-filter-context/total-sales-by-product-table.png" alt="Totals Sales by Product Type" class="post__img" /></p>
+
+<p>The <code class="language-plaintext highlighter-rouge">SalesAmount2</code> column shows the total sales amount, if any, as expected. While the <code class="language-plaintext highlighter-rouge">BikeSales</code> column shows the same repeated value for all rows and is incorrect. Looking at the Product Type <code class="language-plaintext highlighter-rouge">BK</code> row we can see this row is correct. This table demonstrates that <code class="language-plaintext highlighter-rouge">CALCULATE</code> overwrites external filters.</p>
+
+<p>For example, the <code class="language-plaintext highlighter-rouge">BB</code> product type row filters <code class="language-plaintext highlighter-rouge">SalesOrderDetail</code> before evaluating <code class="language-plaintext highlighter-rouge">SalesAmount2</code>. This returns the correct total sales for the <code class="language-plaintext highlighter-rouge">BB</code> product type. When evaluating <code class="language-plaintext highlighter-rouge">BikeSales</code> this external product type filter gets overwritten. The measure calculates the sales amount value for the <code class="language-plaintext highlighter-rouge">BK</code> product type (explicit filter) and returns this value for all rows.</p>
+
+<blockquote>
+  <p><code class="language-plaintext highlighter-rouge">CALCULATE()</code> can be modified to keep both external and internal filters</p>
+</blockquote>
+
+<p>Using the <code class="language-plaintext highlighter-rouge">KEEPFILTERS()</code> function within <code class="language-plaintext highlighter-rouge">CALCULATE</code> will force <code class="language-plaintext highlighter-rouge">CALCULTE()</code> to keep both external and internal filters.</p>
+
+<p>To do this we update <code class="language-plaintext highlighter-rouge">BikeSales</code> to: <br />
+<code class="language-plaintext highlighter-rouge">BikeSales = CALCULATE(SalesOrderDetail[SalesAmount2], KEEPFILTERS(Products[ProductType]="BK"))</code></p>
+
+<p>After updating the measure definition the resulting table is shown below.</p>
+
+<p><img src="/assets/img/2022-10-23-power-bi-filter-context/total-sales-product-type-table_2.png" alt="Update Sales by Product Type" class="post__img" /></p>
+
+<p>Keeping the external filters is shown by the empty values for all rows except <code class="language-plaintext highlighter-rouge">BK</code>. For example, we look again at the <code class="language-plaintext highlighter-rouge">BB</code> product type row. When evaluating <code class="language-plaintext highlighter-rouge">BikeSales</code> Power BI keeps the external filter  <code class="language-plaintext highlighter-rouge">Products[ProductType]="BB"</code> and the internal filter <code class="language-plaintext highlighter-rouge">Products[ProductType]="BK"</code>. When applying more than one filter the filter context is the intersection of the two. The intersection of the two applied filters for the <code class="language-plaintext highlighter-rouge">BB</code> row is empty. A product cannot be both of type <code class="language-plaintext highlighter-rouge">BB</code> and <code class="language-plaintext highlighter-rouge">BK</code>.</p>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="more-calculate-examples">More CALCULATE Examples</h2>
+<p>The <code class="language-plaintext highlighter-rouge">CALCULATE()</code> function plays an integral part in the filter context. Below are more examples to show key concepts and show that <code class="language-plaintext highlighter-rouge">CALCULATE()</code> is an important part of the filter context.</p>
+
+<h3 id="creating--a-measure-of-high-quantity-sales">Creating  a measure of High Quantity Sales</h3>
+<p>For the first example, we will be creating a sales measure showing the total sales amount for high-quantity orders. Creating this measure requires first filtering the <code class="language-plaintext highlighter-rouge">SalesOrderDetail</code> table based on the <code class="language-plaintext highlighter-rouge">OrderQty</code>. Then evaluating the <code class="language-plaintext highlighter-rouge">SalesAmount2</code> measure with this filtered table.</p>
+
+<p>We define <code class="language-plaintext highlighter-rouge">HighQtySales</code> as: <br />
+<code class="language-plaintext highlighter-rouge">HighQtySales = CALCULATE([SalesAmount2], SalesOrderDetail[OrderQty]&gt;25)</code></p>
+
+<p><img src="/assets/img/2022-10-23-power-bi-filter-context/highqtysales.gif" alt="High Quantity Sales Measure" /></p>
+
+<p>We then visualize this measure on a card visual and see that 96.30K of our total 109.85M sales come from a high quantity orders. This again demonstrates the filter arguments passed to <code class="language-plaintext highlighter-rouge">CALCULATE()</code> are shorthand syntax. The filter arguments within <code class="language-plaintext highlighter-rouge">CALCULATE()</code> use the <code class="language-plaintext highlighter-rouge">FILTER()</code> function to create the row context required. In this example  <code class="language-plaintext highlighter-rouge">SalesOrderDetail[OrderQty]&gt;25</code> is equivalent to  <code class="language-plaintext highlighter-rouge">FILTER(ALL(SalesOrderDetail),SalesOrderDetail[OrderQty] &gt; 25)</code>.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">FILTER()</code> function is an example of an iterator function and creates the row context. The row context allows for row-by-row evaluation of the <code class="language-plaintext highlighter-rouge">OrderQty</code>. Meaning it evaluates <code class="language-plaintext highlighter-rouge">SalesOrderDetail[OrderQty] &gt; 25</code> for each row of the <code class="language-plaintext highlighter-rouge">SalesOrderDetail</code> table. <code class="language-plaintext highlighter-rouge">FILTER()</code> then returns a virtual tale which is a subset of the original and contains only orders with a quantity greater than 25.</p>
+
+<blockquote>
+  <p>The <code class="language-plaintext highlighter-rouge">CALCULATE()</code> function creates filter context because the filter arguments provide a table. This table is the intersection of all the filter expressions passed to <code class="language-plaintext highlighter-rouge">CALCULATE()</code>.</p>
+</blockquote>
+
+<p><br /></p>
+
+<h3 id="percentage-of-sales-by-product-color">Percentage of Sales by Product Color</h3>
+<p>For the second example we will create a measure to show the percentage of total sales for each product color. To create this we will start with a new <code class="language-plaintext highlighter-rouge">AllSales</code> measure. <code class="language-plaintext highlighter-rouge">AllSales</code> uses the <code class="language-plaintext highlighter-rouge">CALCULATE()</code> function to remove any filters and evaluates <code class="language-plaintext highlighter-rouge">SalesAmount2</code>.</p>
+
+<p>We define <code class="language-plaintext highlighter-rouge">AllSales</code> as: <br />
+<code class="language-plaintext highlighter-rouge">AllSales = CALCULATE([SalesAmount2], ALL(Products[Color]))</code></p>
+
+<p><img src="/assets/img/2022-10-23-power-bi-filter-context/all-sales.gif" alt="All Sales Measure" /></p>
+
+<p><code class="language-plaintext highlighter-rouge">AllSales</code> is then added to the table visual Percentage of Sales by Color table. Once added the <code class="language-plaintext highlighter-rouge">AllSales</code> column shows 190.85M total sales value for each color. This is consistent with the <code class="language-plaintext highlighter-rouge">SalesAmount2</code> card visual. Repeating this value for each color is also expected because of the filter expression <code class="language-plaintext highlighter-rouge">ALL(Products[Color])</code>.</p>
+
+<p><code class="language-plaintext highlighter-rouge">ALL(Products[Color])</code> creates a new filter context and gets evaluated with any other filters from the visuals. In this example <code class="language-plaintext highlighter-rouge">CALCULATE()</code> overwrites any external filters on <code class="language-plaintext highlighter-rouge">Products[Color]</code>. This is why once added to the table visual <code class="language-plaintext highlighter-rouge">AllSales</code> displays the total sales value repeated for each row.</p>
+
+<p>The <code class="language-plaintext highlighter-rouge">ALL()</code> function removes any filter limiting the color column that may exist while evaluating <code class="language-plaintext highlighter-rouge">AllSales</code>. It is best practice to be as specific as possible when defining a measure. Notice, in this example <code class="language-plaintext highlighter-rouge">ALL()</code> applies to <code class="language-plaintext highlighter-rouge">Product[Color]</code>, rather than the entire <code class="language-plaintext highlighter-rouge">Product</code> table. If other filters exist on other columns from the visual these filters will still impact the evaluation. For example, selecting a product type from the slicer will adjust all values.</p>
+
+<p><img src="/assets/img/2022-10-23-power-bi-filter-context/total-sales-product-type.gif" alt="Total Sales by Product Type" /></p>
+
+<p>Following the selection, the <code class="language-plaintext highlighter-rouge">SalesAmount2</code> represents the total <code class="language-plaintext highlighter-rouge">BK</code> sales for each color. While the <code class="language-plaintext highlighter-rouge">AllSales</code> measure now represents the total sales for all <code class="language-plaintext highlighter-rouge">BK</code> product types. This occurs because when there are multiple filters the result is the intersection of all the filters.</p>
+
+<p>In this case, <code class="language-plaintext highlighter-rouge">All(Product[Color])</code> removes the filter on the color column. The slicer visual creates an external filter context of only <code class="language-plaintext highlighter-rouge">BK</code> product types. During the evaluation, the intersection of these two creates the evaluation context.</p>
+
+<p>We can also remove the external filter context created by the product type slicer. To do this, we update the <code class="language-plaintext highlighter-rouge">AllSales</code> measure to include <code class="language-plaintext highlighter-rouge">Products[ProductType]</code> as an additional filter argument.</p>
+
+<p><img src="/assets/img/2022-10-23-power-bi-filter-context/total-sales-product-type-2.gif" alt="Updated Total Sales by Product Type" /></p>
+
+<p>We update the filter expression of the <code class="language-plaintext highlighter-rouge">CALCULATE()</code> function to <code class="language-plaintext highlighter-rouge">AllSales = CALCULATE([SalesAmount2], ALL(Products[Color], Products[ProductType]))</code>. After updating the measure the <code class="language-plaintext highlighter-rouge">AllSales</code> column of the table visual updates to the totals sales value. The column now displays the expected 109.85M value and is no longer impacted by the filter context created by the slicer visual.</p>
+
+<p>Another option to remove the filter context within <code class="language-plaintext highlighter-rouge">CALCULATE()</code> is to use the <code class="language-plaintext highlighter-rouge">REMOVEFILTER()</code> function.</p>
+
+<p><code class="language-plaintext highlighter-rouge">AllSales = CALCULATE(SalesOrderDetail[SalesAmount2], REMOVEFILTERS(Products[Color], Products[ProductType]))</code></p>
+
+<p>We created <code class="language-plaintext highlighter-rouge">AllSales</code> as an initial step of the broader goal to calculate the percentage of total sales. To calculate the percentage we will update the <code class="language-plaintext highlighter-rouge">AllSales</code> expression. We can do this by saving the <code class="language-plaintext highlighter-rouge">AllSales</code> expression as a variable within the measure. We will also create another variable to store the <code class="language-plaintext highlighter-rouge">SalesAmount2</code> value, which will be the total sales for each product color. Lastly, we will update the measure name to <code class="language-plaintext highlighter-rouge">PercentageSales</code> which will <code class="language-plaintext highlighter-rouge">RETURN</code> the division of the two sales variables.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PercentageSales = 
+VAR Sales = SalesOrderDetail[SalesAmount2]
+VAR AllSales = CALCULATE(SalesOrderDetail[SalesAmount2], REMOVEFILTERS(Products[Color], Products[ProductType]))
+
+RETURN
+DIVIDE(Sales, AllSales)
+</code></pre></div></div>
+
+<p><img src="/assets/img/2022-10-23-power-bi-filter-context/percentage-sales.gif" alt="Percentage of Total Sales by Color" /></p>
+
+<blockquote>
+  <p>It is best practice to use the <code class="language-plaintext highlighter-rouge">DIVIDE</code> function because it provides handling of divide by zero errors and will return a blank or a specified value.</p>
+</blockquote>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<p>If you enjoy what you read and find it helpful please check back, and check back often. Follow me on <a class="post__link" href="https://medium.com/@emguyant"><i class="fab fa-medium"></i> Medium</a> while giving a clap to the article! Also don’t forget to subscribe to the <a class="post__link" href="https://medium.com/inquisitive-nature"><b>INQUISITIVE NATURE</b></a> publication.</p>
+
+    </div><a class="u-url" href="/blog/2022-10-24-power-bi-filter-context/" hidden></a>
+  </article>
+</div>
+      </div>
+    </main><footer class="footer">
+    <!-- replace with your own email address 
+    <a href="mailto:info@ethanguyant.com" class="footer__link">info@ethanguyant.com</a>-->
+    <ul class="social-list">
+        <li class="social-list__item">
+            <a class="social-list__link" href="mailto:emguyant@gmail.com">
+                <i class="fas fa-envelope"></i>
+            </a>
+        </li>
+        <li class="social-list__item">
+            <a class="social-list__link" href="https://www.linkedin.com/in/ethan-guyant/">
+                <i class="fab fa-linkedin"></i>
+            </a>
+        </li>
+        <li class="social-list__item">
+            <a class="social-list__link" href="https://github.com/EMGuyant">
+                <i class="fab fa-github"></i>
+            </a>
+        </li>
+        <li class="social-list__item">
+            <a class="social-list__link" href="https://medium.com/@emguyant">
+                <i class="fab fa-medium"></i>
+            </a>
+        </li>
+        <li class="social-list__item">
+            <a class="social-list__link" href="https://medium.com/inquisitive-nature">
+                <i class="fa-solid fa-book"></i>
+            </a>
+        </li>
+    </ul>
+</footer><script src="https://kit.fontawesome.com/c9965d23bb.js" crossorigin="anonymous"></script>
+<script src="/assets/js/script.js"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+</body>
+
+</html>
