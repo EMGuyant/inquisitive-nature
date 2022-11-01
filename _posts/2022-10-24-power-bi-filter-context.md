@@ -56,9 +56,7 @@ See [Part 1 - Row Context](https://ethanguyant.com/blog/2022-09-28-power-bi-row-
 
 Filter context propagates through the data model relationships.  When defining each model relationship the cross-filter direction is set. This setting determines the direction(s) the filters will propagate. The available cross-filter options depend on the cardinality type of the relationship. See available documentation for more information on [Cross-filter Direction](https://learn.microsoft.com/en-us/power-bi/transform-model/desktop-relationships-understand#cross-filter-direction){: .post__link} and [Enabling Bidirectional Cross-filtering](https://learn.microsoft.com/en-us/power-bi/transform-model/desktop-bidirectional-filtering){: .post__link}.
 
-Measures only have filter context. Meaning, unlike a calculated column, they have no implicit row context. When a measure refers to a table column, it must be from within an explicit aggregation function (e.g. `SUM`, `AVERAGE`, etc.). When using a measure within a calculated column expression, the row context becomes the initial filter context. This initial filter context (containing a single row) is then used for the measure calculation.
-
-It is important to be familiar with certain DAX functions which can modify the filter context. Some example used in the post include `CALCULATE()`, `ALL()`, and `FILTER()`. 
+It is important to be familiar with certain DAX functions which can modify the filter context. Some examples used in the post include `CALCULATE()`, `ALL()`, and `FILTER()`. 
 
 <br>
 
@@ -67,7 +65,7 @@ It is important to be familiar with certain DAX functions which can modify the f
 <br>
 
 ## The CALCULATE Function
-The `CALCULATE()` function can add filters to a measure expression, ignore filters applied to a table, or overwrite filters applied from within the report visuals.
+The `CALCULATE()` function can add filters to a measure expression, ignore filters applied to a table, or overwrite filters applied from within the report visuals. The CALCULATE() function is a powerful and important tool when updating or modifying the filter context.
 
 The syntax of `CALCULATE()` is:
 `CALCULATE(<expression>, <filter1>, <filter2>, ...)`
@@ -89,7 +87,7 @@ The table below is a visualization of the total sales amount for each product co
 
 The table visual creates filter context, as seen by the total sales amount for each color or row. Evaluating `SalesAmount2` occurs by first filtering the `SalesOrderDetail` table by the color, and then evaluating the measure with the filtered table. This is then repeated for each product color in the `SalesOrderDetail` table. 
 
-The above example only contained the single product color filter. However, as mentioned previously the filter context can contain multiple filters. The example table below adds the `ProductType` to the table. The addition of this field breaks down the total sales first by color and then by product type. For each row the underlying `SalesOrderDetail` table is first filtered by color and product type before evaluating the `SalesAmount2` measure. In these examples it is the table visual that is creating the filter context.
+The above example only contained the single product color filter. However, as mentioned previously the filter context can contain multiple filters. The example table below adds the `ProductType` to the table. The addition of this field breaks down the total sales first by color and then by product type. For each row, the underlying `SalesOrderDetail` table is first filtered by color and product type before evaluating the `SalesAmount2` measure. In these examples, it is the table visual that is creating the filter context.
 
 ![Total Sales by Color and Product Type](/assets/img/2022-10-23-power-bi-filter-context/total-sales-product-type-table.png){: .post__img}
 
@@ -104,20 +102,20 @@ Another way to create filter context is through the use of slicer visuals. For t
 
 ![Product Type Slicer](/assets/img/2022-10-23-power-bi-filter-context/filter-context-slicer.gif)
 
-When there is no value selected in the slicer the filter context from the slicer visual is `null`. Meaning at first the card visual shows the `SalesAmount2` value evaluated for all data. Additionally, when no value is selected in the slicer the only filter context on the table visual is the `ProductColor`. 
+When no value is selected in the slicer the filter context from the slicer visual is `null`. Meaning at first the card visual shows the `SalesAmount2` value evaluated for all data. Additionally, when no value is selected in the slicer the only filter context is `ProductColor` from the table visual.
 
-Following the selection of `BK` in the product type slicer the values in both the table and the card visual are updated. The card visual now has one filter context which is the product type `BK`. This is evaluated by creating a filtered table and the `SalesAmount2` measure is evaluated for this filtered table.
+Following the selection of `BK` in the product type slicer, the values in both the table and the card visual are updated. The card visual now has one filter context which is the product type `BK`. This is evaluated by creating a filtered table and `SalesAmount2` is evaluated for this filtered table.
 
 The `SalesAmount2` measure is defined by: <br>
 `SalesAmount2 = SUMX(SalesOrderDetail, SalesOrderDetail[OrderQty] * SalesOrderDetail[UnitPrice] * (1 - SalesOrderDetail[UnitPriceDiscount]))`
 
-After selecting an option from the slicer the measure is re-evaluated. The re-evaluation occurs to account for the newly created filter context. The filter context creates a subset of the `SalesOrderDetail` table that matches the slicer selection. Then the row context evaluates the expression row-by-row for the filtered table and is summed. The updated value is then displayed on the card visual.
+After selecting an option from the slicer the measure is re-evaluated. The re-evaluation occurs to account for the newly created filter context. The filter context creates a subset of the `SalesOrderDetail` table that matches the slicer selection. Then the row context evaluates the expression row-by-row for the filtered table and is summed. `SUMX()` is an example of an iterator function, see [Part 2 - Iterators](https://ethanguyant.com/blog/2022-10-11-power-bi-iterators/){: .post__link} for details. The updated value is then displayed on the card visual.
 
 The table visual works in a similar fashion but, there are two filters applied. The table visual has an initial filter context of the product color. After the selection of `BK`, the table gets updated to visualize the intersection of the product color filter and the product type filter.
 
-Following a selection in the slicer visual if a row in the table visual is selected this will also apply a filter. The filter context is the intersection of the table selection filters and the slicer. The updated filter context gets applied to all other visuals (e.g. the card visual). 
+Following a selection in the slicer visual, if a row in the table visual is selected this will also apply a filter. The filter context is the intersection of the table selection filters and the slicer. The updated filter context gets applied to all other visuals (e.g. the card visual). 
 
->The filter context can contain one or many filters. The filter can come from one or many visuals and gets applied before evaluating the expression. Meaning the filter context get applied before using the row context to evaluate an expression row-by-row.
+>The filter context can contain one or many filters. The filter can come from one or many visuals and gets applied before evaluating the expression. Meaning the filter context gets applied before using the row context to evaluate an expression row-by-row.
 
 <br>
 
@@ -126,7 +124,7 @@ Following a selection in the slicer visual if a row in the table visual is selec
 <br>
 
 ## Create Filter Context with CALCULATE
-Previous examples created the filter context using implicit filters. Generally, the user creates these filters through the user interface. Another way to create filter context is by using explicit filters. Explicit filter get created through the use of functions such as `CALCULATE()`. For this example, rather than having to select `BK` in the slicer to view total bike sales, we will you `CALCULATE()`. We will create a new measure that will force the filter context. We can do this because `CALCULATE()` allows us to set the filter context for an expression. 
+Previous examples created the filter context using implicit filters. Generally, the user creates this type of filter through the user interface. Another way to create filter context is by using explicit filters. Explicit filters get created through the use of functions such as `CALCULATE()`. For this example, rather than having to select `BK` in the slicer to view total bike sales, we will use `CALCULATE()`. We will create a new measure that will force the filter context. We can do this because `CALCULATE()` allows us to set the filter context for an expression. 
 
 We define the `BikeSales` measure as: <br>
 `BikeSales = CALCULATE(SalesOrderDetail[SalesAmount2], Products[ProductType]="BK")`
@@ -137,7 +135,7 @@ We define the `BikeSales` measure as: <br>
 
 `BikeSales` is then added to the table visual alongside `SalesAmount2`. When the `BK` product type is the slicer selection the two table columns are equal. Both measures have the same filter context created by product color and product type. Removing the implicit product type filter by unselecting a product type updates the filter context. The `SalesAmount2` expression is re-evaluated with the updated filter context. Since the filter context created by the slicer is now `null` the `SalesAmount2` value calculates using all the data. The `BikeSales` values do not change. This is because of the explicit filter used by the `CALCULATE()` function when we defined the measure.  The `BikeSales` measure still has the filter  `Products[ProductType]="BK"` applied regardless of the product type slicer.
 
-The `CALCULATE()` function only creates filter context and does not create row context. So an important question to ask is why or how does the `BikeSales` measure work. The `CALCULATE()` function references a specific column value,  `Products[ProductType]="BK"`. Yet, the `CALCULATE()` function does not have row context. So how does Power BI know which row it is working with? The answer is that the `CALCULATE()` function applies the `FILTER()` function. And the `FILTER` function creates the row context required to evaluate the measure.
+The `CALCULATE()` function only creates filter context and does not create row context. So an important question to ask is why or how the `BikeSales` measure works. The `CALCULATE()` function references a specific column value,  `Products[ProductType]="BK"`. Yet, the `CALCULATE()` function does not have row context. So how does Power BI know which row it is working with? The answer is that the `CALCULATE()` function applies the `FILTER()` function. And the `FILTER` function creates the row context required to evaluate the measure.
 
 See [Part 2 - Iterators](https://ethanguyant.com/blog/2022-10-11-power-bi-iterators/){: .post__link} for details on iterator functions.
 
@@ -152,13 +150,13 @@ To explore this we create a table with the Product Type, `SalesAmount2`, and `Sa
 
 ![Totals Sales by Product Type](/assets/img/2022-10-23-power-bi-filter-context/total-sales-by-product-table.png){: .post__img}
 
-The `SalesAmount2` column shows the total sales amount, if any, as expected. While the `BikeSales` column shows the same repeated value for all rows and is incorrect. Looking at the Product Type `BK` row we can see this row is correct. This table demonstrates that `CALCULATE` overwrites external filters.
+The `SalesAmount2` column shows the total sales amount, if any, as expected. While the `BikeSales` column shows the same repeated value for all rows and is incorrect. Looking at the Product Type `BK` row we can see this row is correct. This table demonstrates that `CALCULATE()` overwrites external filters.
 
 For example, the `BB` product type row filters `SalesOrderDetail` before evaluating `SalesAmount2`. This returns the correct total sales for the `BB` product type. When evaluating `BikeSales` this external product type filter gets overwritten. The measure calculates the sales amount value for the `BK` product type (explicit filter) and returns this value for all rows.
 
 >`CALCULATE()` can be modified to keep both external and internal filters
 
-Using the `KEEPFILTERS()` function within `CALCULATE` will force `CALCULTE()` to keep both external and internal filters. 
+Using the `KEEPFILTERS()` function within `CALCULATE()` will force `CALCULTE()` to keep both external and internal filters. 
 
 To do this we update `BikeSales` to: <br>
 `BikeSales = CALCULATE(SalesOrderDetail[SalesAmount2], KEEPFILTERS(Products[ProductType]="BK"))`
@@ -186,7 +184,7 @@ We define `HighQtySales` as:
 
 ![High Quantity Sales Measure](/assets/img/2022-10-23-power-bi-filter-context/highqtysales.gif)
 
-We then visualize this measure on a card visual and see that 96.30K of our total 109.85M sales come from a high quantity orders. This again demonstrates the filter arguments passed to `CALCULATE()` are shorthand syntax. The filter arguments within `CALCULATE()` use the `FILTER()` function to create the row context required. In this example  `SalesOrderDetail[OrderQty]>25` is equivalent to  `FILTER(ALL(SalesOrderDetail),SalesOrderDetail[OrderQty] > 25)`.
+We then visualize this measure on a card visual and see that 96.30K of our total 109.85M sales come from a high-quantity order. This again demonstrates the filter arguments passed to `CALCULATE()` are shorthand syntax. The filter arguments within `CALCULATE()` use the `FILTER()` function to create the row context required. In this example  `SalesOrderDetail[OrderQty]>25` is equivalent to  `FILTER(ALL(SalesOrderDetail),SalesOrderDetail[OrderQty] > 25)`.
 
 The `FILTER()` function is an example of an iterator function and creates the row context. The row context allows for row-by-row evaluation of the `OrderQty`. Meaning it evaluates `SalesOrderDetail[OrderQty] > 25` for each row of the `SalesOrderDetail` table. `FILTER()` then returns a virtual tale which is a subset of the original and contains only orders with a quantity greater than 25.
 
@@ -218,7 +216,7 @@ We can also remove the external filter context created by the product type slice
 
 ![Updated Total Sales by Product Type](/assets/img/2022-10-23-power-bi-filter-context/total-sales-product-type-2.gif)
 
-We update the filter expression of the `CALCULATE()` function to `AllSales = CALCULATE([SalesAmount2], ALL(Products[Color], Products[ProductType]))`. After updating the measure the `AllSales` column of the table visual updates to the totals sales value. The column now displays the expected 109.85M value and is no longer impacted by the filter context created by the slicer visual.
+We update the filter expression of the `CALCULATE()` function to `AllSales = CALCULATE([SalesAmount2], ALL(Products[Color], Products[ProductType]))`. After updating the measure the `AllSales` column of the table visual updates to the total sales value. The column now displays the expected 109.85M value and is no longer impacted by the filter context created by the slicer visual.
 
 Another option to remove the filter context within `CALCULATE()` is to use the `REMOVEFILTER()` function.
  
