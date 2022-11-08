@@ -1,4 +1,185 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://ethanguyant.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://ethanguyant.com/" rel="alternate" type="text/html" /><updated>2022-11-01T22:17:48+00:00</updated><id>http://ethanguyant.com/feed.xml</id><title type="html">Ethan Guyant’s Blog</title><subtitle>A data solution centric blog focusing on the use and application of Microsoft Power Apps, Python Programming, and Data Science.</subtitle><entry><title type="html">Power BI Fundaments: Part 3 - Filter Functions</title><link href="http://ethanguyant.com/blog/2022-10-24-power-bi-filter-context/" rel="alternate" type="text/html" title="Power BI Fundaments: Part 3 - Filter Functions" /><published>2022-10-24T00:00:00+00:00</published><updated>2022-10-24T00:00:00+00:00</updated><id>http://ethanguyant.com/blog/power-bi-filter-context</id><content type="html" xml:base="http://ethanguyant.com/blog/2022-10-24-power-bi-filter-context/">&lt;h2 id=&quot;contents&quot;&gt;Contents&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://ethanguyant.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://ethanguyant.com/" rel="alternate" type="text/html" /><updated>2022-11-08T11:05:28+00:00</updated><id>http://ethanguyant.com/feed.xml</id><title type="html">Ethan Guyant’s Blog</title><subtitle>A data solution centric blog focusing on the use and application of Microsoft Power Apps, Python Programming, and Data Science.</subtitle><entry><title type="html">Power BI Fundaments: Part 4 - Context Transitions</title><link href="http://ethanguyant.com/blog/2022-11-08-power-bi-context-transition/" rel="alternate" type="text/html" title="Power BI Fundaments: Part 4 - Context Transitions" /><published>2022-11-08T00:00:00+00:00</published><updated>2022-11-08T00:00:00+00:00</updated><id>http://ethanguyant.com/blog/power-bi-context-transition</id><content type="html" xml:base="http://ethanguyant.com/blog/2022-11-08-power-bi-context-transition/">&lt;h2 id=&quot;contents&quot;&gt;Contents&lt;/h2&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;#review&quot;&gt;Review&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#understanding-context-transition&quot;&gt;Understanding Context Transition&lt;/a&gt;
+    &lt;ul&gt;
+      &lt;li&gt;&lt;a href=&quot;#option-1-the-calculate-function&quot;&gt;Context Transition with CALCULATE&lt;/a&gt;&lt;/li&gt;
+      &lt;li&gt;&lt;a href=&quot;#option-2-using-measures&quot;&gt;Context Transition with Measures&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#maximum-daily-sales-by-month-example&quot;&gt;Maximum Daily Sales by Month Example&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;#context-transition-pit-falls&quot;&gt;Context Transition Pit Falls&lt;/a&gt;
+&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;review&quot;&gt;Review&lt;/h2&gt;
+&lt;p&gt;One of the early stages of creating any Power BI report is the development of the data model. The data model will consist of data tables, relationships, and calculations. There are two types of calculations: calculated columns, and measures.&lt;/p&gt;
+
+&lt;p&gt;Check out &lt;a href=&quot;https://ethanguyant.com/blog/2022-09-28-power-bi-row-context/&quot; class=&quot;post__link&quot;&gt;Power BI Fundamentals: Part 1 - Row Context&lt;/a&gt; for key differences between calculated columns and measures.&lt;/p&gt;
+
+&lt;p&gt;One of the most powerful elements of Power BI is that all measure calculations are done in context. The evaluation context limits the values in the current scope when evaluating an expression. The filter context and/or the row context make up the evaluation context.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://ethanguyant.com/blog/2022-09-28-power-bi-row-context/&quot; class=&quot;post__link&quot;&gt;Power BI Fundamentals: Part 1 - Row Context&lt;/a&gt; of this series explores the row context in depth. While &lt;a href=&quot;https://ethanguyant.com/blog/2022-10-11-power-bi-iterators/&quot; class=&quot;post__link&quot;&gt;Power BI Fundamentals: Part 2 - Iterator Functions&lt;/a&gt; explores iterator functions, which are functions that create row context. And finally, &lt;a href=&quot;https://ethanguyant.com/blog/2022-09-28-power-bi-row-context/&quot; class=&quot;post__link&quot;&gt;Power BI Fundamentals: Part 3 - Filer Context&lt;/a&gt; explores the concept of the filter context.&lt;/p&gt;
+
+&lt;p&gt;When evaluating expressions, the row context can be transitioned into a filter context within Power BI. This transition can help create more complex measures. Row context, filter context, and context transition can be confusing when starting with DAX so visit references and documentation often.&lt;/p&gt;
+
+&lt;p&gt;This post is the fourth of a Power BI Fundamental series with a focus on the context transition. The example file used in this post is located here -&lt;a class=&quot;social-list__link&quot; href=&quot;https://github.com/EMGuyant/power-bi-key-fundamentals&quot;&gt;&lt;i class=&quot;fab fa-github&quot;&gt;&lt;/i&gt; GitHub&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;understanding-context-transition&quot;&gt;Understanding Context Transition&lt;/h2&gt;
+&lt;p&gt;The row context by itself does not filter data. Row context iterates through a table row-by-row. Context transition is when the row context transitions into the filter context. Context transition occurs with the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULATE()&lt;/code&gt; function and when the expression of an iterator function is a DAX measure.&lt;/p&gt;
+
+&lt;p&gt;The concept of context transition can be a bit abstract so it can be easiest to learn through examples. To explore we will first create a new calculated column in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Products&lt;/code&gt; table. The new &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProductsSales&lt;/code&gt; calculates the total sales for each product and we define it as:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProductSales = SUM(SalesOrderDetail[SalesAmount])&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2022-11-10-power-bi-context-transistion/product-sales-no-transistion.gif&quot; alt=&quot;Total Product Sales with no Context Transition Examples&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;After evaluating &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProductSales&lt;/code&gt; we see it repeats the same $109.85M sales value for each row. This value is the total sales amount for the entire dataset. This is not what we want &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProductSales&lt;/code&gt; to calculate, so what happened?&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProductSales&lt;/code&gt; calculates the total sales of the entire data rather than the &lt;em&gt;filtered&lt;/em&gt; per product value because row context is not a filter. For example, the row context includes the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProductID&lt;/code&gt;  value but this identifier is not a filter on the data during evaluation. And because the row context is not a filter DAX does not distinguish between different rows (i.e products) when evaluating &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProductSales&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2022-11-10-power-bi-context-transistion/product-sales-no-transistion-table.png&quot; alt=&quot;Product Sales no Context Transition Table&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;For example, looking at the table above while evaluating the measure DAX does not distinguish the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Adjustable Race&lt;/code&gt; row from the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LL Crankarm&lt;/code&gt; row. Since all rows are viewed as the same the to total sales value is repeated for each row.&lt;/p&gt;
+
+&lt;p&gt;You may have guessed it but, the example above calculates the wrong value because it does not contain a context transition. The row context does not shift to the filter context causing the error in the calculated value. This simple example highlights why context transition is important and when it’s needed. To correct this we must force the context transition. This will convert the row values into a filter and calculate the sales for each product. There are various ways to do this, and below are two options.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;option-1-the-calculate-function&quot;&gt;Option #1: The CALCULATE() Function&lt;/h3&gt;
+&lt;p&gt;We can force context transition by wrapping &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProductSales&lt;/code&gt; with the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULATE()&lt;/code&gt; function. To demonstrate we create a new &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProductSales_calculate&lt;/code&gt; column. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProductSales_calculate&lt;/code&gt; is defined as:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProductSales_calculate = CALCULATE(SUM(SalesOrderDetail[SalesAmount]))&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2022-11-10-power-bi-context-transistion/product-sales-calculate.gif&quot; alt=&quot;Product Sales with the CALCULATE function&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This new calculated column shows the correct sales value for each product. We view the product type &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BK&lt;/code&gt; and can see now each row in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProductSales_calculate&lt;/code&gt; column is different for each row.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2022-11-10-power-bi-context-transistion/product-sales-calculate.png&quot; alt=&quot;Product Sales with theC CALCULATE function&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;option-2-using-measures&quot;&gt;Option #2: Using Measures&lt;/h3&gt;
+&lt;p&gt;Within the data model, we have already created a measure &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesAmount2&lt;/code&gt;. See &lt;a href=&quot;https://ethanguyant.com/blog/2022-09-28-power-bi-row-context/&quot; class=&quot;post__link&quot;&gt;Power BI Fundamentals: Part 1 - Row Context&lt;/a&gt; and &lt;a href=&quot;https://ethanguyant.com/blog/2022-10-11-power-bi-iterators/&quot; class=&quot;post__link&quot;&gt;Power BI Fundamentals: Part 2 - Iterator Functions&lt;/a&gt; for details on this measure. We defined &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesAmount2&lt;/code&gt; as:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesAmount2 = SUMX(SalesOrderDetail, SalesOrderDetail[OrderQty] * SalesOrderDetail[UnitPrice] * (1 - SalesOrderDetail[UnitPriceDiscount]))&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;We can see by the expression &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesAmount2&lt;/code&gt; uses the iterator function &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SUMX()&lt;/code&gt;.  This measure calculates the sales amount row-by-row in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesOrderDetail&lt;/code&gt; table.  As mentioned before context transition occurs within iterator functions.  So rather than using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULATE()&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SUM()&lt;/code&gt; we create another calculated column that references this measure.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProductSales_measure = SalesAmount2&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2022-11-10-power-bi-context-transistion/product-sales-measure.png&quot; alt=&quot;Product Sales Measure&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We add the new column to the table visual and can see that it has the same value as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProductSales_calculate&lt;/code&gt;. This shows that a measure defined with an iterator also forces context transition.&lt;/p&gt;
+
+&lt;p&gt;An important note about this new column is that the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProductsSales_measure&lt;/code&gt; works as expected when referencing the measure. However, it will not work if we define this column as the same expression that defines &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesAmount2&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;We can see below if we update &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProductSales_measure&lt;/code&gt; to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SUMX(SalesOrderDetail, SalesOrderDetail[OrderQty] * SalesOrderDetail[UnitPrice] * (1 - SalesOrderDetail[UnitPriceDiscount]))&lt;/code&gt;, the same expression used when defining &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesAmount2&lt;/code&gt;, will result in wrong values.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2022-11-10-power-bi-context-transistion/product-sales-expression.gif&quot; alt=&quot;Product Sales Expression&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;After updating &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProductSales_measure&lt;/code&gt; we can see it returns the total sales values and not the sales per product. With this updated definition DAX is no longer able to apply the context transition. We can correct this by wrapping the expression with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULATE()&lt;/code&gt;.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Applying context transition always requires &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULATE()&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2022-11-10-power-bi-context-transistion/product-sales-expression_update.gif&quot; alt=&quot;Product Sales Expression Update&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Using the measure &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesAmount2&lt;/code&gt; worked previously because DAX implicitly wraps a measure with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULATE()&lt;/code&gt;. This is why context transition was applied when referencing the measure directly but not when referencing the same expression that defines the measure.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;maximum-daily-sales-by-month-example&quot;&gt;Maximum Daily Sales by Month Example&lt;/h2&gt;
+&lt;p&gt;A question of interest is what is the maximum daily sales amount for each month in the dataset. In other words we would like to determine for each month what day of the month had the highest sales and what was the total daily sales value. We start by creating a new &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MaxDailySales&lt;/code&gt; measure and add it to the Max Daily Sales by Month and Year table visual.&lt;/p&gt;
+
+&lt;p&gt;We define &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MaxDailySales&lt;/code&gt; as:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MaxDailySales = MAXX(SalesOrderDetail, [SalesAmount2])&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2022-11-10-power-bi-context-transistion/max-daily-sales.gif&quot; alt=&quot;Max Daily Sales&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;After adding the measure to the table we can see the sales amount value for each month. For example, the table currently shows that the maximum daily sales for November 2016 is $21,202.79. This value may appear reasonable but when examined closely we can determine it is incorrect. Currently, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MaxDailySales&lt;/code&gt; is returning the maximum sale for each month and is not accounting for multiple sales within each day. We can see this by creating a new visual with the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Date&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MaxSales&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesOrderDetailID&lt;/code&gt; fields.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2022-11-10-power-bi-context-transistion/max-daily-sales.png&quot; alt=&quot;Max Daily Sales and Individual Sales&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This table shows that the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MaxDailySales&lt;/code&gt; for November 2016 is the same value as a single sale that occurred on November 17th. Yet, there are multiple sales on this day and every other day. The desired outcome is to calculate the total sales for each day and then determined the highest daily total value for each month.&lt;/p&gt;
+
+&lt;p&gt;This error occurs because context transition is not being applied correctly. It is important to note that context transition is occurring while evaluating &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MaxDailySales&lt;/code&gt; because it is a measure. However, the context transition is not being applied on the correct aggregation level. The context transition is occurring on the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesOrderDetail&lt;/code&gt; level, meaning for each row of this table. To correct this measure we will have to force the context transition on the correct, daily, aggregation level. We update the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MaxDailySales&lt;/code&gt; expression using the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;VALUES()&lt;/code&gt; function.&lt;/p&gt;
+
+&lt;p&gt;We define &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MaxDailySales_Corrected&lt;/code&gt; as:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MaxDailySales_Corrected = MAXX(VALUES(DateTable[Date]), [SalesAmount2])&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2022-11-10-power-bi-context-transistion/max-daily-sales-corrected.gif&quot; alt=&quot;Max Daily Sales Corrected&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;We change the table passed to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MAXX()&lt;/code&gt; from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesOrderDetail&lt;/code&gt; to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;VALUES(DateTable[Date])&lt;/code&gt;. Using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;VALUES(DateTable[Date])&lt;/code&gt; aggregates all the dates that are the same day shifting the context transition to the correct aggregation level. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;VALUES()&lt;/code&gt; function in the expression provides a unique list of dates. For each day in the unique list, the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesAmount2&lt;/code&gt; measure gets evaluated and returns the maximum daily total value. We then add the new measure to the table visual and now it shows the correct maximum daily sales for each month.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2022-11-10-power-bi-context-transistion/max-daily-sales-corrected.png&quot; alt=&quot;Max Daily Sales Table&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The above example shows context transition at two different aggregation levels. They also highlight that the context transition can be shifted to return the specific value that is required. As well as showing why it is important to take into consideration the aggregation level when developing measures like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MaxDailySales&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;context-transition-pit-falls&quot;&gt;Context Transition Pit Falls&lt;/h2&gt;
+
+&lt;p&gt;Context transition is when row values transition into or replace the filter context. When context transition occurs it can sometimes lead to unexpected and incorrect values. An important part of context transition to understand is that it transitions the entire row into the filter. So what occurs when a row is not unique? Let’s explore this with the following example.&lt;/p&gt;
+
+&lt;p&gt;We add a new &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SimplifiedSales&lt;/code&gt; table to the data model.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2022-11-10-power-bi-context-transistion/simplified-sales-data.png&quot; alt=&quot;Simplified Sales Data Table&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Then we add a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TotalSales&lt;/code&gt; measure. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TotalSales&lt;/code&gt; is defined as:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TotalSales = SUMX(SimplifiedSales, SimplifiedSales[OrderQty] * SimplifiedSales[UnitPrice] * (1 - SimplifiedSales[UnitPriceDiscount]))&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2022-11-10-power-bi-context-transistion/simplified-sales-summary.png&quot; alt=&quot;Simplified Sales Total Sales Summary&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Viewing the two tables above, we can confirm that the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TotalSales&lt;/code&gt; values are correctly aggregating the sales data. Now we add another measure to the table which references the measure &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TotalSales&lt;/code&gt;. Referencing this measure will force context transition due to the implicit &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULATE()&lt;/code&gt; added to measures. See above for details.&lt;/p&gt;
+
+&lt;p&gt;We define &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TotalSales_ConextT&lt;/code&gt; as:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TotalSales_ContextT = SUMX(SimplifiedSales, [TotalSales])&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2022-11-10-power-bi-context-transistion/simplified-sales-context-transition.png&quot; alt=&quot;Simplified Sales Context Transition Measure&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In the new column we can see that the values for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Road-350-W Yellow, 48&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Touring-3000 Blue, 44&lt;/code&gt; have not changed and are correct. However, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Mountain-500 Silver, 52&lt;/code&gt; did update, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TotalSales_ContextT&lt;/code&gt; column shows an incorrect value. So what happened?&lt;/p&gt;
+
+&lt;p&gt;The issue is the context transition. Viewing the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SimplifiedSales&lt;/code&gt; table we can see that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Mountain-500 Silver, 52&lt;/code&gt; appears twice in the table. With both records having identical values for each field. Remember, context transition utilizes the entire row. Meaning the table gets filtered on &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Mountain-500 Silver, 52&lt;/code&gt;/&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;1&lt;/code&gt;/&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$450.00&lt;/code&gt;. Because of this, the result gets summed up in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TotalSales&lt;/code&gt; measure returning a value of $900.00. This value is then evaluated twice, once for each identical row.&lt;/p&gt;
+
+&lt;p&gt;This behavior is not seen for the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Road-350-W, 48&lt;/code&gt; records because they are unique. One row has a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;UnitPriceDiscount&lt;/code&gt; of  0.0% and the other has a value of 5.0%. This difference makes each row unique when context transition is applied.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;When context transition occurs it is important to have some sort of unique identifier creating unique rows&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Knowing what context transition is and when it occurs is important to identifying when this issue may occur. When context transition is applied it is important to check the table and verify calculations to ensure it is applied correctly.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;If you enjoy what you read and find it helpful please check back, and check back often. Follow me on &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/@emguyant&quot;&gt;&lt;i class=&quot;fab fa-medium&quot;&gt;&lt;/i&gt; Medium&lt;/a&gt; while giving a clap to the article! Also don’t forget to subscribe to the &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/inquisitive-nature&quot;&gt;&lt;b&gt;INQUISITIVE NATURE&lt;/b&gt;&lt;/a&gt; publication.s&lt;/p&gt;</content><author><name>Ethan Guyant</name></author><category term="Deep Dive" /><category term="Microsoft 365" /><category term="Power BI" /><category term="Power Platform" /><category term="Power BI Fundamentals Series" /><summary type="html">Contents Review Understanding Context Transition Context Transition with CALCULATE Context Transition with Measures Maximum Daily Sales by Month Example Context Transition Pit Falls</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://ethanguyant.com/assets/img/post_img/powerbi-context-transition.jpg" /><media:content medium="image" url="http://ethanguyant.com/assets/img/post_img/powerbi-context-transition.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Power BI Fundaments: Part 3 - Filter Functions</title><link href="http://ethanguyant.com/blog/2022-10-24-power-bi-filter-context/" rel="alternate" type="text/html" title="Power BI Fundaments: Part 3 - Filter Functions" /><published>2022-10-24T00:00:00+00:00</published><updated>2022-10-24T00:00:00+00:00</updated><id>http://ethanguyant.com/blog/power-bi-filter-context</id><content type="html" xml:base="http://ethanguyant.com/blog/2022-10-24-power-bi-filter-context/">&lt;h2 id=&quot;contents&quot;&gt;Contents&lt;/h2&gt;
 &lt;ul&gt;
   &lt;li&gt;&lt;a href=&quot;#review&quot;&gt;Review&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;#introduction-to-filter-context&quot;&gt;Introduction to Filter Context&lt;/a&gt;&lt;/li&gt;
@@ -15469,1264 +15650,4 @@ Mean-variance portfolio optimization was conducted utilizing the historic annual
  
 
 
-&lt;/html&gt;</content><author><name>Ethan Guyant</name></author><category term="Project" /><category term="Python" /><category term="Pandas" /><category term="Data Preparation" /><category term="Data Analysis" /><category term="Data Visualization" /><summary type="html"></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://ethanguyant.com/assets/img/project_img/bitcoin_analysis.jpg" /><media:content medium="image" url="http://ethanguyant.com/assets/img/project_img/bitcoin_analysis.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Pandas: Introduction to the Library</title><link href="http://ethanguyant.com/quick%20start/pandas-introduction" rel="alternate" type="text/html" title="Pandas: Introduction to the Library" /><published>2022-06-05T00:00:00+00:00</published><updated>2022-06-05T00:00:00+00:00</updated><id>http://ethanguyant.com/quick%20start/pandas-introduction</id><content type="html" xml:base="http://ethanguyant.com/quick%20start/pandas-introduction">&lt;body&gt;
-  &lt;div tabindex=&quot;-1&quot; id=&quot;notebook&quot; class=&quot;border-box-sizing&quot;&gt;
-    &lt;div class=&quot;container&quot; id=&quot;notebook-container&quot;&gt;
-        &lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
-            &lt;div class=&quot;inner_cell&quot;&gt;
-                &lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-                    &lt;h2 id=&quot;Contents&quot;&gt;Contents&lt;a class=&quot;anchor-link&quot; href=&quot;#Contents&quot;&gt;&lt;/a&gt;&lt;/h2&gt;
-                    &lt;ul&gt;
-                        &lt;li&gt;&lt;a href=&quot;#Overview&quot;&gt;Overview&lt;/a&gt;&lt;/li&gt;
-                        &lt;li&gt;&lt;a href=&quot;#Installing-and-Using-Pandas&quot;&gt;Installation and Use&lt;/a&gt;&lt;/li&gt;
-                        &lt;li&gt;&lt;a href=&quot;#Pandas-Data-Structures&quot;&gt;Pandas Data Structures&lt;/a&gt;
-                            &lt;ul&gt;
-                                &lt;li&gt;&lt;a href=&quot;#Pandas-Index&quot;&gt;Index&lt;/a&gt;&lt;/li&gt;
-                                &lt;li&gt;&lt;a href=&quot;#Pandas-Series&quot;&gt;Series&lt;/a&gt;&lt;/li&gt;
-                                &lt;li&gt;&lt;a href=&quot;#Pandas-DataFrame&quot;&gt;DataFrame&lt;/a&gt;&lt;/li&gt;
-                            &lt;/ul&gt;
-                        &lt;/li&gt;
-                        &lt;li&gt;&lt;a href=&quot;#Summary&quot;&gt;Summary&lt;/a&gt;&lt;/li&gt;
-                    &lt;/ul&gt;
-
-                &lt;/div&gt;
-            &lt;/div&gt;
-        &lt;/div&gt;
-        &lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;hr&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;h2 id=&quot;Overview&quot;&gt;Overview&lt;a class=&quot;anchor-link&quot; href=&quot;#Overview&quot;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;Pandas is a fast, powerful, flexible and easy to use open source data analysis and manipulation tool, built on top of the Python programming language (&lt;a style=&quot;text-decoration: underline;&quot; href=&quot;https://pandas.pydata.org/&quot;&gt;pandas&lt;/a&gt;). Pandas excels at working with tabular data which can be stored using pandas &lt;code&gt;DataFrames&lt;/code&gt;. &lt;code&gt;DataFrames&lt;/code&gt; are multidimensional arrays which contain row and column labels and can store various data types including missing data. In addition to providing &lt;code&gt;DataFrame&lt;/code&gt; as an advantageous data storage interface, pandas also offers numerous data operations that will be familiar to users of databases and spreadsheets.&lt;/p&gt;
-&lt;blockquote&gt;&lt;p&gt;Pandas &lt;code&gt;Series&lt;/code&gt; and &lt;code&gt;DataFrame&lt;/code&gt; objects build upon the NumPy array structure and provide flexibility (e.g. attaching data labels), data cleaning operations (e.g. working with missing data), and data transformation operations (e.g. groupings).&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;Types-of-Data&quot;&gt;Types of Data&lt;a class=&quot;anchor-link&quot; href=&quot;#Types-of-Data&quot;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;Tabular data with heterogeneous data type columns&lt;/li&gt;
-&lt;li&gt;Time series data (ordered and unordered)&lt;/li&gt;
-&lt;li&gt;Matrix data with row and column labels&lt;/li&gt;
-&lt;li&gt;Observation or statistical datasets&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&quot;Task-Pandas-Excels-At&quot;&gt;Tasks Pandas Excels At&lt;a class=&quot;anchor-link&quot; href=&quot;#Task-Pandas-Excels-At&quot;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;Handling of missing data (&lt;code&gt;NaN&lt;/code&gt;)&lt;/li&gt;
-&lt;li&gt;The addition or deletion of columns from DataFrames (size mutable)&lt;/li&gt;
-&lt;li&gt;Data alignment, can be explicit with a set of labels or automatic (ignoring labels)&lt;/li&gt;
-&lt;li&gt;Group by functionality for aggregating and transforming data&lt;/li&gt;
-&lt;li&gt;Label-based slicing, indexing, and subsetting of datasets&lt;/li&gt;
-&lt;li&gt;Merging and Joining datasets&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote&gt;&lt;p&gt;A data science project typically includes an iterative cycle of data cleaning, data modeling, data analysis, and formatting of result suitable for communicating results - Pandas is an excellent tool for each of these tasks.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;For more details on how Pandas can be used for these tasks see:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;a style=&quot;text-decoration: underline;&quot; href=&quot;/quick%20start/pandas-slicing-dataframe.html&quot;&gt;Pandas: Indexing and Slicing&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a style=&quot;text-decoration: underline;&quot; href=&quot;/quick%20start/pandas-data-transform-agg.html&quot;&gt;Pandas: Data Transformation&lt;/a&gt;&lt;/li&gt;
-
-&lt;/ul&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;br&gt;
-&lt;hr&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;br&gt;
-&lt;h2 id=&quot;Installing-and-Using-Pandas&quot;&gt;Installing and Using Pandas&lt;a class=&quot;anchor-link&quot; href=&quot;#Installing-and-Using-Pandas&quot;&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;br&gt;
-&lt;h3 id=&quot;Install-from-PyPI&quot;&gt;Install from PyPI&lt;a class=&quot;anchor-link&quot; href=&quot;#Install-from-PyPI&quot;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Pandas can be installed via pip from &lt;a style=&quot;text-decoration: underline;&quot; href=&quot;https://pypi.org/project/pandas/&quot;&gt;PyPI&lt;/a&gt; using:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;~&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pip&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pandas&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-&lt;br&gt;
-&lt;h3 id=&quot;Import-Pandas&quot;&gt;Import Pandas&lt;a class=&quot;anchor-link&quot; href=&quot;#Import-Pandas&quot;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;Following the installation of Pandas it can be imported, typically Pandas in imported under the alias &lt;code&gt;pd&lt;/code&gt;.&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;pandas&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;pd&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;br&gt;
-&lt;hr&gt;
-&lt;br&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;h2 id=&quot;Pandas-Data-Structures&quot;&gt;Pandas Data Structures&lt;a class=&quot;anchor-link&quot; href=&quot;#Pandas-Data-Structures&quot;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;p&gt;There are three basic fundamental Pandas data structures, &lt;code&gt;Series&lt;/code&gt;, &lt;code&gt;DataFrame&lt;/code&gt;, and &lt;code&gt;Index&lt;/code&gt;. Pandas offers numerous useful tools, method, and functionality on top of these fundamental structures.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Series: 1D labeled homogeneously-typed array of indexed data&lt;/li&gt;
-&lt;li&gt;DataFrame: General 2D labeled, size-mutable tabular structure with potentially heterogeneously-typed columns&lt;/li&gt;
-&lt;li&gt;Index: Can be viewed as a &lt;em&gt;immutable array&lt;/em&gt; or an &lt;em&gt;ordered set&lt;/em&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;blockquote&gt;&lt;p&gt;Conceptually it can be helpful to think of Pandas data structures as flexible containers of lower dimensional data (e.g. a DataFrame is a container for Series), and objects can be added to or removed from the containers.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h3 id=&quot;Pandas-Index&quot;&gt;Pandas Index&lt;a class=&quot;anchor-link&quot; href=&quot;#Pandas-Index&quot;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;A &lt;code&gt;Index&lt;/code&gt; object is the basic object for storing axis (row and column) labels for all pandas object. The &lt;code&gt;Index&lt;/code&gt; object is an immutable sequence.&lt;/p&gt;
-&lt;p&gt;Both the &lt;code&gt;Series&lt;/code&gt; and &lt;code&gt;DataFrame&lt;/code&gt; objects contain an explicit index which can be utilized to reference and modify the data that higher level objects contain.&lt;/p&gt;
-&lt;p&gt;The general syntax for constructing a &lt;code&gt;Index&lt;/code&gt; is &lt;br&gt;
-&lt;code&gt;pd.Index(data=None, dtype=None, copy=False, name=None, tupleize_cols=True, **kwargs)&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Parameters:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;data: array-like (1D)&lt;ul&gt;
-&lt;li&gt;Can contain a &lt;code&gt;Series&lt;/code&gt;, arrays, constants, dataclass or list-like objects&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;dtype: NumPy dtype, default of object&lt;ul&gt;
-&lt;li&gt;If dtype is None pandas identifies the best fit and when a dtype is provide pandas coerces to the specified dtype&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;copy: boolean value to copy input data&lt;/li&gt;
-&lt;li&gt;name: name to be stored in the index&lt;/li&gt;
-&lt;li&gt;tupleize_col: boolean value, when &lt;code&gt;True&lt;/code&gt; pandas attempts to create a multi-index&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Construct an &lt;code&gt;Index&lt;/code&gt; object of integers&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pd&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;7&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-
-
-&lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
-&lt;pre&gt;Int64Index([1, 3, 5, 7, 9], dtype=&amp;#39;int64&amp;#39;)&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;Values of an &lt;code&gt;Index&lt;/code&gt; object can be selected using standard Python indexing notation&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-
-
-&lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
-&lt;pre&gt;7&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-
-
-&lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
-&lt;pre&gt;Int64Index([1, 3, 5, 7], dtype=&amp;#39;int64&amp;#39;)&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;&lt;code&gt;Index&lt;/code&gt; objects are immutable, meaning the values cannot be modified&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;17&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-&lt;div class=&quot;output_subarea output_text output_error&quot;&gt;
-&lt;pre&gt;
-&lt;span class=&quot;ansi-red-fg&quot;&gt;---------------------------------------------------------------------------&lt;/span&gt;
-&lt;span class=&quot;ansi-red-fg&quot;&gt;TypeError&lt;/span&gt;                                 Traceback (most recent call last)
-&lt;span class=&quot;ansi-green-fg&quot;&gt;/tmp/ipykernel_12114/2209125174.py&lt;/span&gt; in &lt;span class=&quot;ansi-cyan-fg&quot;&gt;&amp;lt;module&amp;gt;&lt;/span&gt;
-&lt;span class=&quot;ansi-green-fg&quot;&gt;----&amp;gt; 1&lt;/span&gt;&lt;span class=&quot;ansi-red-fg&quot;&gt; &lt;/span&gt;index&lt;span class=&quot;ansi-blue-fg&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ansi-cyan-fg&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;ansi-blue-fg&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;ansi-blue-fg&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;ansi-cyan-fg&quot;&gt;17&lt;/span&gt;
-
-&lt;span class=&quot;ansi-green-fg&quot;&gt;~/.local/lib/python3.8/site-packages/pandas/core/indexes/base.py&lt;/span&gt; in &lt;span class=&quot;ansi-cyan-fg&quot;&gt;__setitem__&lt;/span&gt;&lt;span class=&quot;ansi-blue-fg&quot;&gt;(self, key, value)&lt;/span&gt;
-&lt;span class=&quot;ansi-green-intense-fg ansi-bold&quot;&gt;   4583&lt;/span&gt;     &lt;span class=&quot;ansi-blue-fg&quot;&gt;@&lt;/span&gt;final
-&lt;span class=&quot;ansi-green-intense-fg ansi-bold&quot;&gt;   4584&lt;/span&gt;     &lt;span class=&quot;ansi-green-fg&quot;&gt;def&lt;/span&gt; __setitem__&lt;span class=&quot;ansi-blue-fg&quot;&gt;(&lt;/span&gt;self&lt;span class=&quot;ansi-blue-fg&quot;&gt;,&lt;/span&gt; key&lt;span class=&quot;ansi-blue-fg&quot;&gt;,&lt;/span&gt; value&lt;span class=&quot;ansi-blue-fg&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;ansi-blue-fg&quot;&gt;:&lt;/span&gt;
-&lt;span class=&quot;ansi-green-fg&quot;&gt;-&amp;gt; 4585&lt;/span&gt;&lt;span class=&quot;ansi-red-fg&quot;&gt;         &lt;/span&gt;&lt;span class=&quot;ansi-green-fg&quot;&gt;raise&lt;/span&gt; TypeError&lt;span class=&quot;ansi-blue-fg&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ansi-blue-fg&quot;&gt;&amp;#34;Index does not support mutable operations&amp;#34;&lt;/span&gt;&lt;span class=&quot;ansi-blue-fg&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;ansi-green-intense-fg ansi-bold&quot;&gt;   4586&lt;/span&gt; 
-&lt;span class=&quot;ansi-green-intense-fg ansi-bold&quot;&gt;   4587&lt;/span&gt;     &lt;span class=&quot;ansi-green-fg&quot;&gt;def&lt;/span&gt; __getitem__&lt;span class=&quot;ansi-blue-fg&quot;&gt;(&lt;/span&gt;self&lt;span class=&quot;ansi-blue-fg&quot;&gt;,&lt;/span&gt; key&lt;span class=&quot;ansi-blue-fg&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;ansi-blue-fg&quot;&gt;:&lt;/span&gt;
-
-&lt;span class=&quot;ansi-red-fg&quot;&gt;TypeError&lt;/span&gt;: Index does not support mutable operations&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;Pandas object are aimed at facilitating cross dataset operations (e.g. joins). The &lt;code&gt;Index&lt;/code&gt; object aids in this by following typical conventions used by Python's built-in &lt;code&gt;set&lt;/code&gt; data structure facilitating unions, intersections, differences, and other combinations to be computed in a familiar way.&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index_1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pd&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;A&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;B&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;A&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;C&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;C&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;index_2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pd&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;E&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;A&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;C&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;F&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;G&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;index_1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;intersection&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index_2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-
-
-&lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
-&lt;pre&gt;Index([&amp;#39;A&amp;#39;, &amp;#39;C&amp;#39;], dtype=&amp;#39;object&amp;#39;)&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index_1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;union&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index_2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-
-
-&lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
-&lt;pre&gt;Index([&amp;#39;A&amp;#39;, &amp;#39;A&amp;#39;, &amp;#39;B&amp;#39;, &amp;#39;C&amp;#39;, &amp;#39;C&amp;#39;, &amp;#39;E&amp;#39;, &amp;#39;F&amp;#39;, &amp;#39;G&amp;#39;], dtype=&amp;#39;object&amp;#39;)&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index_1&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;symmetric_difference&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index_2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-
-
-&lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
-&lt;pre&gt;Index([&amp;#39;B&amp;#39;, &amp;#39;E&amp;#39;, &amp;#39;F&amp;#39;, &amp;#39;G&amp;#39;], dtype=&amp;#39;object&amp;#39;)&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;For more information on &lt;code&gt;Index&lt;/code&gt; attributes (e.g. &lt;code&gt;.size&lt;/code&gt;), methods (e.g. &lt;code&gt;.fillna()&lt;/code&gt;), and examples visit &lt;a style=&quot;text-decoration: underline;&quot; href=&quot;https://pandas.pydata.org/docs/reference/api/pandas.Index.html?highlight=index#pandas.Index&quot;&gt;Pandas Documentation&lt;/a&gt;&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;hr&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;br&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;h3 id=&quot;Pandas-Series&quot;&gt;Pandas Series&lt;a class=&quot;anchor-link&quot; href=&quot;#Pandas-Series&quot;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;A &lt;code&gt;Series&lt;/code&gt; object contains two main components, the sequence of indices and the sequences of values which can be accessed with the &lt;code&gt;.index&lt;/code&gt; and &lt;code&gt;.values&lt;/code&gt; attributes. A &lt;code&gt;Series&lt;/code&gt; supports integer and label indexing and has a wide variety of methods for performing index based operations.&lt;/p&gt;
-&lt;p&gt;The general syntax for constructing a &lt;code&gt;Series&lt;/code&gt; is &lt;br&gt;
-&lt;code&gt;pd.Series(data=None, index=None, dtype=None, name=None, copy=False)&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Parameters:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;data: array-like, iterable, dict or scalar value&lt;ul&gt;
-&lt;li&gt;The data that is stored in the series, if dict argument order is maintained&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;index: array-like or index (1d)&lt;ul&gt;
-&lt;li&gt;Hashable values that must be the same length as &lt;em&gt;data&lt;/em&gt;&lt;ul&gt;
-&lt;li&gt;Will default to RangeIndex (0, 1, ..., n)&lt;/li&gt;
-&lt;li&gt;If &lt;em&gt;data&lt;/em&gt; is a dict-like and no index is provided the keys of the data will utilized for the index&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;dtype: data type of the output series, if not specified &lt;em&gt;data&lt;/em&gt; will be used to infer dtype&lt;/li&gt;
-&lt;li&gt;copy: boolean value to copy input data&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;A &lt;code&gt;Series&lt;/code&gt; can be created from a list or an array&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data_series&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pd&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Series&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.8&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;data_series&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-
-
-&lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
-&lt;pre&gt;0    0.0
-1    0.2
-2    0.4
-3    0.6
-4    0.8
-5    1.0
-dtype: float64&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data_series&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-
-
-&lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
-&lt;pre&gt;RangeIndex(start=0, stop=6, step=1)&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data_series&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;values&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-
-
-&lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
-&lt;pre&gt;array([0. , 0.2, 0.4, 0.6, 0.8, 1. ])&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;The elements of a &lt;code&gt;Series&lt;/code&gt; can be accessed using the common square bracket &lt;code&gt;[ ]&lt;/code&gt; notation. For more details see: &lt;a class=&quot;post__link&quot; href=&quot;/quick%20start/pandas-slicing-dataframe.html&quot;&gt;Pandas: Indexing and Slicing&lt;/a&gt;&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data_series&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-
-
-&lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
-&lt;pre&gt;0.2&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data_series&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-
-
-&lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
-&lt;pre&gt;2    0.4
-3    0.6
-dtype: float64&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;The pandas &lt;code&gt;Series&lt;/code&gt; object has an explicitly defined index for each element of the series. This index does not have to be an integer and does not need to be contiguous or sequential. The explicitly defined index functionality provides flexibility and is a major difference between a NumPy array (implicit index) and a pandas &lt;code&gt;Series&lt;/code&gt; (explicit index).&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data_series&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pd&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Series&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.8&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; 
-                        &lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;A&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;B&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;C&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;D&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;E&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;F&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;data_series&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-
-
-&lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
-&lt;pre&gt;A    0.0
-B    0.2
-C    0.4
-D    0.6
-E    0.8
-F    1.0
-dtype: float64&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data_series&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;C&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;E&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-
-
-&lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
-&lt;pre&gt;C    0.4
-D    0.6
-E    0.8
-dtype: float64&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data_series&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pd&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Series&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;mf&quot;&gt;0.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.8&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;1.0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; 
-                        &lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;8&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;data_series&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-
-
-&lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
-&lt;pre&gt;0     0.0
-2     0.2
-4     0.4
-6     0.6
-8     0.8
-10    1.0
-dtype: float64&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;The explicit index of the &lt;code&gt;Series&lt;/code&gt; provides similarities to a dictionary data structure, where typed keys are mapped to typed values. A Pandas &lt;code&gt;Series&lt;/code&gt; can be created from a Python dictionary, by default the index will be constructed from the dictionary's sorted keys. Similar to a dictionary, the selection of an element can be done using square bracket &lt;code&gt;[ ]&lt;/code&gt; notation, however unlike a dictionary the &lt;code&gt;Series&lt;/code&gt; supports slicing operations.&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;capitals_dict&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Alaska&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Juneau&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-		     &lt;span class=&quot;s1&quot;&gt;&amp;#39;Arizona&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Phoenix&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-		     &lt;span class=&quot;s1&quot;&gt;&amp;#39;Arkansas&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Little Rock&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-		     &lt;span class=&quot;s1&quot;&gt;&amp;#39;California&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Sacramento&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;capitals&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pd&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Series&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;capitals_dict&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;capitals&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-
-
-&lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
-&lt;pre&gt;Alaska             Juneau
-Arizona           Phoenix
-Arkansas      Little Rock
-California     Sacramento
-dtype: object&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;capitals&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Arkansas&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-
-
-&lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
-&lt;pre&gt;&amp;#39;Little Rock&amp;#39;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;capitals&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Alaska&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Arkansas&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-
-
-&lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
-&lt;pre&gt;Alaska           Juneau
-Arizona         Phoenix
-Arkansas    Little Rock
-dtype: object&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;For more information on &lt;code&gt;Series&lt;/code&gt; attributes (e.g. &lt;code&gt;.index&lt;/code&gt;), methods (e.g. &lt;code&gt;.count()&lt;/code&gt;), and examples visit &lt;a style=&quot;text-decoration: underline;&quot; href=&quot;https://pandas.pydata.org/docs/reference/api/pandas.Series.html?highlight=series#pandas.Series&quot;&gt;Pandas Documentation&lt;/a&gt;&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;hr&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;br&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;h3 id=&quot;Pandas-DataFrame&quot;&gt;Pandas DataFrame&lt;a class=&quot;anchor-link&quot; href=&quot;#Pandas-DataFrame&quot;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;A &lt;code&gt;DataFrame&lt;/code&gt; is a two-dimensional, size-mutable, tabular data object. The &lt;code&gt;DataFrame&lt;/code&gt; is essentially a dictionary-like container for a &lt;code&gt;Series&lt;/code&gt; which contains labeled rows and columns&lt;/p&gt;
-&lt;blockquote&gt;&lt;p&gt;Conceptually a &lt;code&gt;DataFrame&lt;/code&gt; is a sequence of &lt;code&gt;Series&lt;/code&gt; objects which share the same index.&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;The general syntax for constructing a &lt;code&gt;DataFrame&lt;/code&gt; is &lt;br&gt;
-&lt;code&gt;pd.DataFrame(data=None, index=None, columns=None, dtype=None, copy=False)&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Parameters:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;data: ndarray, iterable, dict or DataFrame&lt;ul&gt;
-&lt;li&gt;Can contain a &lt;code&gt;Series&lt;/code&gt;, arrays, constants, dataclass or list-like objects&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;index: array-like or index &lt;ul&gt;
-&lt;li&gt;Will default to RangeIndex if there is not index information in the input data and no index is provided&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;columns: labels used in the resulting &lt;code&gt;DataFrame&lt;/code&gt; which defaults to RangeIndex (0, 1, ..., n)&lt;/li&gt;
-&lt;li&gt;dtype: data type of the output, only a single dtype is allowed&lt;/li&gt;
-&lt;li&gt;copy: boolean value to copy input data&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Creating a &lt;code&gt;DataFrame&lt;/code&gt; from two &lt;code&gt;Series&lt;/code&gt;&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;capitals_dict&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Alaska&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Juneau&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-		     &lt;span class=&quot;s1&quot;&gt;&amp;#39;Arizona&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Phoenix&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-		     &lt;span class=&quot;s1&quot;&gt;&amp;#39;Arkansas&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Little Rock&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-		     &lt;span class=&quot;s1&quot;&gt;&amp;#39;California&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Sacramento&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;capitals&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pd&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Series&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;capitals_dict&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;capitals&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-
-
-&lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
-&lt;pre&gt;Alaska             Juneau
-Arizona           Phoenix
-Arkansas      Little Rock
-California     Sacramento
-dtype: object&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pop_dict&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Alaska&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;31275&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Arizona&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1608139&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Arkansas&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;202591&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;California&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;524943&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;cap_pop&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pd&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Series&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;pop_dict&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;cap_pop&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-
-
-&lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
-&lt;pre&gt;Alaska          31275
-Arizona       1608139
-Arkansas       202591
-California     524943
-dtype: int64&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;capital_info&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pd&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DataFrame&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Name&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;capitals&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Population&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;cap_pop&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;capital_info&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-
-&lt;div class=&quot;output_html rendered_html output_subarea output_execute_result&quot;&gt;
-&lt;div&gt;
-&lt;style scoped&gt;
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-&lt;/style&gt;
-&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;
-  &lt;thead&gt;
-    &lt;tr style=&quot;text-align: right;&quot;&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;Name&lt;/th&gt;
-      &lt;th&gt;Population&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Alaska&lt;/th&gt;
-      &lt;td&gt;Juneau&lt;/td&gt;
-      &lt;td&gt;31275&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Arizona&lt;/th&gt;
-      &lt;td&gt;Phoenix&lt;/td&gt;
-      &lt;td&gt;1608139&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Arkansas&lt;/th&gt;
-      &lt;td&gt;Little Rock&lt;/td&gt;
-      &lt;td&gt;202591&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;California&lt;/th&gt;
-      &lt;td&gt;Sacramento&lt;/td&gt;
-      &lt;td&gt;524943&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;Similar to the &lt;code&gt;Series&lt;/code&gt; object the &lt;code&gt;DataFrame&lt;/code&gt; has index and values attribute and also columns attribute. The columns attribute is an Index object which contains the column names.&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;capital_info&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-
-
-&lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
-&lt;pre&gt;Index([&amp;#39;Alaska&amp;#39;, &amp;#39;Arizona&amp;#39;, &amp;#39;Arkansas&amp;#39;, &amp;#39;California&amp;#39;], dtype=&amp;#39;object&amp;#39;)&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;capital_info&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;values&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-
-
-&lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
-&lt;pre&gt;array([[&amp;#39;Juneau&amp;#39;, 31275],
-       [&amp;#39;Phoenix&amp;#39;, 1608139],
-       [&amp;#39;Little Rock&amp;#39;, 202591],
-       [&amp;#39;Sacramento&amp;#39;, 524943]], dtype=object)&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;capital_info&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;columns&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-
-
-&lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
-&lt;pre&gt;Index([&amp;#39;Name&amp;#39;, &amp;#39;Population&amp;#39;], dtype=&amp;#39;object&amp;#39;)&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;A &lt;code&gt;DataFrame&lt;/code&gt; can also be constructed from a list of dictionary objects&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;AK&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Capital Name&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Juneau&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Capital Population&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;31275&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;AZ&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Capital Name&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Phoenix&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Capital Population&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1608139&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;AR&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Capital Name&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Little Rock&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Capital Population&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;202591&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;CA&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Capital Name&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Sacramento&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Capital Population&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;524943&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;df_capital_info&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pd&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DataFrame&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;AK&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;AZ&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;AR&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;CA&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Alaska&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Arizona&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;Arkansas&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;California&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;df_capital_info&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-
-&lt;div class=&quot;output_html rendered_html output_subarea output_execute_result&quot;&gt;
-&lt;div&gt;
-&lt;style scoped&gt;
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-&lt;/style&gt;
-&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;
-  &lt;thead&gt;
-    &lt;tr style=&quot;text-align: right;&quot;&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;Capital Name&lt;/th&gt;
-      &lt;th&gt;Capital Population&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Alaska&lt;/th&gt;
-      &lt;td&gt;Juneau&lt;/td&gt;
-      &lt;td&gt;31275&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Arizona&lt;/th&gt;
-      &lt;td&gt;Phoenix&lt;/td&gt;
-      &lt;td&gt;1608139&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Arkansas&lt;/th&gt;
-      &lt;td&gt;Little Rock&lt;/td&gt;
-      &lt;td&gt;202591&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;California&lt;/th&gt;
-      &lt;td&gt;Sacramento&lt;/td&gt;
-      &lt;td&gt;524943&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;A &lt;code&gt;DataFrame&lt;/code&gt; can be thought of as a specialized dictionary where the &lt;code&gt;DataFrame&lt;/code&gt; maps a column name (key) to a &lt;code&gt;Series&lt;/code&gt; of columnar data (value). Using the &lt;code&gt;capital_info&lt;/code&gt; DataFrame the selection of Population returns the &lt;code&gt;Series&lt;/code&gt; object which contain the column of Population Data.&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;capital_info&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Population&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-
-
-&lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
-&lt;pre&gt;Alaska          31275
-Arizona       1608139
-Arkansas       202591
-California     524943
-Name: Population, dtype: int64&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;For more information on &lt;code&gt;DataFrame&lt;/code&gt; attributes (e.g. &lt;code&gt;.index&lt;/code&gt;), methods (e.g. &lt;code&gt;.count()&lt;/code&gt;), and examples visit &lt;a style=&quot;text-decoration: underline;&quot; href=&quot;https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html?highlight=dataframe#pandas.DataFrame&quot;&gt;Pandas Documentation&lt;/a&gt;&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;hr&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;br&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;
-    &lt;div class=&quot;inner_cell&quot;&gt;
-        &lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-            &lt;h2 id=&quot;Summary&quot;&gt;Summary&lt;a class=&quot;anchor-link&quot; href=&quot;#Summary&quot;&gt;&lt;/a&gt;&lt;/h2&gt;
-            &lt;p&gt;Pandas offers a powerful and flexible data analytics tool which excels at the various stages of a data 
-                science project including data cleaning, data modeling, data analysis, and formatting of final results 
-                for visualizations. The pandas library offers three fundamental data structures: &lt;code&gt;Index&lt;/code&gt;, 
-                &lt;code&gt;Series&lt;/code&gt;, and &lt;code&gt;DataFrame&lt;/code&gt;. Each of these data structures come with numerous tools, 
-                attributes, and methods. In general the pandas data structures can be thought of as flexible containers 
-                of lower dimensional data that allow for objects to be added to or removed from the container.
-            &lt;/p&gt;
-            &lt;p&gt;More details and examples can be found in the &lt;a style=&quot;text-decoration: underline;&quot; href=&quot;https://pandas.pydata.org/docs/index.html&quot;&gt;
-                Pandas Documentation&lt;/a&gt; or for more information on subsetting of &lt;code&gt;Series&lt;/code&gt; and &lt;code&gt;DataFrames&lt;/code&gt;, 
-                data transformation tools, and exploratory analysis with pandas please visit the articles below:
-            &lt;/p&gt;
-            &lt;ul&gt;
-                &lt;li&gt;&lt;a style=&quot;text-decoration: underline;&quot; href=&quot;/quick%20start/pandas-slicing-dataframe.html&quot;&gt;Pandas: Indexing and Slicing&lt;/a&gt;&lt;/li&gt;
-                &lt;li&gt;&lt;a style=&quot;text-decoration: underline;&quot; href=&quot;/quick%20start/pandas-data-transform-agg.html&quot;&gt;Pandas: Data Transformation&lt;/a&gt;&lt;/li&gt;
-            &lt;/ul&gt;
-
-        &lt;/div&gt;
-    &lt;/div&gt;
-&lt;/div&gt;  
-&lt;br&gt;
-&lt;hr&gt;
-&lt;br&gt;    
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-        &lt;p&gt;If you enjoy what you read and find it helpful please check back, and check back often. Follow me on &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/@emguyant&quot;&gt;&lt;i class=&quot;fab fa-medium&quot;&gt;&lt;/i&gt; Medium&lt;/a&gt; while giving a clap to the article! Also don't forget to subscribe to the &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/inquisitive-nature&quot;&gt;&lt;b&gt;INQUISITIVE NATURE&lt;/b&gt;&lt;/a&gt; publication.&lt;/p&gt;
-    
-    &lt;/div&gt;
-    &lt;/div&gt;
-&lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/body&gt;
-
- 
-
-
-&lt;/html&gt;</content><author><name>Ethan Guyant</name></author><category term="Quick Start" /><category term="Python" /><category term="Pandas" /><summary type="html">Contents Overview Installation and Use Pandas Data Structures Index Series DataFrame Summary</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://ethanguyant.com/assets/img/post_img/introduction-pandas.jpg" /><media:content medium="image" url="http://ethanguyant.com/assets/img/post_img/introduction-pandas.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;/html&gt;</content><author><name>Ethan Guyant</name></author><category term="Project" /><category term="Python" /><category term="Pandas" /><category term="Data Preparation" /><category term="Data Analysis" /><category term="Data Visualization" /><summary type="html"></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://ethanguyant.com/assets/img/project_img/bitcoin_analysis.jpg" /><media:content medium="image" url="http://ethanguyant.com/assets/img/project_img/bitcoin_analysis.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>

@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Power BI Fundaments: Part 4 - Context Transitions | Ethan Guyant’s Blog</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="Power BI Fundaments: Part 4 - Context Transitions" />
+<meta name="author" content="Ethan Guyant" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Learn more about the concepts of row context, filter context and how Power BI transitions between them. Context transition occurs when using the CALCULATE function and when referencing measures. It is important to understand when it happens and what it does because there are common scenarios where it can lead to unexpected results." />
+<meta property="og:description" content="Learn more about the concepts of row context, filter context and how Power BI transitions between them. Context transition occurs when using the CALCULATE function and when referencing measures. It is important to understand when it happens and what it does because there are common scenarios where it can lead to unexpected results." />
+<link rel="canonical" href="http://ethanguyant.com/blog/2022-11-08-power-bi-context-transition/" />
+<meta property="og:url" content="http://ethanguyant.com/blog/2022-11-08-power-bi-context-transition/" />
+<meta property="og:site_name" content="Ethan Guyant’s Blog" />
+<meta property="og:image" content="http://ethanguyant.com/assets/img/post_img/powerbi-context-transition.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-11-08T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="http://ethanguyant.com/assets/img/post_img/powerbi-context-transition.jpg" />
+<meta property="twitter:title" content="Power BI Fundaments: Part 4 - Context Transitions" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"Ethan Guyant"},"description":"Learn more about the concepts of row context, filter context and how Power BI transitions between them. Context transition occurs when using the CALCULATE function and when referencing measures. It is important to understand when it happens and what it does because there are common scenarios where it can lead to unexpected results.","url":"http://ethanguyant.com/blog/2022-11-08-power-bi-context-transition/","image":"http://ethanguyant.com/assets/img/post_img/powerbi-context-transition.jpg","@type":"BlogPosting","headline":"Power BI Fundaments: Part 4 - Context Transitions","dateModified":"2022-11-08T00:00:00+00:00","datePublished":"2022-11-08T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://ethanguyant.com/blog/2022-11-08-power-bi-context-transition/"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<title>Ethan Guyant's Blog</title>
+  <!-- Normalize CSS file irons out some difference between browsers -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+  <!-- Google Fonts-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,900|Source+Sans+Pro:300,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Arvo:wght@700&display=swap" rel="stylesheet">
+  <!-- CSS Styles -->
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/notebook_default.css">
+  <link rel="stylesheet" href="/assets/css/notebook_custom.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
+  <!-- MathJax configuration -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+  </script>
+  <!-- Animation on Scroll-->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <!-- Font Awesome Kit -->
+  <script src="https://kit.fontawesome.com/c9965d23bb.js" crossorigin="anonymous"></script><link type="application/atom+xml" rel="alternate" href="http://ethanguyant.com/feed.xml" title="Ethan Guyant's Blog" /><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7356875210051999"
+  crossorigin="anonymous">
+  </script>
+  
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RTFP0V6X0G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RTFP0V6X0G');
+</script>
+  
+</head>
+<body><header class="header sticky">
+    <div class="wrapper">
+        <div>
+            <div class="scroll-logo"> 
+                <a href="/">  
+                    <svg id="EG" viewBox="0 0 152 216">
+                        <g>
+                            <path id="hex"d="M 76.342 4 L 147.685 41.377 L 147.685 116.13 L 76.342 153.506 L 5 116.13 L 5 41.377 Z" style="stroke-width: 8.37394px; fill-opacity: 0; fill: none; stroke: #39ace7;"></path>         
+                            <polygon class="logo"style="stroke-width: 3.58883px; stroke: #39ace7; fill: #39ace7;" points="41.001 38.501 112.012 38.501 112.012 62.884 97.474 62.884 97.474 54.976 41.001 54.976"></polygon>
+                            <polygon class="logo" style="stroke-width: 3.58883px; stroke: #39ace7; fill: #39ace7;" points="40.671 102.9 97.81 102.9 97.81 86.796 83.604 86.796 83.604 70.701 112.014 70.701 112.014 102.92 112.014 119.004 40.939 119.004"></polygon>
+                            <polygon class="logo" style="stroke-width: 3.58883px; stroke: #39ace7; fill: #39ace7;" points="41.001 70.701 69.753 70.701 63.532 87.725 41.317 87.725"></polygon>
+                        </g> 
+                    </svg>
+                </a>
+            </div>
+
+            <div class="header__title">
+                <a href="/">EthanGuyant.com</a>
+            </div>
+            
+        </div>
+        
+        <div class="nav__menu">
+            <div class="nav__toggle">
+                <div class="nav__icon">
+                    <span></span>
+                </div>
+            </div>
+        </div>
+        <div class="nav__menu__wrapper">
+            <ul class="nav__menu__list">
+                <li class="nav__menu__list__item">
+                    <a href="/" class="nav__menu__list__item__link">Home</a>
+                </li>
+                <li class="nav__menu__list__item">
+                    <a href="/blog" class="nav__menu__list__item__link">Blog</a>
+                </li>
+                <li class="nav__menu__list__item">
+                    <a href="/about" class="nav__menu__list__item__link">About</a>
+                </li>
+                <li class="nav__menu__list__item">
+                    <a href="/category/project/" class="nav__menu__list__item__link">Projects</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header><main class="page" aria-label="Content">
+      <div class="page__content">
+        <section class="blog__header">
+    <div class="blog__img">
+      <div class="blog__img__over"></div>
+    </div>
+    <div class="wrapper">
+      <h1 class="blog__title"><span class="inquisitive">INQUISITIVE</span> <span class="nature">NATURE</span></h1>
+      <p class="blog__subtitle">Learn  Explore  <strong>Share</strong></p>
+      <p class="post__categories">
+    </div>
+  </section><div class="wrapper">
+  <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+    <section class="article__header">
+        <h1 class="post-title p-name" itemprop="name headline">Power BI Fundaments: Part 4 - Context Transitions</h1>
+        <p class="post-meta">
+          <time class="dt-published" datetime="2022-11-08T00:00:00+00:00" itemprop="datePublished">Nov 8, 2022
+          </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">Ethan Guyant</span></span></p>
+          <p class="post-category">
+            Category: 
+            <a href="/category/deep-dive">
+              <i class="fa-solid fa-folder"></i>
+              Deep Dive
+            </a> 
+          </p>
+          <p class="post-tags">
+          Tags: 
+           
+              
+              <a href="/tag/microsoft-365">
+                <i class="fa-solid fa-tag"></i>
+                Microsoft 365
+              </a> 
+              
+              <a href="/tag/power-bi">
+                <i class="fa-solid fa-tag"></i>
+                Power BI
+              </a> 
+              
+              <a href="/tag/power-platform">
+                <i class="fa-solid fa-tag"></i>
+                Power Platform
+              </a> 
+              
+              <a href="/tag/power-bi-fundamentals-series">
+                <i class="fa-solid fa-tag"></i>
+                Power BI Fundamentals Series
+              </a> 
+            
+          
+        </p>
+    </section>
+    <div class="post-content e-content" itemprop="articleBody">
+      <h2 id="contents">Contents</h2>
+<ul>
+  <li><a href="#review">Review</a></li>
+  <li><a href="#understanding-context-transition">Understanding Context Transition</a>
+    <ul>
+      <li><a href="#option-1-the-calculate-function">Context Transition with CALCULATE</a></li>
+      <li><a href="#option-2-using-measures">Context Transition with Measures</a></li>
+    </ul>
+  </li>
+  <li><a href="#maximum-daily-sales-by-month-example">Maximum Daily Sales by Month Example</a></li>
+  <li><a href="#context-transition-pit-falls">Context Transition Pit Falls</a>
+<br /></li>
+</ul>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="review">Review</h2>
+<p>One of the early stages of creating any Power BI report is the development of the data model. The data model will consist of data tables, relationships, and calculations. There are two types of calculations: calculated columns, and measures.</p>
+
+<p>Check out <a href="https://ethanguyant.com/blog/2022-09-28-power-bi-row-context/" class="post__link">Power BI Fundamentals: Part 1 - Row Context</a> for key differences between calculated columns and measures.</p>
+
+<p>One of the most powerful elements of Power BI is that all measure calculations are done in context. The evaluation context limits the values in the current scope when evaluating an expression. The filter context and/or the row context make up the evaluation context.</p>
+
+<p><a href="https://ethanguyant.com/blog/2022-09-28-power-bi-row-context/" class="post__link">Power BI Fundamentals: Part 1 - Row Context</a> of this series explores the row context in depth. While <a href="https://ethanguyant.com/blog/2022-10-11-power-bi-iterators/" class="post__link">Power BI Fundamentals: Part 2 - Iterator Functions</a> explores iterator functions, which are functions that create row context. And finally, <a href="https://ethanguyant.com/blog/2022-09-28-power-bi-row-context/" class="post__link">Power BI Fundamentals: Part 3 - Filer Context</a> explores the concept of the filter context.</p>
+
+<p>When evaluating expressions, the row context can be transitioned into a filter context within Power BI. This transition can help create more complex measures. Row context, filter context, and context transition can be confusing when starting with DAX so visit references and documentation often.</p>
+
+<p>This post is the fourth of a Power BI Fundamental series with a focus on the context transition. The example file used in this post is located here -<a class="social-list__link" href="https://github.com/EMGuyant/power-bi-key-fundamentals"><i class="fab fa-github"></i> GitHub</a>.</p>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="understanding-context-transition">Understanding Context Transition</h2>
+<p>The row context by itself does not filter data. Row context iterates through a table row-by-row. Context transition is when the row context transitions into the filter context. Context transition occurs with the <code class="language-plaintext highlighter-rouge">CALCULATE()</code> function and when the expression of an iterator function is a DAX measure.</p>
+
+<p>The concept of context transition can be a bit abstract so it can be easiest to learn through examples. To explore we will first create a new calculated column in the <code class="language-plaintext highlighter-rouge">Products</code> table. The new <code class="language-plaintext highlighter-rouge">ProductsSales</code> calculates the total sales for each product and we define it as:</p>
+
+<p><code class="language-plaintext highlighter-rouge">ProductSales = SUM(SalesOrderDetail[SalesAmount])</code></p>
+
+<p><img src="/assets/img/2022-11-10-power-bi-context-transistion/product-sales-no-transistion.gif" alt="Total Product Sales with no Context Transition Examples" class="post__img" /></p>
+
+<p>After evaluating <code class="language-plaintext highlighter-rouge">ProductSales</code> we see it repeats the same $109.85M sales value for each row. This value is the total sales amount for the entire dataset. This is not what we want <code class="language-plaintext highlighter-rouge">ProductSales</code> to calculate, so what happened?</p>
+
+<p><code class="language-plaintext highlighter-rouge">ProductSales</code> calculates the total sales of the entire data rather than the <em>filtered</em> per product value because row context is not a filter. For example, the row context includes the <code class="language-plaintext highlighter-rouge">ProductID</code>  value but this identifier is not a filter on the data during evaluation. And because the row context is not a filter DAX does not distinguish between different rows (i.e products) when evaluating <code class="language-plaintext highlighter-rouge">ProductSales</code>.</p>
+
+<p><img src="/assets/img/2022-11-10-power-bi-context-transistion/product-sales-no-transistion-table.png" alt="Product Sales no Context Transition Table" class="post__img" /></p>
+
+<p>For example, looking at the table above while evaluating the measure DAX does not distinguish the <code class="language-plaintext highlighter-rouge">Adjustable Race</code> row from the <code class="language-plaintext highlighter-rouge">LL Crankarm</code> row. Since all rows are viewed as the same the to total sales value is repeated for each row.</p>
+
+<p>You may have guessed it but, the example above calculates the wrong value because it does not contain a context transition. The row context does not shift to the filter context causing the error in the calculated value. This simple example highlights why context transition is important and when it’s needed. To correct this we must force the context transition. This will convert the row values into a filter and calculate the sales for each product. There are various ways to do this, and below are two options.</p>
+
+<p><br /></p>
+
+<h3 id="option-1-the-calculate-function">Option #1: The CALCULATE() Function</h3>
+<p>We can force context transition by wrapping <code class="language-plaintext highlighter-rouge">ProductSales</code> with the <code class="language-plaintext highlighter-rouge">CALCULATE()</code> function. To demonstrate we create a new <code class="language-plaintext highlighter-rouge">ProductSales_calculate</code> column. <code class="language-plaintext highlighter-rouge">ProductSales_calculate</code> is defined as:</p>
+
+<p><code class="language-plaintext highlighter-rouge">ProductSales_calculate = CALCULATE(SUM(SalesOrderDetail[SalesAmount]))</code></p>
+
+<p><img src="/assets/img/2022-11-10-power-bi-context-transistion/product-sales-calculate.gif" alt="Product Sales with the CALCULATE function" class="post__img" /></p>
+
+<p>This new calculated column shows the correct sales value for each product. We view the product type <code class="language-plaintext highlighter-rouge">BK</code> and can see now each row in the <code class="language-plaintext highlighter-rouge">ProductSales_calculate</code> column is different for each row.</p>
+
+<p><img src="/assets/img/2022-11-10-power-bi-context-transistion/product-sales-calculate.png" alt="Product Sales with theC CALCULATE function" class="post__img" /></p>
+
+<p><br /></p>
+
+<h3 id="option-2-using-measures">Option #2: Using Measures</h3>
+<p>Within the data model, we have already created a measure <code class="language-plaintext highlighter-rouge">SalesAmount2</code>. See <a href="https://ethanguyant.com/blog/2022-09-28-power-bi-row-context/" class="post__link">Power BI Fundamentals: Part 1 - Row Context</a> and <a href="https://ethanguyant.com/blog/2022-10-11-power-bi-iterators/" class="post__link">Power BI Fundamentals: Part 2 - Iterator Functions</a> for details on this measure. We defined <code class="language-plaintext highlighter-rouge">SalesAmount2</code> as:</p>
+
+<p><code class="language-plaintext highlighter-rouge">SalesAmount2 = SUMX(SalesOrderDetail, SalesOrderDetail[OrderQty] * SalesOrderDetail[UnitPrice] * (1 - SalesOrderDetail[UnitPriceDiscount]))</code></p>
+
+<p>We can see by the expression <code class="language-plaintext highlighter-rouge">SalesAmount2</code> uses the iterator function <code class="language-plaintext highlighter-rouge">SUMX()</code>.  This measure calculates the sales amount row-by-row in the <code class="language-plaintext highlighter-rouge">SalesOrderDetail</code> table.  As mentioned before context transition occurs within iterator functions.  So rather than using <code class="language-plaintext highlighter-rouge">CALCULATE()</code> and <code class="language-plaintext highlighter-rouge">SUM()</code> we create another calculated column that references this measure.</p>
+
+<p><code class="language-plaintext highlighter-rouge">ProductSales_measure = SalesAmount2</code></p>
+
+<p><img src="/assets/img/2022-11-10-power-bi-context-transistion/product-sales-measure.png" alt="Product Sales Measure" class="post__img" /></p>
+
+<p>We add the new column to the table visual and can see that it has the same value as <code class="language-plaintext highlighter-rouge">ProductSales_calculate</code>. This shows that a measure defined with an iterator also forces context transition.</p>
+
+<p>An important note about this new column is that the <code class="language-plaintext highlighter-rouge">ProductsSales_measure</code> works as expected when referencing the measure. However, it will not work if we define this column as the same expression that defines <code class="language-plaintext highlighter-rouge">SalesAmount2</code>.</p>
+
+<p>We can see below if we update <code class="language-plaintext highlighter-rouge">ProductSales_measure</code> to <code class="language-plaintext highlighter-rouge">SUMX(SalesOrderDetail, SalesOrderDetail[OrderQty] * SalesOrderDetail[UnitPrice] * (1 - SalesOrderDetail[UnitPriceDiscount]))</code>, the same expression used when defining <code class="language-plaintext highlighter-rouge">SalesAmount2</code>, will result in wrong values.</p>
+
+<p><img src="/assets/img/2022-11-10-power-bi-context-transistion/product-sales-expression.gif" alt="Product Sales Expression" class="post__img" /></p>
+
+<p>After updating <code class="language-plaintext highlighter-rouge">ProductSales_measure</code> we can see it returns the total sales values and not the sales per product. With this updated definition DAX is no longer able to apply the context transition. We can correct this by wrapping the expression with <code class="language-plaintext highlighter-rouge">CALCULATE()</code>.</p>
+
+<blockquote>
+  <p>Applying context transition always requires <code class="language-plaintext highlighter-rouge">CALCULATE()</code></p>
+</blockquote>
+
+<p><img src="/assets/img/2022-11-10-power-bi-context-transistion/product-sales-expression_update.gif" alt="Product Sales Expression Update" class="post__img" /></p>
+
+<p>Using the measure <code class="language-plaintext highlighter-rouge">SalesAmount2</code> worked previously because DAX implicitly wraps a measure with <code class="language-plaintext highlighter-rouge">CALCULATE()</code>. This is why context transition was applied when referencing the measure directly but not when referencing the same expression that defines the measure.</p>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="maximum-daily-sales-by-month-example">Maximum Daily Sales by Month Example</h2>
+<p>A question of interest is what is the maximum daily sales amount for each month in the dataset. In other words we would like to determine for each month what day of the month had the highest sales and what was the total daily sales value. We start by creating a new <code class="language-plaintext highlighter-rouge">MaxDailySales</code> measure and add it to the Max Daily Sales by Month and Year table visual.</p>
+
+<p>We define <code class="language-plaintext highlighter-rouge">MaxDailySales</code> as:</p>
+
+<p><code class="language-plaintext highlighter-rouge">MaxDailySales = MAXX(SalesOrderDetail, [SalesAmount2])</code></p>
+
+<p><img src="/assets/img/2022-11-10-power-bi-context-transistion/max-daily-sales.gif" alt="Max Daily Sales" class="post__img" /></p>
+
+<p>After adding the measure to the table we can see the sales amount value for each month. For example, the table currently shows that the maximum daily sales for November 2016 is $21,202.79. This value may appear reasonable but when examined closely we can determine it is incorrect. Currently, <code class="language-plaintext highlighter-rouge">MaxDailySales</code> is returning the maximum sale for each month and is not accounting for multiple sales within each day. We can see this by creating a new visual with the <code class="language-plaintext highlighter-rouge">Date</code>, <code class="language-plaintext highlighter-rouge">MaxSales</code>, and <code class="language-plaintext highlighter-rouge">SalesOrderDetailID</code> fields.</p>
+
+<p><img src="/assets/img/2022-11-10-power-bi-context-transistion/max-daily-sales.png" alt="Max Daily Sales and Individual Sales" class="post__img" /></p>
+
+<p>This table shows that the <code class="language-plaintext highlighter-rouge">MaxDailySales</code> for November 2016 is the same value as a single sale that occurred on November 17th. Yet, there are multiple sales on this day and every other day. The desired outcome is to calculate the total sales for each day and then determined the highest daily total value for each month.</p>
+
+<p>This error occurs because context transition is not being applied correctly. It is important to note that context transition is occurring while evaluating <code class="language-plaintext highlighter-rouge">MaxDailySales</code> because it is a measure. However, the context transition is not being applied on the correct aggregation level. The context transition is occurring on the <code class="language-plaintext highlighter-rouge">SalesOrderDetail</code> level, meaning for each row of this table. To correct this measure we will have to force the context transition on the correct, daily, aggregation level. We update the <code class="language-plaintext highlighter-rouge">MaxDailySales</code> expression using the <code class="language-plaintext highlighter-rouge">VALUES()</code> function.</p>
+
+<p>We define <code class="language-plaintext highlighter-rouge">MaxDailySales_Corrected</code> as:</p>
+
+<p><code class="language-plaintext highlighter-rouge">MaxDailySales_Corrected = MAXX(VALUES(DateTable[Date]), [SalesAmount2])</code></p>
+
+<p><img src="/assets/img/2022-11-10-power-bi-context-transistion/max-daily-sales-corrected.gif" alt="Max Daily Sales Corrected" class="post__img" /></p>
+
+<p>We change the table passed to <code class="language-plaintext highlighter-rouge">MAXX()</code> from <code class="language-plaintext highlighter-rouge">SalesOrderDetail</code> to <code class="language-plaintext highlighter-rouge">VALUES(DateTable[Date])</code>. Using <code class="language-plaintext highlighter-rouge">VALUES(DateTable[Date])</code> aggregates all the dates that are the same day shifting the context transition to the correct aggregation level. The <code class="language-plaintext highlighter-rouge">VALUES()</code> function in the expression provides a unique list of dates. For each day in the unique list, the <code class="language-plaintext highlighter-rouge">SalesAmount2</code> measure gets evaluated and returns the maximum daily total value. We then add the new measure to the table visual and now it shows the correct maximum daily sales for each month.</p>
+
+<p><img src="/assets/img/2022-11-10-power-bi-context-transistion/max-daily-sales-corrected.png" alt="Max Daily Sales Table" class="post__img" /></p>
+
+<p>The above example shows context transition at two different aggregation levels. They also highlight that the context transition can be shifted to return the specific value that is required. As well as showing why it is important to take into consideration the aggregation level when developing measures like <code class="language-plaintext highlighter-rouge">MaxDailySales</code>.</p>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="context-transition-pit-falls">Context Transition Pit Falls</h2>
+
+<p>Context transition is when row values transition into or replace the filter context. When context transition occurs it can sometimes lead to unexpected and incorrect values. An important part of context transition to understand is that it transitions the entire row into the filter. So what occurs when a row is not unique? Let’s explore this with the following example.</p>
+
+<p>We add a new <code class="language-plaintext highlighter-rouge">SimplifiedSales</code> table to the data model.</p>
+
+<p><img src="/assets/img/2022-11-10-power-bi-context-transistion/simplified-sales-data.png" alt="Simplified Sales Data Table" class="post__img" /></p>
+
+<p>Then we add a <code class="language-plaintext highlighter-rouge">TotalSales</code> measure. <code class="language-plaintext highlighter-rouge">TotalSales</code> is defined as:</p>
+
+<p><code class="language-plaintext highlighter-rouge">TotalSales = SUMX(SimplifiedSales, SimplifiedSales[OrderQty] * SimplifiedSales[UnitPrice] * (1 - SimplifiedSales[UnitPriceDiscount]))</code></p>
+
+<p><img src="/assets/img/2022-11-10-power-bi-context-transistion/simplified-sales-summary.png" alt="Simplified Sales Total Sales Summary" class="post__img" /></p>
+
+<p>Viewing the two tables above, we can confirm that the <code class="language-plaintext highlighter-rouge">TotalSales</code> values are correctly aggregating the sales data. Now we add another measure to the table which references the measure <code class="language-plaintext highlighter-rouge">TotalSales</code>. Referencing this measure will force context transition due to the implicit <code class="language-plaintext highlighter-rouge">CALCULATE()</code> added to measures. See above for details.</p>
+
+<p>We define <code class="language-plaintext highlighter-rouge">TotalSales_ConextT</code> as:</p>
+
+<p><code class="language-plaintext highlighter-rouge">TotalSales_ContextT = SUMX(SimplifiedSales, [TotalSales])</code></p>
+
+<p><img src="/assets/img/2022-11-10-power-bi-context-transistion/simplified-sales-context-transition.png" alt="Simplified Sales Context Transition Measure" class="post__img" /></p>
+
+<p>In the new column we can see that the values for <code class="language-plaintext highlighter-rouge">Road-350-W Yellow, 48</code> and <code class="language-plaintext highlighter-rouge">Touring-3000 Blue, 44</code> have not changed and are correct. However, <code class="language-plaintext highlighter-rouge">Mountain-500 Silver, 52</code> did update, and <code class="language-plaintext highlighter-rouge">TotalSales_ContextT</code> column shows an incorrect value. So what happened?</p>
+
+<p>The issue is the context transition. Viewing the <code class="language-plaintext highlighter-rouge">SimplifiedSales</code> table we can see that <code class="language-plaintext highlighter-rouge">Mountain-500 Silver, 52</code> appears twice in the table. With both records having identical values for each field. Remember, context transition utilizes the entire row. Meaning the table gets filtered on <code class="language-plaintext highlighter-rouge">Mountain-500 Silver, 52</code>/<code class="language-plaintext highlighter-rouge">1</code>/<code class="language-plaintext highlighter-rouge">$450.00</code>. Because of this, the result gets summed up in the <code class="language-plaintext highlighter-rouge">TotalSales</code> measure returning a value of $900.00. This value is then evaluated twice, once for each identical row.</p>
+
+<p>This behavior is not seen for the <code class="language-plaintext highlighter-rouge">Road-350-W, 48</code> records because they are unique. One row has a <code class="language-plaintext highlighter-rouge">UnitPriceDiscount</code> of  0.0% and the other has a value of 5.0%. This difference makes each row unique when context transition is applied.</p>
+
+<blockquote>
+  <p>When context transition occurs it is important to have some sort of unique identifier creating unique rows</p>
+</blockquote>
+
+<p>Knowing what context transition is and when it occurs is important to identifying when this issue may occur. When context transition is applied it is important to check the table and verify calculations to ensure it is applied correctly.</p>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<p>If you enjoy what you read and find it helpful please check back, and check back often. Follow me on <a class="post__link" href="https://medium.com/@emguyant"><i class="fab fa-medium"></i> Medium</a> while giving a clap to the article! Also don’t forget to subscribe to the <a class="post__link" href="https://medium.com/inquisitive-nature"><b>INQUISITIVE NATURE</b></a> publication.s</p>
+
+    </div><a class="u-url" href="/blog/2022-11-08-power-bi-context-transition/" hidden></a>
+  </article>
+</div>
+      </div>
+    </main><footer class="footer">
+    <!-- replace with your own email address 
+    <a href="mailto:info@ethanguyant.com" class="footer__link">info@ethanguyant.com</a>-->
+    <ul class="social-list">
+        <li class="social-list__item">
+            <a class="social-list__link" href="mailto:emguyant@gmail.com">
+                <i class="fas fa-envelope"></i>
+            </a>
+        </li>
+        <li class="social-list__item">
+            <a class="social-list__link" href="https://www.linkedin.com/in/ethan-guyant/">
+                <i class="fab fa-linkedin"></i>
+            </a>
+        </li>
+        <li class="social-list__item">
+            <a class="social-list__link" href="https://github.com/EMGuyant">
+                <i class="fab fa-github"></i>
+            </a>
+        </li>
+        <li class="social-list__item">
+            <a class="social-list__link" href="https://medium.com/@emguyant">
+                <i class="fab fa-medium"></i>
+            </a>
+        </li>
+        <li class="social-list__item">
+            <a class="social-list__link" href="https://medium.com/inquisitive-nature">
+                <i class="fa-solid fa-book"></i>
+            </a>
+        </li>
+    </ul>
+</footer><script src="https://kit.fontawesome.com/c9965d23bb.js" crossorigin="anonymous"></script>
+<script src="/assets/js/script.js"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+</body>
+
+</html>
