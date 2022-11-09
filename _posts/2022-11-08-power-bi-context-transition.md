@@ -53,11 +53,11 @@ The concept of context transition can be a bit abstract so it can be easiest to 
 
 After evaluating `ProductSales` we see it repeats the same $109.85M sales value for each row. This value is the total sales amount for the entire dataset. This is not what we want `ProductSales` to calculate, so what happened?
  
-`ProductSales` calculates the total sales of the entire data rather than the *filtered* per product value because row context is not a filter. For example, the row context includes the `ProductID`  value but this identifier is not a filter on the data during evaluation. And because the row context is not a filter DAX does not distinguish between different rows (i.e products) when evaluating `ProductSales`. 
+`ProductSales` calculates the total sales of the entire data rather than the *filtered* per-product value because row context is not a filter. For example, the row context includes the `ProductID`  value but this identifier is not a filter on the data during evaluation. And because the row context is not a filter DAX does not distinguish between different rows (i.e products) when evaluating `ProductSales`. 
 
 ![Product Sales no Context Transition Table](/assets/img/2022-11-10-power-bi-context-transistion/product-sales-no-transistion-table.png){: .post__img}
 
-For example, looking at the table above while evaluating the measure DAX does not distinguish the `Adjustable Race` row from the `LL Crankarm` row. Since all rows are viewed as the same the to total sales value is repeated for each row. 
+For example, looking at the table above while evaluating the measure DAX does not distinguish the `Adjustable Race` row from the `LL Crankarm` row. Since all rows are viewed as the same the total sales value is repeated for each row. 
 
 You may have guessed it but, the example above calculates the wrong value because it does not contain a context transition. The row context does not shift to the filter context causing the error in the calculated value. This simple example highlights why context transition is important and when it's needed. To correct this we must force the context transition. This will convert the row values into a filter and calculate the sales for each product. There are various ways to do this, and below are two options.
 
