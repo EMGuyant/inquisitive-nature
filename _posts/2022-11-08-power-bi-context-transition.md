@@ -34,7 +34,7 @@ One of the most powerful elements of Power BI is that all measure calculations a
 
 When evaluating expressions, the row context can be transitioned into a filter context within Power BI. This transition can help create more complex measures. Row context, filter context, and context transition can be confusing when starting with DAX so visit references and documentation often.  
 
-This post is the fourth of a Power BI Fundamental series with a focus on the context transition. The example file used in this post is located here -<a class="social-list__link" href="https://github.com/EMGuyant/power-bi-key-fundamentals"><i class="fab fa-github"></i> GitHub</a>.
+This post is the fourth, and last, of a Power BI Fundamental series with a focus on the context transition. The example file used in this post is located here -<a class="social-list__link" href="https://github.com/EMGuyant/power-bi-key-fundamentals"><i class="fab fa-github"></i> GitHub</a>.
 
 <br>
 
@@ -182,4 +182,4 @@ Knowing what context transition is and when it occurs is important to identifyin
 
 <br>
 
-If you enjoy what you read and find it helpful please check back, and check back often. Follow me on <a class="post__link" href="https://medium.com/@emguyant"><i class="fab fa-medium"></i> Medium</a> while giving a clap to the article! Also don't forget to subscribe to the <a class="post__link" href="https://medium.com/inquisitive-nature"><b>INQUISITIVE NATURE</b></a> publication.s
+If you enjoy what you read and find it helpful please check back, and check back often. Follow me on <a class="post__link" href="https://medium.com/@emguyant"><i class="fab fa-medium"></i> Medium</a> while giving a clap to the article! Also don't forget to subscribe to the <a class="post__link" href="https://medium.com/inquisitive-nature"><b>INQUISITIVE NATURE</b></a> publication.
