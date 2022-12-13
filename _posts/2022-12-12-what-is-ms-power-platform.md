@@ -19,7 +19,7 @@ Power Apps is a low-code platform for custom application development. Power App'
 
 Power Automate is a workflow automation tool that helps automate repetitive processes (e.g. data collection, and document approvals). 
 
-Power Virtual Agents is a tool to develop deploy chatbots in a low-code environment. 
+Power Virtual Agents is a tool to develop and deploy chatbots in a low-code environment. 
 
 Utilizing the components of the Power Platform allows organizations to **Analyze** data and deliver insights, **Act** by building low-code solutions, **Automate** business processes, and **Assist** with inquiries with chatbots.
 
@@ -32,7 +32,7 @@ Utilizing the components of the Power Platform allows organizations to **Analyze
 ## Power BI
 Power BI is a tool for analyzing data and making informed decisions. The basic parts of Power BI include Workspaces, Datasets, Reports & Dashboards, and Apps.
 
-A workspace is a defined container to store related datasets, reports, dashboards, and dataflows. Workspaces come in two types either My workspace or workspaces. My workspace is a personal workspace. Workspaces is a container for collaborating and sharing content. All workspace members require a Power BI Pro license.
+A workspace is a container to store related datasets, reports, dashboards, and dataflows. Workspaces come in two types either My workspace or workspaces. My workspace is a personal workspace. Workspaces is a container for collaborating and sharing content. All workspace members require a Power BI Pro license.
 
 Datasets are the data imported, connected to, or created within Power BI. The datasets are the data that underlie Power BI reports. When creating a  dataset you associate it with a workspace. You can include a dataset in multiple workspaces and use it in multiple reports. 
 
@@ -41,7 +41,7 @@ A report is a collection of visualizations (e.g. line chart, bar chart, KPIs, et
 <br>
 
 ### Power BI Desktop
-Power BI Desktop is a free application that you can use to extract and transform data. The data can be from various sources and you build reports on this data. After extracting the data Power BI provides the option to transform the data. The data transformations can range from data cleaning operations, improving readability by clarifying column names, setting data types to more complex operations. 
+Power BI Desktop is a free application that you can use to extract and transform data. The data can be from various sources and you build reports on this data. After extracting the data Power BI provides the option to transform the data. The data transformations can range from data cleaning operations to improving readability by clarifying column names and setting data types to more complex operations.
 
 There are three main pages in Power BI Desktop which you can navigate between on the left menu. The first is the Report page. This is the report canvas where you add and configure visualizations. 
 
@@ -52,12 +52,18 @@ The last is the Model page. On this page, you can construct and view the data mo
 <br>
 
 ### Power BI Report Visuals
-When viewing the report canvas you can add a variety of elements to your report from the Insert menu on the top ribbon. On the right-hand side of the Power BI Desktop application, there are panes for Filters, Visualization, and Fields. You can add visuals to the report from the Visualizations pane. On the Field pane, you are able to add or change the data displayed on the visual. There are many built-in visualizations to add to Power BI reports. A few examples include bar and column charts, single and multi-row cards, KPIs, pie charts, and tables. In addition to the built-in visualizations, you can add custom visuals from the Power BI AppSource.
+When viewing the report canvas you can add a variety of elements to your report from the Insert menu on the top ribbon. On the right-hand side of the Power BI Desktop application, there are panes for Filters, Visualizations, and Fields. You can add visuals to the report from the Visualizations pane. On the Field pane, you are able to add or change the data displayed on the visual. There are many built-in visualizations to add to Power BI reports. A few examples include bar and column charts, single and multi-row cards, KPIs, pie charts, and tables. In addition to the built-in visualizations, you can add custom visuals from the Power BI AppSource.
 
 <br>
 
 ### Publishing Power BI Reports
 Once you complete a report you must publish it to share with others. You publish a report from the Power BI Desktop Home menu using the Publish option in the top ribbon. When publishing a report you must select the workspace to associate it with. Selecting any workplace other than My workspace requires a Power BI Pro license. Any reports published to My workspace are for personal content.
+
+For more details on Power BI Fundamentals check out this four-part series.
+* [Power BI Fundamentals: Part 1 - Row Context](https://ethanguyant.com/blog/2022-09-28-power-bi-row-context/){: .post__link}
+* [Power BI Fundamentals: Part 2 - Iterator Functions](https://ethanguyant.com/blog/2022-10-11-power-bi-iterators/){: .post__link}
+* [Power BI Fundamentals: Part 3 - Filer Context](https://ethanguyant.com/blog/2022-09-28-power-bi-row-context/){: .post__link}
+* [Power BI Fundamentals: Part 4 - Context Transition](https://ethanguyant.com/blog/2022-11-08-power-bi-context-transition/){: .post__link}
 
 <br>
 
@@ -68,7 +74,7 @@ Once you complete a report you must publish it to share with others. You publish
 ## Power Apps
 Power Apps is a rapid low-code platform for custom application development. It consists of apps, connectors, and data that are all integrated providing the tools and environment required for application development. 
 
-With Power Apps, there are 3 types of apps that you can create. The first type is a Canvas app. These apps start blank and connect to various data sources. You construct the app using the low code interface. Model-driven apps are applications built on top of an existing data model. You build these apps using forms, views, and dashboards. Dataverse is the data source for model-driven apps. The last type of app is Portal. Portal creates public-facing web sites. Like model-driven apps, Dataverse is the data source for Power Apps Portal.
+With Power Apps, there are 3 types of apps that you can create. The first type is a Canvas app. These apps start blank and connect to various data sources. You construct the app using the low code interface. Model-driven apps are applications built on top of an existing data model. You build these apps using forms, views, and dashboards. Dataverse is the data source for model-driven apps. The last type of app is Portal. Portal creates public-facing websites. Like model-driven apps, Dataverse is the data source for Power Apps Portal.
 
 <br>
 
@@ -79,7 +85,7 @@ Components are reusable groupings of controls and formulas within the app. Compo
 
 Controls are the different elements that make up the app. Controls include things such as buttons, text labels and inputs, galleries, and icons. The complete list is viewable in the Power Apps Studio on the Insert tab. Each control has its own array of properties and events which are viewable after adding it to the app.
 
-The basic building blocks above develop the visual aspects of the app. However, typically there is a data aspect to the app. Power Apps connectors connect to and access data from various sources. There are standard connectors that are free to use and there are premium connectors that require a Power Apps premium license. 
+The basic building blocks above develop the visual aspects of the app. However, typically there is a data aspect to the app. Power Apps connectors connect to and access data from various sources. There are standard connectors and there are premium connectors that require a Power Apps premium license. 
 
 <br>
 
@@ -88,7 +94,7 @@ The basic building blocks above develop the visual aspects of the app. However, 
 <br>
 
 ## Power Automate
-Power Automate is a workflow engine used to improve business processes through automation. It excels at automating repetitive manual processes which consist of predefined steps. The processes automated can range in complexity. They can be as simple as sending notifications and document approval. Or complex multi-flow processes where certain tasks are conditionally triggered.
+Power Automate is a workflow engine used to improve business processes through automation. It excels at automating repetitive manual processes which consist of predefined steps. The processes automated can range in complexity. They can be as simple as sending notifications and document approvals. Or complex multi-flow processes where certain tasks are conditionally triggered.
 
 Power Automate flows consist of the trigger, actions, and controls. The triggers available depend on the type of flow. While the actions available depend on the specific connector. Controls can create conditional evaluations and branches within the workflow.
 
@@ -103,6 +109,10 @@ Business Process flows provide a guided experience for the collection and entry 
 
 Desktop flows provide robotic process automation to Power Automate. Desktop flows allow users to record their actions while completing a process. These actions and interactions with applications are then played back and automated by the flow.
 
+For Power Automate examples please see the following related posts.
+* [Microsoft Power Automate: Outlook Inbox Cleanup](https://ethanguyant.com/blog/2022-08-19-powerautomate-inbox-cleanup/){: .post__link}
+* [Microsoft Power Automate: Dynamic Approval Cycle](https://ethanguyant.com/blog/2022-09-07-powerautomate-dyanmic-approval-cycle/){: .post__link}
+
 <br>
 
 ---
@@ -110,7 +120,7 @@ Desktop flows provide robotic process automation to Power Automate. Desktop flow
 <br>
 
 ## Power Virtual Agents
-Power Virtual Agents is a app powered by AI and used to create chatbots. Power Virtual Agents is a tool to develop solutions for a specific topic where the bot will ask a series of questions. Using the responses to the questions the Power Virtual Agent will perform associated actions.
+Power Virtual Agents is an app powered by AI and used to create chatbots. Power Virtual Agents is a tool to develop solutions for a specific topic where the bot will ask a series of questions. Using the responses to the questions the Power Virtual Agent will perform associated actions.
 
 <br>
 
@@ -120,7 +130,7 @@ When developing a Power Virtual Agent a topic is what the person who is interact
 <br>
 
 ### Entities
-Entities group information. Power Virtual Agents provide prebuilt entities and the ability to create custom ones. Pre-built entities represent commonly used information including colors, numbers, and names. With the use of these entities, the bot recognizes relevant information from user interactions. The information is then saved and used to inform later actions. Use custom entities when developing a chatbot for a specific purpose. Creating a custom entity involves teaching the chatbot language understanding model the domain-specific information.
+Entities group information. Power Virtual Agents provide prebuilt entities and the ability to create custom ones. Pre-built entities represent commonly used information. With the use of these entities, the bot recognizes relevant information from user interactions. The information is then saved and used to inform later actions. Use custom entities when developing a chatbot for a specific purpose. Creating a custom entity involves teaching the chatbot language understanding model the domain-specific information.
 
 <br>
 
@@ -144,7 +154,7 @@ Once complete the chatbot can be published to multiple platforms or channels inc
 <br>
 
 ## Power Platform Related Components
-Across each of the four apps mentioned there are cross-cutting features that enable utilizing the Power Platform to its full potential. The Power Platform products use a set of three shared services or core components. The core components include AI Builder, Dataverse, and Connectors. These components allow the Power Platform apps to be closely integrated.
+Across each of the four apps mentioned there are cross-cutting features that enable utilizing the Power Platform to its full potential. The Power Platform products use a set of three shared services or components. The core components include AI Builder, Dataverse, and Connectors. These components allow the Power Platform apps to be closely integrated.
 
 AI Builder is a solution that lets users add intelligence to created workflows and apps. These AI capabilities can predict outcomes and aid in improving business performance.
 
