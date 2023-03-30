@@ -221,7 +221,7 @@ You create a custom table by navigating to the environment where the app is bein
 
 ![Power Platform Admin Center](/assets/img/2023-04-01-model-driven-app//5_create_custom_table.gif){: .post__img}
 
-After creating the table you can view the columns and see that it comes with a number of automatically created columns to support system processes. We will have to add some column such as Phone Number, Street Address, City, State, and all other columns listed above.
+After creating the table you can view the columns and see that it comes with a number of automatically created columns. These columns support underlying system processes. We will have to add some column such as Phone Number, Street Address, City, State, and all other columns listed above.
 
 You add columns by expanding Tables on the Object pane of the solution and then expanding the specific table to show its components. Then select columns to view the columns page.
 
@@ -250,7 +250,7 @@ After creating our two custom tables we must add the existing Contacts and Accou
 
 Relationships define how tables in the database relate to other tables. When working with the Power Platform there are two main relationship types to work with.
 
-A one-to-many relationship is when a row in the *Primary Table* is associated or reference many rows in the *Related Table*. In Power Apps there are actually three relationship types listed when creating a relationship. However, every one-to-many relationship is also a many-to-one relationship viewed from the perspective of the related table. For this type of relationship different relationship behaviors can be defined (e.g. cascading delete). For more detail on the various behaviors and actions check out [Table Relationships](https://learn.microsoft.com/en-us/power-apps/maker/data-platform/create-edit-entity-relationships){: .post__link} for more information. Power Apps does provide pre-defined behavior/action grouping that can be used. These include Referential Remove Link, Referential Restrict Delete, and Parental.
+A one-to-many relationship is when a row in the *Primary Table* is associated or reference many rows in the *Related Table*. In Power Apps there are actually three relationship types listed when creating a relationship. However, every one-to-many relationship is also a many-to-one relationship viewed from the perspective of the related table. For this type of relationship, different relationship behaviors can be defined (e.g. cascading delete). For more detail on the various behaviors and actions check out [Table Relationships](https://learn.microsoft.com/en-us/power-apps/maker/data-platform/create-edit-entity-relationships){: .post__link} for more information. Power Apps does provide pre-defined behavior/action grouping that can be used. These include Referential Remove Link, Referential Restrict Delete, and Parental.
 
 A many-to-many relationship is when many rows in one table are associated or reference many rows in another table.
 
@@ -258,7 +258,7 @@ Creating a one-to-many (or many-to-one) relationship can be done in two ways. Th
 
 We will first create the one-to-many relationship between `Landlord` and `BrewPub` by creating  a lookup field. In this relationship a `BrewPub` can have *one* landlord and a `Landlord` can have *many* BrewPubs. So the first question is on which table to add the lookup field.
 
->When using a lookup field you are looking up a **single** thing. You are looking up to the one side of the relationship. This means the lookup field should sit and be created in the table on the *many* side of the relationship.
+>When using a lookup field you are looking up a **single** thing. You are looking up to the one side of the relationship. This means the lookup field should be created in the table on the *many* side of the relationship.
 
 ![Power Platform Admin Center](/assets/img/2023-04-01-model-driven-app/9_create_one_to_many.gif){: .post__img}
 
@@ -288,7 +288,7 @@ With the app now created we start by building out the site map or the navigation
 
 The `Group` (and `Area` if enabled) are different levels of containers that hold the navigation links. The `Subarea` which are contained within a group are linked to a content type. The content types include tables, dashboards, custom pages, web resources, or a URL.
 
-We will first create a `Accounts and Contacts` group with two subareas. The subareas will be `Accounts` and `Contacts` linked to the associated table. Then we will repeat this process creating a second `Dusty Bottle Brewery` group with subareas for `BrewPubs` and `Landlords.`
+We will first create an `Accounts and Contacts` group with two subareas. The subareas will be `Accounts` and `Contacts` linked to the associated table. Then we will repeat this process creating a second `Dusty Bottle Brewery` group with subareas for `BrewPubs` and `Landlords.`
 
 ![Power Platform Admin Center](/assets/img/2023-04-01-model-driven-app/12_site_map.gif){: .post__img}
 
@@ -357,11 +357,11 @@ You toggle between different views from within the App. The default view can als
 
 ### Business Rules
 
-Business rules are utilized to dynamically update the app UI. Typical use cases for business rules include displaying error messages, setting or clearing field values, setting required fields, show or hide fields, and enable or disable fields.
+Business rules are utilized to dynamically update the app UI. Typical use cases for business rules include displaying error messages, setting or clearing field values, setting required fields, showing or hiding fields, and enabling or disabling fields.
 
 >It is important to note that business rules are table specific.
 
-We will create a business rule for the `Account` table to set the value of a company's `Payment Terms` based on the company's `Credit Limit.` First we look at the details of a company and in the Billing section we can see both of these values are blank.
+We will create a business rule for the `Account` table to set the value of a company's `Payment Terms` based on the company's `Credit Limit`. First we look at the details of an Account and in the Billing section we can see both of these values are blank.
 
 ![Power Platform Admin Center](/assets/img/2023-04-01-model-driven-app/19_billing_section.png){: .post__img}
 
