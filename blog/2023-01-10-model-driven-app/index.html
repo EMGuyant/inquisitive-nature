@@ -547,7 +547,7 @@
 
 <p><img src="/assets/img/2023-04-01-model-driven-app//5_create_custom_table.gif" alt="Power Platform Admin Center" class="post__img" /></p>
 
-<p>After creating the table you can view the columns and see that it comes with a number of automatically created columns to support system processes. We will have to add some column such as Phone Number, Street Address, City, State, and all other columns listed above.</p>
+<p>After creating the table you can view the columns and see that it comes with a number of automatically created columns. These columns support underlying system processes. We will have to add some column such as Phone Number, Street Address, City, State, and all other columns listed above.</p>
 
 <p>You add columns by expanding Tables on the Object pane of the solution and then expanding the specific table to show its components. Then select columns to view the columns page.</p>
 
@@ -608,7 +608,7 @@
 
 <p>Relationships define how tables in the database relate to other tables. When working with the Power Platform there are two main relationship types to work with.</p>
 
-<p>A one-to-many relationship is when a row in the <em>Primary Table</em> is associated or reference many rows in the <em>Related Table</em>. In Power Apps there are actually three relationship types listed when creating a relationship. However, every one-to-many relationship is also a many-to-one relationship viewed from the perspective of the related table. For this type of relationship different relationship behaviors can be defined (e.g. cascading delete). For more detail on the various behaviors and actions check out <a href="https://learn.microsoft.com/en-us/power-apps/maker/data-platform/create-edit-entity-relationships" class="post__link">Table Relationships</a> for more information. Power Apps does provide pre-defined behavior/action grouping that can be used. These include Referential Remove Link, Referential Restrict Delete, and Parental.</p>
+<p>A one-to-many relationship is when a row in the <em>Primary Table</em> is associated or reference many rows in the <em>Related Table</em>. In Power Apps there are actually three relationship types listed when creating a relationship. However, every one-to-many relationship is also a many-to-one relationship viewed from the perspective of the related table. For this type of relationship, different relationship behaviors can be defined (e.g. cascading delete). For more detail on the various behaviors and actions check out <a href="https://learn.microsoft.com/en-us/power-apps/maker/data-platform/create-edit-entity-relationships" class="post__link">Table Relationships</a> for more information. Power Apps does provide pre-defined behavior/action grouping that can be used. These include Referential Remove Link, Referential Restrict Delete, and Parental.</p>
 
 <p>A many-to-many relationship is when many rows in one table are associated or reference many rows in another table.</p>
 
@@ -617,7 +617,7 @@
 <p>We will first create the one-to-many relationship between <code class="language-plaintext highlighter-rouge">Landlord</code> and <code class="language-plaintext highlighter-rouge">BrewPub</code> by creating  a lookup field. In this relationship a <code class="language-plaintext highlighter-rouge">BrewPub</code> can have <em>one</em> landlord and a <code class="language-plaintext highlighter-rouge">Landlord</code> can have <em>many</em> BrewPubs. So the first question is on which table to add the lookup field.</p>
 
 <blockquote>
-  <p>When using a lookup field you are looking up a <strong>single</strong> thing. You are looking up to the one side of the relationship. This means the lookup field should sit and be created in the table on the <em>many</em> side of the relationship.</p>
+  <p>When using a lookup field you are looking up a <strong>single</strong> thing. You are looking up to the one side of the relationship. This means the lookup field should be created in the table on the <em>many</em> side of the relationship.</p>
 </blockquote>
 
 <p><img src="/assets/img/2023-04-01-model-driven-app/9_create_one_to_many.gif" alt="Power Platform Admin Center" class="post__img" /></p>
@@ -648,7 +648,7 @@
 
 <p>The <code class="language-plaintext highlighter-rouge">Group</code> (and <code class="language-plaintext highlighter-rouge">Area</code> if enabled) are different levels of containers that hold the navigation links. The <code class="language-plaintext highlighter-rouge">Subarea</code> which are contained within a group are linked to a content type. The content types include tables, dashboards, custom pages, web resources, or a URL.</p>
 
-<p>We will first create a <code class="language-plaintext highlighter-rouge">Accounts and Contacts</code> group with two subareas. The subareas will be <code class="language-plaintext highlighter-rouge">Accounts</code> and <code class="language-plaintext highlighter-rouge">Contacts</code> linked to the associated table. Then we will repeat this process creating a second <code class="language-plaintext highlighter-rouge">Dusty Bottle Brewery</code> group with subareas for <code class="language-plaintext highlighter-rouge">BrewPubs</code> and <code class="language-plaintext highlighter-rouge">Landlords.</code></p>
+<p>We will first create an <code class="language-plaintext highlighter-rouge">Accounts and Contacts</code> group with two subareas. The subareas will be <code class="language-plaintext highlighter-rouge">Accounts</code> and <code class="language-plaintext highlighter-rouge">Contacts</code> linked to the associated table. Then we will repeat this process creating a second <code class="language-plaintext highlighter-rouge">Dusty Bottle Brewery</code> group with subareas for <code class="language-plaintext highlighter-rouge">BrewPubs</code> and <code class="language-plaintext highlighter-rouge">Landlords.</code></p>
 
 <p><img src="/assets/img/2023-04-01-model-driven-app/12_site_map.gif" alt="Power Platform Admin Center" class="post__img" /></p>
 
@@ -751,13 +751,13 @@
 
 <h3 id="business-rules">Business Rules</h3>
 
-<p>Business rules are utilized to dynamically update the app UI. Typical use cases for business rules include displaying error messages, setting or clearing field values, setting required fields, show or hide fields, and enable or disable fields.</p>
+<p>Business rules are utilized to dynamically update the app UI. Typical use cases for business rules include displaying error messages, setting or clearing field values, setting required fields, showing or hiding fields, and enabling or disabling fields.</p>
 
 <blockquote>
   <p>It is important to note that business rules are table specific.</p>
 </blockquote>
 
-<p>We will create a business rule for the <code class="language-plaintext highlighter-rouge">Account</code> table to set the value of a company’s <code class="language-plaintext highlighter-rouge">Payment Terms</code> based on the company’s <code class="language-plaintext highlighter-rouge">Credit Limit.</code> First we look at the details of a company and in the Billing section we can see both of these values are blank.</p>
+<p>We will create a business rule for the <code class="language-plaintext highlighter-rouge">Account</code> table to set the value of a company’s <code class="language-plaintext highlighter-rouge">Payment Terms</code> based on the company’s <code class="language-plaintext highlighter-rouge">Credit Limit</code>. First we look at the details of an Account and in the Billing section we can see both of these values are blank.</p>
 
 <p><img src="/assets/img/2023-04-01-model-driven-app/19_billing_section.png" alt="Power Platform Admin Center" class="post__img" /></p>
 

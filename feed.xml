@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://ethanguyant.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://ethanguyant.com/" rel="alternate" type="text/html" /><updated>2023-03-29T10:30:48+00:00</updated><id>http://ethanguyant.com/feed.xml</id><title type="html">Ethan Guyant’s Blog</title><subtitle>A data solution centric blog focusing on the use and application of Microsoft Power Apps, Python Programming, and Data Science.</subtitle><entry><title type="html">Lets make a model-driven app</title><link href="http://ethanguyant.com/blog/2023-01-10-model-driven-app/" rel="alternate" type="text/html" title="Lets make a model-driven app" /><published>2023-01-10T00:00:00+00:00</published><updated>2023-01-10T00:00:00+00:00</updated><id>http://ethanguyant.com/blog/model-driven-app</id><content type="html" xml:base="http://ethanguyant.com/blog/2023-01-10-model-driven-app/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://ethanguyant.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://ethanguyant.com/" rel="alternate" type="text/html" /><updated>2023-03-30T23:33:02+00:00</updated><id>http://ethanguyant.com/feed.xml</id><title type="html">Ethan Guyant’s Blog</title><subtitle>A data solution centric blog focusing on the use and application of Microsoft Power Apps, Python Programming, and Data Science.</subtitle><entry><title type="html">Lets make a model-driven app</title><link href="http://ethanguyant.com/blog/2023-01-10-model-driven-app/" rel="alternate" type="text/html" title="Lets make a model-driven app" /><published>2023-01-10T00:00:00+00:00</published><updated>2023-01-10T00:00:00+00:00</updated><id>http://ethanguyant.com/blog/model-driven-app</id><content type="html" xml:base="http://ethanguyant.com/blog/2023-01-10-model-driven-app/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;model-driven-apps&quot;&gt;Model-Driven Apps&lt;/h1&gt;
 
@@ -379,7 +379,7 @@
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/2023-04-01-model-driven-app//5_create_custom_table.gif&quot; alt=&quot;Power Platform Admin Center&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;After creating the table you can view the columns and see that it comes with a number of automatically created columns to support system processes. We will have to add some column such as Phone Number, Street Address, City, State, and all other columns listed above.&lt;/p&gt;
+&lt;p&gt;After creating the table you can view the columns and see that it comes with a number of automatically created columns. These columns support underlying system processes. We will have to add some column such as Phone Number, Street Address, City, State, and all other columns listed above.&lt;/p&gt;
 
 &lt;p&gt;You add columns by expanding Tables on the Object pane of the solution and then expanding the specific table to show its components. Then select columns to view the columns page.&lt;/p&gt;
 
@@ -440,7 +440,7 @@
 
 &lt;p&gt;Relationships define how tables in the database relate to other tables. When working with the Power Platform there are two main relationship types to work with.&lt;/p&gt;
 
-&lt;p&gt;A one-to-many relationship is when a row in the &lt;em&gt;Primary Table&lt;/em&gt; is associated or reference many rows in the &lt;em&gt;Related Table&lt;/em&gt;. In Power Apps there are actually three relationship types listed when creating a relationship. However, every one-to-many relationship is also a many-to-one relationship viewed from the perspective of the related table. For this type of relationship different relationship behaviors can be defined (e.g. cascading delete). For more detail on the various behaviors and actions check out &lt;a href=&quot;https://learn.microsoft.com/en-us/power-apps/maker/data-platform/create-edit-entity-relationships&quot; class=&quot;post__link&quot;&gt;Table Relationships&lt;/a&gt; for more information. Power Apps does provide pre-defined behavior/action grouping that can be used. These include Referential Remove Link, Referential Restrict Delete, and Parental.&lt;/p&gt;
+&lt;p&gt;A one-to-many relationship is when a row in the &lt;em&gt;Primary Table&lt;/em&gt; is associated or reference many rows in the &lt;em&gt;Related Table&lt;/em&gt;. In Power Apps there are actually three relationship types listed when creating a relationship. However, every one-to-many relationship is also a many-to-one relationship viewed from the perspective of the related table. For this type of relationship, different relationship behaviors can be defined (e.g. cascading delete). For more detail on the various behaviors and actions check out &lt;a href=&quot;https://learn.microsoft.com/en-us/power-apps/maker/data-platform/create-edit-entity-relationships&quot; class=&quot;post__link&quot;&gt;Table Relationships&lt;/a&gt; for more information. Power Apps does provide pre-defined behavior/action grouping that can be used. These include Referential Remove Link, Referential Restrict Delete, and Parental.&lt;/p&gt;
 
 &lt;p&gt;A many-to-many relationship is when many rows in one table are associated or reference many rows in another table.&lt;/p&gt;
 
@@ -449,7 +449,7 @@
 &lt;p&gt;We will first create the one-to-many relationship between &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Landlord&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BrewPub&lt;/code&gt; by creating  a lookup field. In this relationship a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BrewPub&lt;/code&gt; can have &lt;em&gt;one&lt;/em&gt; landlord and a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Landlord&lt;/code&gt; can have &lt;em&gt;many&lt;/em&gt; BrewPubs. So the first question is on which table to add the lookup field.&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;When using a lookup field you are looking up a &lt;strong&gt;single&lt;/strong&gt; thing. You are looking up to the one side of the relationship. This means the lookup field should sit and be created in the table on the &lt;em&gt;many&lt;/em&gt; side of the relationship.&lt;/p&gt;
+  &lt;p&gt;When using a lookup field you are looking up a &lt;strong&gt;single&lt;/strong&gt; thing. You are looking up to the one side of the relationship. This means the lookup field should be created in the table on the &lt;em&gt;many&lt;/em&gt; side of the relationship.&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/2023-04-01-model-driven-app/9_create_one_to_many.gif&quot; alt=&quot;Power Platform Admin Center&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
@@ -480,7 +480,7 @@
 
 &lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Group&lt;/code&gt; (and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Area&lt;/code&gt; if enabled) are different levels of containers that hold the navigation links. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Subarea&lt;/code&gt; which are contained within a group are linked to a content type. The content types include tables, dashboards, custom pages, web resources, or a URL.&lt;/p&gt;
 
-&lt;p&gt;We will first create a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Accounts and Contacts&lt;/code&gt; group with two subareas. The subareas will be &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Accounts&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Contacts&lt;/code&gt; linked to the associated table. Then we will repeat this process creating a second &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Dusty Bottle Brewery&lt;/code&gt; group with subareas for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BrewPubs&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Landlords.&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;We will first create an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Accounts and Contacts&lt;/code&gt; group with two subareas. The subareas will be &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Accounts&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Contacts&lt;/code&gt; linked to the associated table. Then we will repeat this process creating a second &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Dusty Bottle Brewery&lt;/code&gt; group with subareas for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BrewPubs&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Landlords.&lt;/code&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/2023-04-01-model-driven-app/12_site_map.gif&quot; alt=&quot;Power Platform Admin Center&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
 
@@ -583,13 +583,13 @@
 
 &lt;h3 id=&quot;business-rules&quot;&gt;Business Rules&lt;/h3&gt;
 
-&lt;p&gt;Business rules are utilized to dynamically update the app UI. Typical use cases for business rules include displaying error messages, setting or clearing field values, setting required fields, show or hide fields, and enable or disable fields.&lt;/p&gt;
+&lt;p&gt;Business rules are utilized to dynamically update the app UI. Typical use cases for business rules include displaying error messages, setting or clearing field values, setting required fields, showing or hiding fields, and enabling or disabling fields.&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;It is important to note that business rules are table specific.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;We will create a business rule for the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Account&lt;/code&gt; table to set the value of a company’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Payment Terms&lt;/code&gt; based on the company’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Credit Limit.&lt;/code&gt; First we look at the details of a company and in the Billing section we can see both of these values are blank.&lt;/p&gt;
+&lt;p&gt;We will create a business rule for the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Account&lt;/code&gt; table to set the value of a company’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Payment Terms&lt;/code&gt; based on the company’s &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Credit Limit&lt;/code&gt;. First we look at the details of an Account and in the Billing section we can see both of these values are blank.&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/2023-04-01-model-driven-app/19_billing_section.png&quot; alt=&quot;Power Platform Admin Center&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
 
