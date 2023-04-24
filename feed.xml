@@ -1,4 +1,357 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://ethanguyant.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://ethanguyant.com/" rel="alternate" type="text/html" /><updated>2023-03-30T23:33:02+00:00</updated><id>http://ethanguyant.com/feed.xml</id><title type="html">Ethan Guyant’s Blog</title><subtitle>A data solution centric blog focusing on the use and application of Microsoft Power Apps, Python Programming, and Data Science.</subtitle><entry><title type="html">Lets make a model-driven app</title><link href="http://ethanguyant.com/blog/2023-01-10-model-driven-app/" rel="alternate" type="text/html" title="Lets make a model-driven app" /><published>2023-01-10T00:00:00+00:00</published><updated>2023-01-10T00:00:00+00:00</updated><id>http://ethanguyant.com/blog/model-driven-app</id><content type="html" xml:base="http://ethanguyant.com/blog/2023-01-10-model-driven-app/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://ethanguyant.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://ethanguyant.com/" rel="alternate" type="text/html" /><updated>2023-04-24T21:06:25+00:00</updated><id>http://ethanguyant.com/feed.xml</id><title type="html">Ethan Guyant’s Blog</title><subtitle>A data solution centric blog focusing on the use and application of Microsoft Power Apps, Python Programming, and Data Science.</subtitle><entry><title type="html">Power BI - Key Differences Between Data Connectivity Modes</title><link href="http://ethanguyant.com/blog/2023-04-23-power-bi-connectivity-modes/" rel="alternate" type="text/html" title="Power BI - Key Differences Between Data Connectivity Modes" /><published>2023-04-23T00:00:00+00:00</published><updated>2023-04-23T00:00:00+00:00</updated><id>http://ethanguyant.com/blog/power-bi-connectivity-modes</id><content type="html" xml:base="http://ethanguyant.com/blog/2023-04-23-power-bi-connectivity-modes/">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Power BI is a data analysis and reporting tool that connects to and consumes data from a wide variety of data sources. Once connected to data sources it provides a power tool for data modeling, data visualization, and report sharing.&lt;/p&gt;
+
+&lt;p&gt;All data analysis projects start with first understanding the business requirements and the data sources available. Once determined the focus shifts to data consumption. Or how to load the required data into the analysis solution to provide the required insights.&lt;/p&gt;
+
+&lt;p&gt;Part of dataset planning is determining between the various data Power BI connectivity modes. The connectivity modes are methods to connect to or load data from the data sources. The connectivity mode defines how to get the data from the data sources. The selected connectivity mode impacts report performance, data freshness, and the Power BI features available.&lt;/p&gt;
+
+&lt;p&gt;The decision is between the default &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Import&lt;/code&gt; connectivity mode, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DirectQuery&lt;/code&gt; connectivity mode, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Live Connection&lt;/code&gt; connectivity mode, or using a composite model. This decision can be simple in some projects, where one option is the only workable option due to the requirements. In other projects this decision requires an analysis of the benefits and limitations of each connectivity mode.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;So which one is the best?&lt;/strong&gt; &lt;br /&gt;
+   Well…it depends.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Each connectivity type has its use cases and generally one is not better than the other but rather a trade-off decision. When determining which connectivity mode to use it is a balance between the requirements of the report and the limitations of each method.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Moving from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Import&lt;/code&gt; to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DirectQuery&lt;/code&gt; to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Live Connection&lt;/code&gt; represents offloading the data modeling workload to the data source and results in less data storage within Power BI.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;This post will cover each connectivity mode and provides an overview of each method as well as covering their limitations.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;overview&quot;&gt;Overview&lt;/h2&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Import&lt;/code&gt; mode makes an entire copy of a subset of the source data. This data is then stored in-memory and made available to Power BI. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DirectQuery&lt;/code&gt; does not load a copy of the data into Power BI. Rather Power BI stores information about the schema or shape of the data. Power BI then queries the data source making the underlying data available to the Power BI report. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Live Connection&lt;/code&gt; store a connection string to the underlying analysis services and leverages Power BI as a visualization layer.&lt;/p&gt;
+
+&lt;p&gt;As mentioned in some projects determining a connectivity mode can be straight forward. In general, when a data source is not equipped to handle a high volume of analytical queries the preferred connectivity mode is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Import&lt;/code&gt; mode. When there is a need for near real-time data then &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DirectQuery&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Live Connection&lt;/code&gt; are the only options that can meet this need.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Key differences between the connectivity modes include the supported data sources and size of the data-model&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;For the projects where you must analyze each connectivity mode, keep reading to get a further understanding of the benefits and limitations of each mode.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;getting-started&quot;&gt;Getting Started&lt;/h2&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;When establishing a connection to a data source in Power BI you are presented with different connectivity options. The options available depend on the selected data source.&lt;/p&gt;
+
+&lt;p&gt;Available data sources can viewed by selecting &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Get data&lt;/code&gt; on the top ribbon in Power BI Desktop. Power BI presents a list of common data sources, and the complete list can be viewed by selecting &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;More...&lt;/code&gt; on the bottom of the list.&lt;/p&gt;
+
+&lt;p&gt;Loading or connecting to data can be a different process depending on the selected source. For example, loading a local Excel file you are presented with the following screen.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-04-23-power-bi-connectivity-modes/1_excel_file.png&quot; alt=&quot;Connect to Excel File Screen&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;From here you can load the data as it is within the Excel file, or Transform your data within the Power Query Editor. Both options import a copy of the data to the Power BI data model.&lt;/p&gt;
+
+&lt;p&gt;However, if the SQL Server data source is select you will see a screen similar to that below.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-04-23-power-bi-connectivity-modes/2_sql_db.png&quot; alt=&quot;Connect to SQL Server Screen&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Here you will notice you have an option to select the connectivity mode. There are also addition options under Advanced option such as providing a SQL statement to evaluate against the data source.&lt;/p&gt;
+
+&lt;p&gt;Lastly, below is an example of what you are presented if you select Analysis Services as a data source.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-04-23-power-bi-connectivity-modes/2_analysis_services.png&quot; alt=&quot;Connect to Analysis Services Screen&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Again here you will see the option to set the connectivity mode.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The available connectivity modes for a source can change depending on what other type of connectivity modes and data sources are present within the data model.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;import&quot;&gt;Import&lt;/h2&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Import data is a common, and default, option for loading data into Power BI. When using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Import&lt;/code&gt; Power BI extracts the data from the data source and stores it in an in-memory storage engine. When possible it is generally recommended to use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Import&lt;/code&gt; mode. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Import&lt;/code&gt; mode takes advantage of the high-performance query engine, creates highly interactive reports offering the full range of Power BI features. The alternative connectivity modes discussed later in this post can be used if the requirements of the report cannot be met due to the limitations of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Import&lt;/code&gt; connectivity mode.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Import&lt;/code&gt; models store data using Power BI’s column-based storage engine. This storage method differs from row-based storage typical of relational database systems. Row-based storage commonly used by transactional systems work well when the system frequently reads and writes individual or small groups of rows.&lt;/p&gt;
+
+&lt;p&gt;However, this type of storage does not perform well with analytical workloads generally needed for BI reporting solutions. Analytical queries and aggregations involve a few columns of the underlying data. The need to efficiently execute these type of queries led to the column-based storage engines which store data in columns instead of rows. Column-based storage is optimized to perform aggregates and filtering on columns of data without having to retrieve the entire row from the data source.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Columnar storage applies compression to the columns by eliminating the need to store the same physical values multiple times. The storage engine applies compression algorithms to columns depending on the column data type (e.g. value encoding, hash encoding, run-length encoding).&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Key considerations when using the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Import&lt;/code&gt; connectivity mode include:&lt;/p&gt;
+
+&lt;p&gt;1) Does the imported data needed to get update?&lt;/p&gt;
+
+&lt;p&gt;2) How frequent does the data have to be updated?&lt;/p&gt;
+
+&lt;p&gt;3) How much data is there?&lt;/p&gt;
+
+&lt;h3 id=&quot;import-considerations&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Import&lt;/code&gt; Considerations&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;Data size: when using Power BI Pro your dataset limit is 1GB of compressed data. With Premium licenses this limit increases to 10GB or larger.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Data freshness: when using Power BI Pro you are able to schedule up to 8 refreshes per day. With Premium licenses this increases to 48 or every 30 minutes.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;If the underlying data source is an on-premise source scheduled refreshes require the use of an on-premises data gateway.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Duplicate Work: when using analysis services all the data modeling may already be complete. However, when using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Import&lt;/code&gt; mode much of the data modeling may have to be redone.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;directquery&quot;&gt;DirectQuery&lt;/h2&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DirectQuery&lt;/code&gt; connectivity mode provides a method to directly connect to a data source so there is no data imported or copied into the Power BI dataset. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DirectQuery&lt;/code&gt; can address some of the limitations of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Import&lt;/code&gt; mode. For example for a large datasets the queries are processed on the source server rather than the local computer running Power BI Desktop. Additionally since it provides a direct connection there is less of a need for data refreshes in Power BI. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DirectQuery&lt;/code&gt; report queries are ran when the report is opened or interacted with by the end user.&lt;/p&gt;
+
+&lt;p&gt;Like importing data, when using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DirectQuery&lt;/code&gt; with an on-premises data source an on-premises data gateway is required. Although there is no schedule refreshes when using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DirectQuery&lt;/code&gt; the gateway is still required to push the data to the Power BI Service.&lt;/p&gt;
+
+&lt;p&gt;While &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DirectQuery&lt;/code&gt; can address the limitations presented by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Import&lt;/code&gt; mode, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DirectQuery&lt;/code&gt; comes with its own set of limitations to consider. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DirectQuery&lt;/code&gt; is a workable option when the underlying data source can support interactive query results within an acceptable time and the source system can handle the generated query load. Since with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DirectQuery&lt;/code&gt; analytical queries are sent to the underlying data source the performance of the data source is a major consideration when using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DirectQuery&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;directquery-considerations&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DirectQuery&lt;/code&gt; Considerations&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;A key limitation when considering &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DirectQuery&lt;/code&gt; is that not all data sources available in Power BI support &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DirectQuery&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;If there are changes to the data source the report must be refreshed to show the updated data.
+    &lt;ul&gt;
+      &lt;li&gt;Power BI reports use caches of data and due to this there is no guarantee that visuals always display the most recent data. Selecting &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Refresh&lt;/code&gt; on the report will clear any caches and refresh all visuals on the page&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt; &lt;br /&gt;
+Below is an example of the above limitation. Here we have a Power BI table and card visual of a products table on the left and the underlying SQL database on the right. For this example we will focus on &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProductID&lt;/code&gt; = 680 (HL Road Frame - Black, 58) with an initial &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ListPrice&lt;/code&gt; of $1,431.50.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-04-23-power-bi-connectivity-modes/4_data_update.gif&quot; alt=&quot;Data Source Update Limitation&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ListPrice&lt;/code&gt; is updated to a value of $150,000 in the data source. However, after the update neither the table visual nor the card showing the sum of all list prices updates.&lt;/p&gt;
+
+&lt;p&gt;There is generally no change detection or live streaming of the data when using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DirectQuery&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;When we set the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProductID&lt;/code&gt; slicer to a value of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;680&lt;/code&gt; however, we see the updated value. The interaction with the slicer sents a new query to the data soucre returning the updated results displayed in the filtered table.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Setting the slicer value executes a new query with the addition of a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;WHERE&lt;/code&gt; clause in the SQL query and the returned result is displayed.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Clearing the slicer shows the initial table again, without the updated value. Refreshing the report clears all caches and runs all queries required by the visuals on the page.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Power BI Desktop reports must be refreshed to reflect schema changes.
+    &lt;ul&gt;
+      &lt;li&gt;Once you publish a report to the Power BI Service selecting &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Refresh&lt;/code&gt; only refreshes the visuals in the report.
+        &lt;ul&gt;
+          &lt;li&gt;If the underlying schema changes the Power BI  will not automatically update the available field lists.&lt;/li&gt;
+          &lt;li&gt;Removing tables or columns from the underlying source can lead to potential query failures when refreshing a report.&lt;/li&gt;
+          &lt;li&gt;Updating the data schema requires opening the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.pbix&lt;/code&gt; file in Power BI Desktop, refresh the report, then republish the report.&lt;/li&gt;
+        &lt;/ul&gt;
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt; &lt;br /&gt;
+Below is an example the limitation noted above. Here, we have the same Power BI report on the right as the example above and the SQL database on the left. We will start by executing the query which adds a new &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ManagerID&lt;/code&gt; column to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Product&lt;/code&gt; table, sets the value as a random number between 0 and 100, and then selects the top 100 products to view the update.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-04-23-power-bi-connectivity-modes/5_schema_update.gif&quot; alt=&quot;Data Source Schema Update Limitation&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;After executing the query we can refresh the columns of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Product&lt;/code&gt; table in SQL Server Management Studio (SSMS) to verify it was created. Howerver, in Power BI we see that the fields available to add to the table visual does not include this new column.&lt;/p&gt;
+
+&lt;p&gt;To view schema updates in Power BI the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.pbix&lt;/code&gt; file must be refreshed and the report must be republished.&lt;/p&gt;
+
+&lt;p&gt;As noted above if columns or tables are removed from the underlying data source Power BI queries can break. To see this we first remove the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ManagerId&lt;/code&gt; column in the data source, and then refresh the report. After refreshing the report we can see there is an issue with the table visual.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;The limit of rows returned by a query is capped at 1 million rows.&lt;/li&gt;
+  &lt;li&gt;The Power BI data model cannot be switched from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Import&lt;/code&gt; to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DirectQuery&lt;/code&gt; mode.
+    &lt;ul&gt;
+      &lt;li&gt;A &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DirectQuery&lt;/code&gt; table can be switched to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Import&lt;/code&gt;, however once this is done it cannot be switched back.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Some Power Query (M Language) features are not supported by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DirectQuery&lt;/code&gt;.
+    &lt;ul&gt;
+      &lt;li&gt;Adding unsupported features to the Power Query Editor will result in a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;This step results in a query that is not supported by DirectQuery mode&lt;/code&gt; error message.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Some DAX functions are not supported by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DirectQuery&lt;/code&gt;.
+    &lt;ul&gt;
+      &lt;li&gt;If used results in a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Function &amp;lt;function_name&amp;gt; is not supported by DirectQuery mode&lt;/code&gt; error message.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;The limitations in support of M/DAX features and function is because &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DirectQuery&lt;/code&gt; converts M/DAX into the data source’s native language (e.g. T-SQL). Any DAX function used must support query folding.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt; &lt;br /&gt;
+For the example report we only need the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProductID&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Name&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ListPrice&lt;/code&gt; field. However, you can see in the data pane we have all the columns present in the source data. We can modify which column are available in Power BI be editing the query in the Power Query Editor.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-04-23-power-bi-connectivity-modes/6_native_query.gif&quot; alt=&quot;Native Query&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;After removing the unneeded columns we can view the native query that get executed against the underlying data source and see the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SELECT&lt;/code&gt; statement includes only the required columns (i.e. column not removed by the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Removed Columns&lt;/code&gt; step).&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Other implications and considerations of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DirectQuery&lt;/code&gt; include performance and load implications on the data source, data security implications, data-model limitations, and reporting limitations.&lt;/p&gt;
+
+&lt;h3 id=&quot;directquery-use-cases&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DirectQuery&lt;/code&gt; Use Cases&lt;/h3&gt;
+
+&lt;p&gt;With its given limitations &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DirectQuery&lt;/code&gt; can still be a suitable option for the following use cases.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;When report requirements include the need for near real-time data.&lt;/li&gt;
+  &lt;li&gt;The report requires a large dataset, greater than what is supported by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Import&lt;/code&gt; mode.&lt;/li&gt;
+  &lt;li&gt;The underlying data source defines and applies security rules.
+    &lt;ul&gt;
+      &lt;li&gt;When developing a Power BI report with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DirectQuery&lt;/code&gt; Power BI connects to the data source by using the current user’s (report developer) credentials&lt;/li&gt;
+      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DirectQuery&lt;/code&gt; allows a report viewer’s credentials to pass through to the underlying source, which then applies security rules.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Data sovereignty restrictions are applicable (e.g. data cannot be stored in the cloud).
+    &lt;ul&gt;
+      &lt;li&gt;When using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DirectQuery&lt;/code&gt; data is cached in the Power BI Service, however there is no long term cloud storage.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;live-connection&quot;&gt;Live Connection&lt;/h2&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Live Connection&lt;/code&gt; is a method that lets you build a report in Power BI Desktop without having to build a dataset to under pin the report. The connectivity mode offloads as much work as possible to the underlying analysis services. When building a report in Power BI Desktop that uses &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Live Connection&lt;/code&gt; you connect to a dataset that already exists in an analysis service.&lt;/p&gt;
+
+&lt;p&gt;Similar to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DirectQuery&lt;/code&gt; when &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Live Connection&lt;/code&gt; is used no data is imported or copied into the Power BI dataset. Rather Power BI stores a connection string to the existing analysis services (e.g. SSAS) or published Power BI dataset and Power BI is used as a visualization layer.&lt;/p&gt;
+
+&lt;h3 id=&quot;live-connection-considerations&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Live Connection&lt;/code&gt; Considerations&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Can only be used with a limited number of data sources.
+    &lt;ul&gt;
+      &lt;li&gt;Existing Analysis Service data model (SQL Server Analysis Services (SSAS) or Azure Analysis Services)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;No data-model customizations are available, any changes required to the data-model need to be done at the data source.
+    &lt;ul&gt;
+      &lt;li&gt;Report-Level measures are the one exception to this limitation.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;User identity is passed through to the data source.
+    &lt;ul&gt;
+      &lt;li&gt;A report is subject to row-level security and access permissions that are set on the data-model.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;composite-models&quot;&gt;Composite Models&lt;/h2&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Power BI no longer limits you to choosing just &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Import&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DirectQuery&lt;/code&gt; mode. With composite models the Power BI data-model can include data connections from one (or more) &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DirectQuery&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Import&lt;/code&gt; data connections.&lt;/p&gt;
+
+&lt;p&gt;A composite model allows you to connect to different types of data sources when creating the Power BI data-model. Within a single &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;.pbix&lt;/code&gt; file you can combine data from one or more &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DirectQuery&lt;/code&gt; sources and/or combine data form &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DirectQuery&lt;/code&gt; sources and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Import&lt;/code&gt; data.&lt;/p&gt;
+
+&lt;p&gt;Each table within the composite model will list its storage mode which shows whether the table is based on a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DirectQuery&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Import&lt;/code&gt; source. The storage mode can be viewed and modified on the properties pane of the table.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;strong&gt;Example&lt;/strong&gt; &lt;br /&gt;
+The example below is a Power BI report with a table visual of a products table. We have added the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ManagerID&lt;/code&gt; column to this table, however there is no &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Managers&lt;/code&gt; table in the underlying SQL database. Rather this information is contained within a local &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;product_managers&lt;/code&gt; Excel file. With a composite model we can combined these two different data sources and connectivity modes to create a single report.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-04-23-power-bi-connectivity-modes/7_composite_model.gif&quot; alt=&quot;Composite Model&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Initially the report storage mode is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DirectQuery&lt;/code&gt; because to start we only have the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Product&lt;/code&gt; table &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DirectQuery&lt;/code&gt; connection.&lt;/p&gt;
+
+&lt;p&gt;We use the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Import&lt;/code&gt; connectivity mode to load the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;product_mangers&lt;/code&gt; data and create the relationship between the two tables.&lt;/p&gt;
+
+&lt;p&gt;You can check the storage mode of each table in the properties pane under Advanced. We can see the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesLT Product&lt;/code&gt; table has a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DirectQuery&lt;/code&gt; storage mode and that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Sheet1&lt;/code&gt; has a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Import&lt;/code&gt; storege  mode&lt;/p&gt;
+
+&lt;p&gt;Once the data model is a composite model we see the report Storage Mode update to a value of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Mixed&lt;/code&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;composite-model-considerations&quot;&gt;Composite Model Considerations&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Security Implications: A query sent to one data source could include data values that have been extracted from a different data source.
+    &lt;ul&gt;
+      &lt;li&gt;If the extracted data is confidential the security impacts of this should be considered.&lt;/li&gt;
+      &lt;li&gt;Avoid extracting data from one data source via an encrypted connection to then include this data in a query sent to a different source via an unencrypted connection.&lt;/li&gt;
+      &lt;li&gt;When a report author includes a table from one data-model in a composite model, a user viewing a report built upon the composite model could query &lt;strong&gt;any&lt;/strong&gt; table in the data-model the table was added from.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Performance Implications: Whenever &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DirectQuery&lt;/code&gt; is used the performance of the underlying system should be considered. Ensure that is has the resources required to support the query load due to users interacting with the Power BI report.
+    &lt;ul&gt;
+      &lt;li&gt;A visual in a composite model can sent queries to multiple data source with the results from one query being passed to another query from a different source.&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;If you enjoy what you read and find it helpful please check back, and check back often. Follow me on &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/@emguyant&quot;&gt;&lt;i class=&quot;fab fa-medium&quot;&gt;&lt;/i&gt; Medium&lt;/a&gt; while giving a clap to the article! Also don’t forget to subscribe to the &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/inquisitive-nature&quot;&gt;&lt;b&gt;INQUISITIVE NATURE&lt;/b&gt;&lt;/a&gt; publication.&lt;/p&gt;</content><author><name>Ethan Guyant</name></author><category term="Quick Start" /><category term="Microsoft 365" /><category term="Power BI" /><category term="Power Platform" /><category term="Power BI Fundamentals Series" /><summary type="html">Introduction</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://ethanguyant.com/assets/img/post_img/power-bi-connectivity-modes.jpg" /><media:content medium="image" url="http://ethanguyant.com/assets/img/post_img/power-bi-connectivity-modes.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Lets make a model-driven app</title><link href="http://ethanguyant.com/blog/2023-01-10-model-driven-app/" rel="alternate" type="text/html" title="Lets make a model-driven app" /><published>2023-01-10T00:00:00+00:00</published><updated>2023-01-10T00:00:00+00:00</updated><id>http://ethanguyant.com/blog/model-driven-app</id><content type="html" xml:base="http://ethanguyant.com/blog/2023-01-10-model-driven-app/">&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 &lt;h1 id=&quot;model-driven-apps&quot;&gt;Model-Driven Apps&lt;/h1&gt;
 
@@ -3041,2024 +3394,4 @@ DIVIDE(Sales, AllSales)
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;If you enjoy what you read and find it helpful please check back, and check back often. Follow me on &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/@emguyant&quot;&gt;&lt;i class=&quot;fab fa-medium&quot;&gt;&lt;/i&gt; Medium&lt;/a&gt; while giving a clap to the article! Also don’t forget to subscribe to the &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/inquisitive-nature&quot;&gt;&lt;b&gt;INQUISITIVE NATURE&lt;/b&gt;&lt;/a&gt; publication.&lt;/p&gt;</content><author><name>Ethan Guyant</name></author><category term="Quick Start" /><category term="Microsoft 365" /><category term="Power Automate" /><category term="Outlook" /><category term="Power Apps" /><summary type="html">Contents Office 365 Outlook Actions Get emails Move email The Basics Flow Diagram Power Automate Flow Limitations Outlook Inbox Cleanup Workflow Workflow Diagram Outlook Folder Setup Get Folder IDs Power Automate Flow - Variable Power Automate Flow - Microsoft Graph Summary</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://ethanguyant.com/assets/img/post_img/outlook-inbox-cleanup.jpg" /><media:content medium="image" url="http://ethanguyant.com/assets/img/post_img/outlook-inbox-cleanup.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Pandas: Indexing and Slicing</title><link href="http://ethanguyant.com/quick%20start/pandas-slicing-dataframe" rel="alternate" type="text/html" title="Pandas: Indexing and Slicing" /><published>2022-06-17T00:00:00+00:00</published><updated>2022-06-17T00:00:00+00:00</updated><id>http://ethanguyant.com/quick%20start/pandas-slicing-dataframe</id><content type="html" xml:base="http://ethanguyant.com/quick%20start/pandas-slicing-dataframe">&lt;body&gt;
-  &lt;div tabindex=&quot;-1&quot; id=&quot;notebook&quot; class=&quot;border-box-sizing&quot;&gt;
-    &lt;div class=&quot;container&quot; id=&quot;notebook-container&quot;&gt;
-
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;h2 id=&quot;Contents&quot;&gt;Contents&lt;a class=&quot;anchor-link&quot; href=&quot;#Contents&quot;&gt;&lt;/a&gt;&lt;/h2&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#The-Basics&quot;&gt;The Basics&lt;/a&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;#Indexing-Columns&quot;&gt;Indexing Columns&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#Slicing-Rows&quot;&gt;Slicing Rows&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;#Indexing-and-Slicing-DataFrames&quot;&gt;Indexing and Slicing&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;hr&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;Pandas offers a wide variety of ways to select, index, or slice &lt;code&gt;Series&lt;/code&gt; and &lt;code&gt;DataFrame&lt;/code&gt; objects. This can be helpful by 
-providing flexibility in the methods used, but also confusing at times due to the wide range of possible options. This article
-will focus on selecting, indexing, and slicing &lt;code&gt;DataFrame&lt;/code&gt; objects using the indexing operator &lt;code&gt;[]&lt;/code&gt; and the &lt;code&gt;.iloc&lt;/code&gt; and &lt;code&gt;.loc&lt;/code&gt; attributes.&lt;/p&gt;
-&lt;p&gt;For more details and other options please review the (&lt;a class=&quot;post__link&quot; href=&quot;https://pandas.pydata.org/docs/user_guide/indexing.html&quot;&gt;pandas documentation&lt;/a&gt;).&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;h2 id=&quot;The-Basics&quot;&gt;The Basics&lt;a class=&quot;anchor-link&quot; href=&quot;#The-Basics&quot;&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;br&gt;
-&lt;p&gt;The basic form of selecting data from a &lt;code&gt;DataFrame&lt;/code&gt; is using the indexing &lt;code&gt;[]&lt;/code&gt; operator, conceptually it is helpful to think of this operator as &lt;code&gt;get an item&lt;/code&gt;. The indexing operator (&lt;code&gt;[]&lt;/code&gt;) is a hybrid of using index labels and location offsets to select 
-certain columns and rows of a &lt;code&gt;DataFrame&lt;/code&gt;. Using &lt;code&gt;.iloc&lt;/code&gt; and &lt;code&gt;.loc&lt;/code&gt; might be favorable as they provide more explicit indexing and slicing, see below sections for details and examples.&lt;/p&gt;
-&lt;h3 id=&quot;Indexing-Columns&quot;&gt;Indexing Columns&lt;a class=&quot;anchor-link&quot; href=&quot;#Indexing-Columns&quot;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;p&gt;With a &lt;code&gt;DataFrame&lt;/code&gt; the indexing operator &lt;code&gt;[]&lt;/code&gt; is used for selecting columns, or more appropriately from the column index. Meaning when using &lt;code&gt;DataFrame[]&lt;/code&gt;, column names should be passed in. For more information on the &lt;code&gt;DataFrame&lt;/code&gt; object attributes see &lt;a class=&quot;post__link&quot; href=&quot;/quick%20start/pandas-introduction&quot;&gt;Pandas: Introduction to the Library&lt;/a&gt;.&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;pandas&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;pd&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;df&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;pd&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;DataFrame&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;A&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;A1&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;A2&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;A3&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
-                    &lt;span class=&quot;s1&quot;&gt;&amp;#39;B&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;B1&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;B2&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;B3&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
-                    &lt;span class=&quot;s1&quot;&gt;&amp;#39;C&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;C1&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;C2&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;C3&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt;
-                    &lt;span class=&quot;s1&quot;&gt;&amp;#39;D&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;15&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]})&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;#Example DataFrame&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-
-&lt;div class=&quot;output_html rendered_html output_subarea output_execute_result&quot;&gt;
-&lt;div&gt;
-&lt;style scoped&gt;
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-&lt;/style&gt;
-&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;
-  &lt;thead&gt;
-    &lt;tr style=&quot;text-align: right;&quot;&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;A&lt;/th&gt;
-      &lt;th&gt;B&lt;/th&gt;
-      &lt;th&gt;C&lt;/th&gt;
-      &lt;th&gt;D&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;th&gt;0&lt;/th&gt;
-      &lt;td&gt;A1&lt;/td&gt;
-      &lt;td&gt;B1&lt;/td&gt;
-      &lt;td&gt;C1&lt;/td&gt;
-      &lt;td&gt;5&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;1&lt;/th&gt;
-      &lt;td&gt;A2&lt;/td&gt;
-      &lt;td&gt;B2&lt;/td&gt;
-      &lt;td&gt;C2&lt;/td&gt;
-      &lt;td&gt;10&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;2&lt;/th&gt;
-      &lt;td&gt;A3&lt;/td&gt;
-      &lt;td&gt;B3&lt;/td&gt;
-      &lt;td&gt;C3&lt;/td&gt;
-      &lt;td&gt;15&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# The columns index - selection from using []&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;columns&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-
-
-&lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
-&lt;pre&gt;Index([&amp;#39;A&amp;#39;, &amp;#39;B&amp;#39;, &amp;#39;C&amp;#39;, &amp;#39;D&amp;#39;], dtype=&amp;#39;object&amp;#39;)&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# Selecting &amp;#39;B&amp;#39; from the column index&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;B&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-
-
-&lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
-&lt;pre&gt;0    B1
-1    B2
-2    B3
-Name: B, dtype: object&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;The selection of multiple columns can be done utilizing a list of column names or two sets of square brackets &lt;code&gt;[[ ]]&lt;/code&gt;. Each set performs a specific task during the selection.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;The outer bracket subsets the &lt;code&gt;DataFrame&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;The inner bracket creates a list of column names to subset&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;column_names&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;A&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;C&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-
-&lt;span class=&quot;nb&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sa&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;list of column names:&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;column_names&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;print&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sa&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;two square brackets:&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\n&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;A&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;C&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-&lt;div class=&quot;output_subarea output_stream output_stdout output_text&quot;&gt;
-&lt;pre&gt;list of column names:
-    A   C
-0  A1  C1
-1  A2  C2
-2  A3  C3
-two square brackets:
-    A   C
-0  A1  C1
-1  A2  C2
-2  A3  C3
-&lt;/pre&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;h3 id=&quot;Slicing-Rows&quot;&gt;Slicing Rows&lt;a class=&quot;anchor-link&quot; href=&quot;#Slicing-Rows&quot;&gt;&lt;/a&gt;&lt;/h3&gt;&lt;h4 id=&quot;Python:-Slice-&amp;amp;-Slicing&quot;&gt;Python: Slice &amp;amp; Slicing&lt;a class=&quot;anchor-link&quot; href=&quot;#Python:-Slice-&amp;amp;-Slicing&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;A slice is an object typically made up of a portion of a sequence and is created using subscript notation &lt;code&gt;[]&lt;/code&gt;, with colons separating the start, stop, and step numbers (e.g. &lt;code&gt;[1:10:2]&lt;/code&gt;). Slicing is the selection of a range of items contained within a sequence object.&lt;/p&gt;
-&lt;p&gt;As mentioned above a slice has three components: start, stop, and step. When specify the start and stop values it is important to note that the start value is inclusive, while the stop value is exclusive.&lt;/p&gt;
-&lt;h4 id=&quot;Pandas:-Slicing&quot;&gt;Pandas: Slicing&lt;a class=&quot;anchor-link&quot; href=&quot;#Pandas:-Slicing&quot;&gt;&lt;/a&gt;&lt;/h4&gt;&lt;p&gt;With a &lt;code&gt;DataFrame&lt;/code&gt; object slicing with &lt;code&gt;[]&lt;/code&gt; will slice the rows of the &lt;code&gt;DataFrame&lt;/code&gt;. This can lead to some confusion with indexing columns using &lt;code&gt;[]&lt;/code&gt;. The indexing operator when passed a single argument, it will select columns, when passed a slice it will slice on the rows (i.e. includes a &lt;code&gt;:&lt;/code&gt;). Similar to indexing, slicing with &lt;code&gt;.loc&lt;/code&gt; and &lt;code&gt;.iloc&lt;/code&gt; might be preferred, see below for additional details.&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# Slice the first two rows&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;# Remember start (0) is inclusive, stop (2) is exclusive&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-
-&lt;div class=&quot;output_html rendered_html output_subarea output_execute_result&quot;&gt;
-&lt;div&gt;
-&lt;style scoped&gt;
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-&lt;/style&gt;
-&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;
-  &lt;thead&gt;
-    &lt;tr style=&quot;text-align: right;&quot;&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;A&lt;/th&gt;
-      &lt;th&gt;B&lt;/th&gt;
-      &lt;th&gt;C&lt;/th&gt;
-      &lt;th&gt;D&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;th&gt;0&lt;/th&gt;
-      &lt;td&gt;A1&lt;/td&gt;
-      &lt;td&gt;B1&lt;/td&gt;
-      &lt;td&gt;C1&lt;/td&gt;
-      &lt;td&gt;5&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;1&lt;/th&gt;
-      &lt;td&gt;A2&lt;/td&gt;
-      &lt;td&gt;B2&lt;/td&gt;
-      &lt;td&gt;C2&lt;/td&gt;
-      &lt;td&gt;10&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# Not specifying a start will start and the first row&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-
-&lt;div class=&quot;output_html rendered_html output_subarea output_execute_result&quot;&gt;
-&lt;div&gt;
-&lt;style scoped&gt;
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-&lt;/style&gt;
-&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;
-  &lt;thead&gt;
-    &lt;tr style=&quot;text-align: right;&quot;&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;A&lt;/th&gt;
-      &lt;th&gt;B&lt;/th&gt;
-      &lt;th&gt;C&lt;/th&gt;
-      &lt;th&gt;D&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;th&gt;0&lt;/th&gt;
-      &lt;td&gt;A1&lt;/td&gt;
-      &lt;td&gt;B1&lt;/td&gt;
-      &lt;td&gt;C1&lt;/td&gt;
-      &lt;td&gt;5&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;1&lt;/th&gt;
-      &lt;td&gt;A2&lt;/td&gt;
-      &lt;td&gt;B2&lt;/td&gt;
-      &lt;td&gt;C2&lt;/td&gt;
-      &lt;td&gt;10&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# Not specifying a stop will select all rows after start &lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:]&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-
-&lt;div class=&quot;output_html rendered_html output_subarea output_execute_result&quot;&gt;
-&lt;div&gt;
-&lt;style scoped&gt;
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-&lt;/style&gt;
-&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;
-  &lt;thead&gt;
-    &lt;tr style=&quot;text-align: right;&quot;&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;A&lt;/th&gt;
-      &lt;th&gt;B&lt;/th&gt;
-      &lt;th&gt;C&lt;/th&gt;
-      &lt;th&gt;D&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;th&gt;1&lt;/th&gt;
-      &lt;td&gt;A2&lt;/td&gt;
-      &lt;td&gt;B2&lt;/td&gt;
-      &lt;td&gt;C2&lt;/td&gt;
-      &lt;td&gt;10&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;2&lt;/th&gt;
-      &lt;td&gt;A3&lt;/td&gt;
-      &lt;td&gt;B3&lt;/td&gt;
-      &lt;td&gt;C3&lt;/td&gt;
-      &lt;td&gt;15&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# Specify a step - how to count between start and stop&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;# Encompasses the entire dataframe every two rows &lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-
-&lt;div class=&quot;output_html rendered_html output_subarea output_execute_result&quot;&gt;
-&lt;div&gt;
-&lt;style scoped&gt;
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-&lt;/style&gt;
-&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;
-  &lt;thead&gt;
-    &lt;tr style=&quot;text-align: right;&quot;&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;A&lt;/th&gt;
-      &lt;th&gt;B&lt;/th&gt;
-      &lt;th&gt;C&lt;/th&gt;
-      &lt;th&gt;D&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;th&gt;0&lt;/th&gt;
-      &lt;td&gt;A1&lt;/td&gt;
-      &lt;td&gt;B1&lt;/td&gt;
-      &lt;td&gt;C1&lt;/td&gt;
-      &lt;td&gt;5&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;2&lt;/th&gt;
-      &lt;td&gt;A3&lt;/td&gt;
-      &lt;td&gt;B3&lt;/td&gt;
-      &lt;td&gt;C3&lt;/td&gt;
-      &lt;td&gt;15&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# The above is equivalent to&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[::&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-
-&lt;div class=&quot;output_html rendered_html output_subarea output_execute_result&quot;&gt;
-&lt;div&gt;
-&lt;style scoped&gt;
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-&lt;/style&gt;
-&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;
-  &lt;thead&gt;
-    &lt;tr style=&quot;text-align: right;&quot;&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;A&lt;/th&gt;
-      &lt;th&gt;B&lt;/th&gt;
-      &lt;th&gt;C&lt;/th&gt;
-      &lt;th&gt;D&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;th&gt;0&lt;/th&gt;
-      &lt;td&gt;A1&lt;/td&gt;
-      &lt;td&gt;B1&lt;/td&gt;
-      &lt;td&gt;C1&lt;/td&gt;
-      &lt;td&gt;5&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;2&lt;/th&gt;
-      &lt;td&gt;A3&lt;/td&gt;
-      &lt;td&gt;B3&lt;/td&gt;
-      &lt;td&gt;C3&lt;/td&gt;
-      &lt;td&gt;15&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# Passing -1 as the step will count from the last element&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[::&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-
-&lt;div class=&quot;output_html rendered_html output_subarea output_execute_result&quot;&gt;
-&lt;div&gt;
-&lt;style scoped&gt;
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-&lt;/style&gt;
-&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;
-  &lt;thead&gt;
-    &lt;tr style=&quot;text-align: right;&quot;&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;A&lt;/th&gt;
-      &lt;th&gt;B&lt;/th&gt;
-      &lt;th&gt;C&lt;/th&gt;
-      &lt;th&gt;D&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;th&gt;2&lt;/th&gt;
-      &lt;td&gt;A3&lt;/td&gt;
-      &lt;td&gt;B3&lt;/td&gt;
-      &lt;td&gt;C3&lt;/td&gt;
-      &lt;td&gt;15&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;1&lt;/th&gt;
-      &lt;td&gt;A2&lt;/td&gt;
-      &lt;td&gt;B2&lt;/td&gt;
-      &lt;td&gt;C2&lt;/td&gt;
-      &lt;td&gt;10&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;0&lt;/th&gt;
-      &lt;td&gt;A1&lt;/td&gt;
-      &lt;td&gt;B1&lt;/td&gt;
-      &lt;td&gt;C1&lt;/td&gt;
-      &lt;td&gt;5&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;A common method for selecting certain rows is to apply a logical condition to filter against, or Boolean Indexing. The logical condition returns &lt;code&gt;True&lt;/code&gt; or &lt;code&gt;False&lt;/code&gt; values for each row of the &lt;code&gt;DataFrame&lt;/code&gt;. Enclosing the logical condition in square brackets &lt;code&gt;[ ]&lt;/code&gt; subsets the rows of the &lt;code&gt;DataFrame&lt;/code&gt;, returning the rows where the logical condition evaluates to &lt;code&gt;True&lt;/code&gt;.&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;B&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;B2&amp;#39;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-
-
-&lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
-&lt;pre&gt;0    False
-1     True
-2    False
-Name: B, dtype: bool&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;B&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;B2&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-
-&lt;div class=&quot;output_html rendered_html output_subarea output_execute_result&quot;&gt;
-&lt;div&gt;
-&lt;style scoped&gt;
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-&lt;/style&gt;
-&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;
-  &lt;thead&gt;
-    &lt;tr style=&quot;text-align: right;&quot;&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;A&lt;/th&gt;
-      &lt;th&gt;B&lt;/th&gt;
-      &lt;th&gt;C&lt;/th&gt;
-      &lt;th&gt;D&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;th&gt;1&lt;/th&gt;
-      &lt;td&gt;A2&lt;/td&gt;
-      &lt;td&gt;B2&lt;/td&gt;
-      &lt;td&gt;C2&lt;/td&gt;
-      &lt;td&gt;10&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;Subsetting rows this way can contain multiple conditions while using logical operators (e.g. &lt;code&gt;&amp;amp;&lt;/code&gt; (and), &lt;code&gt;|&lt;/code&gt; (or))&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;condition_1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;B&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;B2&amp;#39;&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;condition_2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;C&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;C3&amp;#39;&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;# condition 1 OR condition 2&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;condition_1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;condition_2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-
-&lt;div class=&quot;output_html rendered_html output_subarea output_execute_result&quot;&gt;
-&lt;div&gt;
-&lt;style scoped&gt;
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-&lt;/style&gt;
-&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;
-  &lt;thead&gt;
-    &lt;tr style=&quot;text-align: right;&quot;&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;A&lt;/th&gt;
-      &lt;th&gt;B&lt;/th&gt;
-      &lt;th&gt;C&lt;/th&gt;
-      &lt;th&gt;D&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;th&gt;1&lt;/th&gt;
-      &lt;td&gt;A2&lt;/td&gt;
-      &lt;td&gt;B2&lt;/td&gt;
-      &lt;td&gt;C2&lt;/td&gt;
-      &lt;td&gt;10&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;2&lt;/th&gt;
-      &lt;td&gt;A3&lt;/td&gt;
-      &lt;td&gt;B3&lt;/td&gt;
-      &lt;td&gt;C3&lt;/td&gt;
-      &lt;td&gt;15&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;Filter of rows on multiple categorical variable can also be done using &lt;code&gt;.isin()&lt;/code&gt; method.&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;B&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;isin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;([&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;B1&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;B3&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])]&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-
-&lt;div class=&quot;output_html rendered_html output_subarea output_execute_result&quot;&gt;
-&lt;div&gt;
-&lt;style scoped&gt;
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-&lt;/style&gt;
-&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;
-  &lt;thead&gt;
-    &lt;tr style=&quot;text-align: right;&quot;&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;A&lt;/th&gt;
-      &lt;th&gt;B&lt;/th&gt;
-      &lt;th&gt;C&lt;/th&gt;
-      &lt;th&gt;D&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;th&gt;0&lt;/th&gt;
-      &lt;td&gt;A1&lt;/td&gt;
-      &lt;td&gt;B1&lt;/td&gt;
-      &lt;td&gt;C1&lt;/td&gt;
-      &lt;td&gt;5&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;2&lt;/th&gt;
-      &lt;td&gt;A3&lt;/td&gt;
-      &lt;td&gt;B3&lt;/td&gt;
-      &lt;td&gt;C3&lt;/td&gt;
-      &lt;td&gt;15&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;hr&gt;
-&lt;br&gt;
-&lt;h2 id=&quot;Indexing-and-Slicing-DataFrames&quot;&gt;Indexing and Slicing DataFrames&lt;a class=&quot;anchor-link&quot; href=&quot;#Indexing-and-Slicing-DataFrames&quot;&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;br&gt;
-&lt;p&gt;A preferable method for indexing and slicing a &lt;code&gt;DataFrame&lt;/code&gt; is using the &lt;code&gt;.loc&lt;/code&gt; and &lt;code&gt;.iloc&lt;/code&gt; properties of the &lt;code&gt;DataFrame&lt;/code&gt; object. Obtaining a subset of a &lt;code&gt;DataFrame&lt;/code&gt; using these properties typically is preferable because they are more explicit about if the desired selection or indexing by label (&lt;code&gt;.loc&lt;/code&gt;) or integer-location based (&lt;code&gt;.iloc&lt;/code&gt;)&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# Modify previous df for examples&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;#add two rows&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;loc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;A4&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;B4&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;C4&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;20&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;loc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;A5&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;B5&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;C5&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;25&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;# Create and set new column as index&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;idx&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;a&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;b&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;c&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;d&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;e&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;set_index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;idx&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;inplace&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# New df for Examples&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-
-&lt;div class=&quot;output_html rendered_html output_subarea output_execute_result&quot;&gt;
-&lt;div&gt;
-&lt;style scoped&gt;
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-&lt;/style&gt;
-&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;
-  &lt;thead&gt;
-    &lt;tr style=&quot;text-align: right;&quot;&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;A&lt;/th&gt;
-      &lt;th&gt;B&lt;/th&gt;
-      &lt;th&gt;C&lt;/th&gt;
-      &lt;th&gt;D&lt;/th&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;idx&lt;/th&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;th&gt;a&lt;/th&gt;
-      &lt;td&gt;A1&lt;/td&gt;
-      &lt;td&gt;B1&lt;/td&gt;
-      &lt;td&gt;C1&lt;/td&gt;
-      &lt;td&gt;5&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;b&lt;/th&gt;
-      &lt;td&gt;A2&lt;/td&gt;
-      &lt;td&gt;B2&lt;/td&gt;
-      &lt;td&gt;C2&lt;/td&gt;
-      &lt;td&gt;10&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;c&lt;/th&gt;
-      &lt;td&gt;A3&lt;/td&gt;
-      &lt;td&gt;B3&lt;/td&gt;
-      &lt;td&gt;C3&lt;/td&gt;
-      &lt;td&gt;15&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;d&lt;/th&gt;
-      &lt;td&gt;A4&lt;/td&gt;
-      &lt;td&gt;B4&lt;/td&gt;
-      &lt;td&gt;C4&lt;/td&gt;
-      &lt;td&gt;20&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;e&lt;/th&gt;
-      &lt;td&gt;A5&lt;/td&gt;
-      &lt;td&gt;B5&lt;/td&gt;
-      &lt;td&gt;C5&lt;/td&gt;
-      &lt;td&gt;25&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;Passing a single argument to &lt;code&gt;.loc&lt;/code&gt; and &lt;code&gt;.iloc&lt;/code&gt; will select corresponding rows&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# Can be a list of row indexes&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;loc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;a&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;b&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;c&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-
-&lt;div class=&quot;output_html rendered_html output_subarea output_execute_result&quot;&gt;
-&lt;div&gt;
-&lt;style scoped&gt;
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-&lt;/style&gt;
-&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;
-  &lt;thead&gt;
-    &lt;tr style=&quot;text-align: right;&quot;&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;A&lt;/th&gt;
-      &lt;th&gt;B&lt;/th&gt;
-      &lt;th&gt;C&lt;/th&gt;
-      &lt;th&gt;D&lt;/th&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;idx&lt;/th&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;th&gt;a&lt;/th&gt;
-      &lt;td&gt;A1&lt;/td&gt;
-      &lt;td&gt;B1&lt;/td&gt;
-      &lt;td&gt;C1&lt;/td&gt;
-      &lt;td&gt;5&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;b&lt;/th&gt;
-      &lt;td&gt;A2&lt;/td&gt;
-      &lt;td&gt;B2&lt;/td&gt;
-      &lt;td&gt;C2&lt;/td&gt;
-      &lt;td&gt;10&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;c&lt;/th&gt;
-      &lt;td&gt;A3&lt;/td&gt;
-      &lt;td&gt;B3&lt;/td&gt;
-      &lt;td&gt;C3&lt;/td&gt;
-      &lt;td&gt;15&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# Can also be a slice&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;# When the index is sorted all values between start and stop will be selected&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;loc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;a&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;c&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-
-&lt;div class=&quot;output_html rendered_html output_subarea output_execute_result&quot;&gt;
-&lt;div&gt;
-&lt;style scoped&gt;
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-&lt;/style&gt;
-&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;
-  &lt;thead&gt;
-    &lt;tr style=&quot;text-align: right;&quot;&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;A&lt;/th&gt;
-      &lt;th&gt;B&lt;/th&gt;
-      &lt;th&gt;C&lt;/th&gt;
-      &lt;th&gt;D&lt;/th&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;idx&lt;/th&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;th&gt;a&lt;/th&gt;
-      &lt;td&gt;A1&lt;/td&gt;
-      &lt;td&gt;B1&lt;/td&gt;
-      &lt;td&gt;C1&lt;/td&gt;
-      &lt;td&gt;5&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;b&lt;/th&gt;
-      &lt;td&gt;A2&lt;/td&gt;
-      &lt;td&gt;B2&lt;/td&gt;
-      &lt;td&gt;C2&lt;/td&gt;
-      &lt;td&gt;10&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;c&lt;/th&gt;
-      &lt;td&gt;A3&lt;/td&gt;
-      &lt;td&gt;B3&lt;/td&gt;
-      &lt;td&gt;C3&lt;/td&gt;
-      &lt;td&gt;15&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;blockquote&gt;&lt;p&gt;Notice that providing a range of indexes, UNLIKE prior slicing will include the stop value&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# The above operations can also be carried out with iloc&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;iloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-
-&lt;div class=&quot;output_html rendered_html output_subarea output_execute_result&quot;&gt;
-&lt;div&gt;
-&lt;style scoped&gt;
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-&lt;/style&gt;
-&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;
-  &lt;thead&gt;
-    &lt;tr style=&quot;text-align: right;&quot;&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;A&lt;/th&gt;
-      &lt;th&gt;B&lt;/th&gt;
-      &lt;th&gt;C&lt;/th&gt;
-      &lt;th&gt;D&lt;/th&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;idx&lt;/th&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;th&gt;a&lt;/th&gt;
-      &lt;td&gt;A1&lt;/td&gt;
-      &lt;td&gt;B1&lt;/td&gt;
-      &lt;td&gt;C1&lt;/td&gt;
-      &lt;td&gt;5&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;b&lt;/th&gt;
-      &lt;td&gt;A2&lt;/td&gt;
-      &lt;td&gt;B2&lt;/td&gt;
-      &lt;td&gt;C2&lt;/td&gt;
-      &lt;td&gt;10&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;c&lt;/th&gt;
-      &lt;td&gt;A3&lt;/td&gt;
-      &lt;td&gt;B3&lt;/td&gt;
-      &lt;td&gt;C3&lt;/td&gt;
-      &lt;td&gt;15&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;iloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-
-&lt;div class=&quot;output_html rendered_html output_subarea output_execute_result&quot;&gt;
-&lt;div&gt;
-&lt;style scoped&gt;
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-&lt;/style&gt;
-&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;
-  &lt;thead&gt;
-    &lt;tr style=&quot;text-align: right;&quot;&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;A&lt;/th&gt;
-      &lt;th&gt;B&lt;/th&gt;
-      &lt;th&gt;C&lt;/th&gt;
-      &lt;th&gt;D&lt;/th&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;idx&lt;/th&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;th&gt;a&lt;/th&gt;
-      &lt;td&gt;A1&lt;/td&gt;
-      &lt;td&gt;B1&lt;/td&gt;
-      &lt;td&gt;C1&lt;/td&gt;
-      &lt;td&gt;5&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;b&lt;/th&gt;
-      &lt;td&gt;A2&lt;/td&gt;
-      &lt;td&gt;B2&lt;/td&gt;
-      &lt;td&gt;C2&lt;/td&gt;
-      &lt;td&gt;10&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;c&lt;/th&gt;
-      &lt;td&gt;A3&lt;/td&gt;
-      &lt;td&gt;B3&lt;/td&gt;
-      &lt;td&gt;C3&lt;/td&gt;
-      &lt;td&gt;15&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;Passing two argument to &lt;code&gt;.loc&lt;/code&gt; and &lt;code&gt;.iloc&lt;/code&gt; allows for indexing and slicing by both rows and columns &lt;code&gt;[rows, columns]&lt;/code&gt;.&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;loc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;a&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;c&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;B&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;D&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-
-&lt;div class=&quot;output_html rendered_html output_subarea output_execute_result&quot;&gt;
-&lt;div&gt;
-&lt;style scoped&gt;
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-&lt;/style&gt;
-&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;
-  &lt;thead&gt;
-    &lt;tr style=&quot;text-align: right;&quot;&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;B&lt;/th&gt;
-      &lt;th&gt;D&lt;/th&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;idx&lt;/th&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;th&gt;a&lt;/th&gt;
-      &lt;td&gt;B1&lt;/td&gt;
-      &lt;td&gt;5&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;b&lt;/th&gt;
-      &lt;td&gt;B2&lt;/td&gt;
-      &lt;td&gt;10&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;c&lt;/th&gt;
-      &lt;td&gt;B3&lt;/td&gt;
-      &lt;td&gt;15&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;iloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]]&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-
-&lt;div class=&quot;output_html rendered_html output_subarea output_execute_result&quot;&gt;
-&lt;div&gt;
-&lt;style scoped&gt;
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-&lt;/style&gt;
-&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;
-  &lt;thead&gt;
-    &lt;tr style=&quot;text-align: right;&quot;&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;B&lt;/th&gt;
-      &lt;th&gt;D&lt;/th&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;idx&lt;/th&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;th&gt;a&lt;/th&gt;
-      &lt;td&gt;B1&lt;/td&gt;
-      &lt;td&gt;5&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;b&lt;/th&gt;
-      &lt;td&gt;B2&lt;/td&gt;
-      &lt;td&gt;10&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;c&lt;/th&gt;
-      &lt;td&gt;B3&lt;/td&gt;
-      &lt;td&gt;15&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;Both &lt;code&gt;.loc&lt;/code&gt; and &lt;code&gt;.iloc&lt;/code&gt; also allow for boolean indexing to return a subset of the &lt;code&gt;DataFrame&lt;/code&gt; where the boolean expression evaluates to &lt;code&gt;True&lt;/code&gt;&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;loc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;D&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;15&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-
-&lt;div class=&quot;output_html rendered_html output_subarea output_execute_result&quot;&gt;
-&lt;div&gt;
-&lt;style scoped&gt;
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-&lt;/style&gt;
-&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;
-  &lt;thead&gt;
-    &lt;tr style=&quot;text-align: right;&quot;&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;A&lt;/th&gt;
-      &lt;th&gt;B&lt;/th&gt;
-      &lt;th&gt;C&lt;/th&gt;
-      &lt;th&gt;D&lt;/th&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;idx&lt;/th&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;th&gt;c&lt;/th&gt;
-      &lt;td&gt;A3&lt;/td&gt;
-      &lt;td&gt;B3&lt;/td&gt;
-      &lt;td&gt;C3&lt;/td&gt;
-      &lt;td&gt;15&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;d&lt;/th&gt;
-      &lt;td&gt;A4&lt;/td&gt;
-      &lt;td&gt;B4&lt;/td&gt;
-      &lt;td&gt;C4&lt;/td&gt;
-      &lt;td&gt;20&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;e&lt;/th&gt;
-      &lt;td&gt;A5&lt;/td&gt;
-      &lt;td&gt;B5&lt;/td&gt;
-      &lt;td&gt;C5&lt;/td&gt;
-      &lt;td&gt;25&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# Showing the boolean mask shows that is is a Series with an index&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;bool_mask&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;D&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;15&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;bool_mask&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-
-
-&lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
-&lt;pre&gt;idx
-a    False
-b    False
-c     True
-d     True
-e     True
-Name: D, dtype: bool&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;Using the mask directly will cause an error if used with &lt;code&gt;.iloc&lt;/code&gt;. Remember &lt;code&gt;.iloc&lt;/code&gt; is intended only for integer-location selection. To use with &lt;code&gt;.iloc&lt;/code&gt; the boolean vector must be passed in.&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;# Boolean Vector&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;bool_mask&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;values&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-
-
-&lt;div class=&quot;output_text output_subarea output_execute_result&quot;&gt;
-&lt;pre&gt;array([False, False,  True,  True,  True])&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;iloc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;bool_mask&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;values&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-
-&lt;div class=&quot;output_html rendered_html output_subarea output_execute_result&quot;&gt;
-&lt;div&gt;
-&lt;style scoped&gt;
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-&lt;/style&gt;
-&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;
-  &lt;thead&gt;
-    &lt;tr style=&quot;text-align: right;&quot;&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;A&lt;/th&gt;
-      &lt;th&gt;B&lt;/th&gt;
-      &lt;th&gt;C&lt;/th&gt;
-      &lt;th&gt;D&lt;/th&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;idx&lt;/th&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;th&gt;c&lt;/th&gt;
-      &lt;td&gt;A3&lt;/td&gt;
-      &lt;td&gt;B3&lt;/td&gt;
-      &lt;td&gt;C3&lt;/td&gt;
-      &lt;td&gt;15&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;d&lt;/th&gt;
-      &lt;td&gt;A4&lt;/td&gt;
-      &lt;td&gt;B4&lt;/td&gt;
-      &lt;td&gt;C4&lt;/td&gt;
-      &lt;td&gt;20&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;e&lt;/th&gt;
-      &lt;td&gt;A5&lt;/td&gt;
-      &lt;td&gt;B5&lt;/td&gt;
-      &lt;td&gt;C5&lt;/td&gt;
-      &lt;td&gt;25&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;Multiple boolean expression can be applied.&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;condition_1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;D&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;15&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;condition_2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;A&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;A1&amp;#39;&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;# Condition 1 OR Condition 2&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;loc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;condition_1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;condition_2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-
-&lt;div class=&quot;output_html rendered_html output_subarea output_execute_result&quot;&gt;
-&lt;div&gt;
-&lt;style scoped&gt;
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-&lt;/style&gt;
-&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;
-  &lt;thead&gt;
-    &lt;tr style=&quot;text-align: right;&quot;&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;A&lt;/th&gt;
-      &lt;th&gt;B&lt;/th&gt;
-      &lt;th&gt;C&lt;/th&gt;
-      &lt;th&gt;D&lt;/th&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;idx&lt;/th&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;th&gt;a&lt;/th&gt;
-      &lt;td&gt;A1&lt;/td&gt;
-      &lt;td&gt;B1&lt;/td&gt;
-      &lt;td&gt;C1&lt;/td&gt;
-      &lt;td&gt;5&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;c&lt;/th&gt;
-      &lt;td&gt;A3&lt;/td&gt;
-      &lt;td&gt;B3&lt;/td&gt;
-      &lt;td&gt;C3&lt;/td&gt;
-      &lt;td&gt;15&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;d&lt;/th&gt;
-      &lt;td&gt;A4&lt;/td&gt;
-      &lt;td&gt;B4&lt;/td&gt;
-      &lt;td&gt;C4&lt;/td&gt;
-      &lt;td&gt;20&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;e&lt;/th&gt;
-      &lt;td&gt;A5&lt;/td&gt;
-      &lt;td&gt;B5&lt;/td&gt;
-      &lt;td&gt;C5&lt;/td&gt;
-      &lt;td&gt;25&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing code_cell rendered&quot;&gt;
-&lt;div class=&quot;input&quot;&gt;
-
-&lt;div class=&quot;inner_cell&quot;&gt;
-    &lt;div class=&quot;input_area&quot;&gt;
-&lt;div class=&quot; highlight hl-ipython3&quot;&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;df&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;loc&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;condition_1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;condition_2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;A&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;C&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;output_wrapper&quot;&gt;
-&lt;div class=&quot;output&quot;&gt;
-
-&lt;div class=&quot;output_area&quot;&gt;
-
-
-&lt;div class=&quot;output_html rendered_html output_subarea output_execute_result&quot;&gt;
-&lt;div&gt;
-&lt;style scoped&gt;
-    .dataframe tbody tr th:only-of-type {
-        vertical-align: middle;
-    }
-
-    .dataframe tbody tr th {
-        vertical-align: top;
-    }
-
-    .dataframe thead th {
-        text-align: right;
-    }
-&lt;/style&gt;
-&lt;table border=&quot;1&quot; class=&quot;dataframe&quot;&gt;
-  &lt;thead&gt;
-    &lt;tr style=&quot;text-align: right;&quot;&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;A&lt;/th&gt;
-      &lt;th&gt;B&lt;/th&gt;
-      &lt;th&gt;C&lt;/th&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;idx&lt;/th&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;&lt;/th&gt;
-      &lt;th&gt;&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;th&gt;a&lt;/th&gt;
-      &lt;td&gt;A1&lt;/td&gt;
-      &lt;td&gt;B1&lt;/td&gt;
-      &lt;td&gt;C1&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;c&lt;/th&gt;
-      &lt;td&gt;A3&lt;/td&gt;
-      &lt;td&gt;B3&lt;/td&gt;
-      &lt;td&gt;C3&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;d&lt;/th&gt;
-      &lt;td&gt;A4&lt;/td&gt;
-      &lt;td&gt;B4&lt;/td&gt;
-      &lt;td&gt;C4&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;th&gt;e&lt;/th&gt;
-      &lt;td&gt;A5&lt;/td&gt;
-      &lt;td&gt;B5&lt;/td&gt;
-      &lt;td&gt;C5&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-&lt;/div&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;h2 id=&quot;Summary&quot;&gt;Summary&lt;a class=&quot;anchor-link&quot; href=&quot;#Summary&quot;&gt;&lt;/a&gt;&lt;/h2&gt;
-&lt;br&gt;
-&lt;p&gt;Pandas offers a multitude of options for selecting, indexing, and slicing &lt;code&gt;DataFrame&lt;/code&gt; options. This articles provided an introduction to the &lt;code&gt;.loc&lt;/code&gt; method for label based selecting, the &lt;code&gt;.iloc&lt;/code&gt; method for integer-location based selecting as well as using the indexing operator &lt;code&gt;[]&lt;/code&gt; whose behavior can depend on the index and arguments provided. Due to this confusion could be possible and the use of &lt;code&gt;.loc&lt;/code&gt; and &lt;code&gt;.iloc&lt;/code&gt; might be preferable.&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;br&gt;
-&lt;hr&gt;
-&lt;br&gt;
-&lt;div class=&quot;cell border-box-sizing text_cell rendered&quot;&gt;&lt;div class=&quot;inner_cell&quot;&gt;
-&lt;div class=&quot;text_cell_render border-box-sizing rendered_html&quot;&gt;
-&lt;p&gt;If you enjoy what you read and find it helpful please check back, and check back often. Follow me on &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/@emguyant&quot;&gt;&lt;i class=&quot;fab fa-medium&quot;&gt;&lt;/i&gt; Medium&lt;/a&gt; while giving a clap to the article! Also don't forget to subscribe to the &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/inquisitive-nature&quot;&gt;&lt;b&gt;INQUISITIVE NATURE&lt;/b&gt;&lt;/a&gt; publication.&lt;/p&gt;
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-&lt;/body&gt;
-
- 
-
-
-&lt;/html&gt;</content><author><name>Ethan Guyant</name></author><category term="Quick Start" /><category term="Python" /><category term="Pandas" /><summary type="html"></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://ethanguyant.com/assets/img/post_img/subsetting-pandas.jpg" /><media:content medium="image" url="http://ethanguyant.com/assets/img/post_img/subsetting-pandas.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;p&gt;If you enjoy what you read and find it helpful please check back, and check back often. Follow me on &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/@emguyant&quot;&gt;&lt;i class=&quot;fab fa-medium&quot;&gt;&lt;/i&gt; Medium&lt;/a&gt; while giving a clap to the article! Also don’t forget to subscribe to the &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/inquisitive-nature&quot;&gt;&lt;b&gt;INQUISITIVE NATURE&lt;/b&gt;&lt;/a&gt; publication.&lt;/p&gt;</content><author><name>Ethan Guyant</name></author><category term="Quick Start" /><category term="Microsoft 365" /><category term="Power Automate" /><category term="Outlook" /><category term="Power Apps" /><summary type="html">Contents Office 365 Outlook Actions Get emails Move email The Basics Flow Diagram Power Automate Flow Limitations Outlook Inbox Cleanup Workflow Workflow Diagram Outlook Folder Setup Get Folder IDs Power Automate Flow - Variable Power Automate Flow - Microsoft Graph Summary</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://ethanguyant.com/assets/img/post_img/outlook-inbox-cleanup.jpg" /><media:content medium="image" url="http://ethanguyant.com/assets/img/post_img/outlook-inbox-cleanup.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>

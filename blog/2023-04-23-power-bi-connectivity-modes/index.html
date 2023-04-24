@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Power BI - Key Differences Between Data Connectivity Modes | Ethan Guyant’s Blog</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="Power BI - Key Differences Between Data Connectivity Modes" />
+<meta name="author" content="Ethan Guyant" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="A key pillar to all Power BI project is the underlying data-model. Power BI uses Import, DirectQuery, or Live Connection connectivity modes to bring data from a wide variety of data sources into the data-model. This post explores these connectivity modes, their use cases, and their limitations." />
+<meta property="og:description" content="A key pillar to all Power BI project is the underlying data-model. Power BI uses Import, DirectQuery, or Live Connection connectivity modes to bring data from a wide variety of data sources into the data-model. This post explores these connectivity modes, their use cases, and their limitations." />
+<link rel="canonical" href="http://ethanguyant.com/blog/2023-04-23-power-bi-connectivity-modes/" />
+<meta property="og:url" content="http://ethanguyant.com/blog/2023-04-23-power-bi-connectivity-modes/" />
+<meta property="og:site_name" content="Ethan Guyant’s Blog" />
+<meta property="og:image" content="http://ethanguyant.com/assets/img/post_img/power-bi-connectivity-modes.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-04-23T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="http://ethanguyant.com/assets/img/post_img/power-bi-connectivity-modes.jpg" />
+<meta property="twitter:title" content="Power BI - Key Differences Between Data Connectivity Modes" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"Ethan Guyant"},"description":"A key pillar to all Power BI project is the underlying data-model. Power BI uses Import, DirectQuery, or Live Connection connectivity modes to bring data from a wide variety of data sources into the data-model. This post explores these connectivity modes, their use cases, and their limitations.","url":"http://ethanguyant.com/blog/2023-04-23-power-bi-connectivity-modes/","@type":"BlogPosting","image":"http://ethanguyant.com/assets/img/post_img/power-bi-connectivity-modes.jpg","headline":"Power BI - Key Differences Between Data Connectivity Modes","dateModified":"2023-04-23T00:00:00+00:00","datePublished":"2023-04-23T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://ethanguyant.com/blog/2023-04-23-power-bi-connectivity-modes/"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<title>Ethan Guyant's Blog</title>
+  <!-- Normalize CSS file irons out some difference between browsers -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+  <!-- Google Fonts-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,900|Source+Sans+Pro:300,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Arvo:wght@700&display=swap" rel="stylesheet">
+  <!-- CSS Styles -->
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/notebook_default.css">
+  <link rel="stylesheet" href="/assets/css/notebook_custom.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
+  <!-- MathJax configuration -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+  </script>
+  <!-- Animation on Scroll-->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <!-- Font Awesome Kit -->
+  <script src="https://kit.fontawesome.com/c9965d23bb.js" crossorigin="anonymous"></script><link type="application/atom+xml" rel="alternate" href="http://ethanguyant.com/feed.xml" title="Ethan Guyant's Blog" /><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7356875210051999"
+  crossorigin="anonymous">
+  </script>
+  
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RTFP0V6X0G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RTFP0V6X0G');
+</script>
+  
+</head>
+<body><header class="header sticky">
+    <div class="wrapper">
+        <div>
+            <div class="scroll-logo"> 
+                <a href="/">  
+                    <svg id="EG" viewBox="0 0 152 216">
+                        <g>
+                            <path id="hex"d="M 76.342 4 L 147.685 41.377 L 147.685 116.13 L 76.342 153.506 L 5 116.13 L 5 41.377 Z" style="stroke-width: 8.37394px; fill-opacity: 0; fill: none; stroke: #39ace7;"></path>         
+                            <polygon class="logo"style="stroke-width: 3.58883px; stroke: #39ace7; fill: #39ace7;" points="41.001 38.501 112.012 38.501 112.012 62.884 97.474 62.884 97.474 54.976 41.001 54.976"></polygon>
+                            <polygon class="logo" style="stroke-width: 3.58883px; stroke: #39ace7; fill: #39ace7;" points="40.671 102.9 97.81 102.9 97.81 86.796 83.604 86.796 83.604 70.701 112.014 70.701 112.014 102.92 112.014 119.004 40.939 119.004"></polygon>
+                            <polygon class="logo" style="stroke-width: 3.58883px; stroke: #39ace7; fill: #39ace7;" points="41.001 70.701 69.753 70.701 63.532 87.725 41.317 87.725"></polygon>
+                        </g> 
+                    </svg>
+                </a>
+            </div>
+
+            <div class="header__title">
+                <a href="/">EthanGuyant.com</a>
+            </div>
+            
+        </div>
+        
+        <div class="nav__menu">
+            <div class="nav__toggle">
+                <div class="nav__icon">
+                    <span></span>
+                </div>
+            </div>
+        </div>
+        <div class="nav__menu__wrapper">
+            <ul class="nav__menu__list">
+                <li class="nav__menu__list__item">
+                    <a href="/" class="nav__menu__list__item__link">Home</a>
+                </li>
+                <li class="nav__menu__list__item">
+                    <a href="/blog" class="nav__menu__list__item__link">Blog</a>
+                </li>
+                <li class="nav__menu__list__item">
+                    <a href="/about" class="nav__menu__list__item__link">About</a>
+                </li>
+                <li class="nav__menu__list__item">
+                    <a href="/category/project/" class="nav__menu__list__item__link">Projects</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header><main class="page" aria-label="Content">
+      <div class="page__content">
+        <section class="blog__header">
+    <div class="blog__img">
+      <div class="blog__img__over"></div>
+    </div>
+    <div class="wrapper">
+      <h1 class="blog__title"><span class="inquisitive">INQUISITIVE</span> <span class="nature">NATURE</span></h1>
+      <p class="blog__subtitle">Learn  Explore  <strong>Share</strong></p>
+      <p class="post__categories">
+    </div>
+  </section><div class="wrapper">
+  <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+    <section class="article__header">
+        <h1 class="post-title p-name" itemprop="name headline">Power BI - Key Differences Between Data Connectivity Modes</h1>
+        <p class="post-meta">
+          <time class="dt-published" datetime="2023-04-23T00:00:00+00:00" itemprop="datePublished">Apr 23, 2023
+          </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">Ethan Guyant</span></span></p>
+          <p class="post-category">
+            Category: 
+            <a href="/category/quick-start">
+              <i class="fa-solid fa-folder"></i>
+              Quick Start
+            </a> 
+          </p>
+          <p class="post-tags">
+          Tags: 
+           
+              
+              <a href="/tag/microsoft-365">
+                <i class="fa-solid fa-tag"></i>
+                Microsoft 365
+              </a> 
+              
+              <a href="/tag/power-bi">
+                <i class="fa-solid fa-tag"></i>
+                Power BI
+              </a> 
+              
+              <a href="/tag/power-platform">
+                <i class="fa-solid fa-tag"></i>
+                Power Platform
+              </a> 
+              
+              <a href="/tag/power-bi-fundamentals-series">
+                <i class="fa-solid fa-tag"></i>
+                Power BI Fundamentals Series
+              </a> 
+            
+          
+        </p>
+    </section>
+    <div class="post-content e-content" itemprop="articleBody">
+      <h2 id="introduction">Introduction</h2>
+
+<p><br /></p>
+
+<p>Power BI is a data analysis and reporting tool that connects to and consumes data from a wide variety of data sources. Once connected to data sources it provides a power tool for data modeling, data visualization, and report sharing.</p>
+
+<p>All data analysis projects start with first understanding the business requirements and the data sources available. Once determined the focus shifts to data consumption. Or how to load the required data into the analysis solution to provide the required insights.</p>
+
+<p>Part of dataset planning is determining between the various data Power BI connectivity modes. The connectivity modes are methods to connect to or load data from the data sources. The connectivity mode defines how to get the data from the data sources. The selected connectivity mode impacts report performance, data freshness, and the Power BI features available.</p>
+
+<p>The decision is between the default <code class="language-plaintext highlighter-rouge">Import</code> connectivity mode, <code class="language-plaintext highlighter-rouge">DirectQuery</code> connectivity mode, <code class="language-plaintext highlighter-rouge">Live Connection</code> connectivity mode, or using a composite model. This decision can be simple in some projects, where one option is the only workable option due to the requirements. In other projects this decision requires an analysis of the benefits and limitations of each connectivity mode.</p>
+
+<blockquote>
+  <p><strong>So which one is the best?</strong> <br />
+   Well…it depends.</p>
+</blockquote>
+
+<p>Each connectivity type has its use cases and generally one is not better than the other but rather a trade-off decision. When determining which connectivity mode to use it is a balance between the requirements of the report and the limitations of each method.</p>
+
+<blockquote>
+  <p>Moving from <code class="language-plaintext highlighter-rouge">Import</code> to <code class="language-plaintext highlighter-rouge">DirectQuery</code> to <code class="language-plaintext highlighter-rouge">Live Connection</code> represents offloading the data modeling workload to the data source and results in less data storage within Power BI.</p>
+</blockquote>
+
+<p>This post will cover each connectivity mode and provides an overview of each method as well as covering their limitations.</p>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="overview">Overview</h2>
+
+<p><br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">Import</code> mode makes an entire copy of a subset of the source data. This data is then stored in-memory and made available to Power BI. <code class="language-plaintext highlighter-rouge">DirectQuery</code> does not load a copy of the data into Power BI. Rather Power BI stores information about the schema or shape of the data. Power BI then queries the data source making the underlying data available to the Power BI report. <code class="language-plaintext highlighter-rouge">Live Connection</code> store a connection string to the underlying analysis services and leverages Power BI as a visualization layer.</p>
+
+<p>As mentioned in some projects determining a connectivity mode can be straight forward. In general, when a data source is not equipped to handle a high volume of analytical queries the preferred connectivity mode is <code class="language-plaintext highlighter-rouge">Import</code> mode. When there is a need for near real-time data then <code class="language-plaintext highlighter-rouge">DirectQuery</code> or <code class="language-plaintext highlighter-rouge">Live Connection</code> are the only options that can meet this need.</p>
+
+<blockquote>
+  <p>Key differences between the connectivity modes include the supported data sources and size of the data-model</p>
+</blockquote>
+
+<p>For the projects where you must analyze each connectivity mode, keep reading to get a further understanding of the benefits and limitations of each mode.</p>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="getting-started">Getting Started</h2>
+
+<p><br /></p>
+
+<p>When establishing a connection to a data source in Power BI you are presented with different connectivity options. The options available depend on the selected data source.</p>
+
+<p>Available data sources can viewed by selecting <code class="language-plaintext highlighter-rouge">Get data</code> on the top ribbon in Power BI Desktop. Power BI presents a list of common data sources, and the complete list can be viewed by selecting <code class="language-plaintext highlighter-rouge">More...</code> on the bottom of the list.</p>
+
+<p>Loading or connecting to data can be a different process depending on the selected source. For example, loading a local Excel file you are presented with the following screen.</p>
+
+<p><img src="/assets/img/2023-04-23-power-bi-connectivity-modes/1_excel_file.png" alt="Connect to Excel File Screen" class="post__img" /></p>
+
+<p>From here you can load the data as it is within the Excel file, or Transform your data within the Power Query Editor. Both options import a copy of the data to the Power BI data model.</p>
+
+<p>However, if the SQL Server data source is select you will see a screen similar to that below.</p>
+
+<p><img src="/assets/img/2023-04-23-power-bi-connectivity-modes/2_sql_db.png" alt="Connect to SQL Server Screen" class="post__img" /></p>
+
+<p>Here you will notice you have an option to select the connectivity mode. There are also addition options under Advanced option such as providing a SQL statement to evaluate against the data source.</p>
+
+<p>Lastly, below is an example of what you are presented if you select Analysis Services as a data source.</p>
+
+<p><img src="/assets/img/2023-04-23-power-bi-connectivity-modes/2_analysis_services.png" alt="Connect to Analysis Services Screen" class="post__img" /></p>
+
+<p>Again here you will see the option to set the connectivity mode.</p>
+
+<blockquote>
+  <p>The available connectivity modes for a source can change depending on what other type of connectivity modes and data sources are present within the data model.</p>
+</blockquote>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="import">Import</h2>
+
+<p><br /></p>
+
+<p>Import data is a common, and default, option for loading data into Power BI. When using <code class="language-plaintext highlighter-rouge">Import</code> Power BI extracts the data from the data source and stores it in an in-memory storage engine. When possible it is generally recommended to use <code class="language-plaintext highlighter-rouge">Import</code> mode. <code class="language-plaintext highlighter-rouge">Import</code> mode takes advantage of the high-performance query engine, creates highly interactive reports offering the full range of Power BI features. The alternative connectivity modes discussed later in this post can be used if the requirements of the report cannot be met due to the limitations of the <code class="language-plaintext highlighter-rouge">Import</code> connectivity mode.</p>
+
+<p><code class="language-plaintext highlighter-rouge">Import</code> models store data using Power BI’s column-based storage engine. This storage method differs from row-based storage typical of relational database systems. Row-based storage commonly used by transactional systems work well when the system frequently reads and writes individual or small groups of rows.</p>
+
+<p>However, this type of storage does not perform well with analytical workloads generally needed for BI reporting solutions. Analytical queries and aggregations involve a few columns of the underlying data. The need to efficiently execute these type of queries led to the column-based storage engines which store data in columns instead of rows. Column-based storage is optimized to perform aggregates and filtering on columns of data without having to retrieve the entire row from the data source.</p>
+
+<blockquote>
+  <p>Columnar storage applies compression to the columns by eliminating the need to store the same physical values multiple times. The storage engine applies compression algorithms to columns depending on the column data type (e.g. value encoding, hash encoding, run-length encoding).</p>
+</blockquote>
+
+<p>Key considerations when using the <code class="language-plaintext highlighter-rouge">Import</code> connectivity mode include:</p>
+
+<p>1) Does the imported data needed to get update?</p>
+
+<p>2) How frequent does the data have to be updated?</p>
+
+<p>3) How much data is there?</p>
+
+<h3 id="import-considerations"><code class="language-plaintext highlighter-rouge">Import</code> Considerations</h3>
+
+<ul>
+  <li>
+    <p>Data size: when using Power BI Pro your dataset limit is 1GB of compressed data. With Premium licenses this limit increases to 10GB or larger.</p>
+  </li>
+  <li>
+    <p>Data freshness: when using Power BI Pro you are able to schedule up to 8 refreshes per day. With Premium licenses this increases to 48 or every 30 minutes.</p>
+  </li>
+</ul>
+
+<blockquote>
+  <p>If the underlying data source is an on-premise source scheduled refreshes require the use of an on-premises data gateway.</p>
+</blockquote>
+
+<ul>
+  <li>Duplicate Work: when using analysis services all the data modeling may already be complete. However, when using <code class="language-plaintext highlighter-rouge">Import</code> mode much of the data modeling may have to be redone.</li>
+</ul>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="directquery">DirectQuery</h2>
+
+<p><br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">DirectQuery</code> connectivity mode provides a method to directly connect to a data source so there is no data imported or copied into the Power BI dataset. <code class="language-plaintext highlighter-rouge">DirectQuery</code> can address some of the limitations of <code class="language-plaintext highlighter-rouge">Import</code> mode. For example for a large datasets the queries are processed on the source server rather than the local computer running Power BI Desktop. Additionally since it provides a direct connection there is less of a need for data refreshes in Power BI. <code class="language-plaintext highlighter-rouge">DirectQuery</code> report queries are ran when the report is opened or interacted with by the end user.</p>
+
+<p>Like importing data, when using <code class="language-plaintext highlighter-rouge">DirectQuery</code> with an on-premises data source an on-premises data gateway is required. Although there is no schedule refreshes when using <code class="language-plaintext highlighter-rouge">DirectQuery</code> the gateway is still required to push the data to the Power BI Service.</p>
+
+<p>While <code class="language-plaintext highlighter-rouge">DirectQuery</code> can address the limitations presented by <code class="language-plaintext highlighter-rouge">Import</code> mode, <code class="language-plaintext highlighter-rouge">DirectQuery</code> comes with its own set of limitations to consider. <code class="language-plaintext highlighter-rouge">DirectQuery</code> is a workable option when the underlying data source can support interactive query results within an acceptable time and the source system can handle the generated query load. Since with <code class="language-plaintext highlighter-rouge">DirectQuery</code> analytical queries are sent to the underlying data source the performance of the data source is a major consideration when using <code class="language-plaintext highlighter-rouge">DirectQuery</code>.</p>
+
+<h3 id="directquery-considerations"><code class="language-plaintext highlighter-rouge">DirectQuery</code> Considerations</h3>
+
+<ul>
+  <li>A key limitation when considering <code class="language-plaintext highlighter-rouge">DirectQuery</code> is that not all data sources available in Power BI support <code class="language-plaintext highlighter-rouge">DirectQuery</code>.</li>
+  <li>If there are changes to the data source the report must be refreshed to show the updated data.
+    <ul>
+      <li>Power BI reports use caches of data and due to this there is no guarantee that visuals always display the most recent data. Selecting <code class="language-plaintext highlighter-rouge">Refresh</code> on the report will clear any caches and refresh all visuals on the page</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<p><strong>Example</strong> <br />
+Below is an example of the above limitation. Here we have a Power BI table and card visual of a products table on the left and the underlying SQL database on the right. For this example we will focus on <code class="language-plaintext highlighter-rouge">ProductID</code> = 680 (HL Road Frame - Black, 58) with an initial <code class="language-plaintext highlighter-rouge">ListPrice</code> of $1,431.50.</p>
+
+<p><img src="/assets/img/2023-04-23-power-bi-connectivity-modes/4_data_update.gif" alt="Data Source Update Limitation" class="post__img" /></p>
+
+<p>The <code class="language-plaintext highlighter-rouge">ListPrice</code> is updated to a value of $150,000 in the data source. However, after the update neither the table visual nor the card showing the sum of all list prices updates.</p>
+
+<p>There is generally no change detection or live streaming of the data when using <code class="language-plaintext highlighter-rouge">DirectQuery</code>.</p>
+
+<p>When we set the <code class="language-plaintext highlighter-rouge">ProductID</code> slicer to a value of <code class="language-plaintext highlighter-rouge">680</code> however, we see the updated value. The interaction with the slicer sents a new query to the data soucre returning the updated results displayed in the filtered table.</p>
+
+<blockquote>
+  <p>Setting the slicer value executes a new query with the addition of a <code class="language-plaintext highlighter-rouge">WHERE</code> clause in the SQL query and the returned result is displayed.</p>
+</blockquote>
+
+<p>Clearing the slicer shows the initial table again, without the updated value. Refreshing the report clears all caches and runs all queries required by the visuals on the page.</p>
+
+<hr />
+
+<ul>
+  <li>Power BI Desktop reports must be refreshed to reflect schema changes.
+    <ul>
+      <li>Once you publish a report to the Power BI Service selecting <code class="language-plaintext highlighter-rouge">Refresh</code> only refreshes the visuals in the report.
+        <ul>
+          <li>If the underlying schema changes the Power BI  will not automatically update the available field lists.</li>
+          <li>Removing tables or columns from the underlying source can lead to potential query failures when refreshing a report.</li>
+          <li>Updating the data schema requires opening the <code class="language-plaintext highlighter-rouge">.pbix</code> file in Power BI Desktop, refresh the report, then republish the report.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+
+<p><strong>Example</strong> <br />
+Below is an example the limitation noted above. Here, we have the same Power BI report on the right as the example above and the SQL database on the left. We will start by executing the query which adds a new <code class="language-plaintext highlighter-rouge">ManagerID</code> column to the <code class="language-plaintext highlighter-rouge">Product</code> table, sets the value as a random number between 0 and 100, and then selects the top 100 products to view the update.</p>
+
+<p><img src="/assets/img/2023-04-23-power-bi-connectivity-modes/5_schema_update.gif" alt="Data Source Schema Update Limitation" class="post__img" /></p>
+
+<p>After executing the query we can refresh the columns of the <code class="language-plaintext highlighter-rouge">Product</code> table in SQL Server Management Studio (SSMS) to verify it was created. Howerver, in Power BI we see that the fields available to add to the table visual does not include this new column.</p>
+
+<p>To view schema updates in Power BI the <code class="language-plaintext highlighter-rouge">.pbix</code> file must be refreshed and the report must be republished.</p>
+
+<p>As noted above if columns or tables are removed from the underlying data source Power BI queries can break. To see this we first remove the <code class="language-plaintext highlighter-rouge">ManagerId</code> column in the data source, and then refresh the report. After refreshing the report we can see there is an issue with the table visual.</p>
+
+<hr />
+
+<ul>
+  <li>The limit of rows returned by a query is capped at 1 million rows.</li>
+  <li>The Power BI data model cannot be switched from <code class="language-plaintext highlighter-rouge">Import</code> to <code class="language-plaintext highlighter-rouge">DirectQuery</code> mode.
+    <ul>
+      <li>A <code class="language-plaintext highlighter-rouge">DirectQuery</code> table can be switched to <code class="language-plaintext highlighter-rouge">Import</code>, however once this is done it cannot be switched back.</li>
+    </ul>
+  </li>
+  <li>Some Power Query (M Language) features are not supported by <code class="language-plaintext highlighter-rouge">DirectQuery</code>.
+    <ul>
+      <li>Adding unsupported features to the Power Query Editor will result in a <code class="language-plaintext highlighter-rouge">This step results in a query that is not supported by DirectQuery mode</code> error message.</li>
+    </ul>
+  </li>
+  <li>Some DAX functions are not supported by <code class="language-plaintext highlighter-rouge">DirectQuery</code>.
+    <ul>
+      <li>If used results in a <code class="language-plaintext highlighter-rouge">Function &lt;function_name&gt; is not supported by DirectQuery mode</code> error message.</li>
+    </ul>
+  </li>
+</ul>
+
+<blockquote>
+  <p>The limitations in support of M/DAX features and function is because <code class="language-plaintext highlighter-rouge">DirectQuery</code> converts M/DAX into the data source’s native language (e.g. T-SQL). Any DAX function used must support query folding.</p>
+</blockquote>
+
+<hr />
+
+<p><strong>Example</strong> <br />
+For the example report we only need the <code class="language-plaintext highlighter-rouge">ProductID</code>, <code class="language-plaintext highlighter-rouge">Name</code>, and <code class="language-plaintext highlighter-rouge">ListPrice</code> field. However, you can see in the data pane we have all the columns present in the source data. We can modify which column are available in Power BI be editing the query in the Power Query Editor.</p>
+
+<p><img src="/assets/img/2023-04-23-power-bi-connectivity-modes/6_native_query.gif" alt="Native Query" class="post__img" /></p>
+
+<p>After removing the unneeded columns we can view the native query that get executed against the underlying data source and see the <code class="language-plaintext highlighter-rouge">SELECT</code> statement includes only the required columns (i.e. column not removed by the <code class="language-plaintext highlighter-rouge">Removed Columns</code> step).</p>
+
+<hr />
+
+<p><br /></p>
+
+<p>Other implications and considerations of <code class="language-plaintext highlighter-rouge">DirectQuery</code> include performance and load implications on the data source, data security implications, data-model limitations, and reporting limitations.</p>
+
+<h3 id="directquery-use-cases"><code class="language-plaintext highlighter-rouge">DirectQuery</code> Use Cases</h3>
+
+<p>With its given limitations <code class="language-plaintext highlighter-rouge">DirectQuery</code> can still be a suitable option for the following use cases.</p>
+
+<ul>
+  <li>When report requirements include the need for near real-time data.</li>
+  <li>The report requires a large dataset, greater than what is supported by <code class="language-plaintext highlighter-rouge">Import</code> mode.</li>
+  <li>The underlying data source defines and applies security rules.
+    <ul>
+      <li>When developing a Power BI report with <code class="language-plaintext highlighter-rouge">DirectQuery</code> Power BI connects to the data source by using the current user’s (report developer) credentials</li>
+      <li><code class="language-plaintext highlighter-rouge">DirectQuery</code> allows a report viewer’s credentials to pass through to the underlying source, which then applies security rules.</li>
+    </ul>
+  </li>
+  <li>Data sovereignty restrictions are applicable (e.g. data cannot be stored in the cloud).
+    <ul>
+      <li>When using <code class="language-plaintext highlighter-rouge">DirectQuery</code> data is cached in the Power BI Service, however there is no long term cloud storage.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="live-connection">Live Connection</h2>
+
+<p><br /></p>
+
+<p><code class="language-plaintext highlighter-rouge">Live Connection</code> is a method that lets you build a report in Power BI Desktop without having to build a dataset to under pin the report. The connectivity mode offloads as much work as possible to the underlying analysis services. When building a report in Power BI Desktop that uses <code class="language-plaintext highlighter-rouge">Live Connection</code> you connect to a dataset that already exists in an analysis service.</p>
+
+<p>Similar to <code class="language-plaintext highlighter-rouge">DirectQuery</code> when <code class="language-plaintext highlighter-rouge">Live Connection</code> is used no data is imported or copied into the Power BI dataset. Rather Power BI stores a connection string to the existing analysis services (e.g. SSAS) or published Power BI dataset and Power BI is used as a visualization layer.</p>
+
+<h3 id="live-connection-considerations"><code class="language-plaintext highlighter-rouge">Live Connection</code> Considerations</h3>
+
+<ul>
+  <li>Can only be used with a limited number of data sources.
+    <ul>
+      <li>Existing Analysis Service data model (SQL Server Analysis Services (SSAS) or Azure Analysis Services)</li>
+    </ul>
+  </li>
+  <li>No data-model customizations are available, any changes required to the data-model need to be done at the data source.
+    <ul>
+      <li>Report-Level measures are the one exception to this limitation.</li>
+    </ul>
+  </li>
+  <li>User identity is passed through to the data source.
+    <ul>
+      <li>A report is subject to row-level security and access permissions that are set on the data-model.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="composite-models">Composite Models</h2>
+
+<p><br /></p>
+
+<p>Power BI no longer limits you to choosing just <code class="language-plaintext highlighter-rouge">Import</code> or <code class="language-plaintext highlighter-rouge">DirectQuery</code> mode. With composite models the Power BI data-model can include data connections from one (or more) <code class="language-plaintext highlighter-rouge">DirectQuery</code> or <code class="language-plaintext highlighter-rouge">Import</code> data connections.</p>
+
+<p>A composite model allows you to connect to different types of data sources when creating the Power BI data-model. Within a single <code class="language-plaintext highlighter-rouge">.pbix</code> file you can combine data from one or more <code class="language-plaintext highlighter-rouge">DirectQuery</code> sources and/or combine data form <code class="language-plaintext highlighter-rouge">DirectQuery</code> sources and <code class="language-plaintext highlighter-rouge">Import</code> data.</p>
+
+<p>Each table within the composite model will list its storage mode which shows whether the table is based on a <code class="language-plaintext highlighter-rouge">DirectQuery</code> or <code class="language-plaintext highlighter-rouge">Import</code> source. The storage mode can be viewed and modified on the properties pane of the table.</p>
+
+<hr />
+
+<p><strong>Example</strong> <br />
+The example below is a Power BI report with a table visual of a products table. We have added the <code class="language-plaintext highlighter-rouge">ManagerID</code> column to this table, however there is no <code class="language-plaintext highlighter-rouge">Managers</code> table in the underlying SQL database. Rather this information is contained within a local <code class="language-plaintext highlighter-rouge">product_managers</code> Excel file. With a composite model we can combined these two different data sources and connectivity modes to create a single report.</p>
+
+<p><img src="/assets/img/2023-04-23-power-bi-connectivity-modes/7_composite_model.gif" alt="Composite Model" class="post__img" /></p>
+
+<p>Initially the report storage mode is <code class="language-plaintext highlighter-rouge">DirectQuery</code> because to start we only have the <code class="language-plaintext highlighter-rouge">Product</code> table <code class="language-plaintext highlighter-rouge">DirectQuery</code> connection.</p>
+
+<p>We use the <code class="language-plaintext highlighter-rouge">Import</code> connectivity mode to load the <code class="language-plaintext highlighter-rouge">product_mangers</code> data and create the relationship between the two tables.</p>
+
+<p>You can check the storage mode of each table in the properties pane under Advanced. We can see the <code class="language-plaintext highlighter-rouge">SalesLT Product</code> table has a <code class="language-plaintext highlighter-rouge">DirectQuery</code> storage mode and that <code class="language-plaintext highlighter-rouge">Sheet1</code> has a <code class="language-plaintext highlighter-rouge">Import</code> storege  mode</p>
+
+<p>Once the data model is a composite model we see the report Storage Mode update to a value of <code class="language-plaintext highlighter-rouge">Mixed</code></p>
+
+<hr />
+<p><br /></p>
+
+<h3 id="composite-model-considerations">Composite Model Considerations</h3>
+
+<ul>
+  <li>Security Implications: A query sent to one data source could include data values that have been extracted from a different data source.
+    <ul>
+      <li>If the extracted data is confidential the security impacts of this should be considered.</li>
+      <li>Avoid extracting data from one data source via an encrypted connection to then include this data in a query sent to a different source via an unencrypted connection.</li>
+      <li>When a report author includes a table from one data-model in a composite model, a user viewing a report built upon the composite model could query <strong>any</strong> table in the data-model the table was added from.</li>
+    </ul>
+  </li>
+  <li>Performance Implications: Whenever <code class="language-plaintext highlighter-rouge">DirectQuery</code> is used the performance of the underlying system should be considered. Ensure that is has the resources required to support the query load due to users interacting with the Power BI report.
+    <ul>
+      <li>A visual in a composite model can sent queries to multiple data source with the results from one query being passed to another query from a different source.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<hr />
+<p><br /></p>
+
+<p>If you enjoy what you read and find it helpful please check back, and check back often. Follow me on <a class="post__link" href="https://medium.com/@emguyant"><i class="fab fa-medium"></i> Medium</a> while giving a clap to the article! Also don’t forget to subscribe to the <a class="post__link" href="https://medium.com/inquisitive-nature"><b>INQUISITIVE NATURE</b></a> publication.</p>
+
+    </div><a class="u-url" href="/blog/2023-04-23-power-bi-connectivity-modes/" hidden></a>
+  </article>
+</div>
+      </div>
+    </main><footer class="footer">
+    <!-- replace with your own email address 
+    <a href="mailto:info@ethanguyant.com" class="footer__link">info@ethanguyant.com</a>-->
+    <ul class="social-list">
+        <li class="social-list__item">
+            <a class="social-list__link" href="mailto:emguyant@gmail.com">
+                <i class="fas fa-envelope"></i>
+            </a>
+        </li>
+        <li class="social-list__item">
+            <a class="social-list__link" href="https://www.linkedin.com/in/ethan-guyant/">
+                <i class="fab fa-linkedin"></i>
+            </a>
+        </li>
+        <li class="social-list__item">
+            <a class="social-list__link" href="https://github.com/EMGuyant">
+                <i class="fab fa-github"></i>
+            </a>
+        </li>
+        <li class="social-list__item">
+            <a class="social-list__link" href="https://medium.com/@emguyant">
+                <i class="fab fa-medium"></i>
+            </a>
+        </li>
+        <li class="social-list__item">
+            <a class="social-list__link" href="https://medium.com/inquisitive-nature">
+                <i class="fa-solid fa-book"></i>
+            </a>
+        </li>
+    </ul>
+</footer><script src="https://kit.fontawesome.com/c9965d23bb.js" crossorigin="anonymous"></script>
+<script src="/assets/js/script.js"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+</body>
+
+</html>
