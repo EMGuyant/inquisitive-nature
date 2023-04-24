@@ -4,7 +4,7 @@ author: Ethan Guyant
 title:  "Power BI - Key Differences Between Data Connectivity Modes"
 category: Quick Start
 tags: [Microsoft 365, Power BI, Power Platform, Power BI Fundamentals Series]
-description: A key pillar to every Power BI project is the underlying data-model. Power BI uses Import, DirectQuery, or Live Connection connectivity modes to bring data from a wide variety of data sources into the data-model. This post explores these connectivity modes, their use cases, and their limitations.
+description: A key pillar to all Power BI project is the underlying data-model. Power BI uses Import, DirectQuery, or Live Connection connectivity modes to bring data from a wide variety of data sources into the data-model. This post explores these connectivity modes, their use cases, and their limitations.
 image: /assets/img/post_img/power-bi-connectivity-modes.jpg
 image_by: Etienne Girardet
 image_by_link: https://unsplash.com/@etiennegirardet?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
