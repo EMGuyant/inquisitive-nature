@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Unleashing the Power of Power Query: A Guide to Power Query in Power BI | Ethan Guyant’s Blog</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="Unleashing the Power of Power Query: A Guide to Power Query in Power BI" />
+<meta name="author" content="Ethan Guyant" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Explore the power of Power Query in Power BI with this quick start guide. Learn how to optimize data preparation, transformation, and analysis using Power Query." />
+<meta property="og:description" content="Explore the power of Power Query in Power BI with this quick start guide. Learn how to optimize data preparation, transformation, and analysis using Power Query." />
+<link rel="canonical" href="http://ethanguyant.com/blog/2023-06-21-powerbi-power-query/" />
+<meta property="og:url" content="http://ethanguyant.com/blog/2023-06-21-powerbi-power-query/" />
+<meta property="og:site_name" content="Ethan Guyant’s Blog" />
+<meta property="og:image" content="http://ethanguyant.com/assets/img/post_img/powerbi-power-query.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-06-21T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="http://ethanguyant.com/assets/img/post_img/powerbi-power-query.jpg" />
+<meta property="twitter:title" content="Unleashing the Power of Power Query: A Guide to Power Query in Power BI" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"Ethan Guyant"},"description":"Explore the power of Power Query in Power BI with this quick start guide. Learn how to optimize data preparation, transformation, and analysis using Power Query.","url":"http://ethanguyant.com/blog/2023-06-21-powerbi-power-query/","@type":"BlogPosting","image":"http://ethanguyant.com/assets/img/post_img/powerbi-power-query.jpg","headline":"Unleashing the Power of Power Query: A Guide to Power Query in Power BI","dateModified":"2023-06-21T00:00:00+00:00","datePublished":"2023-06-21T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://ethanguyant.com/blog/2023-06-21-powerbi-power-query/"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<title>Ethan Guyant's Blog</title>
+  <!-- Normalize CSS file irons out some difference between browsers -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+  <!-- Google Fonts-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,900|Source+Sans+Pro:300,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Arvo:wght@700&display=swap" rel="stylesheet">
+  <!-- CSS Styles -->
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/notebook_default.css">
+  <link rel="stylesheet" href="/assets/css/notebook_custom.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
+  <!-- MathJax configuration -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+  </script>
+  <!-- Animation on Scroll-->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <!-- Font Awesome Kit -->
+  <script src="https://kit.fontawesome.com/c9965d23bb.js" crossorigin="anonymous"></script><link type="application/atom+xml" rel="alternate" href="http://ethanguyant.com/feed.xml" title="Ethan Guyant's Blog" /><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7356875210051999"
+  crossorigin="anonymous">
+  </script>
+  
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RTFP0V6X0G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RTFP0V6X0G');
+</script>
+  
+</head>
+<body><header class="header sticky">
+    <div class="wrapper">
+        <div>
+            <div class="scroll-logo"> 
+                <a href="/">  
+                    <svg id="EG" viewBox="0 0 152 216">
+                        <g>
+                            <path id="hex"d="M 76.342 4 L 147.685 41.377 L 147.685 116.13 L 76.342 153.506 L 5 116.13 L 5 41.377 Z" style="stroke-width: 8.37394px; fill-opacity: 0; fill: none; stroke: #39ace7;"></path>         
+                            <polygon class="logo"style="stroke-width: 3.58883px; stroke: #39ace7; fill: #39ace7;" points="41.001 38.501 112.012 38.501 112.012 62.884 97.474 62.884 97.474 54.976 41.001 54.976"></polygon>
+                            <polygon class="logo" style="stroke-width: 3.58883px; stroke: #39ace7; fill: #39ace7;" points="40.671 102.9 97.81 102.9 97.81 86.796 83.604 86.796 83.604 70.701 112.014 70.701 112.014 102.92 112.014 119.004 40.939 119.004"></polygon>
+                            <polygon class="logo" style="stroke-width: 3.58883px; stroke: #39ace7; fill: #39ace7;" points="41.001 70.701 69.753 70.701 63.532 87.725 41.317 87.725"></polygon>
+                        </g> 
+                    </svg>
+                </a>
+            </div>
+
+            <div class="header__title">
+                <a href="/">EthanGuyant.com</a>
+            </div>
+            
+        </div>
+        
+        <div class="nav__menu">
+            <div class="nav__toggle">
+                <div class="nav__icon">
+                    <span></span>
+                </div>
+            </div>
+        </div>
+        <div class="nav__menu__wrapper">
+            <ul class="nav__menu__list">
+                <li class="nav__menu__list__item">
+                    <a href="/" class="nav__menu__list__item__link">Home</a>
+                </li>
+                <li class="nav__menu__list__item">
+                    <a href="/blog" class="nav__menu__list__item__link">Blog</a>
+                </li>
+                <li class="nav__menu__list__item">
+                    <a href="/about" class="nav__menu__list__item__link">About</a>
+                </li>
+                <li class="nav__menu__list__item">
+                    <a href="/category/project/" class="nav__menu__list__item__link">Projects</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header><main class="page" aria-label="Content">
+      <div class="page__content">
+        <section class="blog__header">
+    <div class="blog__img">
+      <div class="blog__img__over"></div>
+    </div>
+    <div class="wrapper">
+      <h1 class="blog__title"><span class="inquisitive">INQUISITIVE</span> <span class="nature">NATURE</span></h1>
+      <p class="blog__subtitle">Learn  Explore  <strong>Share</strong></p>
+      <p class="post__categories">
+    </div>
+  </section><div class="wrapper">
+  <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+    <section class="article__header">
+        <h1 class="post-title p-name" itemprop="name headline">Unleashing the Power of Power Query: A Guide to Power Query in Power BI</h1>
+        <p class="post-meta">
+          <time class="dt-published" datetime="2023-06-21T00:00:00+00:00" itemprop="datePublished">Jun 21, 2023
+          </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">Ethan Guyant</span></span></p>
+          <p class="post-category">
+            Category: 
+            <a href="/category/quick-start">
+              <i class="fa-solid fa-folder"></i>
+              Quick Start
+            </a> 
+          </p>
+          <p class="post-tags">
+          Tags: 
+           
+              
+              <a href="/tag/microsoft-365">
+                <i class="fa-solid fa-tag"></i>
+                Microsoft 365
+              </a> 
+              
+              <a href="/tag/power-bi">
+                <i class="fa-solid fa-tag"></i>
+                Power BI
+              </a> 
+              
+              <a href="/tag/power-platform">
+                <i class="fa-solid fa-tag"></i>
+                Power Platform
+              </a> 
+              
+              <a href="/tag/power-bi-fundamentals-series">
+                <i class="fa-solid fa-tag"></i>
+                Power BI Fundamentals Series
+              </a> 
+            
+          
+        </p>
+    </section>
+    <div class="post-content e-content" itemprop="articleBody">
+      <h2 id="introduction">Introduction</h2>
+
+<p><br /></p>
+
+<p>Power Query is a powerful data preparation and transformation tool within Power BI. It empowers users to connect to various data sources, shape and cleanse data, and load it into the Power BI environment for visualization and analysis.</p>
+
+<p>This blog post will explore what Power Query is, the ins and outs of Power Query and how to use it effectively leveraging its full potential in Power BI for data analysis.</p>
+
+<h3 id="what-is-power-query">What is Power Query</h3>
+
+<p>Power Query is a versatile data connectivity and transformation tool that enables users to extract, manipulate, and load data from a wide range of sources into Power BI. It provides an intuitive user interfaces providing a comprehensive set of data preparation functionalities. The data preparation tools help transform raw messy data into clean data suitable for analysis.</p>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="how-to-use-power-query">How to use Power Query</h2>
+
+<p><br /></p>
+
+<p>Lets explore how to leverage Power Query to retrieve data from data sources and perform transformations to prepare data for analysis.</p>
+
+<h3 id="connecting-to-data-sources">Connecting to Data Sources</h3>
+
+<p>We can access Power Query from Power BI Desktop. On the top ribbon click the “Get Data” button on the Home tab. Selecting the chevron will show a list of common data sources, to view all data sources select more listed on the bottom or you select the icon above “Get Data”.</p>
+
+<p><img src="/assets/img/2023-06-22-powerbi-power-query/get_data.gif" alt="Get Data" class="post__img" /></p>
+
+<p>Choose the desired data sources from the available options. Available sources include databases, Excel files, CSV files, web pages, and cloud-based services. Provide the required credentials and connection details to establish a connection to the selected data sources.</p>
+
+<h3 id="data-transformation-and-cleansing">Data Transformation and Cleansing</h3>
+
+<p>Power Query provides a range of data transformation capabilities. Utilizing the Power Query Editor you can shape and clean data to meet your requirements. You can perform operations like filtering, sorting, removing duplicates, splitting columns, renaming columns, merging data from multiple sources and creating custom calculated columns.</p>
+
+<p>Filter and sorting data using a familiar interface.</p>
+
+<p><img src="/assets/img/2023-06-22-powerbi-power-query/filter_sort.gif" alt="Filter and Sorting data" class="post__img" /></p>
+
+<p>Remove, split, and rename columns within your dataset.</p>
+
+<p><img src="/assets/img/2023-06-22-powerbi-power-query/remove_split_columns.gif" alt="Remove and Split Columns" class="post__img" /></p>
+
+<p>Ensure the correct data types of you data by setting the column data type.</p>
+
+<p><img src="/assets/img/2023-06-22-powerbi-power-query/data_types.gif" alt="Set Data Types" class="post__img" /></p>
+
+<p>Leverage the power of Power Query functions and formulas to optimize your data transformation process.</p>
+
+<h3 id="applied-steps">Applied Steps</h3>
+
+<p>As you build your transformation Power Query using either built-in functions or custom transformations using the Power Query Formula Language (M Language) each transformation is recorded as an <code class="language-plaintext highlighter-rouge">Applied Step</code>. Each <code class="language-plaintext highlighter-rouge">Applied Step</code> can be viewed in the Query Settings panes.</p>
+
+<p>You can review and modify the <code class="language-plaintext highlighter-rouge">Applied Steps</code> to adjust the data transformation process as required. During the review of the <code class="language-plaintext highlighter-rouge">Applied Steps</code> you can further refine the data preparation process and improve query performance. Implementing query folding and other query optimization techniques can improve the efficiency of the your Power Queries.</p>
+
+<h3 id="query-dependencies-and-data-merging">Query Dependencies and Data Merging</h3>
+
+<p>Power Query enables the the development of multiple queries, each representing a specific data sources or data transformation step. You can utilize query dependencies to define relationships between queries, allowing for data merging and consolidation. Leverage merging capabilities to combine data from multiple queries based on common fields, such as performing inner joins, left joins, or appending data.</p>
+
+<p>Combine or merge data from multiple queries based on one or more matching column with the Merge Queries operation.</p>
+
+<p><img src="/assets/img/2023-06-22-powerbi-power-query/merge_queries.gif" alt="Merge Queries" class="post__img" /></p>
+
+<p>Proper use of merging capabilities can optimize your data analysis process.</p>
+
+<h3 id="query-parameters-dynamic-filtering-and-functions">Query Parameters, Dynamic Filtering, and Functions</h3>
+
+<p>Power Query allows for the use of query parameters. These query parameters act as placeholder for values that can be dynamically changed. This allows for dynamic filtering options. The use of query parameters can increase the flexibility, interactivity, and reusability of queries and the resulting Power BI reports.</p>
+
+<p><img src="/assets/img/2023-06-22-powerbi-power-query/parameters.gif" alt="Query Parameters" class="post__img" /></p>
+
+<p>Custom functions within Power Query can be used to encapsulate complex data transformations and you can reuse them across multiple queries.</p>
+
+<p><img src="/assets/img/2023-06-22-powerbi-power-query/custom_function.gif" alt="Custom Functions" class="post__img" /></p>
+
+<h3 id="data-loading-and-refreshing">Data Loading and Refreshing</h3>
+
+<p>After applying the required transformations, you load the data into the Power BI data model by clicking <code class="language-plaintext highlighter-rouge">Close &amp; Apply</code>. Power Query creates a new query or appends the transformed data to an existing query within the Power BI data model. To ensure the data stays up to date with the source systems by setting up automatic data refreshes.</p>
+
+<p><img src="/assets/img/2023-06-22-powerbi-power-query/close_apply.gif" alt="Close and Apply" class="post__img" /></p>
+
+<h3 id="advanced-power-query-features">Advanced Power Query Features</h3>
+
+<p>There are advanced features within Power Query such as conditional transformations, grouping and aggregation, unpivoting columns, and handline advanced data types. These features and other optimization techniques can be implemented to handle complex data scenarios and improve efficiency of you data analysis.</p>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p><br /></p>
+
+<p>Power Query is a powerful tool for data preparation and transformation in Power BI. Its approachable interface and expansive capabilities empower users to connect to various data sources, cleanse and shape data, and load it into the Power BI data model. By expanding your knowledge and use of Power Query advanced features you can optimize your data analysis process, streamline data preparation, and unlock the full potential of your data. Implement the strategies outlined in this guide to improve your Power BI reports and dashboards expanding your analysis to new heights of insight and effectiveness.</p>
+
+<p>Start you exploration of Power Query and its features to further the effectiveness of your data analysis with increased flexibility and efficiency.</p>
+
+    </div><a class="u-url" href="/blog/2023-06-21-powerbi-power-query/" hidden></a>
+  </article>
+</div>
+      </div>
+    </main><footer class="footer">
+    <!-- replace with your own email address 
+    <a href="mailto:info@ethanguyant.com" class="footer__link">info@ethanguyant.com</a>-->
+    <ul class="social-list">
+        <li class="social-list__item">
+            <a class="social-list__link" href="mailto:emguyant@gmail.com">
+                <i class="fas fa-envelope"></i>
+            </a>
+        </li>
+        <li class="social-list__item">
+            <a class="social-list__link" href="https://www.linkedin.com/in/ethan-guyant/">
+                <i class="fab fa-linkedin"></i>
+            </a>
+        </li>
+        <li class="social-list__item">
+            <a class="social-list__link" href="https://github.com/EMGuyant">
+                <i class="fab fa-github"></i>
+            </a>
+        </li>
+        <li class="social-list__item">
+            <a class="social-list__link" href="https://medium.com/@emguyant">
+                <i class="fab fa-medium"></i>
+            </a>
+        </li>
+        <li class="social-list__item">
+            <a class="social-list__link" href="https://medium.com/inquisitive-nature">
+                <i class="fa-solid fa-book"></i>
+            </a>
+        </li>
+    </ul>
+</footer><script src="https://kit.fontawesome.com/c9965d23bb.js" crossorigin="anonymous"></script>
+<script src="/assets/js/script.js"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+</body>
+
+</html>

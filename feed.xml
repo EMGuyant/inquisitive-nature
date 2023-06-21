@@ -1,4 +1,102 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://ethanguyant.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://ethanguyant.com/" rel="alternate" type="text/html" /><updated>2023-05-25T21:38:13+00:00</updated><id>http://ethanguyant.com/feed.xml</id><title type="html">Ethan Guyant’s Blog</title><subtitle>A data solution centric blog focusing on the use and application of Microsoft Power Apps, Python Programming, and Data Science.</subtitle><entry><title type="html">Streamline Application Lifecycle Management with Power Platform Solutions</title><link href="http://ethanguyant.com/blog/2023-05-25-application-lifecycle-management/" rel="alternate" type="text/html" title="Streamline Application Lifecycle Management with Power Platform Solutions" /><published>2023-05-25T00:00:00+00:00</published><updated>2023-05-25T00:00:00+00:00</updated><id>http://ethanguyant.com/blog/application-lifecycle-management</id><content type="html" xml:base="http://ethanguyant.com/blog/2023-05-25-application-lifecycle-management/">&lt;p&gt;Application lifecycle management (ALM) is a critical process for any software development projects. ALM is a comprehensive process for developing, deploying, and maintaining robust scalable applications. Power Platform solutions offer a powerful toolkit that enables application development and provide essential ALM capabilities. ALM plays a vital role in maximizing the potential and ensuring the success of you Power Platform solutions.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://ethanguyant.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://ethanguyant.com/" rel="alternate" type="text/html" /><updated>2023-06-21T11:09:13+00:00</updated><id>http://ethanguyant.com/feed.xml</id><title type="html">Ethan Guyant’s Blog</title><subtitle>A data solution centric blog focusing on the use and application of Microsoft Power Apps, Python Programming, and Data Science.</subtitle><entry><title type="html">Unleashing the Power of Power Query: A Guide to Power Query in Power BI</title><link href="http://ethanguyant.com/blog/2023-06-21-powerbi-power-query/" rel="alternate" type="text/html" title="Unleashing the Power of Power Query: A Guide to Power Query in Power BI" /><published>2023-06-21T00:00:00+00:00</published><updated>2023-06-21T00:00:00+00:00</updated><id>http://ethanguyant.com/blog/powerbi-power-query</id><content type="html" xml:base="http://ethanguyant.com/blog/2023-06-21-powerbi-power-query/">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Power Query is a powerful data preparation and transformation tool within Power BI. It empowers users to connect to various data sources, shape and cleanse data, and load it into the Power BI environment for visualization and analysis.&lt;/p&gt;
+
+&lt;p&gt;This blog post will explore what Power Query is, the ins and outs of Power Query and how to use it effectively leveraging its full potential in Power BI for data analysis.&lt;/p&gt;
+
+&lt;h3 id=&quot;what-is-power-query&quot;&gt;What is Power Query&lt;/h3&gt;
+
+&lt;p&gt;Power Query is a versatile data connectivity and transformation tool that enables users to extract, manipulate, and load data from a wide range of sources into Power BI. It provides an intuitive user interfaces providing a comprehensive set of data preparation functionalities. The data preparation tools help transform raw messy data into clean data suitable for analysis.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;how-to-use-power-query&quot;&gt;How to use Power Query&lt;/h2&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Lets explore how to leverage Power Query to retrieve data from data sources and perform transformations to prepare data for analysis.&lt;/p&gt;
+
+&lt;h3 id=&quot;connecting-to-data-sources&quot;&gt;Connecting to Data Sources&lt;/h3&gt;
+
+&lt;p&gt;We can access Power Query from Power BI Desktop. On the top ribbon click the “Get Data” button on the Home tab. Selecting the chevron will show a list of common data sources, to view all data sources select more listed on the bottom or you select the icon above “Get Data”.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-06-22-powerbi-power-query/get_data.gif&quot; alt=&quot;Get Data&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Choose the desired data sources from the available options. Available sources include databases, Excel files, CSV files, web pages, and cloud-based services. Provide the required credentials and connection details to establish a connection to the selected data sources.&lt;/p&gt;
+
+&lt;h3 id=&quot;data-transformation-and-cleansing&quot;&gt;Data Transformation and Cleansing&lt;/h3&gt;
+
+&lt;p&gt;Power Query provides a range of data transformation capabilities. Utilizing the Power Query Editor you can shape and clean data to meet your requirements. You can perform operations like filtering, sorting, removing duplicates, splitting columns, renaming columns, merging data from multiple sources and creating custom calculated columns.&lt;/p&gt;
+
+&lt;p&gt;Filter and sorting data using a familiar interface.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-06-22-powerbi-power-query/filter_sort.gif&quot; alt=&quot;Filter and Sorting data&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Remove, split, and rename columns within your dataset.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-06-22-powerbi-power-query/remove_split_columns.gif&quot; alt=&quot;Remove and Split Columns&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Ensure the correct data types of you data by setting the column data type.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-06-22-powerbi-power-query/data_types.gif&quot; alt=&quot;Set Data Types&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Leverage the power of Power Query functions and formulas to optimize your data transformation process.&lt;/p&gt;
+
+&lt;h3 id=&quot;applied-steps&quot;&gt;Applied Steps&lt;/h3&gt;
+
+&lt;p&gt;As you build your transformation Power Query using either built-in functions or custom transformations using the Power Query Formula Language (M Language) each transformation is recorded as an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Applied Step&lt;/code&gt;. Each &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Applied Step&lt;/code&gt; can be viewed in the Query Settings panes.&lt;/p&gt;
+
+&lt;p&gt;You can review and modify the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Applied Steps&lt;/code&gt; to adjust the data transformation process as required. During the review of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Applied Steps&lt;/code&gt; you can further refine the data preparation process and improve query performance. Implementing query folding and other query optimization techniques can improve the efficiency of the your Power Queries.&lt;/p&gt;
+
+&lt;h3 id=&quot;query-dependencies-and-data-merging&quot;&gt;Query Dependencies and Data Merging&lt;/h3&gt;
+
+&lt;p&gt;Power Query enables the the development of multiple queries, each representing a specific data sources or data transformation step. You can utilize query dependencies to define relationships between queries, allowing for data merging and consolidation. Leverage merging capabilities to combine data from multiple queries based on common fields, such as performing inner joins, left joins, or appending data.&lt;/p&gt;
+
+&lt;p&gt;Combine or merge data from multiple queries based on one or more matching column with the Merge Queries operation.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-06-22-powerbi-power-query/merge_queries.gif&quot; alt=&quot;Merge Queries&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Proper use of merging capabilities can optimize your data analysis process.&lt;/p&gt;
+
+&lt;h3 id=&quot;query-parameters-dynamic-filtering-and-functions&quot;&gt;Query Parameters, Dynamic Filtering, and Functions&lt;/h3&gt;
+
+&lt;p&gt;Power Query allows for the use of query parameters. These query parameters act as placeholder for values that can be dynamically changed. This allows for dynamic filtering options. The use of query parameters can increase the flexibility, interactivity, and reusability of queries and the resulting Power BI reports.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-06-22-powerbi-power-query/parameters.gif&quot; alt=&quot;Query Parameters&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Custom functions within Power Query can be used to encapsulate complex data transformations and you can reuse them across multiple queries.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-06-22-powerbi-power-query/custom_function.gif&quot; alt=&quot;Custom Functions&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;data-loading-and-refreshing&quot;&gt;Data Loading and Refreshing&lt;/h3&gt;
+
+&lt;p&gt;After applying the required transformations, you load the data into the Power BI data model by clicking &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Close &amp;amp; Apply&lt;/code&gt;. Power Query creates a new query or appends the transformed data to an existing query within the Power BI data model. To ensure the data stays up to date with the source systems by setting up automatic data refreshes.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-06-22-powerbi-power-query/close_apply.gif&quot; alt=&quot;Close and Apply&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;advanced-power-query-features&quot;&gt;Advanced Power Query Features&lt;/h3&gt;
+
+&lt;p&gt;There are advanced features within Power Query such as conditional transformations, grouping and aggregation, unpivoting columns, and handline advanced data types. These features and other optimization techniques can be implemented to handle complex data scenarios and improve efficiency of you data analysis.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Power Query is a powerful tool for data preparation and transformation in Power BI. Its approachable interface and expansive capabilities empower users to connect to various data sources, cleanse and shape data, and load it into the Power BI data model. By expanding your knowledge and use of Power Query advanced features you can optimize your data analysis process, streamline data preparation, and unlock the full potential of your data. Implement the strategies outlined in this guide to improve your Power BI reports and dashboards expanding your analysis to new heights of insight and effectiveness.&lt;/p&gt;
+
+&lt;p&gt;Start you exploration of Power Query and its features to further the effectiveness of your data analysis with increased flexibility and efficiency.&lt;/p&gt;</content><author><name>Ethan Guyant</name></author><category term="Quick Start" /><category term="Microsoft 365" /><category term="Power BI" /><category term="Power Platform" /><category term="Power BI Fundamentals Series" /><summary type="html">Introduction</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://ethanguyant.com/assets/img/post_img/powerbi-power-query.jpg" /><media:content medium="image" url="http://ethanguyant.com/assets/img/post_img/powerbi-power-query.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Streamline Application Lifecycle Management with Power Platform Solutions</title><link href="http://ethanguyant.com/blog/2023-05-25-application-lifecycle-management/" rel="alternate" type="text/html" title="Streamline Application Lifecycle Management with Power Platform Solutions" /><published>2023-05-25T00:00:00+00:00</published><updated>2023-05-25T00:00:00+00:00</updated><id>http://ethanguyant.com/blog/application-lifecycle-management</id><content type="html" xml:base="http://ethanguyant.com/blog/2023-05-25-application-lifecycle-management/">&lt;p&gt;Application lifecycle management (ALM) is a critical process for any software development projects. ALM is a comprehensive process for developing, deploying, and maintaining robust scalable applications. Power Platform solutions offer a powerful toolkit that enables application development and provide essential ALM capabilities. ALM plays a vital role in maximizing the potential and ensuring the success of you Power Platform solutions.&lt;/p&gt;
 
 &lt;p&gt;The Microsoft Power Platform is a comprehensive suite of tools that includes Power Apps, Power Automate, and Power BI. These tools empower organizations to create custom applications, automate processes, and gain insights from data. Implementing ALM practices within the Power Platform can streamline the development process and deliver high-quality applications.&lt;/p&gt;
 
@@ -2995,189 +3093,4 @@ DIVIDE(Sales, AllSales)
  
 
 
-&lt;/html&gt;</content><author><name>Ethan Guyant</name></author><category term="Data Visualization" /><category term="Python" /><category term="Seaborn" /><category term="Data Visualization" /><summary type="html"></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://ethanguyant.com/assets/img/post_img/seaborn-plotting-functions.jpg" /><media:content medium="image" url="http://ethanguyant.com/assets/img/post_img/seaborn-plotting-functions.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Microsoft Power Automate: Dynamic Approval Cycle</title><link href="http://ethanguyant.com/blog/2022-09-07-powerautomate-dyanmic-approval-cycle/" rel="alternate" type="text/html" title="Microsoft Power Automate: Dynamic Approval Cycle" /><published>2022-09-07T00:00:00+00:00</published><updated>2022-09-07T00:00:00+00:00</updated><id>http://ethanguyant.com/blog/powerautomate-dyanmic-approval-cycle</id><content type="html" xml:base="http://ethanguyant.com/blog/2022-09-07-powerautomate-dyanmic-approval-cycle/">&lt;h2 id=&quot;contents&quot;&gt;Contents&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;#approvals-action&quot;&gt;Approval Action&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#flow-control-actions&quot;&gt;Flow Control Actions&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#dynamic-approval-cycle-workflow&quot;&gt;Dynamic Approval Cycle Workflow&lt;/a&gt;
-    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#power-automate-workflow-overview&quot;&gt;Power Automate Workflow Overview&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#workflow-setup&quot;&gt;Workflow Setup&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#approval-loop&quot;&gt;Approval Loop&lt;/a&gt;
-        &lt;ul&gt;
-          &lt;li&gt;&lt;a href=&quot;#level-1-approval&quot;&gt;Level 1 Approval&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#level-2-approval&quot;&gt;Level 2 Approval&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#level-3-approval&quot;&gt;Level 3 Approval&lt;/a&gt;&lt;/li&gt;
-          &lt;li&gt;&lt;a href=&quot;#exit-approval-loop&quot;&gt;Exit Approval Loop&lt;/a&gt;&lt;/li&gt;
-        &lt;/ul&gt;
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#summary&quot;&gt;Summary&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;Power Automate offers a wide range of connectors for various services allowing for the automation of certain tasks. A typical task of most organizations is a process to request authorization or some approval task (e.g. vacation requests, or document approvals). Power Automate offers an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Approvals&lt;/code&gt; action to incorporate human decisions into the automated process.&lt;/p&gt;
-
-&lt;p&gt;For a process that only requires a single or sequential approvals, please see the following documentation.&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/power-automate/get-started-approvals&quot; class=&quot;post__link&quot;&gt;Get started with approval (single)&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/power-automate/sequential-modern-approvals&quot; class=&quot;post__link&quot;&gt;Manage sequential approval with Power Automate&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;The focus of this article is on creating a dynamic document approval cycle. This process will allow for a feedback cycle when a higher-level approver may have a question or require clarification on the document requested for approval. The need for the dynamic feedback cycle arises when during the approval of a document a minor error is identified (e.g. spelling error), with a sequential approval workflow the document would have to be rejected and an entirely new workflow would have to be triggered following the correction. The flexibility to request feedback or correction of minor errors can streamline and make the overall approval process more efficient and effective.&lt;/p&gt;
-
-&lt;p&gt;This process will consist of 2-3 approval levels based on the approver’s position and leverage a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Switch&lt;/code&gt; flow control to implement a state machine solution.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;approvals-action&quot;&gt;Approvals Action&lt;/h2&gt;
-&lt;p&gt;The Power Automate &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Approvals&lt;/code&gt; action enables the ability to incorporate approvals or human decisions into a workflow. The specific action that is used in the workflow detailed in this article is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Start and wait for an approval&lt;/code&gt;. This action starts an automated approval process and then pauses the workflow until a response has been received.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/2022-09-09-dynamic-approval-cycle/approval_action.png&quot; alt=&quot;Start and Wait Approval - Approve/Reject-First to Respond&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;flow-control-actions&quot;&gt;Flow Control Actions&lt;/h2&gt;
-&lt;p&gt;The workflow will leverage the functionality of two flow control actions. The first, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Do until&lt;/code&gt;, will continue to execute a series of contained actions until a specified condition is met. The second, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Switch&lt;/code&gt;, evaluates an expression and determines whether the result matches any of the specified values.&lt;/p&gt;
-
-&lt;p&gt;In the context of this workflow the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Do until&lt;/code&gt; will continue to execute until a workflow variable (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;swithExit&lt;/code&gt;) is equal to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;True&lt;/code&gt;, indicating that the workflow should exit the approval loop. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Switch&lt;/code&gt; control will evaluate the value of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;approvalState&lt;/code&gt; variable and execute the specific actions of the corresponding branch.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;dynamic-approval-cycle-workflow&quot;&gt;Dynamic Approval Cycle Workflow&lt;/h2&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;power-automate-workflow-overview&quot;&gt;Power Automate Workflow Overview&lt;/h3&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/2022-09-09-dynamic-approval-cycle/workflow_overview.png&quot; alt=&quot;Workflow Overview&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;workflow-setup&quot;&gt;Workflow Setup&lt;/h3&gt;
-
-&lt;p&gt;The trigger of the workflow is for a selected SharePoint file however, the trigger could be defined as several other options. The trigger has two inputs: the Level 1 approver, and comments for the requested document approval.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/2022-09-09-dynamic-approval-cycle/workflow_trigger.png&quot; alt=&quot;Workflow trigger configuration&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Following this, the workflow initializes a series of workflow variables that will be utilized throughout the workflow including:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Storing Approval information (level1/2/3Approval)&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/2022-09-09-dynamic-approval-cycle/approval_variables.png&quot; alt=&quot;Approval Variable Initialization&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;An &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;approvalState&lt;/code&gt; string variable initially set to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Level 1&lt;/code&gt; and will be updated as needed dependent on approval outcomes&lt;/li&gt;
-  &lt;li&gt;A &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;switchExit&lt;/code&gt; boolean variable is updated in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Switch&lt;/code&gt; control and is used to exit or end the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Do until&lt;/code&gt; approval Loop&lt;/li&gt;
-  &lt;li&gt;An &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;approvalOutcome&lt;/code&gt; string variable which will store the overall outcome of the sequence of approvals&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/2022-09-09-dynamic-approval-cycle/approval_variables_2.png&quot; alt=&quot;Approval Variable Initialization&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Two &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;managerEmail&lt;/code&gt; string variables to store the email addresses of the level 2 and level 3 approvers. These approvers are the manager of the previous level approver.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/2022-09-09-dynamic-approval-cycle/manager_emails.png&quot; alt=&quot;Manager Email Variable Initialization&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Before the approval loop, the Office 365 user profile is retrieved for the initial level 1 approver, this user is specified during the triggering of workflow. The user email and Id are then exposed through dynamic content with the outputs of two &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Compose&lt;/code&gt; data operation actions.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/2022-09-09-dynamic-approval-cycle/office_input_user_profile.png&quot; alt=&quot;Input User Office 365 Profile&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;approval-loop&quot;&gt;Approval Loop&lt;/h3&gt;
-&lt;p&gt;The approval loop is initiated with a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Do until&lt;/code&gt; flow control which will continue to execute the contained actions (i.e. the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Switch&lt;/code&gt; flow control) until the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;switchExit&lt;/code&gt; variable is equal to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;True&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;The only action within the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Do until&lt;/code&gt; loop is the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Switch&lt;/code&gt; flow control. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Switch&lt;/code&gt; is defined with four conditions, or in the context of this workflow 3 levels of approvals and 1 branch to exit the approval loop.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/2022-09-09-dynamic-approval-cycle/do_until.png&quot; alt=&quot;Do until  loop overview&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;For each iteration of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Do until&lt;/code&gt; loop the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Switch&lt;/code&gt; flow control evaluates the value of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;approvalState&lt;/code&gt; variable and then executes the actions contained within the branch whose condition is equal to this value. There are four main branches contained within the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Switch&lt;/code&gt; with the conditions of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Level 1&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Level 2&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Level 3&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Exit&lt;/code&gt;. It is the functionality of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Switch&lt;/code&gt; flow control that allows for feedback or the cyclic nature of the approval workflow.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;In general the Level 1 approval is a preliminary approval conducted by the initial user. The Level 2 approval is conducted by the manager of the Level 1 approval however, the Level 2 approval action has an option to request feedback from Level 1 in addition to approving/rejecting the approval. Following the Level 2 approval the Level 3 approval is assigned to the manager of the Level 2 approval (if they have one, i.e. the Level 2 approver is not the president of the organization). Similar to the Level 2 approval, Level 3 can request feedback from any of the prior approvals.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets//img/2022-09-09-dynamic-approval-cycle/switch.png&quot; alt=&quot;Switch flow control&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;level-1-approval&quot;&gt;&lt;strong&gt;Level 1 Approval&lt;/strong&gt;&lt;/h4&gt;
-&lt;p&gt;The Level 1 branch is the first approval in the sequence of approvals needed. The branch starts with the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Start and wait&lt;/code&gt; Approval action.&lt;/p&gt;
-
-&lt;p&gt;Following the approval, the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;approvalOutcome&lt;/code&gt; variable is updated to the value of the Approval outcome property and the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;level1Approval&lt;/code&gt; is set to the value of the Approval response summary value. In general the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;level#Approval&lt;/code&gt; variable is used in the final notification email and documents the final approval history.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/2022-09-09-dynamic-approval-cycle/level_1_1.png&quot; alt=&quot;Level 1 Initial Actions&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;After the approval and setting of the variables, the Office 365 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Get manager&lt;/code&gt; action is used to get the user profile information for the manager of the level 1 approver. For this workflow there are always at least two levels of approval, meaning the level 1 approver will always have a manager, see the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Level 2&lt;/code&gt; description for the handling of when this may not be the case.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/2022-09-09-dynamic-approval-cycle/level_1_2.png&quot; alt=&quot;Level 1 Get Manager&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Following this action, the workflow updates the value of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;approvalState&lt;/code&gt; to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Level 2&lt;/code&gt; and sets the variable &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;managerEmail2&lt;/code&gt; to the email address from the body of the above &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Get manager&lt;/code&gt; action. Setting this variable allows the workflow to set the approver of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Level 2&lt;/code&gt; approval dynamically.&lt;/p&gt;
-
-&lt;p&gt;This completes the first iteration of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Do until&lt;/code&gt; loop, and since the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;switchExit&lt;/code&gt; variable was not updated, and is still equal to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;False&lt;/code&gt; the loop starts again by moving to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Switch&lt;/code&gt; flow control and evaluating &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;approvalState&lt;/code&gt;, which has now been set to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Level 2&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h4 id=&quot;level-2-approval&quot;&gt;&lt;strong&gt;Level 2 Approval&lt;/strong&gt;&lt;/h4&gt;
-&lt;p&gt;The level 2 branch is executed any time during the workflow when the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;approvalState&lt;/code&gt; variable is equal to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Level 2&lt;/code&gt;, this can occur following a level 1 approval or by the level 3 approver requesting feedback or more information from the level 2 approver.&lt;/p&gt;
-
-&lt;p&gt;The branch has three main sections: 1) the approval, 2) updating and setting workflow variables, and 3) evaluating the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Outcome&lt;/code&gt; property of the approval to move the workflow to the next branch of actions.&lt;/p&gt;
-
-&lt;p&gt;The level 2 approval action is a Custom Response - Wait for one response type, this differs from the level 1 approval. The custom responses type is needed to provide the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Feedback - Level 1&lt;/code&gt; response option, this option indicates that the workflow should be sent back and execute the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Level 1&lt;/code&gt; branch actions. Following the approval, the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;approvalOutcome&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;level2Approval&lt;/code&gt; variables are set, the same as they were in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Level 1&lt;/code&gt; branch.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/2022-09-09-dynamic-approval-cycle/level_2_1.png&quot; alt=&quot;Level 2 Initial Actions&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;After setting the variables the level 2 branch has a nested &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Switch&lt;/code&gt; flow control: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Evaluate Approval Outcome Level 2&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/2022-09-09-dynamic-approval-cycle/level_2_2.png&quot; alt=&quot;Level 2 Evaluate Approval Outcome&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Switch&lt;/code&gt; flow control has 3 branches utilized by the workflow. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Reject&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Feedback - Level 1&lt;/code&gt; branches are executed when the corresponding approval response is selected and each sets the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;approvalState&lt;/code&gt; to the appropriate value. A &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Reject&lt;/code&gt; outcome exits the approval loop, and a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Feedback - Level 1&lt;/code&gt; outcome moves the workflow back to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Level 1&lt;/code&gt; branch. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Approve&lt;/code&gt; branch searches for the user profile of the email stored in the variable &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;managerEmail2&lt;/code&gt; (i.e. the level 2 approver - the manager of the level 1 approver) and then has a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Condition&lt;/code&gt; flow control based on the Job Title of the level 2 approver.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/2022-09-09-dynamic-approval-cycle/level_2_3.png&quot; alt=&quot;Level 2 Approve Branch&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;If the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;JobTitle&lt;/code&gt; property is equal to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;President&lt;/code&gt; (i.e. the level 2 approver is the President of the organization) there are no additional approvals required and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;approvalState&lt;/code&gt; is set to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Exit&lt;/code&gt;. If the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;JobTitle&lt;/code&gt; property is not equal to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;President&lt;/code&gt; the workflow uses the Office 365 &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Get manager&lt;/code&gt; action to get the manager of the level 2 approver and then sets the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;approvalState&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;managerEmail3&lt;/code&gt; variables, similar to the last actions of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Level 1&lt;/code&gt; branch.&lt;/p&gt;
-
-&lt;p&gt;This completes this iteration of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Do until&lt;/code&gt; loop, and since the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;switchExit&lt;/code&gt; variable was not updated, and is still equal to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;False&lt;/code&gt; the loop starts again by moving to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Switch&lt;/code&gt; flow control and evaluating &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;approvalState&lt;/code&gt;, which could now have a value of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Exit&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Level 3&lt;/code&gt;, or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Level 1&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h4 id=&quot;level-3-approval&quot;&gt;&lt;strong&gt;Level 3 Approval&lt;/strong&gt;&lt;/h4&gt;
-&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Level 3&lt;/code&gt; branch is similar to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Level 2&lt;/code&gt; branch. Major differences include the addition of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Feedback - Level 2&lt;/code&gt; response in the Approval action as well as in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Evaluate Approval Outcome Level 3&lt;/code&gt; switch flow control.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/2022-09-09-dynamic-approval-cycle/level_3_1.png&quot; alt=&quot;Level 3 Initial Actions&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Switch&lt;/code&gt; flow control on this branch only sets the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;approvalState&lt;/code&gt; variable based on the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Outcome&lt;/code&gt; of the approval, there is no need in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Approve&lt;/code&gt; branch for the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Get manager&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Condition&lt;/code&gt; control because this is the final level of approvals. If the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Outcome&lt;/code&gt; of the approval is equal to either &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Approve&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Reject&lt;/code&gt; the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;approvalState&lt;/code&gt; is set to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Exit&lt;/code&gt; and if equal to one of the Feedback responses the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;approvalState&lt;/code&gt; is set to the corresponding level.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/2022-09-09-dynamic-approval-cycle/level_3_2.png&quot; alt=&quot;Level 3 Evaluate Approval Outcome&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
-
-&lt;h4 id=&quot;exit-approval-loop&quot;&gt;&lt;strong&gt;Exit Approval Loop&lt;/strong&gt;&lt;/h4&gt;
-&lt;p&gt;If any approver rejects the document or if all approvers approve the document the workflow sets &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;approvalState&lt;/code&gt; to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Exit&lt;/code&gt; which executes the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Exit&lt;/code&gt; branch. This branch sets the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;switchExit&lt;/code&gt; variable to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;True&lt;/code&gt; which will exit the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Do until&lt;/code&gt; approval loop and sends a summary email to who triggered the workflow (i.e. requested the document approval).&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/2022-09-09-dynamic-approval-cycle/exit.png&quot; alt=&quot;Exit Branch&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Once the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Do until&lt;/code&gt; loop is exited the workflow is complete however, this could also be followed by additional actions if required by the business process.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;summary&quot;&gt;Summary&lt;/h2&gt;
-&lt;p&gt;A couple of scenarios that can be encountered during an approval process are the identification of minor errors which may not warrant rejecting the document fully followed by a new approval workflow, or an approver may just require clarification or additional information from a prior approver. This article highlighted and demonstrated how the Power Automate flow controls &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Do until&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Switch&lt;/code&gt; can be used together to achieve an approval process that allows for a feedback cycle. Utilizing this method no longer limits the approval workflow to just a set of sequential approvals and facilitates back-and-forth collaboration between the different levels of approvals.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;If you enjoy what you read and find it helpful please check back, and check back often. Follow me on &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/@emguyant&quot;&gt;&lt;i class=&quot;fab fa-medium&quot;&gt;&lt;/i&gt; Medium&lt;/a&gt; while giving a clap to the article! Also don’t forget to subscribe to the &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/inquisitive-nature&quot;&gt;&lt;b&gt;INQUISITIVE NATURE&lt;/b&gt;&lt;/a&gt; publication.&lt;/p&gt;</content><author><name>Ethan Guyant</name></author><category term="How To" /><category term="Microsoft 365" /><category term="Power Automate" /><category term="Outlook" /><category term="Power Apps" /><summary type="html">Contents Approval Action Flow Control Actions Dynamic Approval Cycle Workflow Power Automate Workflow Overview Workflow Setup Approval Loop Level 1 Approval Level 2 Approval Level 3 Approval Exit Approval Loop Summary</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://ethanguyant.com/assets/img/post_img/dynamic-approval-cycle.jpg" /><media:content medium="image" url="http://ethanguyant.com/assets/img/post_img/dynamic-approval-cycle.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;/html&gt;</content><author><name>Ethan Guyant</name></author><category term="Data Visualization" /><category term="Python" /><category term="Seaborn" /><category term="Data Visualization" /><summary type="html"></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://ethanguyant.com/assets/img/post_img/seaborn-plotting-functions.jpg" /><media:content medium="image" url="http://ethanguyant.com/assets/img/post_img/seaborn-plotting-functions.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
