@@ -1,7 +1,7 @@
 ---
 layout: post
 author: Ethan Guyant
-title:  "Power BI Fundaments: Part 2 - Iterator Functions"
+title:  "Power BI Iterators: Unleashing the Power of Iteration in Power BI Calculations"
 category: Deep Dive
 tags: [Microsoft 365, Power BI, Power Platform, Power BI Fundamentals Series]
 description: Dive into Power BI iterator functions or functions which create row context. Iterator functions provide the ability to conduct multi-column row-by-row calculations.
@@ -25,7 +25,7 @@ image_by_link: https://unsplash.com/@roman_lazygeek?utm_source=unsplash&utm_medi
 ## Review
 In order to facilitate analysis and visualization in Power BI a data model must first be created. The data model consists of individual data tables, relationships, and calculations. Calculations come in the form of either calculated columns or measures. 
 
-Check out [Power BI Fundamentals: Part 1 - Row Context](https://ethanguyant.com/blog/2022-09-28-power-bi-row-context/){: .post__link} for key differences between calculated columns and measures.
+Check out [Power BI Row Context: Understanding the Power of Context in Calculations](https://ethanguyant.com/blog/2022-09-28-power-bi-row-context/){: .post__link} for key differences between calculated columns and measures.
 
 The evaluation context limits the values in the current scope when Power BI evaluates a DAX expression. There are two types of evaluation context, filter and row, that can be active during the evaluation of a DAX expression.
 
@@ -40,7 +40,7 @@ This post is the second of a Power BI Fundamental series with a focus on iterato
 ## Introduction
 This post will build upon the Power BI file created in Part 1 of the series titled row_context_example. The example file for this post is iterator_functions, and both can be found here (<a class="social-list__link" href="https://github.com/EMGuyant/power-bi-key-fundamentals"><i class="fab fa-github"></i> GitHub</a>).
 
-As noted at the end of [Part One](https://ethanguyant.com/blog/2022-09-28-power-bi-row-context/){: .post__link}, creating a measure by default was unable to reference the row values of a column. When creating a measure a column can be referenced and passed to a standard aggregation function. The standard aggregation function will return only a single aggregated value. This is not the row-by-row functionality that will be required to replace a calculated column, such as `SalesAmount`.
+As noted at the end of [Power BI Row Context: Understanding the Power of Context in Calculations](https://ethanguyant.com/blog/2022-09-28-power-bi-row-context/){: .post__link}, creating a measure by default was unable to reference the row values of a column. When creating a measure a column can be referenced and passed to a standard aggregation function. The standard aggregation function will return only a single aggregated value. This is not the row-by-row functionality that will be required to replace a calculated column, such as `SalesAmount`.
 
 Creating the desired measure will require an iterator function to create row context.
 
@@ -135,7 +135,7 @@ Two key concepts are highlighted by the above example
 
 >As DAX expressions get longer and more complex formatting the expression will help make them easier to read and understand, tools such as [DAXFormatter](https://www.daxformatter.com/){: .post__link} can aid in formatting if needed
 
-The concept of evaluation context has been mentioned in this post as well as in [Part One](https://ethanguyant.com/blog/2022-09-28-power-bi-row-context/){: .post__link}. Evaluation context is the context in which a DAX formula evaluates a calculation. There are two types, [Part One](https://ethanguyant.com/blog/2022-09-28-power-bi-row-context/){: .post__link} explored the first type, row context. This post explored iterators or specific functions which create row context to perform multi-column calculations. Check back for Part Three of this series which will explore the second type of evaluation context, the filter context.
+The concept of evaluation context has been mentioned in this post as well as in [Power BI Row Context: Understanding the Power of Context in Calculations](https://ethanguyant.com/blog/2022-09-28-power-bi-row-context/){: .post__link}. Evaluation context is the context in which a DAX formula evaluates a calculation. There are two types, [Power BI Row Context: Understanding the Power of Context in Calculations](https://ethanguyant.com/blog/2022-09-28-power-bi-row-context/){: .post__link} explored the first type, row context. This post explored iterators or specific functions which create row context to perform multi-column calculations. Check back for Part Three of this series which will explore the second type of evaluation context, the filter context.
 
 <br>
 

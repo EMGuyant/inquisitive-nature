@@ -1,7 +1,7 @@
 ---
 layout: post
 author: Ethan Guyant
-title:  "Power BI Fundaments: Part 1 - Row Context"
+title:  "Power BI Row Context: Understanding the Power of Context in Calculations"
 category: Deep Dive
 tags: [Microsoft 365, Power BI, Power Platform, Power BI Fundamentals Series]
 description: Explore the concept of context within Power BI. What is evaluation context, row context, and filter context. This part one of a series will dive into Power BI's row context to better understand how and when it is invoked, and the implications of it.
@@ -118,7 +118,7 @@ The table columns are not available because by default a measure *does not* have
 
 An iterator function can retrieve values from other columns in a table based on the row context, then perform an operation on the column values row-by-row, and finally aggregate the results.
 
-Check out [Part 2](https://ethanguyant.com/blog/2022-10-11-power-bi-iterators/){: .post__link} of this series for an exploration of iterators.
+Check out [Power BI Iterators: Unleashing the Power of Iteration in Power BI Calculations](https://ethanguyant.com/blog/2022-10-11-power-bi-iterators/){: .post__link} for an exploration of iterators.
 
 <br>
 
