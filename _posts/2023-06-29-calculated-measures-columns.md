@@ -4,7 +4,7 @@ author: Ethan Guyant
 title:  "From Data to Insights: Maximizing Power BI's Calculated Measures and Columns for Deeper Analysis"
 category: Quick Start
 tags: [Microsoft 365, Power BI, Power Platform, Power BI Fundamentals Series]
-description: Are you ready to take you data analysis to the next level? Explore the power of calculated measures and column in Power BI that will revolutionize the way you uncover insights and elevate you Power BI skills.
+description: Are you ready to take you data analysis to the next level? Explore the power of calculated measures and columns in Power BI that will revolutionize the way you uncover insights and elevate you Power BI skills.
 image: /assets/img/post_img/calculated-measures-columns.jpg
 image_by: JESHOOTS
 image_by_link: https://unsplash.com/de/@jeshoots?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
@@ -34,7 +34,9 @@ Start by opening Power BI Desktop and navigating to the report or dataset where 
 
 Power BI will instantly calculate the average unit price based on the defined formula.
 
-But wait, there is more! Calculated measure go way beyond just calculating basic aggregations.  We can step up our calculated measure game by using DAX iterator functions.  Iterator functions are DAX expressions that operate row-by-row, or in Power BI referred to as having row context. These functions typically end with an `X` (e.g. `SUMX`, `AVERAGEX`). Our `Sales` table has `OrderQty`, `UnitPrice` and `UnitPriceDiscount` columns but no column for the sales amount. We are interested in this sales amount value and how it trend over time.
+But wait, there is more! Calculated measure go way beyond just calculating basic aggregations.  We can step up our calculated measure game by using DAX iterator functions.  Iterator functions are DAX expressions that operate row-by-row, or in Power BI referred to as having row context. These functions typically end with an `X` (e.g. `SUMX`, `AVERAGEX`). 
+
+Our `Sales` table has `OrderQty`, `UnitPrice` and `UnitPriceDiscount` columns but no column for the sales amount. We are interested in this sales amount value and how it trend over time.
 
 To analyze this we can create a new measure `Sales Amount` defined by the following expression:
 
@@ -44,11 +46,11 @@ To analyze this we can create a new measure `Sales Amount` defined by the follow
 
 This calculated measure allows you to gain insights into the overall sales performance and identify patterns or trends over time.
 
-For a deep dive and further exploration of iterator functions check out the following posts:
+For a deep dive and further exploration of iterator functions check out the following post:
 
 [Power BI Iterators: Unleashing the Power of Iteration in Power BI Calculations](https://ethanguyant.com/blog/2022-10-11-power-bi-iterators/){: .post__link}
 
-Whether it's aggregating data, calculation ratios, or applying logical functions, Power BI offers a rich set of DAX functions that have got you covered.
+Whether it's aggregating data, calculating ratios, or applying logical functions, Power BI offers a rich set of DAX functions that have got you covered.
 
 <br>
 
@@ -67,6 +69,8 @@ Within Power BI Desktop right-click the table where you want to add the calculat
 ![Average Unit Price](/assets/img/2023-06-29-calculated-measures-columns/product-type.gif){: .post__img}
 
 Power BI will extract the first two characters of the `Product Number` for each row, creating a new `Product Type` column. This calculated column makes it easier to analyze and filter data based on the product type. Power BI's intuitive interface and DAX language make this process seamless and approachable.
+
+For more details on calculated measures and columns check out [Power BI Row Context: Understanding the Power of Context in Calculations](https://ethanguyant.com/blog/2022-09-28-power-bi-row-context/){: .post__link}. The post highlights the key differences between calculated measures and column and when it is best practice or beneficial to use one method over the other.
 
 <br>
 
@@ -133,7 +137,7 @@ By incorporating calculated measures and columns into you visualizations you can
 
 >The power of calculated measures and columns lies in their ability to transform data into meaningful insights. They are the key to unlocking the full potential of your data in Power BI.
 
-With the power of calculated measures and columns in Power BI, you have the tools to elevate your data analysis to new heights. Unleash the full potential of you data, uncover hidden insights, and make data-driven decisions with confidence. Embrace the simplicity and versatility of calculated measures and columns in Power BI and watch your data analysis thrive. Get ready to embark on your journey to deeper insights and unlocking the true power of your data.
+With the power of calculated measures and columns in Power BI, you have the tools to elevate your data analysis to new heights. Discover the full potential of your data, uncover hidden insights, and make data-driven decisions with confidence. Embrace the simplicity and versatility of calculated measures and columns in Power BI and watch your data analysis thrive. Get ready to embark on your journey to deeper insights and unlocking the true power of your data.
 
 For further insights and techniques related to Power BI, explore the following blog posts:
 
