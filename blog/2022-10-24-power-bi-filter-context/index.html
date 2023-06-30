@@ -3,9 +3,9 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
-<title>Power BI Fundaments: Part 3 - Filter Functions | Ethan Guyant’s Blog</title>
+<title>Power BI Filter Context: Unraveling the Impact of Filters on Calculations | Ethan Guyant’s Blog</title>
 <meta name="generator" content="Jekyll v4.2.1" />
-<meta property="og:title" content="Power BI Fundaments: Part 3 - Filter Functions" />
+<meta property="og:title" content="Power BI Filter Context: Unraveling the Impact of Filters on Calculations" />
 <meta name="author" content="Ethan Guyant" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Explore the concept of filter context within Power BI, how it can be created and the impacts it has on evaluating measures. Part three of this series looks at creating filter context with the use of visuals and how the filter context can be set or modified using functions." />
@@ -18,9 +18,9 @@
 <meta property="article:published_time" content="2022-10-24T00:00:00+00:00" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta property="twitter:image" content="http://ethanguyant.com/assets/img/post_img/powerbi-filter-context.jpg" />
-<meta property="twitter:title" content="Power BI Fundaments: Part 3 - Filter Functions" />
+<meta property="twitter:title" content="Power BI Filter Context: Unraveling the Impact of Filters on Calculations" />
 <script type="application/ld+json">
-{"author":{"@type":"Person","name":"Ethan Guyant"},"description":"Explore the concept of filter context within Power BI, how it can be created and the impacts it has on evaluating measures. Part three of this series looks at creating filter context with the use of visuals and how the filter context can be set or modified using functions.","url":"http://ethanguyant.com/blog/2022-10-24-power-bi-filter-context/","@type":"BlogPosting","image":"http://ethanguyant.com/assets/img/post_img/powerbi-filter-context.jpg","headline":"Power BI Fundaments: Part 3 - Filter Functions","dateModified":"2022-10-24T00:00:00+00:00","datePublished":"2022-10-24T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://ethanguyant.com/blog/2022-10-24-power-bi-filter-context/"},"@context":"https://schema.org"}</script>
+{"author":{"@type":"Person","name":"Ethan Guyant"},"description":"Explore the concept of filter context within Power BI, how it can be created and the impacts it has on evaluating measures. Part three of this series looks at creating filter context with the use of visuals and how the filter context can be set or modified using functions.","url":"http://ethanguyant.com/blog/2022-10-24-power-bi-filter-context/","@type":"BlogPosting","image":"http://ethanguyant.com/assets/img/post_img/powerbi-filter-context.jpg","headline":"Power BI Filter Context: Unraveling the Impact of Filters on Calculations","dateModified":"2022-10-24T00:00:00+00:00","datePublished":"2022-10-24T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://ethanguyant.com/blog/2022-10-24-power-bi-filter-context/"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <title>Ethan Guyant's Blog</title>
   <!-- Normalize CSS file irons out some difference between browsers -->
@@ -132,7 +132,7 @@
   </section><div class="wrapper">
   <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
     <section class="article__header">
-        <h1 class="post-title p-name" itemprop="name headline">Power BI Fundaments: Part 3 - Filter Functions</h1>
+        <h1 class="post-title p-name" itemprop="name headline">Power BI Filter Context: Unraveling the Impact of Filters on Calculations</h1>
         <p class="post-meta">
           <time class="dt-published" datetime="2022-10-24T00:00:00+00:00" itemprop="datePublished">Oct 24, 2022
           </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">Ethan Guyant</span></span></p>
@@ -200,11 +200,11 @@
 <h2 id="review">Review</h2>
 <p>One of the early stages of creating any Power BI report is the development of the data model. The data model will consist of data tables, relationships, and calculations. There are two types of calculations: calculated columns, and measures.</p>
 
-<p>Check out <a href="https://ethanguyant.com/blog/2022-09-28-power-bi-row-context/" class="post__link">Power BI Fundamentals: Part 1 - Row Context</a> for key differences between calculated columns and measures.</p>
+<p>Check out <a href="https://ethanguyant.com/blog/2022-09-28-power-bi-row-context/" class="post__link">Power BI Row Context: Understanding the Power of Context in Calculations</a> for key differences between calculated columns and measures.</p>
 
 <p>All expressions, either from a calculated column or a measure, get evaluated within the evaluation context. The evaluation context limits the values in the current scope when evaluating an expression. The filter context and/or the row context make up the evaluation context.</p>
 
-<p><a href="https://ethanguyant.com/blog/2022-09-28-power-bi-row-context/" class="post__link">Power BI Fundamentals: Part 1 - Row Context</a> of this series explores the row context in depth. While <a href="https://ethanguyant.com/blog/2022-10-11-power-bi-iterators/" class="post__link">Power BI Fundamentals: Part 2 - Iterator Functions</a> explores iterator functions, which are functions that create row context.</p>
+<p><a href="https://ethanguyant.com/blog/2022-09-28-power-bi-row-context/" class="post__link">Power BI Row Context: Understanding the Power of Context in Calculations</a> of this series explores the row context in depth. While <a href="https://ethanguyant.com/blog/2022-10-11-power-bi-iterators/" class="post__link">Power BI Iterators: Unleashing the Power of Iteration in Power BI Calculations</a> explores iterator functions, which are functions that create row context.</p>
 
 <p>This post is the third of a Power BI Fundamental series with a focus on the filter context. The example file used in this post is located here -<a class="social-list__link" href="https://github.com/EMGuyant/power-bi-key-fundamentals"><i class="fab fa-github"></i> GitHub</a>.</p>
 
@@ -223,7 +223,7 @@
   <p>The filter context does not iterate - this is a key difference between the filter context and the row context</p>
 </blockquote>
 
-<p>See <a href="https://ethanguyant.com/blog/2022-09-28-power-bi-row-context/" class="post__link">Part 1 - Row Context</a> and <a href="https://ethanguyant.com/blog/2022-10-11-power-bi-iterators/" class="post__link">Part 2 - Iterators</a> for more details on the row context.</p>
+<p>See <a href="https://ethanguyant.com/blog/2022-09-28-power-bi-row-context/" class="post__link">Power BI Row Context: Understanding the Power of Context in Calculations</a> and <a href="https://ethanguyant.com/blog/2022-10-11-power-bi-iterators/" class="post__link">Power BI Iterators: Unleashing the Power of Iteration in Power BI Calculations</a> for more details on the row context.</p>
 
 <p>Filter context propagates through the data model relationships.  When defining each model relationship the cross-filter direction is set. This setting determines the direction(s) the filters will propagate. The available cross-filter options depend on the cardinality type of the relationship. See available documentation for more information on <a href="https://learn.microsoft.com/en-us/power-bi/transform-model/desktop-relationships-understand#cross-filter-direction" class="post__link">Cross-filter Direction</a> and <a href="https://learn.microsoft.com/en-us/power-bi/transform-model/desktop-bidirectional-filtering" class="post__link">Enabling Bidirectional Cross-filtering</a>.</p>
 
@@ -280,7 +280,7 @@
 <p>The <code class="language-plaintext highlighter-rouge">SalesAmount2</code> measure is defined by: <br />
 <code class="language-plaintext highlighter-rouge">SalesAmount2 = SUMX(SalesOrderDetail, SalesOrderDetail[OrderQty] * SalesOrderDetail[UnitPrice] * (1 - SalesOrderDetail[UnitPriceDiscount]))</code></p>
 
-<p>After selecting an option from the slicer the measure is re-evaluated. The re-evaluation occurs to account for the newly created filter context. The filter context creates a subset of the <code class="language-plaintext highlighter-rouge">SalesOrderDetail</code> table that matches the slicer selection. Then the row context evaluates the expression row-by-row for the filtered table and is summed. <code class="language-plaintext highlighter-rouge">SUMX()</code> is an example of an iterator function, see <a href="https://ethanguyant.com/blog/2022-10-11-power-bi-iterators/" class="post__link">Part 2 - Iterators</a> for details. The updated value is then displayed on the card visual.</p>
+<p>After selecting an option from the slicer the measure is re-evaluated. The re-evaluation occurs to account for the newly created filter context. The filter context creates a subset of the <code class="language-plaintext highlighter-rouge">SalesOrderDetail</code> table that matches the slicer selection. Then the row context evaluates the expression row-by-row for the filtered table and is summed. <code class="language-plaintext highlighter-rouge">SUMX()</code> is an example of an iterator function, see <a href="https://ethanguyant.com/blog/2022-10-11-power-bi-iterators/" class="post__link">Power BI Iterators: Unleashing the Power of Iteration in Power BI Calculations</a> for details. The updated value is then displayed on the card visual.</p>
 
 <p>The table visual works in a similar fashion but, there are two filters applied. The table visual has an initial filter context of the product color. After the selection of <code class="language-plaintext highlighter-rouge">BK</code>, the table gets updated to visualize the intersection of the product color filter and the product type filter.</p>
 
@@ -312,7 +312,7 @@
 
 <p>The <code class="language-plaintext highlighter-rouge">CALCULATE()</code> function only creates filter context and does not create row context. So an important question to ask is why or how the <code class="language-plaintext highlighter-rouge">BikeSales</code> measure works. The <code class="language-plaintext highlighter-rouge">CALCULATE()</code> function references a specific column value,  <code class="language-plaintext highlighter-rouge">Products[ProductType]="BK"</code>. Yet, the <code class="language-plaintext highlighter-rouge">CALCULATE()</code> function does not have row context. So how does Power BI know which row it is working with? The answer is that the <code class="language-plaintext highlighter-rouge">CALCULATE()</code> function applies the <code class="language-plaintext highlighter-rouge">FILTER()</code> function. And the <code class="language-plaintext highlighter-rouge">FILTER</code> function creates the row context required to evaluate the measure.</p>
 
-<p>See <a href="https://ethanguyant.com/blog/2022-10-11-power-bi-iterators/" class="post__link">Part 2 - Iterators</a> for details on iterator functions.</p>
+<p>See <a href="https://ethanguyant.com/blog/2022-10-11-power-bi-iterators/" class="post__link">Power BI Iterators: Unleashing the Power of Iteration in Power BI Calculations</a> for details on iterator functions.</p>
 
 <p>Within the <code class="language-plaintext highlighter-rouge">CALCULATE()</code> function the <code class="language-plaintext highlighter-rouge">Products[ProductType]="BK"</code> filter is shorten syntax. The filter argument passed to <code class="language-plaintext highlighter-rouge">CALCULATE()</code> is equivalent to <code class="language-plaintext highlighter-rouge">FILTER(ALL(Products[ProductType]), Products[ProductType]="BK"))</code>.  The <code class="language-plaintext highlighter-rouge">ALL()</code> function removes any external filters on the <code class="language-plaintext highlighter-rouge">ProductType</code> column and is another example of a function that can modify the filter context.</p>
 
