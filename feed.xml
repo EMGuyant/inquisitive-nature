@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://ethanguyant.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://ethanguyant.com/" rel="alternate" type="text/html" /><updated>2023-06-30T11:08:48+00:00</updated><id>http://ethanguyant.com/feed.xml</id><title type="html">Ethan Guyant’s Blog</title><subtitle>A data solution centric blog focusing on the use and application of Microsoft Power Apps, Python Programming, and Data Science.</subtitle><entry><title type="html">From Data to Insights: Maximizing Power BI’s Calculated Measures and Columns for Deeper Analysis</title><link href="http://ethanguyant.com/blog/2023-06-29-calculated-measures-columns/" rel="alternate" type="text/html" title="From Data to Insights: Maximizing Power BI’s Calculated Measures and Columns for Deeper Analysis" /><published>2023-06-29T00:00:00+00:00</published><updated>2023-06-29T00:00:00+00:00</updated><id>http://ethanguyant.com/blog/calculated-measures-columns</id><content type="html" xml:base="http://ethanguyant.com/blog/2023-06-29-calculated-measures-columns/">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://ethanguyant.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://ethanguyant.com/" rel="alternate" type="text/html" /><updated>2023-06-30T13:41:03+00:00</updated><id>http://ethanguyant.com/feed.xml</id><title type="html">Ethan Guyant’s Blog</title><subtitle>A data solution centric blog focusing on the use and application of Microsoft Power Apps, Python Programming, and Data Science.</subtitle><entry><title type="html">From Data to Insights: Maximizing Power BI’s Calculated Measures and Columns for Deeper Analysis</title><link href="http://ethanguyant.com/blog/2023-06-29-calculated-measures-columns/" rel="alternate" type="text/html" title="From Data to Insights: Maximizing Power BI’s Calculated Measures and Columns for Deeper Analysis" /><published>2023-06-29T00:00:00+00:00</published><updated>2023-06-29T00:00:00+00:00</updated><id>http://ethanguyant.com/blog/calculated-measures-columns</id><content type="html" xml:base="http://ethanguyant.com/blog/2023-06-29-calculated-measures-columns/">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -22,7 +22,9 @@
 
 &lt;p&gt;Power BI will instantly calculate the average unit price based on the defined formula.&lt;/p&gt;
 
-&lt;p&gt;But wait, there is more! Calculated measure go way beyond just calculating basic aggregations.  We can step up our calculated measure game by using DAX iterator functions.  Iterator functions are DAX expressions that operate row-by-row, or in Power BI referred to as having row context. These functions typically end with an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;X&lt;/code&gt; (e.g. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SUMX&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AVERAGEX&lt;/code&gt;). Our &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Sales&lt;/code&gt; table has &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OrderQty&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;UnitPrice&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;UnitPriceDiscount&lt;/code&gt; columns but no column for the sales amount. We are interested in this sales amount value and how it trend over time.&lt;/p&gt;
+&lt;p&gt;But wait, there is more! Calculated measure go way beyond just calculating basic aggregations.  We can step up our calculated measure game by using DAX iterator functions.  Iterator functions are DAX expressions that operate row-by-row, or in Power BI referred to as having row context. These functions typically end with an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;X&lt;/code&gt; (e.g. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SUMX&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AVERAGEX&lt;/code&gt;).&lt;/p&gt;
+
+&lt;p&gt;Our &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Sales&lt;/code&gt; table has &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OrderQty&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;UnitPrice&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;UnitPriceDiscount&lt;/code&gt; columns but no column for the sales amount. We are interested in this sales amount value and how it trend over time.&lt;/p&gt;
 
 &lt;p&gt;To analyze this we can create a new measure &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Sales Amount&lt;/code&gt; defined by the following expression:&lt;/p&gt;
 
@@ -32,11 +34,11 @@
 
 &lt;p&gt;This calculated measure allows you to gain insights into the overall sales performance and identify patterns or trends over time.&lt;/p&gt;
 
-&lt;p&gt;For a deep dive and further exploration of iterator functions check out the following posts:&lt;/p&gt;
+&lt;p&gt;For a deep dive and further exploration of iterator functions check out the following post:&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://ethanguyant.com/blog/2022-10-11-power-bi-iterators/&quot; class=&quot;post__link&quot;&gt;Power BI Iterators: Unleashing the Power of Iteration in Power BI Calculations&lt;/a&gt;&lt;/p&gt;
 
-&lt;p&gt;Whether it’s aggregating data, calculation ratios, or applying logical functions, Power BI offers a rich set of DAX functions that have got you covered.&lt;/p&gt;
+&lt;p&gt;Whether it’s aggregating data, calculating ratios, or applying logical functions, Power BI offers a rich set of DAX functions that have got you covered.&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -55,6 +57,8 @@
 &lt;p&gt;&lt;img src=&quot;/assets/img/2023-06-29-calculated-measures-columns/product-type.gif&quot; alt=&quot;Average Unit Price&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Power BI will extract the first two characters of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Product Number&lt;/code&gt; for each row, creating a new &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Product Type&lt;/code&gt; column. This calculated column makes it easier to analyze and filter data based on the product type. Power BI’s intuitive interface and DAX language make this process seamless and approachable.&lt;/p&gt;
+
+&lt;p&gt;For more details on calculated measures and columns check out &lt;a href=&quot;https://ethanguyant.com/blog/2022-09-28-power-bi-row-context/&quot; class=&quot;post__link&quot;&gt;Power BI Row Context: Understanding the Power of Context in Calculations&lt;/a&gt;. The post highlights the key differences between calculated measures and column and when it is best practice or beneficial to use one method over the other.&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -122,7 +126,7 @@ DIVIDE(Sales, AllSales)
   &lt;p&gt;The power of calculated measures and columns lies in their ability to transform data into meaningful insights. They are the key to unlocking the full potential of your data in Power BI.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;With the power of calculated measures and columns in Power BI, you have the tools to elevate your data analysis to new heights. Unleash the full potential of you data, uncover hidden insights, and make data-driven decisions with confidence. Embrace the simplicity and versatility of calculated measures and columns in Power BI and watch your data analysis thrive. Get ready to embark on your journey to deeper insights and unlocking the true power of your data.&lt;/p&gt;
+&lt;p&gt;With the power of calculated measures and columns in Power BI, you have the tools to elevate your data analysis to new heights. Discover the full potential of your data, uncover hidden insights, and make data-driven decisions with confidence. Embrace the simplicity and versatility of calculated measures and columns in Power BI and watch your data analysis thrive. Get ready to embark on your journey to deeper insights and unlocking the true power of your data.&lt;/p&gt;
 
 &lt;p&gt;For further insights and techniques related to Power BI, explore the following blog posts:&lt;/p&gt;
 
