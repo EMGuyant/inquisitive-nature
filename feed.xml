@@ -1,4 +1,233 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://ethanguyant.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://ethanguyant.com/" rel="alternate" type="text/html" /><updated>2023-06-30T13:41:03+00:00</updated><id>http://ethanguyant.com/feed.xml</id><title type="html">Ethan Guyant’s Blog</title><subtitle>A data solution centric blog focusing on the use and application of Microsoft Power Apps, Python Programming, and Data Science.</subtitle><entry><title type="html">From Data to Insights: Maximizing Power BI’s Calculated Measures and Columns for Deeper Analysis</title><link href="http://ethanguyant.com/blog/2023-06-29-calculated-measures-columns/" rel="alternate" type="text/html" title="From Data to Insights: Maximizing Power BI’s Calculated Measures and Columns for Deeper Analysis" /><published>2023-06-29T00:00:00+00:00</published><updated>2023-06-29T00:00:00+00:00</updated><id>http://ethanguyant.com/blog/calculated-measures-columns</id><content type="html" xml:base="http://ethanguyant.com/blog/2023-06-29-calculated-measures-columns/">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://ethanguyant.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://ethanguyant.com/" rel="alternate" type="text/html" /><updated>2023-07-08T14:44:39+00:00</updated><id>http://ethanguyant.com/feed.xml</id><title type="html">Ethan Guyant’s Blog</title><subtitle>A data solution centric blog focusing on the use and application of Microsoft Power Apps, Python Programming, and Data Science.</subtitle><entry><title type="html">Unlocking the Secrets of CALCULATE: A Deep Dive into Advanced Data Analysis in Power BI</title><link href="http://ethanguyant.com/blog/2023-07-08-powerbi-calculate/" rel="alternate" type="text/html" title="Unlocking the Secrets of CALCULATE: A Deep Dive into Advanced Data Analysis in Power BI" /><published>2023-07-08T00:00:00+00:00</published><updated>2023-07-08T00:00:00+00:00</updated><id>http://ethanguyant.com/blog/powerbi-calculate</id><content type="html" xml:base="http://ethanguyant.com/blog/2023-07-08-powerbi-calculate/">&lt;p&gt;Are you tired of drowning in a sea of data? Data analysis is a puzzle waiting to be solved and CALCULATE is the missing piece that brings it all together. Let’s explore the intricacies of CALCULATE in Power BI. From unraveling complex calculations to applying complex filters, this function holds the key to unlocking actionable insights buried within your data. Whether your a business professional, a data enthusiast, or a seasoned data analyst this guide will equip you with the knowledge and tools to solve the most perplexing data puzzles. Brace yourself for a comprehensive exploration of Power BI’s CALCULATE function.&lt;/p&gt;
+
+&lt;p&gt;Prepare to be amazed as we explore the the secrets of the CALCULATE function. CALCULATE is the true superhero of Power BI that empowers you to perform complex calculations and transformations on your data effortlessly. It holds the key to manipulating the filter context, allowing you to focus on the precise subset of data you need for your analysis.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;understanding-the-syntax-and-parameters-of-calculate&quot;&gt;Understanding the Syntax and Parameters of CALCULATE&lt;/h2&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Before we dive into the secrets of CALCULATE and explore practical examples, let’s first understand its syntax and parameters. The CALCULATE function follows a simple structure:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULATE(expression, filter1, filter2, ...)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;expression&lt;/code&gt; parameter represents the calculation or measure you want to evaluate or modify. It can be a simple aggregation like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SUM&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AVERAGE&lt;/code&gt; or a more complex calculation involving multiple DAX functions. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;filter&lt;/code&gt; parameters are optional and allow you to define specific conditions or constraints to modify the filter context.&lt;/p&gt;
+
+&lt;p&gt;Each filter parameter can take various forms, such as direct values, comparison operators, or logical expressions. You can combine multiple filters using logical operators like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;amp;&amp;amp;&lt;/code&gt; (AND) or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;||&lt;/code&gt; (OR) to create more intricate filter conditions. By strategically using the filter parameters within CALCULATE, you can dynamically adjust the filter context and precisely control which data is included in your calculations.&lt;/p&gt;
+
+&lt;p&gt;By understanding the syntax and leveraging the flexibility of the CALCULATE parameters, you can master this powerful function and have the ability to handle complex data analysis with ease.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;leveraging-the-power-of-calculate-practical-examples-in-power-bi&quot;&gt;Leveraging the Power of CALCULATE: Practical Examples in Power BI&lt;/h2&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;calculating-total-sales-for--a-specific-region-and-time-period&quot;&gt;Calculating Total Sales for  a Specific Region and Time Period&lt;/h3&gt;
+&lt;p&gt;Let’s dive into the heart of CALCULATE and explore its power through various examples. Imagine you have a dataset with sales figures for various products across different regions and want to calculate the total sales for a specific region, but only for a particular time frame. By combining CALCULATE with it’s filter parameters, you can create a dynamic calculation that narrows down the data based on the desired filters. This enables you to zero in on the exact information you need and present accurate, targeted insights.&lt;/p&gt;
+
+&lt;p&gt;For instance, using CALCULATE you can easily calculate last year total sales of smartphones in the United States. The DAX formula is defined by the following expression:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;US Previous Year Smartphone Sales =
+
+CALCULATE(
+
+    SUM(Sales[Amount]),
+
+    SAMEPERIODLASTYEAR(Dates[Date]),
+
+    Products[Product] = &quot;Smartphone&quot;,
+
+    Regions[Region] = &quot;United States&quot;
+
+)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-07-08-powerbi-calculate/previous-year-phone-sales.gif&quot; alt=&quot;Previous Year Sales&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This expression filters the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Sales&lt;/code&gt; table based on the specified conditions, summing up the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Amount&lt;/code&gt; column to give you the total sales of smartphones in the United States for the previous year.&lt;/p&gt;
+
+&lt;h3 id=&quot;tracking-cumulative-sales-over-time&quot;&gt;Tracking Cumulative Sales Over Time&lt;/h3&gt;
+
+&lt;p&gt;Another powerful application of CALCULATE lies in calculating running totals or cumulative values. Let’s say you want to track cumulative sales for each month of the year. With the help of the SUM function and CALCULATE, you can easily create a measure that accumulates the sales for each month, taking into account the changing filter context. This allows you to visualize the sales growth over time and identify any notable trends and patterns.&lt;/p&gt;
+
+&lt;p&gt;The DAX formula for this scenario would be:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Cumulative Sales =
+
+CALCULATE(
+
+    SUM(Sales[Amount]),
+
+    FILTER(
+
+        ALL(Sales),
+
+        Sales[SalesDate] &amp;lt;= MAX(Sales[SalesDate])
+
+    )
+
+)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-07-08-powerbi-calculate/cumulative-sales.gif&quot; alt=&quot;Cumulative Sales&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This formula calculates the cumulative sales by summing up the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Amount&lt;/code&gt; column for all &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Sales Dates&lt;/code&gt; up to and including the last &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Sales Date&lt;/code&gt; as determined by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MAX(Sales[SalesDate])&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;refined-average-sales-for-high-performing-regions&quot;&gt;Refined Average Sales for High-Performing Regions&lt;/h3&gt;
+
+&lt;p&gt;Conditional calculations are also a breeze with CALCULATE. Suppose you want to calculate the average sales for a specific product category, but only for the regions where sales exceed a certain threshold. By combining CALCULATE with logical filters based on sales, you can obtain a refined average that factors in only the high-performing regions. Enabling you to make data-driven decisions with confidence.&lt;/p&gt;
+
+&lt;p&gt;The DAX formula for this example would be:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;High Performing Average =
+
+CALCULATE(
+
+    AVERAGE(Sales[Amount]),
+
+    FILTER(
+
+        ALL(Sales[RegionID]),
+
+        CALCULATE(
+
+            SUM(Sales[Amount])
+
+        ) &amp;gt; 37500
+
+    )
+
+)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-07-08-powerbi-calculate/high-performing-average.gif&quot; alt=&quot;High Preforming Average&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This formula will calculate the average sales for a product category but only considers the regions where the total sales exceed $37,500. The CALCULATE function modifies the filter context and focuses on the desired subset of data, allowing you to obtain a more refined average.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;calculates-versatility&quot;&gt;CALCULATES Versatility&lt;/h2&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;CALCULATE’s true strength lies in its versatility. You can combine it with other DAX functions, such as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ALL&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RELATED&lt;/code&gt;, or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TOPN&lt;/code&gt; to further enhance your data analysis capabilities. Whether you need to compare values against a benchmark, calculate year-to-date totals, determine the top-performing products, or even perform advanced calculations based on complex conditions. CALCULATE is the tool that will bring your data analysis to the next level.&lt;/p&gt;
+
+&lt;p&gt;CALCULATE introduces the concept of internal and external filters which play a crucial role in shaping the filter context for calculations. Internal filters are defined within CALCULATE itself using the filer parameters. These filters modify the filter context only for the expression being evaluated within CALCULATE. On the other hand, external filters are filters that exist outside of CALCULATE and are not affected by the function. Understanding the interplay between internal and external filters is key to harnessing the full power of CALCULATE.&lt;/p&gt;
+
+&lt;h3 id=&quot;applying-external-filters-with-calculate-comparing-performance-against-a-benchmark&quot;&gt;Applying External Filters with CALCULATE: Comparing Performance Against a Benchmark&lt;/h3&gt;
+
+&lt;p&gt;Let’s say you want to compare the sales of smartphones in the United States against a benchmark value, such as the average sales of smartphones across all regions. This comparison can help identity regions that are outperforming and underperforming relative benchmarks.&lt;/p&gt;
+
+&lt;p&gt;The DAX expression for this example would be:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;US Smartphone Sales vs. Average Smartphone Sales =
+
+    CALCULATE(
+
+        AVERAGE(Sales[Amount]),
+
+        Products[Product] = &quot;Smartphone&quot;,
+
+        Regions[Region] = &quot;United States&quot;
+
+    )
+
+    - AVERAGEX(
+
+        FILTER(
+
+            Sales,
+
+            RELATED(Products[Product]) = &quot;Smartphone&quot;
+
+        ),
+
+        Sales[Amount]
+
+    )
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This expression calculates the total sales of smartphones in the United States and subtracts the average sales of smartphones across all regions. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FILTER&lt;/code&gt; function ensures that only the relevant products (i.e. smartphones) are considered in the average calculation.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-07-08-powerbi-calculate/benchmark-sales.gif&quot; alt=&quot;Benchmark Sales&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;dynamic-calculations-with-calculate-adjusting-for-changing-contexts&quot;&gt;Dynamic Calculations with CALCULATE: Adjusting for Changing Contexts&lt;/h3&gt;
+
+&lt;p&gt;Calculating year-to-date (YTD) totals is another common requirement in data analysis. To calculate YTD sales you can leverage the time intelligence functions in DAX. With CALCULATE and DATESYTD function you can easily obtain YTD sales figures.&lt;/p&gt;
+
+&lt;p&gt;The DAX expression would be:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;YTD Sales =
+
+CALCULATE(
+
+    SUM(Sales[Amount]),
+
+    DATESYTD(
+
+        Dates[Date],
+
+        &quot;12/31&quot;
+
+    )
+
+)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-07-08-powerbi-calculate/ytd-sales.gif&quot; alt=&quot;YTD Sales&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;enhancing-filter-context-with-keepfilters-and-calculate&quot;&gt;Enhancing Filter Context with KEEPFILTERS and CALCULATE&lt;/h3&gt;
+
+&lt;p&gt;In some scenarios, you may want to preserve any existing filters on other dimensions such as date, region, or employee while using CALCULATE to introduce additional filters. This is where the KEEPFILTERS function comes into play. By wrapping your expression within KEEPFILTERS, you ensure that the existing filters remain unchanged and only the internal filters in CALCULATE are applied. This allows you to have precise control over the filter context and produce accurate results.&lt;/p&gt;
+
+&lt;p&gt;The DAX formula for this scenario would look like this:&lt;/p&gt;
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Smartphone Sales =
+
+CALCULATE(
+
+    SUM(Sales[Amount]),
+
+    KEEPFILTERS(Sales[ProductID]=1)
+
+)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-07-08-powerbi-calculate/keepfilters.gif&quot; alt=&quot;Keep Filters Parameter&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;By applying this formula, you can obtain the accurate sales amount for the desired product type, while keeping the context of other dimension intact (e.g. Region). This enables you to perform focused analysis and make data-driven decision based on specific criteria.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Congratulations! You have completed the thrilling exploration of the CALCULATE function in Power BI. Through the practical examples you have witnessed its remarkable ability to manipulate the filter context, allowing you to extract meaningful insights from your data with precision. From calculating specific totals and cumulative values to comparing against benchmarks and performing complex conditional calculations, CALCULATE has proven to be a formidable tool in your data analysis arsenal. By mastering CALCULATE, you can unlock the power to transform raw data into actionable insights, enabling data-driven decisions-making.&lt;/p&gt;
+
+&lt;p&gt;As Albert Einstein once said, “Anyone who has never made a mistake has never tried anything new.” So, don’t be afraid of making mistakes; practice makes perfect.&lt;/p&gt;
+
+&lt;p&gt;Continuously experiment with CALCULATE, explore new DAX functions, and challenge yourself with real-world data scenarios.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;If you enjoyed what you read and find it helpful please check back, and check back often. Follow me on &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/@emguyant&quot;&gt;&lt;i class=&quot;fab fa-medium&quot;&gt;&lt;/i&gt; Medium&lt;/a&gt; while giving a clap to the article! Also don’t forget to subscribe to the &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/inquisitive-nature&quot;&gt;&lt;b&gt;INQUISITIVE NATURE&lt;/b&gt;&lt;/a&gt; publication.&lt;/p&gt;</content><author><name>Ethan Guyant</name></author><category term="Quick Start" /><category term="Microsoft 365" /><category term="Power BI" /><category term="Power Platform" /><category term="Power BI Fundamentals Series" /><category term="Function Friday" /><summary type="html">Are you tired of drowning in a sea of data? Data analysis is a puzzle waiting to be solved and CALCULATE is the missing piece that brings it all together. Let’s explore the intricacies of CALCULATE in Power BI. From unraveling complex calculations to applying complex filters, this function holds the key to unlocking actionable insights buried within your data. Whether your a business professional, a data enthusiast, or a seasoned data analyst this guide will equip you with the knowledge and tools to solve the most perplexing data puzzles. Brace yourself for a comprehensive exploration of Power BI’s CALCULATE function.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://ethanguyant.com/assets/img/post_img/power-bi-calculate.jpg" /><media:content medium="image" url="http://ethanguyant.com/assets/img/post_img/power-bi-calculate.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">From Data to Insights: Maximizing Power BI’s Calculated Measures and Columns for Deeper Analysis</title><link href="http://ethanguyant.com/blog/2023-06-29-calculated-measures-columns/" rel="alternate" type="text/html" title="From Data to Insights: Maximizing Power BI’s Calculated Measures and Columns for Deeper Analysis" /><published>2023-06-29T00:00:00+00:00</published><updated>2023-06-29T00:00:00+00:00</updated><id>http://ethanguyant.com/blog/calculated-measures-columns</id><content type="html" xml:base="http://ethanguyant.com/blog/2023-06-29-calculated-measures-columns/">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -2152,151 +2381,4 @@ DIVIDE(Sales, AllSales)
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;If you enjoy what you read and find it helpful please check back, and check back often. Follow me on &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/@emguyant&quot;&gt;&lt;i class=&quot;fab fa-medium&quot;&gt;&lt;/i&gt; Medium&lt;/a&gt; while giving a clap to the article! Also don’t forget to subscribe to the &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/inquisitive-nature&quot;&gt;&lt;b&gt;INQUISITIVE NATURE&lt;/b&gt;&lt;/a&gt; publication.&lt;/p&gt;</content><author><name>Ethan Guyant</name></author><category term="Deep Dive" /><category term="Microsoft 365" /><category term="Power BI" /><category term="Power Platform" /><category term="Power BI Fundamentals Series" /><summary type="html">Contents Overview Introduction Understanding Iterators Iterator Functions that Generate Virtual Tables Combining Iterators</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://ethanguyant.com/assets/img/post_img/powerbi-iterators.jpg" /><media:content medium="image" url="http://ethanguyant.com/assets/img/post_img/powerbi-iterators.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Power BI Row Context: Understanding the Power of Context in Calculations</title><link href="http://ethanguyant.com/blog/2022-09-28-power-bi-row-context/" rel="alternate" type="text/html" title="Power BI Row Context: Understanding the Power of Context in Calculations" /><published>2022-09-28T00:00:00+00:00</published><updated>2022-09-28T00:00:00+00:00</updated><id>http://ethanguyant.com/blog/power-bi-row-context</id><content type="html" xml:base="http://ethanguyant.com/blog/2022-09-28-power-bi-row-context/">&lt;h2 id=&quot;contents&quot;&gt;Contents&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;#understanding-row-context&quot;&gt;Understanding Row Context&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#creating-a-calculated-column&quot;&gt;Creating a Calculated Column&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#limitation&quot;&gt;Limitation&lt;/a&gt;
-    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#replacing-a-calculated-column-with-a-measure&quot;&gt;Replacing a Calculated Column with a Measure&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;In order to facilitate analysis and visualization in Power BI, a data model must first be created. The data model will consist of individual data tables, relationships between the tables, and calculations to aid in the analysis. Calculations typically come in the form of either calculated columns or measures.&lt;/p&gt;
-
-&lt;p&gt;A few key differences between calculated columns and measures include:&lt;/p&gt;
-
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;Calculated Columns&lt;/th&gt;
-      &lt;th style=&quot;text-align: center&quot;&gt;Measures&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;Resolves as a scalar value&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;Resolves as an aggregate value&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;Persists in each row of a table&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;Displays as a data point&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;Increases the size of the data model&lt;/td&gt;
-      &lt;td style=&quot;text-align: center&quot;&gt;Does not impact the size of the data model&lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;p&gt;When a DAX expression is evaluated the values the expression can access are limited by the evaluation context. When a calculated column or measure is evaluated there are two fundamental types of evaluation context: (1) Filter Context, and (2) Row Context.&lt;/p&gt;
-
-&lt;p&gt;This post is the first of a series focused on the key fundamentals of Power BI. This first post will focus on the concept of row context. Parts 2-4 in the series will focus on iterator functions, filter context, and context transition.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;understanding-row-context&quot;&gt;Understanding Row Context&lt;/h2&gt;
-&lt;p&gt;The row context limits a DAX expression during evaluation to only the current row, the reference to each specific row is defined by the row context. However, it should be noted that all standard aggregation functions (e.g. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SUM()&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;COUNT()&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MAXIMUM()&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MINIMUM()&lt;/code&gt;) will override this default behavior and impose a filter context on the entire table.&lt;/p&gt;
-
-&lt;p&gt;Row context exists when:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Creating calculated columns within a table&lt;/li&gt;
-  &lt;li&gt;Creating iterators, see Part 2 for more details on iterator functions&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Using Excel as an example, multiplying the values in two cells can be achieved with the formula &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;=A2 * B2&lt;/code&gt;. The key difference is that when performing calculations in Excel the formula contains a reference to a &lt;em&gt;cell&lt;/em&gt; defined by column &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;A&lt;/code&gt; and row &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;2&lt;/code&gt; however, in DAX there is no reference to a cell. Rather a calculation is carried out column by column &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;[A] * [B]&lt;/code&gt;. DAX operates on columns and tables and it is the row context that provides the required row information for the calculation to be carried out.&lt;/p&gt;
-
-&lt;p&gt;The above multiplication &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;[A] * [B]&lt;/code&gt; performs the desired calculation row-by-row through the entire table. This row-by-row functionality makes the row context similar to an iterator.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;The row context means iterating over the table or for each row the calculation being conducted is limited to just the current row.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;See Part 2 for more details on iterator functions.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;creating-a-calculated-column&quot;&gt;Creating a Calculated Column&lt;/h2&gt;
-&lt;p&gt;As mentioned above, row context is invoked while creating a new calculated column. As an example, a new &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesAmount&lt;/code&gt; calculated column will be added to a SalesOrderDetail table. The example data and Power BI file can be found here (&lt;a class=&quot;social-list__link&quot; href=&quot;https://github.com/EMGuyant/power-bi-key-fundamentals&quot;&gt;&lt;i class=&quot;fab fa-github&quot;&gt;&lt;/i&gt; GitHub&lt;/a&gt;).&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesAmount = SalesOrderDetail[OrderQty] * SalesOrderDetail[UnitPrice] * (1 - SalesOrderDetail[UnitPriceDiscount])&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;While entering the above formula, after starting to type the column names in the formula bar (e.g. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OrderQty&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;UnitPrice&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;UnitPriceDiscount&lt;/code&gt;) it can be seen that IntelliSense can recognize and reference the corresponding columns in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesOrderDetail&lt;/code&gt; table (e.g. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesOrderDetail[OrderQty]&lt;/code&gt;)&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/2022-09-30-power-bi-row-context/row_context_001.gif&quot; alt=&quot;Creating a calculated column gif&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Within the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesAmount&lt;/code&gt; expression, only the column names are specified, however, since this is creating a calculated column the row context is available. This means that during the evaluation of the expression &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesOrderDetail[OrderQty]&lt;/code&gt; does not reference the entire column but rather the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OrderQty&lt;/code&gt; value for the specific row within the scope of the calculation. This allows the new &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesAmount&lt;/code&gt; column to use the correct values when it is calculated row-by-row.&lt;/p&gt;
-
-&lt;p&gt;Viewing the new &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesAmount&lt;/code&gt; column shows that the values are calculated for each row in the table. This is because row context means to iterate over each row of the table and perform the calculation for the specific row that is in the current scope.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/2022-09-30-power-bi-row-context/calculated_column_salescolumn.png&quot; alt=&quot;Table of NetSaleAmount Values&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The new calculated column can then be utilized in creating a new measure, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TotalSalesAmount&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TotalSalesAmount = SUM(SalesOrderDetail[SalesAmount])&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/2022-09-30-power-bi-row-context/total_measures.gif&quot; alt=&quot;New measure using SalesAmount&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;This new measure can then be included in visuals to summarize the sales data, for example, visualize the total sales by product color or by product name.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/2022-09-30-power-bi-row-context/total_sales_measure.png&quot; alt=&quot;Total Sales and Sum of SalesAmount&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The tables above show that the new &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TotalSalesAmount&lt;/code&gt; measure for each product color/name and the sum of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesAmount&lt;/code&gt; calculated column are equal. This highlights that the new measure and the default aggregation (e.g. sum) will produce the same values.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Although a default aggregation of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesAmount&lt;/code&gt; can be used to produce the same values as the measure &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TotalSalesAmount&lt;/code&gt; it is best practice to use a measure for aggregation and not use default aggregations of a column.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;limitation&quot;&gt;Limitation&lt;/h2&gt;
-&lt;p&gt;The method of adding a new calculated column is beneficial for aiding in understanding the impacts and use of the row context. However, a limitation to the approach of creating a column similar to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesAmount&lt;/code&gt; is that each column created in a data model table increases the data model size because calculated columns are created and stored as columns in the data model when loaded (i.e. the .pbix file is opened or data is refreshed). Due to this, a column like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesAmount&lt;/code&gt; normally would not be created in the data model, rather a measure can be used which does not increase the size of the overall data model. Measures do not increase the size of the data model because they are calculated in real-time, that is when the measure is used in a visual (table or chart).&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Best practice is to use measures whenever possible.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;There are certain situations where a measure cannot be used and a calculated column is required. For example, a calculated column is required when the resulting value is to be used as an axis on a visual.&lt;/p&gt;
-
-&lt;h3 id=&quot;replacing-a-calculated-column-with-a-measure&quot;&gt;Replacing a Calculated Column with a Measure&lt;/h3&gt;
-&lt;p&gt;Replacing the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesAmount&lt;/code&gt; calculated column with a measure may seem straightforward. Looking at the two formulas below, it is not unreasonable to think that the reference to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesOrderDetail[SalesAmount]&lt;/code&gt; within the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TotalSalesAmount&lt;/code&gt; measure could simply be replaced with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesOrderDetail[OrderQty] * SalesOrderDetail[UnitPrice] * (1 - SalesOrderDetail[UnitPriceDiscount])&lt;/code&gt; (the formula of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesAmount&lt;/code&gt; calculated column).&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesAmount = SalesOrderDetail[OrderQty] * SalesOrderDetail[UnitPrice] * (1 - SalesOrderDetail[UnitPriceDiscount])&lt;/code&gt;
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TotalSalesAmount = SUM(SalesOrderDetail[SalesAmount])&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;However, if you create a new measure (e.g. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TotalSalesAmount2&lt;/code&gt;) and start typing &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OrderQty&lt;/code&gt; IntelliSense will not provide it as an option to select as it did previously when creating the calculated column.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/2022-09-30-power-bi-row-context/measure_totalsales2.gif&quot; alt=&quot;TotalSales2 new measure&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The table columns are not available because by default a measure &lt;em&gt;does not&lt;/em&gt; have row context. Without the row context Power BI does not know which specific &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OrderQty&lt;/code&gt; value should be referenced. For creating a measure that requires row context an iterator function will have to be used.&lt;/p&gt;
-
-&lt;p&gt;An iterator function can retrieve values from other columns in a table based on the row context, then perform an operation on the column values row-by-row, and finally aggregate the results.&lt;/p&gt;
-
-&lt;p&gt;Check out &lt;a href=&quot;https://ethanguyant.com/blog/2022-10-11-power-bi-iterators/&quot; class=&quot;post__link&quot;&gt;Power BI Iterators: Unleashing the Power of Iteration in Power BI Calculations&lt;/a&gt; for an exploration of iterators.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;If you enjoy what you read and find it helpful please check back, and check back often. Follow me on &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/@emguyant&quot;&gt;&lt;i class=&quot;fab fa-medium&quot;&gt;&lt;/i&gt; Medium&lt;/a&gt; while giving a clap to the article! Also don’t forget to subscribe to the &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/inquisitive-nature&quot;&gt;&lt;b&gt;INQUISITIVE NATURE&lt;/b&gt;&lt;/a&gt; publication.&lt;/p&gt;</content><author><name>Ethan Guyant</name></author><category term="Deep Dive" /><category term="Microsoft 365" /><category term="Power BI" /><category term="Power Platform" /><category term="Power BI Fundamentals Series" /><summary type="html">Contents Understanding Row Context Creating a Calculated Column Limitation Replacing a Calculated Column with a Measure</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://ethanguyant.com/assets/img/post_img/powerbi_fundamentals_part1.jpg" /><media:content medium="image" url="http://ethanguyant.com/assets/img/post_img/powerbi_fundamentals_part1.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;p&gt;If you enjoy what you read and find it helpful please check back, and check back often. Follow me on &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/@emguyant&quot;&gt;&lt;i class=&quot;fab fa-medium&quot;&gt;&lt;/i&gt; Medium&lt;/a&gt; while giving a clap to the article! Also don’t forget to subscribe to the &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/inquisitive-nature&quot;&gt;&lt;b&gt;INQUISITIVE NATURE&lt;/b&gt;&lt;/a&gt; publication.&lt;/p&gt;</content><author><name>Ethan Guyant</name></author><category term="Deep Dive" /><category term="Microsoft 365" /><category term="Power BI" /><category term="Power Platform" /><category term="Power BI Fundamentals Series" /><summary type="html">Contents Overview Introduction Understanding Iterators Iterator Functions that Generate Virtual Tables Combining Iterators</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://ethanguyant.com/assets/img/post_img/powerbi-iterators.jpg" /><media:content medium="image" url="http://ethanguyant.com/assets/img/post_img/powerbi-iterators.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>

@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Unlocking the Secrets of CALCULATE: A Deep Dive into Advanced Data Analysis in Power BI | Ethan Guyant’s Blog</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="Unlocking the Secrets of CALCULATE: A Deep Dive into Advanced Data Analysis in Power BI" />
+<meta name="author" content="Ethan Guyant" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Are you tired of drowning in a sea of data? Data analysis is a puzzle waiting to be solved and CALCULATE is the missing piece that brings it all together. Let’s explore the intricacies of CALCULATE in Power BI. From unraveling complex calculations to applying complex filters, this function holds the key to unlocking actionable insights buried within your data." />
+<meta property="og:description" content="Are you tired of drowning in a sea of data? Data analysis is a puzzle waiting to be solved and CALCULATE is the missing piece that brings it all together. Let’s explore the intricacies of CALCULATE in Power BI. From unraveling complex calculations to applying complex filters, this function holds the key to unlocking actionable insights buried within your data." />
+<link rel="canonical" href="http://ethanguyant.com/blog/2023-07-08-powerbi-calculate/" />
+<meta property="og:url" content="http://ethanguyant.com/blog/2023-07-08-powerbi-calculate/" />
+<meta property="og:site_name" content="Ethan Guyant’s Blog" />
+<meta property="og:image" content="http://ethanguyant.com/assets/img/post_img/power-bi-calculate.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-07-08T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="http://ethanguyant.com/assets/img/post_img/power-bi-calculate.jpg" />
+<meta property="twitter:title" content="Unlocking the Secrets of CALCULATE: A Deep Dive into Advanced Data Analysis in Power BI" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"Ethan Guyant"},"description":"Are you tired of drowning in a sea of data? Data analysis is a puzzle waiting to be solved and CALCULATE is the missing piece that brings it all together. Let’s explore the intricacies of CALCULATE in Power BI. From unraveling complex calculations to applying complex filters, this function holds the key to unlocking actionable insights buried within your data.","url":"http://ethanguyant.com/blog/2023-07-08-powerbi-calculate/","@type":"BlogPosting","image":"http://ethanguyant.com/assets/img/post_img/power-bi-calculate.jpg","headline":"Unlocking the Secrets of CALCULATE: A Deep Dive into Advanced Data Analysis in Power BI","dateModified":"2023-07-08T00:00:00+00:00","datePublished":"2023-07-08T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://ethanguyant.com/blog/2023-07-08-powerbi-calculate/"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<title>Ethan Guyant's Blog</title>
+  <!-- Normalize CSS file irons out some difference between browsers -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+  <!-- Google Fonts-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,900|Source+Sans+Pro:300,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Arvo:wght@700&display=swap" rel="stylesheet">
+  <!-- CSS Styles -->
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/notebook_default.css">
+  <link rel="stylesheet" href="/assets/css/notebook_custom.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
+  <!-- MathJax configuration -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+  </script>
+  <!-- Animation on Scroll-->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <!-- Font Awesome Kit -->
+  <script src="https://kit.fontawesome.com/c9965d23bb.js" crossorigin="anonymous"></script><link type="application/atom+xml" rel="alternate" href="http://ethanguyant.com/feed.xml" title="Ethan Guyant's Blog" /><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7356875210051999"
+  crossorigin="anonymous">
+  </script>
+  
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RTFP0V6X0G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RTFP0V6X0G');
+</script>
+  
+</head>
+<body><header class="header sticky">
+    <div class="wrapper">
+        <div>
+            <div class="scroll-logo"> 
+                <a href="/">  
+                    <svg id="EG" viewBox="0 0 152 216">
+                        <g>
+                            <path id="hex"d="M 76.342 4 L 147.685 41.377 L 147.685 116.13 L 76.342 153.506 L 5 116.13 L 5 41.377 Z" style="stroke-width: 8.37394px; fill-opacity: 0; fill: none; stroke: #39ace7;"></path>         
+                            <polygon class="logo"style="stroke-width: 3.58883px; stroke: #39ace7; fill: #39ace7;" points="41.001 38.501 112.012 38.501 112.012 62.884 97.474 62.884 97.474 54.976 41.001 54.976"></polygon>
+                            <polygon class="logo" style="stroke-width: 3.58883px; stroke: #39ace7; fill: #39ace7;" points="40.671 102.9 97.81 102.9 97.81 86.796 83.604 86.796 83.604 70.701 112.014 70.701 112.014 102.92 112.014 119.004 40.939 119.004"></polygon>
+                            <polygon class="logo" style="stroke-width: 3.58883px; stroke: #39ace7; fill: #39ace7;" points="41.001 70.701 69.753 70.701 63.532 87.725 41.317 87.725"></polygon>
+                        </g> 
+                    </svg>
+                </a>
+            </div>
+
+            <div class="header__title">
+                <a href="/">EthanGuyant.com</a>
+            </div>
+            
+        </div>
+        
+        <div class="nav__menu">
+            <div class="nav__toggle">
+                <div class="nav__icon">
+                    <span></span>
+                </div>
+            </div>
+        </div>
+        <div class="nav__menu__wrapper">
+            <ul class="nav__menu__list">
+                <li class="nav__menu__list__item">
+                    <a href="/" class="nav__menu__list__item__link">Home</a>
+                </li>
+                <li class="nav__menu__list__item">
+                    <a href="/blog" class="nav__menu__list__item__link">Blog</a>
+                </li>
+                <li class="nav__menu__list__item">
+                    <a href="/about" class="nav__menu__list__item__link">About</a>
+                </li>
+                <li class="nav__menu__list__item">
+                    <a href="/category/project/" class="nav__menu__list__item__link">Projects</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header><main class="page" aria-label="Content">
+      <div class="page__content">
+        <section class="blog__header">
+    <div class="blog__img">
+      <div class="blog__img__over"></div>
+    </div>
+    <div class="wrapper">
+      <h1 class="blog__title"><span class="inquisitive">INQUISITIVE</span> <span class="nature">NATURE</span></h1>
+      <p class="blog__subtitle">Learn  Explore  <strong>Share</strong></p>
+      <p class="post__categories">
+    </div>
+  </section><div class="wrapper">
+  <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+    <section class="article__header">
+        <h1 class="post-title p-name" itemprop="name headline">Unlocking the Secrets of CALCULATE: A Deep Dive into Advanced Data Analysis in Power BI</h1>
+        <p class="post-meta">
+          <time class="dt-published" datetime="2023-07-08T00:00:00+00:00" itemprop="datePublished">Jul 8, 2023
+          </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">Ethan Guyant</span></span></p>
+          <p class="post-category">
+            Category: 
+            <a href="/category/quick-start">
+              <i class="fa-solid fa-folder"></i>
+              Quick Start
+            </a> 
+          </p>
+          <p class="post-tags">
+          Tags: 
+           
+              
+              <a href="/tag/microsoft-365">
+                <i class="fa-solid fa-tag"></i>
+                Microsoft 365
+              </a> 
+              
+              <a href="/tag/power-bi">
+                <i class="fa-solid fa-tag"></i>
+                Power BI
+              </a> 
+              
+              <a href="/tag/power-platform">
+                <i class="fa-solid fa-tag"></i>
+                Power Platform
+              </a> 
+              
+              <a href="/tag/power-bi-fundamentals-series">
+                <i class="fa-solid fa-tag"></i>
+                Power BI Fundamentals Series
+              </a> 
+              
+              <a href="/tag/function-friday">
+                <i class="fa-solid fa-tag"></i>
+                Function Friday
+              </a> 
+            
+          
+        </p>
+    </section>
+    <div class="post-content e-content" itemprop="articleBody">
+      <p>Are you tired of drowning in a sea of data? Data analysis is a puzzle waiting to be solved and CALCULATE is the missing piece that brings it all together. Let’s explore the intricacies of CALCULATE in Power BI. From unraveling complex calculations to applying complex filters, this function holds the key to unlocking actionable insights buried within your data. Whether your a business professional, a data enthusiast, or a seasoned data analyst this guide will equip you with the knowledge and tools to solve the most perplexing data puzzles. Brace yourself for a comprehensive exploration of Power BI’s CALCULATE function.</p>
+
+<p>Prepare to be amazed as we explore the the secrets of the CALCULATE function. CALCULATE is the true superhero of Power BI that empowers you to perform complex calculations and transformations on your data effortlessly. It holds the key to manipulating the filter context, allowing you to focus on the precise subset of data you need for your analysis.</p>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="understanding-the-syntax-and-parameters-of-calculate">Understanding the Syntax and Parameters of CALCULATE</h2>
+
+<p><br /></p>
+
+<p>Before we dive into the secrets of CALCULATE and explore practical examples, let’s first understand its syntax and parameters. The CALCULATE function follows a simple structure:</p>
+
+<p><code class="language-plaintext highlighter-rouge">CALCULATE(expression, filter1, filter2, ...)</code></p>
+
+<p>The <code class="language-plaintext highlighter-rouge">expression</code> parameter represents the calculation or measure you want to evaluate or modify. It can be a simple aggregation like <code class="language-plaintext highlighter-rouge">SUM</code> or <code class="language-plaintext highlighter-rouge">AVERAGE</code> or a more complex calculation involving multiple DAX functions. The <code class="language-plaintext highlighter-rouge">filter</code> parameters are optional and allow you to define specific conditions or constraints to modify the filter context.</p>
+
+<p>Each filter parameter can take various forms, such as direct values, comparison operators, or logical expressions. You can combine multiple filters using logical operators like <code class="language-plaintext highlighter-rouge">&amp;&amp;</code> (AND) or <code class="language-plaintext highlighter-rouge">||</code> (OR) to create more intricate filter conditions. By strategically using the filter parameters within CALCULATE, you can dynamically adjust the filter context and precisely control which data is included in your calculations.</p>
+
+<p>By understanding the syntax and leveraging the flexibility of the CALCULATE parameters, you can master this powerful function and have the ability to handle complex data analysis with ease.</p>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="leveraging-the-power-of-calculate-practical-examples-in-power-bi">Leveraging the Power of CALCULATE: Practical Examples in Power BI</h2>
+
+<p><br /></p>
+
+<h3 id="calculating-total-sales-for--a-specific-region-and-time-period">Calculating Total Sales for  a Specific Region and Time Period</h3>
+<p>Let’s dive into the heart of CALCULATE and explore its power through various examples. Imagine you have a dataset with sales figures for various products across different regions and want to calculate the total sales for a specific region, but only for a particular time frame. By combining CALCULATE with it’s filter parameters, you can create a dynamic calculation that narrows down the data based on the desired filters. This enables you to zero in on the exact information you need and present accurate, targeted insights.</p>
+
+<p>For instance, using CALCULATE you can easily calculate last year total sales of smartphones in the United States. The DAX formula is defined by the following expression:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>US Previous Year Smartphone Sales =
+
+CALCULATE(
+
+    SUM(Sales[Amount]),
+
+    SAMEPERIODLASTYEAR(Dates[Date]),
+
+    Products[Product] = "Smartphone",
+
+    Regions[Region] = "United States"
+
+)
+</code></pre></div></div>
+
+<p><img src="/assets/img/2023-07-08-powerbi-calculate/previous-year-phone-sales.gif" alt="Previous Year Sales" class="post__img" /></p>
+
+<p>This expression filters the <code class="language-plaintext highlighter-rouge">Sales</code> table based on the specified conditions, summing up the <code class="language-plaintext highlighter-rouge">Amount</code> column to give you the total sales of smartphones in the United States for the previous year.</p>
+
+<h3 id="tracking-cumulative-sales-over-time">Tracking Cumulative Sales Over Time</h3>
+
+<p>Another powerful application of CALCULATE lies in calculating running totals or cumulative values. Let’s say you want to track cumulative sales for each month of the year. With the help of the SUM function and CALCULATE, you can easily create a measure that accumulates the sales for each month, taking into account the changing filter context. This allows you to visualize the sales growth over time and identify any notable trends and patterns.</p>
+
+<p>The DAX formula for this scenario would be:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Cumulative Sales =
+
+CALCULATE(
+
+    SUM(Sales[Amount]),
+
+    FILTER(
+
+        ALL(Sales),
+
+        Sales[SalesDate] &lt;= MAX(Sales[SalesDate])
+
+    )
+
+)
+</code></pre></div></div>
+
+<p><img src="/assets/img/2023-07-08-powerbi-calculate/cumulative-sales.gif" alt="Cumulative Sales" class="post__img" /></p>
+
+<p>This formula calculates the cumulative sales by summing up the <code class="language-plaintext highlighter-rouge">Amount</code> column for all <code class="language-plaintext highlighter-rouge">Sales Dates</code> up to and including the last <code class="language-plaintext highlighter-rouge">Sales Date</code> as determined by <code class="language-plaintext highlighter-rouge">MAX(Sales[SalesDate])</code>.</p>
+
+<h3 id="refined-average-sales-for-high-performing-regions">Refined Average Sales for High-Performing Regions</h3>
+
+<p>Conditional calculations are also a breeze with CALCULATE. Suppose you want to calculate the average sales for a specific product category, but only for the regions where sales exceed a certain threshold. By combining CALCULATE with logical filters based on sales, you can obtain a refined average that factors in only the high-performing regions. Enabling you to make data-driven decisions with confidence.</p>
+
+<p>The DAX formula for this example would be:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>High Performing Average =
+
+CALCULATE(
+
+    AVERAGE(Sales[Amount]),
+
+    FILTER(
+
+        ALL(Sales[RegionID]),
+
+        CALCULATE(
+
+            SUM(Sales[Amount])
+
+        ) &gt; 37500
+
+    )
+
+)
+</code></pre></div></div>
+
+<p><img src="/assets/img/2023-07-08-powerbi-calculate/high-performing-average.gif" alt="High Preforming Average" class="post__img" /></p>
+
+<p>This formula will calculate the average sales for a product category but only considers the regions where the total sales exceed $37,500. The CALCULATE function modifies the filter context and focuses on the desired subset of data, allowing you to obtain a more refined average.</p>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="calculates-versatility">CALCULATES Versatility</h2>
+
+<p><br /></p>
+
+<p>CALCULATE’s true strength lies in its versatility. You can combine it with other DAX functions, such as <code class="language-plaintext highlighter-rouge">ALL</code>, <code class="language-plaintext highlighter-rouge">RELATED</code>, or <code class="language-plaintext highlighter-rouge">TOPN</code> to further enhance your data analysis capabilities. Whether you need to compare values against a benchmark, calculate year-to-date totals, determine the top-performing products, or even perform advanced calculations based on complex conditions. CALCULATE is the tool that will bring your data analysis to the next level.</p>
+
+<p>CALCULATE introduces the concept of internal and external filters which play a crucial role in shaping the filter context for calculations. Internal filters are defined within CALCULATE itself using the filer parameters. These filters modify the filter context only for the expression being evaluated within CALCULATE. On the other hand, external filters are filters that exist outside of CALCULATE and are not affected by the function. Understanding the interplay between internal and external filters is key to harnessing the full power of CALCULATE.</p>
+
+<h3 id="applying-external-filters-with-calculate-comparing-performance-against-a-benchmark">Applying External Filters with CALCULATE: Comparing Performance Against a Benchmark</h3>
+
+<p>Let’s say you want to compare the sales of smartphones in the United States against a benchmark value, such as the average sales of smartphones across all regions. This comparison can help identity regions that are outperforming and underperforming relative benchmarks.</p>
+
+<p>The DAX expression for this example would be:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>US Smartphone Sales vs. Average Smartphone Sales =
+
+    CALCULATE(
+
+        AVERAGE(Sales[Amount]),
+
+        Products[Product] = "Smartphone",
+
+        Regions[Region] = "United States"
+
+    )
+
+    - AVERAGEX(
+
+        FILTER(
+
+            Sales,
+
+            RELATED(Products[Product]) = "Smartphone"
+
+        ),
+
+        Sales[Amount]
+
+    )
+</code></pre></div></div>
+
+<p>This expression calculates the total sales of smartphones in the United States and subtracts the average sales of smartphones across all regions. The <code class="language-plaintext highlighter-rouge">FILTER</code> function ensures that only the relevant products (i.e. smartphones) are considered in the average calculation.</p>
+
+<p><img src="/assets/img/2023-07-08-powerbi-calculate/benchmark-sales.gif" alt="Benchmark Sales" class="post__img" /></p>
+
+<h3 id="dynamic-calculations-with-calculate-adjusting-for-changing-contexts">Dynamic Calculations with CALCULATE: Adjusting for Changing Contexts</h3>
+
+<p>Calculating year-to-date (YTD) totals is another common requirement in data analysis. To calculate YTD sales you can leverage the time intelligence functions in DAX. With CALCULATE and DATESYTD function you can easily obtain YTD sales figures.</p>
+
+<p>The DAX expression would be:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>YTD Sales =
+
+CALCULATE(
+
+    SUM(Sales[Amount]),
+
+    DATESYTD(
+
+        Dates[Date],
+
+        "12/31"
+
+    )
+
+)
+</code></pre></div></div>
+
+<p><img src="/assets/img/2023-07-08-powerbi-calculate/ytd-sales.gif" alt="YTD Sales" class="post__img" /></p>
+
+<h3 id="enhancing-filter-context-with-keepfilters-and-calculate">Enhancing Filter Context with KEEPFILTERS and CALCULATE</h3>
+
+<p>In some scenarios, you may want to preserve any existing filters on other dimensions such as date, region, or employee while using CALCULATE to introduce additional filters. This is where the KEEPFILTERS function comes into play. By wrapping your expression within KEEPFILTERS, you ensure that the existing filters remain unchanged and only the internal filters in CALCULATE are applied. This allows you to have precise control over the filter context and produce accurate results.</p>
+
+<p>The DAX formula for this scenario would look like this:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Smartphone Sales =
+
+CALCULATE(
+
+    SUM(Sales[Amount]),
+
+    KEEPFILTERS(Sales[ProductID]=1)
+
+)
+</code></pre></div></div>
+
+<p><img src="/assets/img/2023-07-08-powerbi-calculate/keepfilters.gif" alt="Keep Filters Parameter" class="post__img" /></p>
+
+<p>By applying this formula, you can obtain the accurate sales amount for the desired product type, while keeping the context of other dimension intact (e.g. Region). This enables you to perform focused analysis and make data-driven decision based on specific criteria.</p>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p><br /></p>
+
+<p>Congratulations! You have completed the thrilling exploration of the CALCULATE function in Power BI. Through the practical examples you have witnessed its remarkable ability to manipulate the filter context, allowing you to extract meaningful insights from your data with precision. From calculating specific totals and cumulative values to comparing against benchmarks and performing complex conditional calculations, CALCULATE has proven to be a formidable tool in your data analysis arsenal. By mastering CALCULATE, you can unlock the power to transform raw data into actionable insights, enabling data-driven decisions-making.</p>
+
+<p>As Albert Einstein once said, “Anyone who has never made a mistake has never tried anything new.” So, don’t be afraid of making mistakes; practice makes perfect.</p>
+
+<p>Continuously experiment with CALCULATE, explore new DAX functions, and challenge yourself with real-world data scenarios.</p>
+
+<p><br /></p>
+
+<hr />
+<p><br /></p>
+
+<p>If you enjoyed what you read and find it helpful please check back, and check back often. Follow me on <a class="post__link" href="https://medium.com/@emguyant"><i class="fab fa-medium"></i> Medium</a> while giving a clap to the article! Also don’t forget to subscribe to the <a class="post__link" href="https://medium.com/inquisitive-nature"><b>INQUISITIVE NATURE</b></a> publication.</p>
+
+    </div><a class="u-url" href="/blog/2023-07-08-powerbi-calculate/" hidden></a>
+  </article>
+</div>
+      </div>
+    </main><footer class="footer">
+    <!-- replace with your own email address 
+    <a href="mailto:info@ethanguyant.com" class="footer__link">info@ethanguyant.com</a>-->
+    <ul class="social-list">
+        <li class="social-list__item">
+            <a class="social-list__link" href="mailto:emguyant@gmail.com">
+                <i class="fas fa-envelope"></i>
+            </a>
+        </li>
+        <li class="social-list__item">
+            <a class="social-list__link" href="https://www.linkedin.com/in/ethan-guyant/">
+                <i class="fab fa-linkedin"></i>
+            </a>
+        </li>
+        <li class="social-list__item">
+            <a class="social-list__link" href="https://github.com/EMGuyant">
+                <i class="fab fa-github"></i>
+            </a>
+        </li>
+        <li class="social-list__item">
+            <a class="social-list__link" href="https://medium.com/@emguyant">
+                <i class="fab fa-medium"></i>
+            </a>
+        </li>
+        <li class="social-list__item">
+            <a class="social-list__link" href="https://medium.com/inquisitive-nature">
+                <i class="fa-solid fa-book"></i>
+            </a>
+        </li>
+    </ul>
+</footer><script src="https://kit.fontawesome.com/c9965d23bb.js" crossorigin="anonymous"></script>
+<script src="/assets/js/script.js"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+</body>
+
+</html>
