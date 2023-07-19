@@ -1,4 +1,182 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://ethanguyant.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://ethanguyant.com/" rel="alternate" type="text/html" /><updated>2023-07-08T14:44:39+00:00</updated><id>http://ethanguyant.com/feed.xml</id><title type="html">Ethan Guyant’s Blog</title><subtitle>A data solution centric blog focusing on the use and application of Microsoft Power Apps, Python Programming, and Data Science.</subtitle><entry><title type="html">Unlocking the Secrets of CALCULATE: A Deep Dive into Advanced Data Analysis in Power BI</title><link href="http://ethanguyant.com/blog/2023-07-08-powerbi-calculate/" rel="alternate" type="text/html" title="Unlocking the Secrets of CALCULATE: A Deep Dive into Advanced Data Analysis in Power BI" /><published>2023-07-08T00:00:00+00:00</published><updated>2023-07-08T00:00:00+00:00</updated><id>http://ethanguyant.com/blog/powerbi-calculate</id><content type="html" xml:base="http://ethanguyant.com/blog/2023-07-08-powerbi-calculate/">&lt;p&gt;Are you tired of drowning in a sea of data? Data analysis is a puzzle waiting to be solved and CALCULATE is the missing piece that brings it all together. Let’s explore the intricacies of CALCULATE in Power BI. From unraveling complex calculations to applying complex filters, this function holds the key to unlocking actionable insights buried within your data. Whether your a business professional, a data enthusiast, or a seasoned data analyst this guide will equip you with the knowledge and tools to solve the most perplexing data puzzles. Brace yourself for a comprehensive exploration of Power BI’s CALCULATE function.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://ethanguyant.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://ethanguyant.com/" rel="alternate" type="text/html" /><updated>2023-07-19T15:24:10+00:00</updated><id>http://ethanguyant.com/feed.xml</id><title type="html">Ethan Guyant’s Blog</title><subtitle>A data solution centric blog focusing on the use and application of Microsoft Power Apps, Python Programming, and Data Science.</subtitle><entry><title type="html">Time Travel in Power BI: Mastering Time Intelligence Functions</title><link href="http://ethanguyant.com/blog/2023-07-18-powerbi-time-intelligence/" rel="alternate" type="text/html" title="Time Travel in Power BI: Mastering Time Intelligence Functions" /><published>2023-07-18T00:00:00+00:00</published><updated>2023-07-18T00:00:00+00:00</updated><id>http://ethanguyant.com/blog/powerbi-time-intelligence</id><content type="html" xml:base="http://ethanguyant.com/blog/2023-07-18-powerbi-time-intelligence/">&lt;h2 id=&quot;the-tools-to-time-travel-an-introduction&quot;&gt;The Tools to Time Travel: An Introduction&lt;/h2&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;In Power BI, time intelligence functions are your handy time machines. They enable you to extract useful insights from your data by manipulating time periods. These functions range from calculating sales year-to-date (YTD) to comparing data from previous years. If you want to unlock the true potential of your Power BI reports, you need to harness the might of Time Intelligence functions. In this post, we will unpack six time intelligence functions: DATESYTD, TOTALYTD, SAMPLEPERIODLASTYEAR, DATEADD, DATESINPERIOD, and DATESBETWEEN.&lt;/p&gt;
+
+&lt;p&gt;For those of you eager to start experimenting and diving deeper there is a Power BI report loaded with the sample data used in this post ready for you. So don’t just read, dive in and get hands-on with DAX Functions in Power BI. Check out it here: &lt;a href=&quot;https://github.com/EMGuyant/powerbi-dax-functions-series&quot; class=&quot;post__link&quot;&gt;GitHub — Power BI DAX Function Series: Mastering Data Analysis&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;the-twin-siblings-datesytd-and-totalytd&quot;&gt;The Twin Siblings: DATESYTD and TOTALYTD&lt;/h2&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;First stop on our journey, the twin siblings, DATESYTD and TOTALYTD.&lt;/p&gt;
+
+&lt;p&gt;DATESYTD is the Einstein of the Power BI world, it uses the concept of relative time to help us compute values from the start of the year to the last date in the data. The syntax is as simple as the concept:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DATESYTD(&amp;lt;dates&amp;gt;[, &amp;lt;year_end_date&amp;gt;])&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Here, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;dates&amp;gt;&lt;/code&gt; is a column containing dates, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;year_end_date&amp;gt;&lt;/code&gt; is an optional parameter to specify the year-end date, with a default value of December 31st.&lt;/p&gt;
+
+&lt;p&gt;On the other hand, TOTALYTD takes it up a notch. It summarizes data for the same period in a given year. The syntax of this function is:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TOTALYTD(&amp;lt;expression&amp;gt;, &amp;lt;dates&amp;gt;[, &amp;lt;filter&amp;gt;])&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;In this syntax, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;expression&amp;gt;&lt;/code&gt; is what you want to calculate, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;dates&amp;gt;&lt;/code&gt; is a column containing dates, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;filter&amp;gt;&lt;/code&gt; is a filter to restrict the calculation over time.  TOTALYTD is DATESYTD, but with additional calculation power.&lt;/p&gt;
+
+&lt;p&gt;Here’s are example DAX formulas to calculate the total sales amount from the start of the year till the current date.&lt;/p&gt;
+
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;YTD Sales DATESYTD =
+CALCULATE(
+    SUM(Sales[Amount]),
+    DATESYTD(Dates[Date])
+)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;And here is how you can calculate the same using TOTALYTD:&lt;/p&gt;
+
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;YTD Sales TOTALYTD =
+TOTALYTD(SUM(Sales[Amount]), Dates[Date])
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;While both functions return the same result in this case, the key difference lies in their flexibility. DATESYTD just provides a set of dates, but TOTALYTD goes a step further to calculate an expression over those dates. Notice &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;YTD Sales DATESYTD&lt;/code&gt; uses &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DATESYTD&lt;/code&gt; in combination with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULATE&lt;/code&gt; in order to achieve the same outcome as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;YTD Sales TOTALYTD&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-07-21-powerbi-time-intelligence/datesytd_totalytd.png&quot; alt=&quot;DATESYTED and TOTALYTD Calculations&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Don’t get confused, TOTALYTD may look like it calculates the year-to-date &lt;em&gt;total&lt;/em&gt;, but in reality it only changes the context. It can be used to return year-to-date anything, it all depends on what you define as the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;expression&amp;gt;&lt;/code&gt; parameter.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;For more information on these two head over to the Microsoft documentation for &lt;a href=&quot;https://learn.microsoft.com/en-us/dax/datesytd-function-dax&quot; class=&quot;post__link&quot;&gt;DATESYTD&lt;/a&gt; and &lt;a href=&quot;https://learn.microsoft.com/en-us/dax/totalytd-function-dax&quot; class=&quot;post__link&quot;&gt;TOTALYTD&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;the-cousins-sameperiodlastyear-and-dateadd&quot;&gt;The Cousins: SAMEPERIODLASTYEAR and DATEADD&lt;/h2&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Next up the cousins, SAMEPERIODLASTYEAR and DATEADD. SAMEPERIODLASTYEAR is the function that does exactly as the name suggests and always knows what happened “this time last year”.  This is perfect for spotting trends, analyzing seasonality, or measuring growth. The syntax couldn’t be more straightforward:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SAMEPERIODLASTYEAR(&amp;lt;dates&amp;gt;)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Here, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;dates&amp;gt;&lt;/code&gt; is a column that contains dates. Think of this function as equivalent to you Facebook memories, reminding you of what happened exactly one year ago.&lt;/p&gt;
+
+&lt;p&gt;While DATEADD is the flexible one that allows you to go back (or forward) any number of intervals you choose. This handy function’s syntax is:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DATEADD(&amp;lt;dates&amp;gt;, &amp;lt;number_of_intervals, &amp;lt;interval&amp;gt;)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Here, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;dates&amp;gt;&lt;/code&gt; is your date column, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;number_of_intervals&amp;gt;&lt;/code&gt; is the number of intervals to move (can be negative for moving backwards), and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;interval&amp;gt;&lt;/code&gt; is the interval to use (DAY, MONTH, QUARTER, or YEAR).  This function lets you journey backward or forward in time with ease!&lt;/p&gt;
+
+&lt;p&gt;The example for this duo calculates the total sales for the same period in the previous year. The DAX formula for this example is:&lt;/p&gt;
+
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Sales LY SAMEPERIODLASTYEAR =
+CALCULATE(
+    SUM(Sales[Amount]),
+    SAMEPERIODLASTYEAR(Dates[Date])
+)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Similarly, using DATEADD, you can achieve the same result by subtracting one year from the current date:&lt;/p&gt;
+
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Sales LY DATEADD =
+CALCULATE(
+    SUM(Sales[Amount]),
+    DATEADD(Dates[Date], -1, YEAR)
+)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;While both of these functions seem to do the same job, the difference again lies in their flexibility. SAMEPERIODLASTYEAR only takes you back one year, while DATEADD give you the liberty to move as far back or forward as you want, making it a more flexible option overall.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-07-21-powerbi-time-intelligence/sameperiodlastyear_dateadd.png&quot; alt=&quot;DATESYTED and TOTALYTD Calculations&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Visit the Microsoft documentation for &lt;a href=&quot;https://docs.microsoft.com/en-us/dax/sameperiodlastyear-function-dax&quot; class=&quot;post__link&quot;&gt;SAMEPERIODLASTYEAR&lt;/a&gt; and &lt;a href=&quot;https://docs.microsoft.com/en-us/dax/dateadd-function-dax&quot; class=&quot;post__link&quot;&gt;DATEADD&lt;/a&gt; for a deeper dive.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;the-mysterious-pair-datesinperiod-and-datesbetween&quot;&gt;The Mysterious Pair: DATESINPERIOD and DATESBETWEEN&lt;/h2&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Last but not least, let’s explore the mysterious pair DATESINPERIOD and DATESBETWEEN. DATESINPERIOD has your back if you need to calculate data for a specific period. It returns a table that contains a column of dates that starts from a specific date, extends by a specified interval, and stops at the end of the last interval.&lt;/p&gt;
+
+&lt;p&gt;Its syntax is:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DATESINPERIOD(&amp;lt;dates&amp;gt;, &amp;lt;start_date&amp;gt;, &amp;lt;number_of_intervals&amp;gt;, &amp;lt;interval&amp;gt;)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Here, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;dates&amp;gt;&lt;/code&gt; is a column containing dates, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;start_date&amp;gt;&lt;/code&gt; is the start date for the calculation, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;number_of_intervals&amp;gt;&lt;/code&gt; is the number of intervals to include, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;interval&amp;gt;&lt;/code&gt; is the interval to use (DAY, MONTH, QUARTER, or YEAR).&lt;/p&gt;
+
+&lt;p&gt;DATESBETWEEN, however, is the function you’d use to fetch data between two specific dates. It returns a table that contains a column of all dates between two specified dates. The syntax is as simple as:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DATESBETWEEN(&amp;lt;dates&amp;gt;, &amp;lt;start_date&amp;gt;, &amp;lt;end_date&amp;gt;)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Here, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;dates&amp;gt;&lt;/code&gt; is a column that contains dates, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;start_date&amp;gt;&lt;/code&gt; is the start date for the calculation, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;end_date&amp;gt;&lt;/code&gt; is the end date for the calculation. It’s like ordering a specific range of books from a library catalog. You get exactly what you want, nothing more, nothing less!&lt;/p&gt;
+
+&lt;p&gt;Let’s look at a practical example of these functions.  Say you want to calculate the 3-month rolling average sales, both these functions can help solve this in their own way.&lt;/p&gt;
+
+&lt;p&gt;Using DATAINPERIOD the DAX formula is:&lt;/p&gt;
+
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Sales 3 Month Rolling Average DATESINPERIOD =
+CALCULATE(
+    AVERAGE(Sales[Amount]),
+    DATESINPERIOD(Dates[Date], LASTDATE(Dates[Date]), -3, MONTH)
+)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This formula calculates the average sales for the previous three months from the last date in the data. The same calculation with DATESBETWEEN would like like:&lt;/p&gt;
+
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Sales 3 Month Rolling Average DATESBETWEEN =
+CALCULATE(
+    AVERAGE(Sales[Amount]),
+    DATESBETWEEN(
+        Dates[Date],
+        EDATE(LASTDATE(Dates[Date]), -3),
+        LASTDATE(Dates[Date])
+    )
+)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This formula also returns the average sales for the previous three months from the last date in the data. The key difference is that with DATESBETWEEN, you explicitly specify the start and end dates, providing a high degree of precision when needed.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-07-21-powerbi-time-intelligence/datesinperiod_datesbetween.png&quot; alt=&quot;DATESYTED and TOTALYTD Calculations&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;You can learn more about them at Microsoft documentation for &lt;a href=&quot;https://docs.microsoft.com/en-us/dax/datesinperiod-function-dax&quot; class=&quot;post__link&quot;&gt;DAYSINPERIOD&lt;/a&gt; and &lt;a href=&quot;https://docs.microsoft.com/en-us/dax/datesbetween-function-dax&quot; class=&quot;post__link&quot;&gt;DAYSBEETWEEN&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;stepping-out-of-the-time-capsule&quot;&gt;Stepping Out of the Time Capsule&lt;/h2&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Power BI’s Time Intelligence functions are akin to a time-traveling journey. They empower you to traverse through your data - past, present, and future. Whether you’re revisiting the past year with SAMEPERIODLASTYEAR, leaping through your data with DATEADD, or meticulously exploring specific date ranges with DATESBETWEEN, the power is all yours. So fasten your seat belts, prepare your time capsules, and commandeer your data journey. To quote Albert Einstein, “The only reason for time is so that everything doesn’t happen at once!” Happy data crunching!&lt;/p&gt;
+
+&lt;p&gt;And remember, as Albert Einstein once said, “Anyone who has never made a mistake has never tried anything new.” So, don’t be afraid of making mistakes; practice makes perfect.&lt;/p&gt;
+
+&lt;p&gt;Continuously experiment with Time Intelligence functions, explore new DAX functions, and challenge yourself with real-world data scenarios.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;If you enjoyed what you read and find it helpful please check back, and check back often. Follow me on &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/@emguyant&quot;&gt;&lt;i class=&quot;fab fa-medium&quot;&gt;&lt;/i&gt; Medium&lt;/a&gt; while giving a clap to the article! Also don’t forget to subscribe to the &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/inquisitive-nature&quot;&gt;&lt;b&gt;INQUISITIVE NATURE&lt;/b&gt;&lt;/a&gt; publication.&lt;/p&gt;</content><author><name>Ethan Guyant</name></author><category term="Quick Start" /><category term="Microsoft 365" /><category term="Power BI" /><category term="Power Platform" /><category term="Power BI Fundamentals Series" /><category term="Power BI Functions" /><summary type="html">The Tools to Time Travel: An Introduction</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://ethanguyant.com/assets/img/post_img/time-intelligence.jpg" /><media:content medium="image" url="http://ethanguyant.com/assets/img/post_img/time-intelligence.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Unlocking the Secrets of CALCULATE: A Deep Dive into Advanced Data Analysis in Power BI</title><link href="http://ethanguyant.com/blog/2023-07-08-powerbi-calculate/" rel="alternate" type="text/html" title="Unlocking the Secrets of CALCULATE: A Deep Dive into Advanced Data Analysis in Power BI" /><published>2023-07-08T00:00:00+00:00</published><updated>2023-07-08T00:00:00+00:00</updated><id>http://ethanguyant.com/blog/powerbi-calculate</id><content type="html" xml:base="http://ethanguyant.com/blog/2023-07-08-powerbi-calculate/">&lt;p&gt;Are you tired of drowning in a sea of data? Data analysis is a puzzle waiting to be solved and CALCULATE is the missing piece that brings it all together. Let’s explore the intricacies of CALCULATE in Power BI. From unraveling complex calculations to applying complex filters, this function holds the key to unlocking actionable insights buried within your data. Whether your a business professional, a data enthusiast, or a seasoned data analyst this guide will equip you with the knowledge and tools to solve the most perplexing data puzzles. Brace yourself for a comprehensive exploration of Power BI’s CALCULATE function.&lt;/p&gt;
 
 &lt;p&gt;Prepare to be amazed as we explore the the secrets of the CALCULATE function. CALCULATE is the true superhero of Power BI that empowers you to perform complex calculations and transformations on your data effortlessly. It holds the key to manipulating the filter context, allowing you to focus on the precise subset of data you need for your analysis.&lt;/p&gt;
 
@@ -227,7 +405,7 @@ CALCULATE(
 &lt;hr /&gt;
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;If you enjoyed what you read and find it helpful please check back, and check back often. Follow me on &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/@emguyant&quot;&gt;&lt;i class=&quot;fab fa-medium&quot;&gt;&lt;/i&gt; Medium&lt;/a&gt; while giving a clap to the article! Also don’t forget to subscribe to the &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/inquisitive-nature&quot;&gt;&lt;b&gt;INQUISITIVE NATURE&lt;/b&gt;&lt;/a&gt; publication.&lt;/p&gt;</content><author><name>Ethan Guyant</name></author><category term="Quick Start" /><category term="Microsoft 365" /><category term="Power BI" /><category term="Power Platform" /><category term="Power BI Fundamentals Series" /><category term="Function Friday" /><summary type="html">Are you tired of drowning in a sea of data? Data analysis is a puzzle waiting to be solved and CALCULATE is the missing piece that brings it all together. Let’s explore the intricacies of CALCULATE in Power BI. From unraveling complex calculations to applying complex filters, this function holds the key to unlocking actionable insights buried within your data. Whether your a business professional, a data enthusiast, or a seasoned data analyst this guide will equip you with the knowledge and tools to solve the most perplexing data puzzles. Brace yourself for a comprehensive exploration of Power BI’s CALCULATE function.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://ethanguyant.com/assets/img/post_img/power-bi-calculate.jpg" /><media:content medium="image" url="http://ethanguyant.com/assets/img/post_img/power-bi-calculate.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">From Data to Insights: Maximizing Power BI’s Calculated Measures and Columns for Deeper Analysis</title><link href="http://ethanguyant.com/blog/2023-06-29-calculated-measures-columns/" rel="alternate" type="text/html" title="From Data to Insights: Maximizing Power BI’s Calculated Measures and Columns for Deeper Analysis" /><published>2023-06-29T00:00:00+00:00</published><updated>2023-06-29T00:00:00+00:00</updated><id>http://ethanguyant.com/blog/calculated-measures-columns</id><content type="html" xml:base="http://ethanguyant.com/blog/2023-06-29-calculated-measures-columns/">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+&lt;p&gt;If you enjoyed what you read and find it helpful please check back, and check back often. Follow me on &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/@emguyant&quot;&gt;&lt;i class=&quot;fab fa-medium&quot;&gt;&lt;/i&gt; Medium&lt;/a&gt; while giving a clap to the article! Also don’t forget to subscribe to the &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/inquisitive-nature&quot;&gt;&lt;b&gt;INQUISITIVE NATURE&lt;/b&gt;&lt;/a&gt; publication.&lt;/p&gt;</content><author><name>Ethan Guyant</name></author><category term="Quick Start" /><category term="Microsoft 365" /><category term="Power BI" /><category term="Power Platform" /><category term="Power BI Fundamentals Series" /><category term="Power BI Functions" /><summary type="html">Are you tired of drowning in a sea of data? Data analysis is a puzzle waiting to be solved and CALCULATE is the missing piece that brings it all together. Let’s explore the intricacies of CALCULATE in Power BI. From unraveling complex calculations to applying complex filters, this function holds the key to unlocking actionable insights buried within your data. Whether your a business professional, a data enthusiast, or a seasoned data analyst this guide will equip you with the knowledge and tools to solve the most perplexing data puzzles. Brace yourself for a comprehensive exploration of Power BI’s CALCULATE function.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://ethanguyant.com/assets/img/post_img/power-bi-calculate.jpg" /><media:content medium="image" url="http://ethanguyant.com/assets/img/post_img/power-bi-calculate.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">From Data to Insights: Maximizing Power BI’s Calculated Measures and Columns for Deeper Analysis</title><link href="http://ethanguyant.com/blog/2023-06-29-calculated-measures-columns/" rel="alternate" type="text/html" title="From Data to Insights: Maximizing Power BI’s Calculated Measures and Columns for Deeper Analysis" /><published>2023-06-29T00:00:00+00:00</published><updated>2023-06-29T00:00:00+00:00</updated><id>http://ethanguyant.com/blog/calculated-measures-columns</id><content type="html" xml:base="http://ethanguyant.com/blog/2023-06-29-calculated-measures-columns/">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -2227,158 +2405,4 @@ DIVIDE(Sales, AllSales)
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;If you enjoy what you read and find it helpful please check back, and check back often. Follow me on &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/@emguyant&quot;&gt;&lt;i class=&quot;fab fa-medium&quot;&gt;&lt;/i&gt; Medium&lt;/a&gt; while giving a clap to the article! Also don’t forget to subscribe to the &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/inquisitive-nature&quot;&gt;&lt;b&gt;INQUISITIVE NATURE&lt;/b&gt;&lt;/a&gt; publication.&lt;/p&gt;</content><author><name>Ethan Guyant</name></author><category term="Deep Dive" /><category term="Microsoft 365" /><category term="Power BI" /><category term="Power Platform" /><category term="Power BI Fundamentals Series" /><summary type="html">Contents Review Introduction to Filter Context The CALCULATE Function Exploring Filter Context Create Filter Context with Slicers Create Filter Context with CALCULATE Keep External Filters with CALCULATE More CALCULATE Examples Create a Measure of High Quantity Sales Percentage of Sales by Product Color</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://ethanguyant.com/assets/img/post_img/powerbi-filter-context.jpg" /><media:content medium="image" url="http://ethanguyant.com/assets/img/post_img/powerbi-filter-context.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Power BI Iterators: Unleashing the Power of Iteration in Power BI Calculations</title><link href="http://ethanguyant.com/blog/2022-10-11-power-bi-iterators/" rel="alternate" type="text/html" title="Power BI Iterators: Unleashing the Power of Iteration in Power BI Calculations" /><published>2022-10-11T00:00:00+00:00</published><updated>2022-10-11T00:00:00+00:00</updated><id>http://ethanguyant.com/blog/power-bi-iterators</id><content type="html" xml:base="http://ethanguyant.com/blog/2022-10-11-power-bi-iterators/">&lt;h2 id=&quot;contents&quot;&gt;Contents&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;#overview&quot;&gt;Overview&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#introduction&quot;&gt;Introduction&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#understanding-iterators&quot;&gt;Understanding Iterators&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#iterator-functions-that-generate-virtual-tables&quot;&gt;Iterator Functions that Generate Virtual Tables&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#combining-iterators&quot;&gt;Combining Iterators&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;review&quot;&gt;Review&lt;/h2&gt;
-&lt;p&gt;In order to facilitate analysis and visualization in Power BI a data model must first be created. The data model consists of individual data tables, relationships, and calculations. Calculations come in the form of either calculated columns or measures.&lt;/p&gt;
-
-&lt;p&gt;Check out &lt;a href=&quot;https://ethanguyant.com/blog/2022-09-28-power-bi-row-context/&quot; class=&quot;post__link&quot;&gt;Power BI Row Context: Understanding the Power of Context in Calculations&lt;/a&gt; for key differences between calculated columns and measures.&lt;/p&gt;
-
-&lt;p&gt;The evaluation context limits the values in the current scope when Power BI evaluates a DAX expression. There are two types of evaluation context, filter and row, that can be active during the evaluation of a DAX expression.&lt;/p&gt;
-
-&lt;p&gt;This post is the second of a Power BI Fundamental series with a focus on iterator functions. The example file used in this post is located here -&lt;a class=&quot;social-list__link&quot; href=&quot;https://github.com/EMGuyant/power-bi-key-fundamentals&quot;&gt;&lt;i class=&quot;fab fa-github&quot;&gt;&lt;/i&gt; GitHub&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
-&lt;p&gt;This post will build upon the Power BI file created in Part 1 of the series titled row_context_example. The example file for this post is iterator_functions, and both can be found here (&lt;a class=&quot;social-list__link&quot; href=&quot;https://github.com/EMGuyant/power-bi-key-fundamentals&quot;&gt;&lt;i class=&quot;fab fa-github&quot;&gt;&lt;/i&gt; GitHub&lt;/a&gt;).&lt;/p&gt;
-
-&lt;p&gt;As noted at the end of &lt;a href=&quot;https://ethanguyant.com/blog/2022-09-28-power-bi-row-context/&quot; class=&quot;post__link&quot;&gt;Power BI Row Context: Understanding the Power of Context in Calculations&lt;/a&gt;, creating a measure by default was unable to reference the row values of a column. When creating a measure a column can be referenced and passed to a standard aggregation function. The standard aggregation function will return only a single aggregated value. This is not the row-by-row functionality that will be required to replace a calculated column, such as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesAmount&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Creating the desired measure will require an iterator function to create row context.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;understanding-iterators&quot;&gt;Understanding Iterators&lt;/h2&gt;
-&lt;p&gt;An iterator moves row-by-row or iterates through an object. The object can be a data model table or a virtual/temporary table. Data model tables are tables loaded into or linked to within Power BI. A table generated from within a measure and persists only for a temporary period of time is a virtual table.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Since an iterator moves row-by-row it has row context, and row context always iterates&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;An iterator function can return a single value (e.g. number, text, date) or a virtual table. An iterator generally has two arguments:&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;The object (i.e. table) to iterate through&lt;/li&gt;
-  &lt;li&gt;The expression evaluated for each row of the object&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;It can be helpful to think of the expression as a temporary column of the object. Evaluation of the expression occurs row-by-row creating a column of calculated results. The column of results only persists during the evaluation and is not loaded to the data model. The purpose of the temporary column is to calculate the final returned value of the iterator.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;A common identifier of an Iterator Function is an &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;X&lt;/code&gt; at the end of the function’s name&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Examples of iterator functions include &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SUMX&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MINX&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MAXX&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AVERAGEX&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RANKX&lt;/code&gt;. The ending &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;X&lt;/code&gt; is only a common identifier, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FILTER&lt;/code&gt; is an example of an iterator function that does not end with a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;X&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Example Iterator Function: &lt;br /&gt;
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SUMX(SalesOrderDetail, SalesOrderDetail[OrderQty] * SalesOrderDetail[UnitPrice] * (1 - SalesOrderDetail[UnitPriceDiscount]))&lt;/code&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Table: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesOrderDetail&lt;/code&gt; - the object iterated over&lt;/li&gt;
-  &lt;li&gt;Expression: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesOrderDetail[OrderQty] * SalesOrderDetail[UnitPrice] * (1 - SalesOrderDetail[UnitPriceDiscount])&lt;/code&gt; - the expression evaluated for each row&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/2022-10-12-power-bi-iterators/iterator_function.gif&quot; alt=&quot;Creating Example Iterator Function&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Once implementing the iterator &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SUMX&lt;/code&gt; and specifying the table as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesOrderDetails&lt;/code&gt; the columns of the table will be recognized and able to be referenced like when the calculated column was created. The new measure &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesAmount2&lt;/code&gt; created using an iterator will replace the calculated column &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesAmount&lt;/code&gt;. Comparing the default aggregation of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesAmount&lt;/code&gt; column (i.e. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Sum of SalesAmount&lt;/code&gt;) and the new measure &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesAmount2&lt;/code&gt; it can been see the values are equal.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/2022-10-12-power-bi-iterators/total_sales_2_tables.png&quot; alt=&quot;Table of data with iterator function results&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;iterator-functions-that-generate-virtual-tables&quot;&gt;Iterator Functions that Generate Virtual Tables&lt;/h2&gt;
-
-&lt;p&gt;There are iterator functions such as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SUMX&lt;/code&gt; that return a scalar value and there are ones like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FILTER&lt;/code&gt; that return virtual tables.&lt;/p&gt;
-
-&lt;p&gt;To further explore, first create a new table in the data model generated by the returned table of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FILTER&lt;/code&gt; function.&lt;/p&gt;
-
-&lt;p&gt;For this example, we use the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FILTER&lt;/code&gt; function to create a new &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProductBlue&lt;/code&gt; table. For the first argument of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FILTER&lt;/code&gt; function we pass in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Product&lt;/code&gt; table. Then we filter that table using a filter expression defined as: 
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Products[Color] = &quot;blue&quot;&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProductBlue = FILTER(Products, Products[Color] = &quot;blue&quot;)&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;We then can visualize this new table and compare the row count to the count of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProductID&lt;/code&gt; by color of the original table. Comparing these two tables we see that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProductBlue&lt;/code&gt; is a subset of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Product&lt;/code&gt; table.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/2022-10-12-power-bi-iterators/product_blue_table.png&quot; alt=&quot;New ProductBlue Table&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The generation of this table highlights the iterating functionality and the row context when evaluating the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FILTER&lt;/code&gt; function. To create the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProductBlue&lt;/code&gt; table the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FILTER&lt;/code&gt; iterator function must create row context. During the evaluation, the function must go within the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Products&lt;/code&gt; table and for each row (i.e. row context) evaluate what the product color is. If the color is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Blue&lt;/code&gt; the function returns &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;True&lt;/code&gt; otherwise returns &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;False&lt;/code&gt;. The resulting table then consists of only rows from the original table which evaluated to a value of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;True&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Creating the new &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProductBlue&lt;/code&gt; table was for demonstrative purposes. The table returned by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FILTER&lt;/code&gt; can be a virtual table used within a measure. In this case, the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProductBlue&lt;/code&gt; table would only persist while the measure is being evaluated. As an example, create a new &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProductBlueMeasure&lt;/code&gt; measure using the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;COUNTROWS&lt;/code&gt; function. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;COUNTROWS&lt;/code&gt; takes a single argument, the table to count the row of. To do this we will pass the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FILTER&lt;/code&gt; expression used to create the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProductBlue&lt;/code&gt; table to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;COUNTROWS&lt;/code&gt; function. To further demonstrate that the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProductBlue&lt;/code&gt; table is unnecessary, we can create a similar &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProductBlackMeasure&lt;/code&gt;.  Viewing these measures shows the result is the same count that was produced by the other methods used to obtain this count.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/2022-10-12-power-bi-iterators/product_color_measures.png&quot; alt=&quot;Product Color Measure&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;combining-iterators&quot;&gt;Combining Iterators&lt;/h2&gt;
-
-&lt;p&gt;More complex measures can be created by combining or nesting iterators. For example, combining the product color and the sales data, such as evaluating the total sales for only blue products. This measure will first create a virtual table of the sales data for only blue products. Then iterate row-by-row through the virtual table and evaluate the sales amount. Finally, return the total sales amount.&lt;/p&gt;
-
-&lt;p&gt;The DAX expression will be:
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SUMX(FILTER(SalesOrderDetail, RELATED(Products[Color])=&quot;Blue&quot;), SalesOrderDetail[OrderQty] * SalesOrderDetail[UnitPrice] * (1 - SalesOrderDetail[UnitPriceDiscount]))&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;The virtual table mentioned above is generated by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FILTER(SalesOrderDetail, RELATED(Products[Color])=&quot;Blue&quot;)&lt;/code&gt;. This is the first iterator function that is evaluated using the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesOrderDetail&lt;/code&gt; table and the expression &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RELATED(Products[Color])=&quot;Blue&quot;&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RELATED()&lt;/code&gt; is a function that returns a related value from another table. This function can be used since the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Product&lt;/code&gt; table is related to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesOrderDetail&lt;/code&gt; table with a key value of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProductID&lt;/code&gt;. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FILTER&lt;/code&gt; function returns a subset of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesOrderDetail&lt;/code&gt; table containing only rows where the product is blue. This virtual table is then passed to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SUMX&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Then the expression evaluated row-by-row is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesOrderDetail[OrderQty] * SalesOrderDetail[UnitPrice] * (1 - SalesOrderDetail[UnitPriceDiscount])&lt;/code&gt; which returns the total sales amount for each row. Then this temporary column is summed by the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SUMX&lt;/code&gt; function.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/2022-10-12-power-bi-iterators/product_blue_total_sales.png&quot; alt=&quot;Blue Product Total Sales&quot; class=&quot;post__link&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Viewing the two tables on the left, the totals sales for the Blue products for all methods is approximately 9.60M. Selecting the blue row in the top table filters the table below, to show sales by Product for only blue products. Viewing the totals for all three methods also shows a value of approximately 9.60M. Lastly, viewing the value card under &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Nested Iterator&lt;/code&gt; shows that the above created DAX expressions results in the same value of 9.60M.&lt;/p&gt;
-
-&lt;p&gt;Two key concepts are highlighted by the above example&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Both &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SUMX&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FILTER&lt;/code&gt; create row context
-    &lt;ul&gt;
-      &lt;li&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FILTER&lt;/code&gt; function returns a virtual table which is a subset of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesOrderDetail&lt;/code&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SUMX&lt;/code&gt; returns the sum of the row-by-row calculation of the total sale amount&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;The table passed to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SUMX&lt;/code&gt; is the table which is returned by the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FILTER&lt;/code&gt; function
-    &lt;ul&gt;
-      &lt;li&gt;After evaluating the expression everything created by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FILTER(SalesOrderDetail, RELATED(Products[Color])=&quot;Blue&quot;), SalesOrderDetail[OrderQty] * SalesOrderDetail[UnitPrice] * (1 - SalesOrderDetail[UnitPriceDiscount])&lt;/code&gt; gets discarded and requires no memory space.&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;As DAX expressions get longer and more complex formatting the expression will help make them easier to read and understand, tools such as &lt;a href=&quot;https://www.daxformatter.com/&quot; class=&quot;post__link&quot;&gt;DAXFormatter&lt;/a&gt; can aid in formatting if needed&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;The concept of evaluation context has been mentioned in this post as well as in &lt;a href=&quot;https://ethanguyant.com/blog/2022-09-28-power-bi-row-context/&quot; class=&quot;post__link&quot;&gt;Power BI Row Context: Understanding the Power of Context in Calculations&lt;/a&gt;. Evaluation context is the context in which a DAX formula evaluates a calculation. There are two types, &lt;a href=&quot;https://ethanguyant.com/blog/2022-09-28-power-bi-row-context/&quot; class=&quot;post__link&quot;&gt;Power BI Row Context: Understanding the Power of Context in Calculations&lt;/a&gt; explored the first type, row context. This post explored iterators or specific functions which create row context to perform multi-column calculations. Check back for Part Three of this series which will explore the second type of evaluation context, the filter context.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;If you enjoy what you read and find it helpful please check back, and check back often. Follow me on &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/@emguyant&quot;&gt;&lt;i class=&quot;fab fa-medium&quot;&gt;&lt;/i&gt; Medium&lt;/a&gt; while giving a clap to the article! Also don’t forget to subscribe to the &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/inquisitive-nature&quot;&gt;&lt;b&gt;INQUISITIVE NATURE&lt;/b&gt;&lt;/a&gt; publication.&lt;/p&gt;</content><author><name>Ethan Guyant</name></author><category term="Deep Dive" /><category term="Microsoft 365" /><category term="Power BI" /><category term="Power Platform" /><category term="Power BI Fundamentals Series" /><summary type="html">Contents Overview Introduction Understanding Iterators Iterator Functions that Generate Virtual Tables Combining Iterators</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://ethanguyant.com/assets/img/post_img/powerbi-iterators.jpg" /><media:content medium="image" url="http://ethanguyant.com/assets/img/post_img/powerbi-iterators.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;p&gt;If you enjoy what you read and find it helpful please check back, and check back often. Follow me on &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/@emguyant&quot;&gt;&lt;i class=&quot;fab fa-medium&quot;&gt;&lt;/i&gt; Medium&lt;/a&gt; while giving a clap to the article! Also don’t forget to subscribe to the &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/inquisitive-nature&quot;&gt;&lt;b&gt;INQUISITIVE NATURE&lt;/b&gt;&lt;/a&gt; publication.&lt;/p&gt;</content><author><name>Ethan Guyant</name></author><category term="Deep Dive" /><category term="Microsoft 365" /><category term="Power BI" /><category term="Power Platform" /><category term="Power BI Fundamentals Series" /><summary type="html">Contents Review Introduction to Filter Context The CALCULATE Function Exploring Filter Context Create Filter Context with Slicers Create Filter Context with CALCULATE Keep External Filters with CALCULATE More CALCULATE Examples Create a Measure of High Quantity Sales Percentage of Sales by Product Color</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://ethanguyant.com/assets/img/post_img/powerbi-filter-context.jpg" /><media:content medium="image" url="http://ethanguyant.com/assets/img/post_img/powerbi-filter-context.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>

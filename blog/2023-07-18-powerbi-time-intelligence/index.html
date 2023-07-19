@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Time Travel in Power BI: Mastering Time Intelligence Functions | Ethan Guyant’s Blog</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="Time Travel in Power BI: Mastering Time Intelligence Functions" />
+<meta name="author" content="Ethan Guyant" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Buckle up, data enthusiasts! Time is the key to unlocking valuable insights. So, get ready to warp through time and transform your Power BI reports into data narratives. Discover the incredible power of Time Intelligence functions and take your analysis to the next level!" />
+<meta property="og:description" content="Buckle up, data enthusiasts! Time is the key to unlocking valuable insights. So, get ready to warp through time and transform your Power BI reports into data narratives. Discover the incredible power of Time Intelligence functions and take your analysis to the next level!" />
+<link rel="canonical" href="http://ethanguyant.com/blog/2023-07-18-powerbi-time-intelligence/" />
+<meta property="og:url" content="http://ethanguyant.com/blog/2023-07-18-powerbi-time-intelligence/" />
+<meta property="og:site_name" content="Ethan Guyant’s Blog" />
+<meta property="og:image" content="http://ethanguyant.com/assets/img/post_img/time-intelligence.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-07-18T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="http://ethanguyant.com/assets/img/post_img/time-intelligence.jpg" />
+<meta property="twitter:title" content="Time Travel in Power BI: Mastering Time Intelligence Functions" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"Ethan Guyant"},"description":"Buckle up, data enthusiasts! Time is the key to unlocking valuable insights. So, get ready to warp through time and transform your Power BI reports into data narratives. Discover the incredible power of Time Intelligence functions and take your analysis to the next level!","url":"http://ethanguyant.com/blog/2023-07-18-powerbi-time-intelligence/","@type":"BlogPosting","image":"http://ethanguyant.com/assets/img/post_img/time-intelligence.jpg","headline":"Time Travel in Power BI: Mastering Time Intelligence Functions","dateModified":"2023-07-18T00:00:00+00:00","datePublished":"2023-07-18T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://ethanguyant.com/blog/2023-07-18-powerbi-time-intelligence/"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<title>Ethan Guyant's Blog</title>
+  <!-- Normalize CSS file irons out some difference between browsers -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+  <!-- Google Fonts-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,900|Source+Sans+Pro:300,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Arvo:wght@700&display=swap" rel="stylesheet">
+  <!-- CSS Styles -->
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/notebook_default.css">
+  <link rel="stylesheet" href="/assets/css/notebook_custom.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
+  <!-- MathJax configuration -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+  </script>
+  <!-- Animation on Scroll-->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <!-- Font Awesome Kit -->
+  <script src="https://kit.fontawesome.com/c9965d23bb.js" crossorigin="anonymous"></script><link type="application/atom+xml" rel="alternate" href="http://ethanguyant.com/feed.xml" title="Ethan Guyant's Blog" /><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7356875210051999"
+  crossorigin="anonymous">
+  </script>
+  
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RTFP0V6X0G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RTFP0V6X0G');
+</script>
+  
+</head>
+<body><header class="header sticky">
+    <div class="wrapper">
+        <div>
+            <div class="scroll-logo"> 
+                <a href="/">  
+                    <svg id="EG" viewBox="0 0 152 216">
+                        <g>
+                            <path id="hex"d="M 76.342 4 L 147.685 41.377 L 147.685 116.13 L 76.342 153.506 L 5 116.13 L 5 41.377 Z" style="stroke-width: 8.37394px; fill-opacity: 0; fill: none; stroke: #39ace7;"></path>         
+                            <polygon class="logo"style="stroke-width: 3.58883px; stroke: #39ace7; fill: #39ace7;" points="41.001 38.501 112.012 38.501 112.012 62.884 97.474 62.884 97.474 54.976 41.001 54.976"></polygon>
+                            <polygon class="logo" style="stroke-width: 3.58883px; stroke: #39ace7; fill: #39ace7;" points="40.671 102.9 97.81 102.9 97.81 86.796 83.604 86.796 83.604 70.701 112.014 70.701 112.014 102.92 112.014 119.004 40.939 119.004"></polygon>
+                            <polygon class="logo" style="stroke-width: 3.58883px; stroke: #39ace7; fill: #39ace7;" points="41.001 70.701 69.753 70.701 63.532 87.725 41.317 87.725"></polygon>
+                        </g> 
+                    </svg>
+                </a>
+            </div>
+
+            <div class="header__title">
+                <a href="/">EthanGuyant.com</a>
+            </div>
+            
+        </div>
+        
+        <div class="nav__menu">
+            <div class="nav__toggle">
+                <div class="nav__icon">
+                    <span></span>
+                </div>
+            </div>
+        </div>
+        <div class="nav__menu__wrapper">
+            <ul class="nav__menu__list">
+                <li class="nav__menu__list__item">
+                    <a href="/" class="nav__menu__list__item__link">Home</a>
+                </li>
+                <li class="nav__menu__list__item">
+                    <a href="/blog" class="nav__menu__list__item__link">Blog</a>
+                </li>
+                <li class="nav__menu__list__item">
+                    <a href="/about" class="nav__menu__list__item__link">About</a>
+                </li>
+                <li class="nav__menu__list__item">
+                    <a href="/category/project/" class="nav__menu__list__item__link">Projects</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header><main class="page" aria-label="Content">
+      <div class="page__content">
+        <section class="blog__header">
+    <div class="blog__img">
+      <div class="blog__img__over"></div>
+    </div>
+    <div class="wrapper">
+      <h1 class="blog__title"><span class="inquisitive">INQUISITIVE</span> <span class="nature">NATURE</span></h1>
+      <p class="blog__subtitle">Learn  Explore  <strong>Share</strong></p>
+      <p class="post__categories">
+    </div>
+  </section><div class="wrapper">
+  <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+    <section class="article__header">
+        <h1 class="post-title p-name" itemprop="name headline">Time Travel in Power BI: Mastering Time Intelligence Functions</h1>
+        <p class="post-meta">
+          <time class="dt-published" datetime="2023-07-18T00:00:00+00:00" itemprop="datePublished">Jul 18, 2023
+          </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">Ethan Guyant</span></span></p>
+          <p class="post-category">
+            Category: 
+            <a href="/category/quick-start">
+              <i class="fa-solid fa-folder"></i>
+              Quick Start
+            </a> 
+          </p>
+          <p class="post-tags">
+          Tags: 
+           
+              
+              <a href="/tag/microsoft-365">
+                <i class="fa-solid fa-tag"></i>
+                Microsoft 365
+              </a> 
+              
+              <a href="/tag/power-bi">
+                <i class="fa-solid fa-tag"></i>
+                Power BI
+              </a> 
+              
+              <a href="/tag/power-platform">
+                <i class="fa-solid fa-tag"></i>
+                Power Platform
+              </a> 
+              
+              <a href="/tag/power-bi-fundamentals-series">
+                <i class="fa-solid fa-tag"></i>
+                Power BI Fundamentals Series
+              </a> 
+              
+              <a href="/tag/power-bi-functions">
+                <i class="fa-solid fa-tag"></i>
+                Power BI Functions
+              </a> 
+            
+          
+        </p>
+    </section>
+    <div class="post-content e-content" itemprop="articleBody">
+      <h2 id="the-tools-to-time-travel-an-introduction">The Tools to Time Travel: An Introduction</h2>
+
+<p><br /></p>
+
+<p>In Power BI, time intelligence functions are your handy time machines. They enable you to extract useful insights from your data by manipulating time periods. These functions range from calculating sales year-to-date (YTD) to comparing data from previous years. If you want to unlock the true potential of your Power BI reports, you need to harness the might of Time Intelligence functions. In this post, we will unpack six time intelligence functions: DATESYTD, TOTALYTD, SAMPLEPERIODLASTYEAR, DATEADD, DATESINPERIOD, and DATESBETWEEN.</p>
+
+<p>For those of you eager to start experimenting and diving deeper there is a Power BI report loaded with the sample data used in this post ready for you. So don’t just read, dive in and get hands-on with DAX Functions in Power BI. Check out it here: <a href="https://github.com/EMGuyant/powerbi-dax-functions-series" class="post__link">GitHub — Power BI DAX Function Series: Mastering Data Analysis</a>.</p>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="the-twin-siblings-datesytd-and-totalytd">The Twin Siblings: DATESYTD and TOTALYTD</h2>
+
+<p><br /></p>
+
+<p>First stop on our journey, the twin siblings, DATESYTD and TOTALYTD.</p>
+
+<p>DATESYTD is the Einstein of the Power BI world, it uses the concept of relative time to help us compute values from the start of the year to the last date in the data. The syntax is as simple as the concept:</p>
+
+<p><code class="language-plaintext highlighter-rouge">DATESYTD(&lt;dates&gt;[, &lt;year_end_date&gt;])</code></p>
+
+<p>Here, <code class="language-plaintext highlighter-rouge">&lt;dates&gt;</code> is a column containing dates, and <code class="language-plaintext highlighter-rouge">&lt;year_end_date&gt;</code> is an optional parameter to specify the year-end date, with a default value of December 31st.</p>
+
+<p>On the other hand, TOTALYTD takes it up a notch. It summarizes data for the same period in a given year. The syntax of this function is:</p>
+
+<p><code class="language-plaintext highlighter-rouge">TOTALYTD(&lt;expression&gt;, &lt;dates&gt;[, &lt;filter&gt;])</code></p>
+
+<p>In this syntax, <code class="language-plaintext highlighter-rouge">&lt;expression&gt;</code> is what you want to calculate, <code class="language-plaintext highlighter-rouge">&lt;dates&gt;</code> is a column containing dates, and <code class="language-plaintext highlighter-rouge">&lt;filter&gt;</code> is a filter to restrict the calculation over time.  TOTALYTD is DATESYTD, but with additional calculation power.</p>
+
+<p>Here’s are example DAX formulas to calculate the total sales amount from the start of the year till the current date.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>YTD Sales DATESYTD =
+CALCULATE(
+    SUM(Sales[Amount]),
+    DATESYTD(Dates[Date])
+)
+</code></pre></div></div>
+
+<p>And here is how you can calculate the same using TOTALYTD:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>YTD Sales TOTALYTD =
+TOTALYTD(SUM(Sales[Amount]), Dates[Date])
+</code></pre></div></div>
+
+<p>While both functions return the same result in this case, the key difference lies in their flexibility. DATESYTD just provides a set of dates, but TOTALYTD goes a step further to calculate an expression over those dates. Notice <code class="language-plaintext highlighter-rouge">YTD Sales DATESYTD</code> uses <code class="language-plaintext highlighter-rouge">DATESYTD</code> in combination with <code class="language-plaintext highlighter-rouge">CALCULATE</code> in order to achieve the same outcome as <code class="language-plaintext highlighter-rouge">YTD Sales TOTALYTD</code>.</p>
+
+<p><img src="/assets/img/2023-07-21-powerbi-time-intelligence/datesytd_totalytd.png" alt="DATESYTED and TOTALYTD Calculations" class="post__img" /></p>
+
+<blockquote>
+  <p>Don’t get confused, TOTALYTD may look like it calculates the year-to-date <em>total</em>, but in reality it only changes the context. It can be used to return year-to-date anything, it all depends on what you define as the <code class="language-plaintext highlighter-rouge">&lt;expression&gt;</code> parameter.</p>
+</blockquote>
+
+<p>For more information on these two head over to the Microsoft documentation for <a href="https://learn.microsoft.com/en-us/dax/datesytd-function-dax" class="post__link">DATESYTD</a> and <a href="https://learn.microsoft.com/en-us/dax/totalytd-function-dax" class="post__link">TOTALYTD</a>.</p>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="the-cousins-sameperiodlastyear-and-dateadd">The Cousins: SAMEPERIODLASTYEAR and DATEADD</h2>
+
+<p><br /></p>
+
+<p>Next up the cousins, SAMEPERIODLASTYEAR and DATEADD. SAMEPERIODLASTYEAR is the function that does exactly as the name suggests and always knows what happened “this time last year”.  This is perfect for spotting trends, analyzing seasonality, or measuring growth. The syntax couldn’t be more straightforward:</p>
+
+<p><code class="language-plaintext highlighter-rouge">SAMEPERIODLASTYEAR(&lt;dates&gt;)</code></p>
+
+<p>Here, <code class="language-plaintext highlighter-rouge">&lt;dates&gt;</code> is a column that contains dates. Think of this function as equivalent to you Facebook memories, reminding you of what happened exactly one year ago.</p>
+
+<p>While DATEADD is the flexible one that allows you to go back (or forward) any number of intervals you choose. This handy function’s syntax is:</p>
+
+<p><code class="language-plaintext highlighter-rouge">DATEADD(&lt;dates&gt;, &lt;number_of_intervals, &lt;interval&gt;)</code></p>
+
+<p>Here, <code class="language-plaintext highlighter-rouge">&lt;dates&gt;</code> is your date column, <code class="language-plaintext highlighter-rouge">&lt;number_of_intervals&gt;</code> is the number of intervals to move (can be negative for moving backwards), and <code class="language-plaintext highlighter-rouge">&lt;interval&gt;</code> is the interval to use (DAY, MONTH, QUARTER, or YEAR).  This function lets you journey backward or forward in time with ease!</p>
+
+<p>The example for this duo calculates the total sales for the same period in the previous year. The DAX formula for this example is:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Sales LY SAMEPERIODLASTYEAR =
+CALCULATE(
+    SUM(Sales[Amount]),
+    SAMEPERIODLASTYEAR(Dates[Date])
+)
+</code></pre></div></div>
+
+<p>Similarly, using DATEADD, you can achieve the same result by subtracting one year from the current date:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Sales LY DATEADD =
+CALCULATE(
+    SUM(Sales[Amount]),
+    DATEADD(Dates[Date], -1, YEAR)
+)
+</code></pre></div></div>
+
+<p>While both of these functions seem to do the same job, the difference again lies in their flexibility. SAMEPERIODLASTYEAR only takes you back one year, while DATEADD give you the liberty to move as far back or forward as you want, making it a more flexible option overall.</p>
+
+<p><img src="/assets/img/2023-07-21-powerbi-time-intelligence/sameperiodlastyear_dateadd.png" alt="DATESYTED and TOTALYTD Calculations" class="post__img" /></p>
+
+<p>Visit the Microsoft documentation for <a href="https://docs.microsoft.com/en-us/dax/sameperiodlastyear-function-dax" class="post__link">SAMEPERIODLASTYEAR</a> and <a href="https://docs.microsoft.com/en-us/dax/dateadd-function-dax" class="post__link">DATEADD</a> for a deeper dive.</p>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="the-mysterious-pair-datesinperiod-and-datesbetween">The Mysterious Pair: DATESINPERIOD and DATESBETWEEN</h2>
+
+<p><br /></p>
+
+<p>Last but not least, let’s explore the mysterious pair DATESINPERIOD and DATESBETWEEN. DATESINPERIOD has your back if you need to calculate data for a specific period. It returns a table that contains a column of dates that starts from a specific date, extends by a specified interval, and stops at the end of the last interval.</p>
+
+<p>Its syntax is:</p>
+
+<p><code class="language-plaintext highlighter-rouge">DATESINPERIOD(&lt;dates&gt;, &lt;start_date&gt;, &lt;number_of_intervals&gt;, &lt;interval&gt;)</code></p>
+
+<p>Here, <code class="language-plaintext highlighter-rouge">&lt;dates&gt;</code> is a column containing dates, <code class="language-plaintext highlighter-rouge">&lt;start_date&gt;</code> is the start date for the calculation, <code class="language-plaintext highlighter-rouge">&lt;number_of_intervals&gt;</code> is the number of intervals to include, and <code class="language-plaintext highlighter-rouge">&lt;interval&gt;</code> is the interval to use (DAY, MONTH, QUARTER, or YEAR).</p>
+
+<p>DATESBETWEEN, however, is the function you’d use to fetch data between two specific dates. It returns a table that contains a column of all dates between two specified dates. The syntax is as simple as:</p>
+
+<p><code class="language-plaintext highlighter-rouge">DATESBETWEEN(&lt;dates&gt;, &lt;start_date&gt;, &lt;end_date&gt;)</code></p>
+
+<p>Here, <code class="language-plaintext highlighter-rouge">&lt;dates&gt;</code> is a column that contains dates, <code class="language-plaintext highlighter-rouge">&lt;start_date&gt;</code> is the start date for the calculation, and <code class="language-plaintext highlighter-rouge">&lt;end_date&gt;</code> is the end date for the calculation. It’s like ordering a specific range of books from a library catalog. You get exactly what you want, nothing more, nothing less!</p>
+
+<p>Let’s look at a practical example of these functions.  Say you want to calculate the 3-month rolling average sales, both these functions can help solve this in their own way.</p>
+
+<p>Using DATAINPERIOD the DAX formula is:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Sales 3 Month Rolling Average DATESINPERIOD =
+CALCULATE(
+    AVERAGE(Sales[Amount]),
+    DATESINPERIOD(Dates[Date], LASTDATE(Dates[Date]), -3, MONTH)
+)
+</code></pre></div></div>
+
+<p>This formula calculates the average sales for the previous three months from the last date in the data. The same calculation with DATESBETWEEN would like like:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Sales 3 Month Rolling Average DATESBETWEEN =
+CALCULATE(
+    AVERAGE(Sales[Amount]),
+    DATESBETWEEN(
+        Dates[Date],
+        EDATE(LASTDATE(Dates[Date]), -3),
+        LASTDATE(Dates[Date])
+    )
+)
+</code></pre></div></div>
+
+<p>This formula also returns the average sales for the previous three months from the last date in the data. The key difference is that with DATESBETWEEN, you explicitly specify the start and end dates, providing a high degree of precision when needed.</p>
+
+<p><img src="/assets/img/2023-07-21-powerbi-time-intelligence/datesinperiod_datesbetween.png" alt="DATESYTED and TOTALYTD Calculations" class="post__img" /></p>
+
+<p>You can learn more about them at Microsoft documentation for <a href="https://docs.microsoft.com/en-us/dax/datesinperiod-function-dax" class="post__link">DAYSINPERIOD</a> and <a href="https://docs.microsoft.com/en-us/dax/datesbetween-function-dax" class="post__link">DAYSBEETWEEN</a>.</p>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="stepping-out-of-the-time-capsule">Stepping Out of the Time Capsule</h2>
+
+<p><br /></p>
+
+<p>Power BI’s Time Intelligence functions are akin to a time-traveling journey. They empower you to traverse through your data - past, present, and future. Whether you’re revisiting the past year with SAMEPERIODLASTYEAR, leaping through your data with DATEADD, or meticulously exploring specific date ranges with DATESBETWEEN, the power is all yours. So fasten your seat belts, prepare your time capsules, and commandeer your data journey. To quote Albert Einstein, “The only reason for time is so that everything doesn’t happen at once!” Happy data crunching!</p>
+
+<p>And remember, as Albert Einstein once said, “Anyone who has never made a mistake has never tried anything new.” So, don’t be afraid of making mistakes; practice makes perfect.</p>
+
+<p>Continuously experiment with Time Intelligence functions, explore new DAX functions, and challenge yourself with real-world data scenarios.</p>
+
+<p><br /></p>
+
+<hr />
+<p><br /></p>
+
+<p>If you enjoyed what you read and find it helpful please check back, and check back often. Follow me on <a class="post__link" href="https://medium.com/@emguyant"><i class="fab fa-medium"></i> Medium</a> while giving a clap to the article! Also don’t forget to subscribe to the <a class="post__link" href="https://medium.com/inquisitive-nature"><b>INQUISITIVE NATURE</b></a> publication.</p>
+
+    </div><a class="u-url" href="/blog/2023-07-18-powerbi-time-intelligence/" hidden></a>
+  </article>
+</div>
+      </div>
+    </main><footer class="footer">
+    <!-- replace with your own email address 
+    <a href="mailto:info@ethanguyant.com" class="footer__link">info@ethanguyant.com</a>-->
+    <ul class="social-list">
+        <li class="social-list__item">
+            <a class="social-list__link" href="mailto:emguyant@gmail.com">
+                <i class="fas fa-envelope"></i>
+            </a>
+        </li>
+        <li class="social-list__item">
+            <a class="social-list__link" href="https://www.linkedin.com/in/ethan-guyant/">
+                <i class="fab fa-linkedin"></i>
+            </a>
+        </li>
+        <li class="social-list__item">
+            <a class="social-list__link" href="https://github.com/EMGuyant">
+                <i class="fab fa-github"></i>
+            </a>
+        </li>
+        <li class="social-list__item">
+            <a class="social-list__link" href="https://medium.com/@emguyant">
+                <i class="fab fa-medium"></i>
+            </a>
+        </li>
+        <li class="social-list__item">
+            <a class="social-list__link" href="https://medium.com/inquisitive-nature">
+                <i class="fa-solid fa-book"></i>
+            </a>
+        </li>
+    </ul>
+</footer><script src="https://kit.fontawesome.com/c9965d23bb.js" crossorigin="anonymous"></script>
+<script src="/assets/js/script.js"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+</body>
+
+</html>
