@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://ethanguyant.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://ethanguyant.com/" rel="alternate" type="text/html" /><updated>2023-07-19T15:24:10+00:00</updated><id>http://ethanguyant.com/feed.xml</id><title type="html">Ethan Guyant’s Blog</title><subtitle>A data solution centric blog focusing on the use and application of Microsoft Power Apps, Python Programming, and Data Science.</subtitle><entry><title type="html">Time Travel in Power BI: Mastering Time Intelligence Functions</title><link href="http://ethanguyant.com/blog/2023-07-18-powerbi-time-intelligence/" rel="alternate" type="text/html" title="Time Travel in Power BI: Mastering Time Intelligence Functions" /><published>2023-07-18T00:00:00+00:00</published><updated>2023-07-18T00:00:00+00:00</updated><id>http://ethanguyant.com/blog/powerbi-time-intelligence</id><content type="html" xml:base="http://ethanguyant.com/blog/2023-07-18-powerbi-time-intelligence/">&lt;h2 id=&quot;the-tools-to-time-travel-an-introduction&quot;&gt;The Tools to Time Travel: An Introduction&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://ethanguyant.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://ethanguyant.com/" rel="alternate" type="text/html" /><updated>2023-07-19T15:37:10+00:00</updated><id>http://ethanguyant.com/feed.xml</id><title type="html">Ethan Guyant’s Blog</title><subtitle>A data solution centric blog focusing on the use and application of Microsoft Power Apps, Python Programming, and Data Science.</subtitle><entry><title type="html">Time Travel in Power BI: Mastering Time Intelligence Functions</title><link href="http://ethanguyant.com/blog/2023-07-19-powerbi-time-intelligence/" rel="alternate" type="text/html" title="Time Travel in Power BI: Mastering Time Intelligence Functions" /><published>2023-07-19T00:00:00+00:00</published><updated>2023-07-19T00:00:00+00:00</updated><id>http://ethanguyant.com/blog/powerbi-time-intelligence</id><content type="html" xml:base="http://ethanguyant.com/blog/2023-07-19-powerbi-time-intelligence/">&lt;h2 id=&quot;the-tools-to-time-travel-an-introduction&quot;&gt;The Tools to Time Travel: An Introduction&lt;/h2&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -47,7 +47,7 @@ TOTALYTD(SUM(Sales[Amount]), Dates[Date])
 
 &lt;p&gt;While both functions return the same result in this case, the key difference lies in their flexibility. DATESYTD just provides a set of dates, but TOTALYTD goes a step further to calculate an expression over those dates. Notice &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;YTD Sales DATESYTD&lt;/code&gt; uses &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DATESYTD&lt;/code&gt; in combination with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULATE&lt;/code&gt; in order to achieve the same outcome as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;YTD Sales TOTALYTD&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/2023-07-21-powerbi-time-intelligence/datesytd_totalytd.png&quot; alt=&quot;DATESYTED and TOTALYTD Calculations&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-07-18-powerbi-time-intelligence/datesytd_totalytd.png&quot; alt=&quot;DATESYTED and TOTALYTD Calculations&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;Don’t get confused, TOTALYTD may look like it calculates the year-to-date &lt;em&gt;total&lt;/em&gt;, but in reality it only changes the context. It can be used to return year-to-date anything, it all depends on what you define as the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;expression&amp;gt;&lt;/code&gt; parameter.&lt;/p&gt;
@@ -97,7 +97,7 @@ CALCULATE(
 
 &lt;p&gt;While both of these functions seem to do the same job, the difference again lies in their flexibility. SAMEPERIODLASTYEAR only takes you back one year, while DATEADD give you the liberty to move as far back or forward as you want, making it a more flexible option overall.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/2023-07-21-powerbi-time-intelligence/sameperiodlastyear_dateadd.png&quot; alt=&quot;DATESYTED and TOTALYTD Calculations&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-07-18-powerbi-time-intelligence/sameperiodlastyear_dateadd.png&quot; alt=&quot;DATESYTED and TOTALYTD Calculations&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Visit the Microsoft documentation for &lt;a href=&quot;https://docs.microsoft.com/en-us/dax/sameperiodlastyear-function-dax&quot; class=&quot;post__link&quot;&gt;SAMEPERIODLASTYEAR&lt;/a&gt; and &lt;a href=&quot;https://docs.microsoft.com/en-us/dax/dateadd-function-dax&quot; class=&quot;post__link&quot;&gt;DATEADD&lt;/a&gt; for a deeper dive.&lt;/p&gt;
 
@@ -151,7 +151,7 @@ CALCULATE(
 
 &lt;p&gt;This formula also returns the average sales for the previous three months from the last date in the data. The key difference is that with DATESBETWEEN, you explicitly specify the start and end dates, providing a high degree of precision when needed.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/assets/img/2023-07-21-powerbi-time-intelligence/datesinperiod_datesbetween.png&quot; alt=&quot;DATESYTED and TOTALYTD Calculations&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-07-18-powerbi-time-intelligence/datesinperiod_datesbetween.png&quot; alt=&quot;DATESYTED and TOTALYTD Calculations&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;You can learn more about them at Microsoft documentation for &lt;a href=&quot;https://docs.microsoft.com/en-us/dax/datesinperiod-function-dax&quot; class=&quot;post__link&quot;&gt;DAYSINPERIOD&lt;/a&gt; and &lt;a href=&quot;https://docs.microsoft.com/en-us/dax/datesbetween-function-dax&quot; class=&quot;post__link&quot;&gt;DAYSBEETWEEN&lt;/a&gt;.&lt;/p&gt;
 
