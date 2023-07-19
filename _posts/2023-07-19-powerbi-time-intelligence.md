@@ -61,7 +61,7 @@ TOTALYTD(SUM(Sales[Amount]), Dates[Date])
 
 While both functions return the same result in this case, the key difference lies in their flexibility. DATESYTD just provides a set of dates, but TOTALYTD goes a step further to calculate an expression over those dates. Notice `YTD Sales DATESYTD` uses `DATESYTD` in combination with `CALCULATE` in order to achieve the same outcome as `YTD Sales TOTALYTD`.
 
-![DATESYTED and TOTALYTD Calculations](/assets/img/2023-07-21-powerbi-time-intelligence/datesytd_totalytd.png){: .post__img}
+![DATESYTED and TOTALYTD Calculations](/assets/img/2023-07-18-powerbi-time-intelligence/datesytd_totalytd.png){: .post__img}
 
 >Don't get confused, TOTALYTD may look like it calculates the year-to-date *total*, but in reality it only changes the context. It can be used to return year-to-date anything, it all depends on what you define as the `<expression>` parameter.
 
@@ -111,7 +111,7 @@ CALCULATE(
 
 While both of these functions seem to do the same job, the difference again lies in their flexibility. SAMEPERIODLASTYEAR only takes you back one year, while DATEADD give you the liberty to move as far back or forward as you want, making it a more flexible option overall.
 
-![DATESYTED and TOTALYTD Calculations](/assets/img/2023-07-21-powerbi-time-intelligence/sameperiodlastyear_dateadd.png){: .post__img}
+![DATESYTED and TOTALYTD Calculations](/assets/img/2023-07-18-powerbi-time-intelligence/sameperiodlastyear_dateadd.png){: .post__img}
 
 Visit the Microsoft documentation for [SAMEPERIODLASTYEAR](https://docs.microsoft.com/en-us/dax/sameperiodlastyear-function-dax){: .post__link} and [DATEADD](https://docs.microsoft.com/en-us/dax/dateadd-function-dax){: .post__link} for a deeper dive.
 
@@ -167,7 +167,7 @@ CALCULATE(
 
 This formula also returns the average sales for the previous three months from the last date in the data. The key difference is that with DATESBETWEEN, you explicitly specify the start and end dates, providing a high degree of precision when needed.
 
-![DATESYTED and TOTALYTD Calculations](/assets/img/2023-07-21-powerbi-time-intelligence/datesinperiod_datesbetween.png){: .post__img}
+![DATESYTED and TOTALYTD Calculations](/assets/img/2023-07-18-powerbi-time-intelligence/datesinperiod_datesbetween.png){: .post__img}
 
 You can learn more about them at Microsoft documentation for [DAYSINPERIOD](https://docs.microsoft.com/en-us/dax/datesinperiod-function-dax){: .post__link} and [DAYSBEETWEEN](https://docs.microsoft.com/en-us/dax/datesbetween-function-dax){: .post__link}.
 
