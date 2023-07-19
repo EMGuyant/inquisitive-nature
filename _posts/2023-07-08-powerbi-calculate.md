@@ -3,7 +3,7 @@ layout: post
 author: Ethan Guyant
 title:  "Unlocking the Secrets of CALCULATE: A Deep Dive into Advanced Data Analysis in Power BI"
 category: Quick Start
-tags: [Microsoft 365, Power BI, Power Platform, Power BI Fundamentals Series, Function Friday]
+tags: [Microsoft 365, Power BI, Power Platform, Power BI Fundamentals Series, Power BI Functions]
 description: Are you tired of drowning in a sea of data? Data analysis is a puzzle waiting to be solved and CALCULATE is the missing piece that brings it all together. Let's explore the intricacies of CALCULATE in Power BI. From unraveling complex calculations to applying complex filters, this function holds the key to unlocking actionable insights buried within your data.
 image: /assets/img/post_img/power-bi-calculate.jpg
 image_by: Mahmoud Amer
@@ -234,7 +234,7 @@ By applying this formula, you can obtain the accurate sales amount for the desir
 
 <br>
 
-Congratulations! You have completed the thrilling exploration of the CALCULATE function in Power BI. Through the practical examples you have witnessed its remarkable ability to manipulate the filter context, allowing you to extract meaningful insights from your data with precision. From calculating specific totals and cumulative values to comparing against benchmarks and performing complex conditional calculations, CALCULATE has proven to be a formidable tool in your data analysis arsenal. By mastering CALCULATE, you can unlock the power to transform raw data into actionable insights, enabling data-driven decisions-making. 
+Congratulations! You have completed the thrilling exploration of the CALCULATE function in Power BI. Through the practical examples you have witnessed its remarkable ability to manipulate the filter context, allowing you to extract meaningful insights from your data with precision. From calculating specific totals and cumulative values to comparing against benchmarks and performing complex conditional calculations, CALCULATE has proven to be a formidable tool in your data analysis arsenal. By mastering CALCULATE, you can unlock the power to transform raw data into actionable insights, enabling data-driven decisions-making.
 
 As Albert Einstein once said, "Anyone who has never made a mistake has never tried anything new." So, don't be afraid of making mistakes; practice makes perfect.
 
