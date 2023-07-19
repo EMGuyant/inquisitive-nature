@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://ethanguyant.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://ethanguyant.com/" rel="alternate" type="text/html" /><updated>2023-07-19T15:37:10+00:00</updated><id>http://ethanguyant.com/feed.xml</id><title type="html">Ethan Guyant’s Blog</title><subtitle>A data solution centric blog focusing on the use and application of Microsoft Power Apps, Python Programming, and Data Science.</subtitle><entry><title type="html">Time Travel in Power BI: Mastering Time Intelligence Functions</title><link href="http://ethanguyant.com/blog/2023-07-19-powerbi-time-intelligence/" rel="alternate" type="text/html" title="Time Travel in Power BI: Mastering Time Intelligence Functions" /><published>2023-07-19T00:00:00+00:00</published><updated>2023-07-19T00:00:00+00:00</updated><id>http://ethanguyant.com/blog/powerbi-time-intelligence</id><content type="html" xml:base="http://ethanguyant.com/blog/2023-07-19-powerbi-time-intelligence/">&lt;h2 id=&quot;the-tools-to-time-travel-an-introduction&quot;&gt;The Tools to Time Travel: An Introduction&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://ethanguyant.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://ethanguyant.com/" rel="alternate" type="text/html" /><updated>2023-07-19T16:14:40+00:00</updated><id>http://ethanguyant.com/feed.xml</id><title type="html">Ethan Guyant’s Blog</title><subtitle>A data solution centric blog focusing on the use and application of Microsoft Power Apps, Python Programming, and Data Science.</subtitle><entry><title type="html">Time Travel in Power BI: Mastering Time Intelligence Functions</title><link href="http://ethanguyant.com/blog/2023-07-19-powerbi-time-intelligence/" rel="alternate" type="text/html" title="Time Travel in Power BI: Mastering Time Intelligence Functions" /><published>2023-07-19T00:00:00+00:00</published><updated>2023-07-19T00:00:00+00:00</updated><id>http://ethanguyant.com/blog/powerbi-time-intelligence</id><content type="html" xml:base="http://ethanguyant.com/blog/2023-07-19-powerbi-time-intelligence/">&lt;h2 id=&quot;the-tools-to-time-travel-an-introduction&quot;&gt;The Tools to Time Travel: An Introduction&lt;/h2&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;In Power BI, time intelligence functions are your handy time machines. They enable you to extract useful insights from your data by manipulating time periods. These functions range from calculating sales year-to-date (YTD) to comparing data from previous years. If you want to unlock the true potential of your Power BI reports, you need to harness the might of Time Intelligence functions. In this post, we will unpack six time intelligence functions: DATESYTD, TOTALYTD, SAMPLEPERIODLASTYEAR, DATEADD, DATESINPERIOD, and DATESBETWEEN.&lt;/p&gt;
+&lt;p&gt;In Power BI, time intelligence functions are your handy time machines. They enable you to extract useful insights from your data by manipulating time periods. These functions range from calculating sales year-to-date (YTD) to comparing data from previous years. If you want to unlock the true potential of your Power BI reports, you need to harness the might of Time Intelligence functions. In this post, we will unpack six time intelligence functions: DATESYTD, TOTALYTD, SAMEPERIODLASTYEAR, DATEADD, DATESINPERIOD, and DATESBETWEEN.&lt;/p&gt;
 
 &lt;p&gt;For those of you eager to start experimenting and diving deeper there is a Power BI report loaded with the sample data used in this post ready for you. So don’t just read, dive in and get hands-on with DAX Functions in Power BI. Check out it here: &lt;a href=&quot;https://github.com/EMGuyant/powerbi-dax-functions-series&quot; class=&quot;post__link&quot;&gt;GitHub — Power BI DAX Function Series: Mastering Data Analysis&lt;/a&gt;.&lt;/p&gt;
 
@@ -30,7 +30,7 @@
 
 &lt;p&gt;In this syntax, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;expression&amp;gt;&lt;/code&gt; is what you want to calculate, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;dates&amp;gt;&lt;/code&gt; is a column containing dates, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;filter&amp;gt;&lt;/code&gt; is a filter to restrict the calculation over time.  TOTALYTD is DATESYTD, but with additional calculation power.&lt;/p&gt;
 
-&lt;p&gt;Here’s are example DAX formulas to calculate the total sales amount from the start of the year till the current date.&lt;/p&gt;
+&lt;p&gt;Here are example DAX formulas to calculate the total sales amount from the start of the year till the current date.&lt;/p&gt;
 
 &lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;YTD Sales DATESYTD =
 CALCULATE(
@@ -71,7 +71,7 @@ TOTALYTD(SUM(Sales[Amount]), Dates[Date])
 
 &lt;p&gt;Here, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;dates&amp;gt;&lt;/code&gt; is a column that contains dates. Think of this function as equivalent to you Facebook memories, reminding you of what happened exactly one year ago.&lt;/p&gt;
 
-&lt;p&gt;While DATEADD is the flexible one that allows you to go back (or forward) any number of intervals you choose. This handy function’s syntax is:&lt;/p&gt;
+&lt;p&gt;DATEADD is the flexible function that allows you to go back (or forward) any number of intervals you choose. This handy function’s syntax is:&lt;/p&gt;
 
 &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DATEADD(&amp;lt;dates&amp;gt;, &amp;lt;number_of_intervals, &amp;lt;interval&amp;gt;)&lt;/code&gt;&lt;/p&gt;
 
@@ -153,7 +153,7 @@ CALCULATE(
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/2023-07-18-powerbi-time-intelligence/datesinperiod_datesbetween.png&quot; alt=&quot;DATESYTED and TOTALYTD Calculations&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;You can learn more about them at Microsoft documentation for &lt;a href=&quot;https://docs.microsoft.com/en-us/dax/datesinperiod-function-dax&quot; class=&quot;post__link&quot;&gt;DAYSINPERIOD&lt;/a&gt; and &lt;a href=&quot;https://docs.microsoft.com/en-us/dax/datesbetween-function-dax&quot; class=&quot;post__link&quot;&gt;DAYSBEETWEEN&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;You can learn more about these functions at the Microsoft documentation for &lt;a href=&quot;https://docs.microsoft.com/en-us/dax/datesinperiod-function-dax&quot; class=&quot;post__link&quot;&gt;DATESINPERIOD&lt;/a&gt; and &lt;a href=&quot;https://docs.microsoft.com/en-us/dax/datesbetween-function-dax&quot; class=&quot;post__link&quot;&gt;DATESBEETWEEN&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -165,7 +165,7 @@ CALCULATE(
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;Power BI’s Time Intelligence functions are akin to a time-traveling journey. They empower you to traverse through your data - past, present, and future. Whether you’re revisiting the past year with SAMEPERIODLASTYEAR, leaping through your data with DATEADD, or meticulously exploring specific date ranges with DATESBETWEEN, the power is all yours. So fasten your seat belts, prepare your time capsules, and commandeer your data journey. To quote Albert Einstein, “The only reason for time is so that everything doesn’t happen at once!” Happy data crunching!&lt;/p&gt;
+&lt;p&gt;Power BI’s Time Intelligence functions are akin to a time-traveling journey. They empower you to traverse through your data - past, present, and future. Whether you’re revisiting the past year with SAMEPERIODLASTYEAR, leaping through your data with DATEADD, or meticulously exploring specific date ranges with DATESBETWEEN, the power is all yours. So fasten your seat belts, prepare your time capsules, and commandeer your data journey. Happy data crunching!&lt;/p&gt;
 
 &lt;p&gt;And remember, as Albert Einstein once said, “Anyone who has never made a mistake has never tried anything new.” So, don’t be afraid of making mistakes; practice makes perfect.&lt;/p&gt;
 
