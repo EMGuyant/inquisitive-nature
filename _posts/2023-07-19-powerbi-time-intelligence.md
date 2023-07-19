@@ -14,7 +14,7 @@ image_by_link: https://unsplash.com/@loic?utm_source=unsplash&utm_medium=referra
 
 <br>
 
-In Power BI, time intelligence functions are your handy time machines. They enable you to extract useful insights from your data by manipulating time periods. These functions range from calculating sales year-to-date (YTD) to comparing data from previous years. If you want to unlock the true potential of your Power BI reports, you need to harness the might of Time Intelligence functions. In this post, we will unpack six time intelligence functions: DATESYTD, TOTALYTD, SAMPLEPERIODLASTYEAR, DATEADD, DATESINPERIOD, and DATESBETWEEN.
+In Power BI, time intelligence functions are your handy time machines. They enable you to extract useful insights from your data by manipulating time periods. These functions range from calculating sales year-to-date (YTD) to comparing data from previous years. If you want to unlock the true potential of your Power BI reports, you need to harness the might of Time Intelligence functions. In this post, we will unpack six time intelligence functions: DATESYTD, TOTALYTD, SAMEPERIODLASTYEAR, DATEADD, DATESINPERIOD, and DATESBETWEEN.
 
 For those of you eager to start experimenting and diving deeper there is a Power BI report loaded with the sample data used in this post ready for you. So don’t just read, dive in and get hands-on with DAX Functions in Power BI. Check out it here: [GitHub — Power BI DAX Function Series: Mastering Data Analysis](https://github.com/EMGuyant/powerbi-dax-functions-series){: .post__link}.
 
@@ -42,7 +42,7 @@ On the other hand, TOTALYTD takes it up a notch. It summarizes data for the same
 
 In this syntax, `<expression>` is what you want to calculate, `<dates>` is a column containing dates, and `<filter>` is a filter to restrict the calculation over time.  TOTALYTD is DATESYTD, but with additional calculation power.
 
-Here's are example DAX formulas to calculate the total sales amount from the start of the year till the current date.
+Here are example DAX formulas to calculate the total sales amount from the start of the year till the current date.
 
 ```text
 YTD Sales DATESYTD =
@@ -83,7 +83,7 @@ Next up the cousins, SAMEPERIODLASTYEAR and DATEADD. SAMEPERIODLASTYEAR is the f
 
 Here, `<dates>` is a column that contains dates. Think of this function as equivalent to you Facebook memories, reminding you of what happened exactly one year ago.
 
-While DATEADD is the flexible one that allows you to go back (or forward) any number of intervals you choose. This handy function's syntax is:
+DATEADD is the flexible function that allows you to go back (or forward) any number of intervals you choose. This handy function's syntax is:
 
 `DATEADD(<dates>, <number_of_intervals, <interval>)`
 
@@ -169,7 +169,7 @@ This formula also returns the average sales for the previous three months from t
 
 ![DATESYTED and TOTALYTD Calculations](/assets/img/2023-07-18-powerbi-time-intelligence/datesinperiod_datesbetween.png){: .post__img}
 
-You can learn more about them at Microsoft documentation for [DAYSINPERIOD](https://docs.microsoft.com/en-us/dax/datesinperiod-function-dax){: .post__link} and [DAYSBEETWEEN](https://docs.microsoft.com/en-us/dax/datesbetween-function-dax){: .post__link}.
+You can learn more about these functions at the Microsoft documentation for [DATESINPERIOD](https://docs.microsoft.com/en-us/dax/datesinperiod-function-dax){: .post__link} and [DATESBEETWEEN](https://docs.microsoft.com/en-us/dax/datesbetween-function-dax){: .post__link}.
 
 <br>
 
@@ -181,7 +181,7 @@ You can learn more about them at Microsoft documentation for [DAYSINPERIOD](http
 
 <br>
 
-Power BI's Time Intelligence functions are akin to a time-traveling journey. They empower you to traverse through your data - past, present, and future. Whether you're revisiting the past year with SAMEPERIODLASTYEAR, leaping through your data with DATEADD, or meticulously exploring specific date ranges with DATESBETWEEN, the power is all yours. So fasten your seat belts, prepare your time capsules, and commandeer your data journey. To quote Albert Einstein, "The only reason for time is so that everything doesn't happen at once!" Happy data crunching!
+Power BI's Time Intelligence functions are akin to a time-traveling journey. They empower you to traverse through your data - past, present, and future. Whether you're revisiting the past year with SAMEPERIODLASTYEAR, leaping through your data with DATEADD, or meticulously exploring specific date ranges with DATESBETWEEN, the power is all yours. So fasten your seat belts, prepare your time capsules, and commandeer your data journey. Happy data crunching!
 
 And remember, as Albert Einstein once said, "Anyone who has never made a mistake has never tried anything new." So, don't be afraid of making mistakes; practice makes perfect.
 
