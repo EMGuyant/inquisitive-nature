@@ -1,10 +1,10 @@
 ---
 layout: post
 author: Ethan Guyant
-title:  "Microsoft Power Automate: Outlook Inbox Cleanup"
+title:  "From Chaos to Clarity: Revolutionize Your Inbox with Power Automate"
 category: Quick Start
-tags: [Microsoft 365, Power Automate, Outlook, Power Apps]
-description: Utilize Power Automate to automate Outlook inbox cleanup, management, and sorting of emails. The article covers three approaches ranging from a basic application to dynamically setting destination folders with the use of a variable object and Microsoft Graph.
+tags: [Microsoft 365, Power Automate, Outlook, Power Apps, Power Platform]
+description: Escape the email madness! Discover how to use Power Automate to declutter your inbox with effortless automation. Take back control of your inbox!
 image: /assets/img/post_img/outlook-inbox-cleanup.jpg
 image_by: Alvaro Reyes
 image_by_link: https://unsplash.com/@alvarordesign?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText

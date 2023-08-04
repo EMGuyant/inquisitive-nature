@@ -1,10 +1,10 @@
 ---
 layout: post
 author: Ethan Guyant
-title:  "Microsoft Power Automate: Dynamic Approval Cycle"
+title:  "Dynamic Approvals Made Easy: A Deep Dive into Power Automate’s Approval Functionality"
 category: How To
-tags: [Microsoft 365, Power Automate, Outlook, Power Apps]
-description: The focus of this article is on creating a dynamic document approval cycle. This process will allow for a feedback cycle when a higher-level approver may have a question or require clarification on the document requested for approval. 
+tags: [Microsoft 365, Power Automate, Outlook, Power Apps, Power Platform]
+description: Ready to work smarter, not harder? Embrace the world of Power Automate and Dynamic Approvals.
 image: /assets/img/post_img/dynamic-approval-cycle.jpg
 image_by: Jon Tyson
 image_by_link: https://unsplash.com/@jontyson?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
