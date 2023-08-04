@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Outsmarting the Out-of-Office Quandary: A Power Automate Approval Guide | Ethan Guyant’s Blog</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="Outsmarting the Out-of-Office Quandary: A Power Automate Approval Guide" />
+<meta name="author" content="Ethan Guyant" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Say goodbye to the world of endless email threads and approval documents that somehow get lost in the abyss of your inbox. With Power Automate, ensure that documents get the thumbs up even when the chosen approver is out of the office. Let’s roll up our sleeves and get automating!" />
+<meta property="og:description" content="Say goodbye to the world of endless email threads and approval documents that somehow get lost in the abyss of your inbox. With Power Automate, ensure that documents get the thumbs up even when the chosen approver is out of the office. Let’s roll up our sleeves and get automating!" />
+<link rel="canonical" href="http://ethanguyant.com/blog/2023-08-04-out-of-office-approval/" />
+<meta property="og:url" content="http://ethanguyant.com/blog/2023-08-04-out-of-office-approval/" />
+<meta property="og:site_name" content="Ethan Guyant’s Blog" />
+<meta property="og:image" content="http://ethanguyant.com/assets/img/post_img/out-of-office-approval.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-08-04T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="http://ethanguyant.com/assets/img/post_img/out-of-office-approval.jpg" />
+<meta property="twitter:title" content="Outsmarting the Out-of-Office Quandary: A Power Automate Approval Guide" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"Ethan Guyant"},"description":"Say goodbye to the world of endless email threads and approval documents that somehow get lost in the abyss of your inbox. With Power Automate, ensure that documents get the thumbs up even when the chosen approver is out of the office. Let’s roll up our sleeves and get automating!","url":"http://ethanguyant.com/blog/2023-08-04-out-of-office-approval/","@type":"BlogPosting","image":"http://ethanguyant.com/assets/img/post_img/out-of-office-approval.jpg","headline":"Outsmarting the Out-of-Office Quandary: A Power Automate Approval Guide","dateModified":"2023-08-04T00:00:00+00:00","datePublished":"2023-08-04T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://ethanguyant.com/blog/2023-08-04-out-of-office-approval/"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<title>Ethan Guyant's Blog</title>
+  <!-- Normalize CSS file irons out some difference between browsers -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+  <!-- Google Fonts-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,900|Source+Sans+Pro:300,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Arvo:wght@700&display=swap" rel="stylesheet">
+  <!-- CSS Styles -->
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/notebook_default.css">
+  <link rel="stylesheet" href="/assets/css/notebook_custom.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
+  <!-- MathJax configuration -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+  </script>
+  <!-- Animation on Scroll-->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <!-- Font Awesome Kit -->
+  <script src="https://kit.fontawesome.com/c9965d23bb.js" crossorigin="anonymous"></script><link type="application/atom+xml" rel="alternate" href="http://ethanguyant.com/feed.xml" title="Ethan Guyant's Blog" /><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7356875210051999"
+  crossorigin="anonymous">
+  </script>
+  
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RTFP0V6X0G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RTFP0V6X0G');
+</script>
+  
+</head>
+<body><header class="header sticky">
+    <div class="wrapper">
+        <div>
+            <div class="scroll-logo"> 
+                <a href="/">  
+                    <svg id="EG" viewBox="0 0 152 216">
+                        <g>
+                            <path id="hex"d="M 76.342 4 L 147.685 41.377 L 147.685 116.13 L 76.342 153.506 L 5 116.13 L 5 41.377 Z" style="stroke-width: 8.37394px; fill-opacity: 0; fill: none; stroke: #39ace7;"></path>         
+                            <polygon class="logo"style="stroke-width: 3.58883px; stroke: #39ace7; fill: #39ace7;" points="41.001 38.501 112.012 38.501 112.012 62.884 97.474 62.884 97.474 54.976 41.001 54.976"></polygon>
+                            <polygon class="logo" style="stroke-width: 3.58883px; stroke: #39ace7; fill: #39ace7;" points="40.671 102.9 97.81 102.9 97.81 86.796 83.604 86.796 83.604 70.701 112.014 70.701 112.014 102.92 112.014 119.004 40.939 119.004"></polygon>
+                            <polygon class="logo" style="stroke-width: 3.58883px; stroke: #39ace7; fill: #39ace7;" points="41.001 70.701 69.753 70.701 63.532 87.725 41.317 87.725"></polygon>
+                        </g> 
+                    </svg>
+                </a>
+            </div>
+
+            <div class="header__title">
+                <a href="/">EthanGuyant.com</a>
+            </div>
+            
+        </div>
+        
+        <div class="nav__menu">
+            <div class="nav__toggle">
+                <div class="nav__icon">
+                    <span></span>
+                </div>
+            </div>
+        </div>
+        <div class="nav__menu__wrapper">
+            <ul class="nav__menu__list">
+                <li class="nav__menu__list__item">
+                    <a href="/" class="nav__menu__list__item__link">Home</a>
+                </li>
+                <li class="nav__menu__list__item">
+                    <a href="/blog" class="nav__menu__list__item__link">Blog</a>
+                </li>
+                <li class="nav__menu__list__item">
+                    <a href="/about" class="nav__menu__list__item__link">About</a>
+                </li>
+                <li class="nav__menu__list__item">
+                    <a href="/category/project/" class="nav__menu__list__item__link">Projects</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header><main class="page" aria-label="Content">
+      <div class="page__content">
+        <section class="blog__header">
+    <div class="blog__img">
+      <div class="blog__img__over"></div>
+    </div>
+    <div class="wrapper">
+      <h1 class="blog__title"><span class="inquisitive">INQUISITIVE</span> <span class="nature">NATURE</span></h1>
+      <p class="blog__subtitle">Learn  Explore  <strong>Share</strong></p>
+      <p class="post__categories">
+    </div>
+  </section><div class="wrapper">
+  <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+    <section class="article__header">
+        <h1 class="post-title p-name" itemprop="name headline">Outsmarting the Out-of-Office Quandary: A Power Automate Approval Guide</h1>
+        <p class="post-meta">
+          <time class="dt-published" datetime="2023-08-04T00:00:00+00:00" itemprop="datePublished">Aug 4, 2023
+          </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">Ethan Guyant</span></span></p>
+          <p class="post-category">
+            Category: 
+            <a href="/category/how-to">
+              <i class="fa-solid fa-folder"></i>
+              How To
+            </a> 
+          </p>
+          <p class="post-tags">
+          Tags: 
+           
+              
+              <a href="/tag/microsoft-365">
+                <i class="fa-solid fa-tag"></i>
+                Microsoft 365
+              </a> 
+              
+              <a href="/tag/power-automate">
+                <i class="fa-solid fa-tag"></i>
+                Power Automate
+              </a> 
+              
+              <a href="/tag/outlook">
+                <i class="fa-solid fa-tag"></i>
+                Outlook
+              </a> 
+              
+              <a href="/tag/power-apps">
+                <i class="fa-solid fa-tag"></i>
+                Power Apps
+              </a> 
+              
+              <a href="/tag/power-platform">
+                <i class="fa-solid fa-tag"></i>
+                Power Platform
+              </a> 
+            
+          
+        </p>
+    </section>
+    <div class="post-content e-content" itemprop="articleBody">
+      <h2 id="from-hurdle-to-handshake-streamline-document-approvals-with-power-automate">From Hurdle to Handshake: Streamline Document Approvals with Power Automate</h2>
+
+<p><br /></p>
+
+<p>In an era of remote work, efficient collaboration and communication have become as crucial to a project’s success as coffee is to a Monday morning. One hurdle that often stumbles onto the path of efficient collaboration is a document approval. You might wonder, what happens when the assigned approver is nowhere to be found? Here’s where Microsoft Power Automate takes center stage, ensuring that no document is left unapproved.</p>
+
+<p>This post is a step-by-step guide to establish a workflow that checks if the approver is available before passing the document to them for approval. If the approver is unavailable the workflow pokes you and lets you assign a new approver. No magic to be found here, just good ol’ automation at work!</p>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="a-quick-glance-what-the-power-automate-workflow-looks-like">A Quick Glance: What the Power Automate Workflow Looks Like</h2>
+
+<p><br /></p>
+
+<p>Our Power Automate workflow gets triggered for a selected document within a SharePoint document library. You provide the approver’s email address and any comments you have about the document, then set the Power Automate workflow into motion.</p>
+
+<p>Now comes the genius part. The workflow examines the approver’s Outlook inbox, searching for an automatic or out-of-office reply (everyone deserves a vacation, right?). If the workflow finds an automatic reply, it sends you a notification via a Teams adaptive card. You then have the freedom to pick a new approver or stick to your initial choice.</p>
+
+<p>If no automatic reply is detected, the document goes straight to the approver you chose when triggering the workflow.</p>
+
+<p>Once the approval is complete, you’ll receive a final notification informing you of the approval’s outcome and any comments from the approver.</p>
+
+<p>For a detailed guide on Power Automate, visit Microsoft’s <a href="https://docs.microsoft.com/en-us/power-automate/" class="post__link">official documentation</a>.</p>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="unpacking-the-details-inside-the-power-automate-workflow">Unpacking the Details: Inside the Power Automate Workflow</h2>
+
+<p><br /></p>
+
+<p>Let’s delve deeper into the workflow.</p>
+
+<h3 id="triggering-the-process">Triggering the Process</h3>
+
+<p>Our trigger is a SharePoint for a selected document trigger. When triggering the workflow you will be prompted to enter two essential pieces of information:</p>
+
+<ol>
+  <li>The email of the document approver.</li>
+  <li>Your comments about the document.</li>
+</ol>
+
+<p>This sets the dominoes in motion.</p>
+
+<p><img src="/assets/img/2023-08-03-out-of-office-approval/trigger-workflow.gif" alt="Triggering the Workflow" class="post__img" /></p>
+
+<p><br /></p>
+
+<h3 id="assembling-the-essentials-get-the-approvers-profile-file-properties-and-initialize-variables">Assembling the Essentials: Get the Approver’s Profile, File Properties, and Initialize Variables</h3>
+
+<p>This phase of the workflow encompasses three actions to collect the information needed for the workflow.</p>
+
+<ol>
+  <li>Get user profile: This action retrieves the approver’s user profile, making information such as display name available to the workflow as dynamic content.</li>
+  <li>Get file properties: This action fetches the details of the selected document, providing useful information like the document’s link to the workflow.</li>
+  <li>Initialize variables: Three string variables are used within the workflow to gather and store information about the approval. These include <code class="language-plaintext highlighter-rouge">approvalOutcome</code>, <code class="language-plaintext highlighter-rouge">approvalComments</code>, and <code class="language-plaintext highlighter-rouge">approvalApprover</code>.</li>
+</ol>
+
+<p><img src="/assets/img/2023-08-03-out-of-office-approval/assembling-essentials.png" alt="Assembling the Essentials" class="post__img" /></p>
+
+<p>For detailed instructions on each action check out Microsoft’s guides on the Office 365 Users action <a href="https://learn.microsoft.com/en-us/connectors/office365users/#get-user-profile-(v2)" class="post__link">Get user profile (V2)</a>, the SharePoint action <a href="https://learn.microsoft.com/en-us/connectors/sharepointonline/#get-file-properties" class="post__link">Get file properties</a>, and Variable action <a href="https://learn.microsoft.com/en-us/power-automate/create-variable-store-values#initialize-a-variable" class="post__link">Initialize a variable</a>.</p>
+
+<p><br /></p>
+
+<h3 id="is-the-approver-available-how-to-check-for-automatic-replies">Is the Approver Available? How to Check for Automatic Replies</h3>
+
+<p>This stage uses the the Outlook action <code class="language-plaintext highlighter-rouge">Get mail tips for a mailbox</code> to see if the approver has an automatic reply turn on for their inbox. The automatic reply status is key because this could often signify the approver is either out of the office or generally unavailable.</p>
+
+<p><img src="/assets/img/2023-08-03-out-of-office-approval/get-mail-box-tips.png" alt="Get Mailbox Tips" class="post__img" /></p>
+
+<p>For more detailed instructions, refer to Microsoft’s guide on the Outlook action <a href="https://learn.microsoft.com/en-us/connectors/office365/#get-mail-tips-for-a-mailbox-(v2)" class="post__link">Get mail tips for a mailbox (V2)</a>.</p>
+
+<p><br /></p>
+
+<h3 id="evaluating-the-approvers-availability-an-inside-look-at-the-workflow-decision-making-process">Evaluating the Approver’s Availability: An Inside Look at the Workflow Decision-Making Process</h3>
+
+<p>A critical part of the workflow is determining whether the assigned approver is available. This is done by checking if there is an automatic reply set for the approver’s inbox. To achieve this, the output of the <code class="language-plaintext highlighter-rouge">Get mail tips for a mailbox</code> action is examined. Here is an example of the information contained within the output body:</p>
+
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="w">
+</span><span class="err"> </span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nl">"mailboxFull"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+</span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nl">"externalMemberCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nl">"totalMemberCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+</span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nl">"deliveryRestricted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+</span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nl">"isModerated"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+</span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nl">"maxMessageSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">37748736</span><span class="p">,</span><span class="w">
+</span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nl">"emailAddress"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AlexW@02pby.onmicrosoft.com"</span><span class="w">
+</span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="p">},</span><span class="w">
+</span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nl">"automaticReplies"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;div&gt;</span><span class="se">\r\n</span><span class="s2">&lt;div style=</span><span class="se">\"</span><span class="s2">font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)</span><span class="se">\"</span><span class="s2">&gt;</span><span class="se">\r\n</span><span class="s2">I am currently out of the office.&lt;/div&gt;</span><span class="se">\r\n</span><span class="s2">&lt;/div&gt;"</span><span class="p">,</span><span class="w">
+</span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nl">"messageLanguage"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nl">"locale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en-US"</span><span class="p">,</span><span class="w">
+</span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nl">"displayName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"English (United States)"</span><span class="w">
+</span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="p">}</span><span class="w">
+</span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="p">}</span><span class="w">
+</span><span class="err"> </span><span class="w"> </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div></div>
+
+<p>From this data, the following expression is used to determine if an automatic reply is set for the inbox:
+<code class="language-plaintext highlighter-rouge">empty(outputs('Get_mail_tips_for_a_mailbox_(V2)')?['body/value'][0]?['automaticReplies/message'])</code></p>
+
+<p>This expression checks the <code class="language-plaintext highlighter-rouge">message</code> attributes within the <code class="language-plaintext highlighter-rouge">automaticReplies</code> property. If the <code class="language-plaintext highlighter-rouge">message</code> is empty (meaning no automatic reply message), the expression will evaluate to <code class="language-plaintext highlighter-rouge">true</code>.</p>
+
+<p>If <code class="language-plaintext highlighter-rouge">true</code>, the workflow proceeds as planned, assigning the approval to the assignee. If <code class="language-plaintext highlighter-rouge">false</code>, however, the process takes a more intriguing turn, revealing deeper layers of automation. Continue reading to uncover the magic that unfolds.</p>
+
+<p><img src="/assets/img/2023-08-03-out-of-office-approval/check-automatic-reply.png" alt="Check Automatic Reply" class="post__img" /></p>
+
+<p>For more detailed instructions on adding conditions to your workflows, check out Microsoft’s guide <a href="https://learn.microsoft.com/en-us/power-automate/add-condition" class="post__link">Add a condition to a cloud flow</a>.</p>
+
+<p><br /></p>
+
+<h3 id="from-alert-to-decision-using-adaptive-cards-for-approval-reassignment">From Alert to Decision: Using Adaptive Cards for Approval Reassignment</h3>
+
+<p>When an approver is unavailable and an automatic reply is detected, the workflow seamlessly switches to an alternative process to ensure that the approval request doesn’t get stuck in limbo. Through utilizing Teams adaptive cards, this branch of the workflow handles the process of alerting you and providing options for reassigning the approval or continuing with the initial approver. Allowing for flexibility and control even when the primary approver is out of reach.</p>
+
+<p><img src="/assets/img/2023-08-03-out-of-office-approval/reassign-approval-branch.png" alt="Reassign the Approval" class="post__img" /></p>
+
+<h3 id="interactive-alerts-how-adaptive-cards-enhance-the-approval-workflow">Interactive Alerts: How Adaptive Cards Enhance the Approval Workflow</h3>
+
+<p>First, the workflow sends you a Teams adaptive card. This card alerts you that your action is needed and prompts you to either reassign the approval or send it to the initial approver.</p>
+
+<p><img src="/assets/img/2023-08-03-out-of-office-approval/adaptive-card.png" alt="Adaptive Card" class="post__img" /></p>
+
+<p>For detailed instructions on creating and using Adaptive Cards, refer to Microsoft’s guide <a href="https://learn.microsoft.com/en-us/power-automate/create-adaptive-cards" class="post__link">Create your first adaptive card</a>. Also, when designing your adaptive cards, the <a href="https://adaptivecards.io/designer/" class="post__link">Adaptive Card Designer</a> can be a helpful tool.</p>
+
+<h3 id="decision-making-with-adaptive-cards-reassigning-or-confirming">Decision-Making with Adaptive Cards: Reassigning or Confirming</h3>
+
+<p>The adaptive card presents you with two option: the first is to reassign the approval, and the second is to send it to the initial approver. Once you select an option and submit your response on the adaptive card, the workflow receives your response. Your response is then evaluated in another condition action within the workflow.</p>
+
+<p>If the <code class="language-plaintext highlighter-rouge">reassignApproval</code> attribute of you response is <code class="language-plaintext highlighter-rouge">false</code>, the workflow will continue to send the approval to the initial approver. However, if the <code class="language-plaintext highlighter-rouge">reassignApproval</code> is <code class="language-plaintext highlighter-rouge">true</code>, it will assign an approval to the email you provided as input into the adaptive card.</p>
+
+<p><br /></p>
+
+<h3 id="closing-the-loop-notification-of-the-approval-outcome">Closing the Loop: Notification of the Approval Outcome</h3>
+
+<p>Once the approver has completed their task, you are notified of the final outcome of their approval and informed of any comments that they may have left during the approval process.</p>
+
+<p><img src="/assets/img/2023-08-03-out-of-office-approval/final-notification.png" alt="Final Notification" class="post__img" /></p>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="reaping-the-benefits-of-power-automate-approvals">Reaping the Benefits of Power Automate Approvals</h2>
+
+<p><br /></p>
+
+<p>By leveraging Power Automate efficiencies and features, we have turned a potential bottleneck into a smooth and efficient process. No more waiting for approvals or wondering about the status of a document. We have created a dynamic system that adapts to real-life situations, keeping your approvals moving and your teams productive.</p>
+
+<p>Power Automate might seem like magic, but it is simply a powerful tool that can make your work life a whole lot easier. Embrace Power Automate’s efficiency and the rich array of Power Automate features to make document approval automation a breeze.</p>
+
+<p>For further reading, visit:</p>
+
+<ul>
+  <li><a href="https://learn.microsoft.com/en-us/power-automate/" class="post__link">Microsoft Power Automate Documentation</a></li>
+  <li><a href="https://learn.microsoft.com/en-us/power-automate/get-started-logic-flow" class="post__link">Creating Workflows in Power Automate</a></li>
+  <li><a href="https://learn.microsoft.com/en-us/training/powerplatform/power-automate" class="post__link">Microsoft Power Automate Training</a></li>
+</ul>
+
+<p>Check out these blog posts for other helpful Power Automate Guides:</p>
+
+<ul>
+  <li><a href="https://medium.com/inquisitive-nature/microsoft-power-automate-dynamic-approval-cycle-e9ea785081a1" class="post__link">Dynamic Approvals Made Easy: A Deep Dive into Power Automate’s Approval Functionality</a></li>
+  <li><a href="https://medium.com/inquisitive-nature/microsoft-power-automate-outlook-inbox-cleanup-cd5aa67a096d" class="post__link">From Chaos to Clarity: Revolutionize Your Inbox with Power Automate</a></li>
+</ul>
+
+<p>Now that you have the blueprint for creating a document approval workflow with Power Automate, it is time to put it into action.</p>
+
+<p>And remember, as Albert Einstein once said, “Anyone who has never made a mistake has never tried anything new.” So don’t be afraid to experiment, learn, and create workflows. A little bit of automation today can save you a lot of manual work tomorrow.</p>
+
+<p>Happy Automating!</p>
+
+    </div><a class="u-url" href="/blog/2023-08-04-out-of-office-approval/" hidden></a>
+  </article>
+</div>
+      </div>
+    </main><footer class="footer">
+    <!-- replace with your own email address 
+    <a href="mailto:info@ethanguyant.com" class="footer__link">info@ethanguyant.com</a>-->
+    <ul class="social-list">
+        <li class="social-list__item">
+            <a class="social-list__link" href="mailto:emguyant@gmail.com">
+                <i class="fas fa-envelope"></i>
+            </a>
+        </li>
+        <li class="social-list__item">
+            <a class="social-list__link" href="https://www.linkedin.com/in/ethan-guyant/">
+                <i class="fab fa-linkedin"></i>
+            </a>
+        </li>
+        <li class="social-list__item">
+            <a class="social-list__link" href="https://github.com/EMGuyant">
+                <i class="fab fa-github"></i>
+            </a>
+        </li>
+        <li class="social-list__item">
+            <a class="social-list__link" href="https://medium.com/@emguyant">
+                <i class="fab fa-medium"></i>
+            </a>
+        </li>
+        <li class="social-list__item">
+            <a class="social-list__link" href="https://medium.com/inquisitive-nature">
+                <i class="fa-solid fa-book"></i>
+            </a>
+        </li>
+    </ul>
+</footer><script src="https://kit.fontawesome.com/c9965d23bb.js" crossorigin="anonymous"></script>
+<script src="/assets/js/script.js"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+</body>
+
+</html>

@@ -1,4 +1,186 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://ethanguyant.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://ethanguyant.com/" rel="alternate" type="text/html" /><updated>2023-07-19T16:14:40+00:00</updated><id>http://ethanguyant.com/feed.xml</id><title type="html">Ethan Guyant’s Blog</title><subtitle>A data solution centric blog focusing on the use and application of Microsoft Power Apps, Python Programming, and Data Science.</subtitle><entry><title type="html">Time Travel in Power BI: Mastering Time Intelligence Functions</title><link href="http://ethanguyant.com/blog/2023-07-19-powerbi-time-intelligence/" rel="alternate" type="text/html" title="Time Travel in Power BI: Mastering Time Intelligence Functions" /><published>2023-07-19T00:00:00+00:00</published><updated>2023-07-19T00:00:00+00:00</updated><id>http://ethanguyant.com/blog/powerbi-time-intelligence</id><content type="html" xml:base="http://ethanguyant.com/blog/2023-07-19-powerbi-time-intelligence/">&lt;h2 id=&quot;the-tools-to-time-travel-an-introduction&quot;&gt;The Tools to Time Travel: An Introduction&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://ethanguyant.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://ethanguyant.com/" rel="alternate" type="text/html" /><updated>2023-08-04T10:45:13+00:00</updated><id>http://ethanguyant.com/feed.xml</id><title type="html">Ethan Guyant’s Blog</title><subtitle>A data solution centric blog focusing on the use and application of Microsoft Power Apps, Python Programming, and Data Science.</subtitle><entry><title type="html">Outsmarting the Out-of-Office Quandary: A Power Automate Approval Guide</title><link href="http://ethanguyant.com/blog/2023-08-04-out-of-office-approval/" rel="alternate" type="text/html" title="Outsmarting the Out-of-Office Quandary: A Power Automate Approval Guide" /><published>2023-08-04T00:00:00+00:00</published><updated>2023-08-04T00:00:00+00:00</updated><id>http://ethanguyant.com/blog/out-of-office-approval</id><content type="html" xml:base="http://ethanguyant.com/blog/2023-08-04-out-of-office-approval/">&lt;h2 id=&quot;from-hurdle-to-handshake-streamline-document-approvals-with-power-automate&quot;&gt;From Hurdle to Handshake: Streamline Document Approvals with Power Automate&lt;/h2&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;In an era of remote work, efficient collaboration and communication have become as crucial to a project’s success as coffee is to a Monday morning. One hurdle that often stumbles onto the path of efficient collaboration is a document approval. You might wonder, what happens when the assigned approver is nowhere to be found? Here’s where Microsoft Power Automate takes center stage, ensuring that no document is left unapproved.&lt;/p&gt;
+
+&lt;p&gt;This post is a step-by-step guide to establish a workflow that checks if the approver is available before passing the document to them for approval. If the approver is unavailable the workflow pokes you and lets you assign a new approver. No magic to be found here, just good ol’ automation at work!&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;a-quick-glance-what-the-power-automate-workflow-looks-like&quot;&gt;A Quick Glance: What the Power Automate Workflow Looks Like&lt;/h2&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Our Power Automate workflow gets triggered for a selected document within a SharePoint document library. You provide the approver’s email address and any comments you have about the document, then set the Power Automate workflow into motion.&lt;/p&gt;
+
+&lt;p&gt;Now comes the genius part. The workflow examines the approver’s Outlook inbox, searching for an automatic or out-of-office reply (everyone deserves a vacation, right?). If the workflow finds an automatic reply, it sends you a notification via a Teams adaptive card. You then have the freedom to pick a new approver or stick to your initial choice.&lt;/p&gt;
+
+&lt;p&gt;If no automatic reply is detected, the document goes straight to the approver you chose when triggering the workflow.&lt;/p&gt;
+
+&lt;p&gt;Once the approval is complete, you’ll receive a final notification informing you of the approval’s outcome and any comments from the approver.&lt;/p&gt;
+
+&lt;p&gt;For a detailed guide on Power Automate, visit Microsoft’s &lt;a href=&quot;https://docs.microsoft.com/en-us/power-automate/&quot; class=&quot;post__link&quot;&gt;official documentation&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;unpacking-the-details-inside-the-power-automate-workflow&quot;&gt;Unpacking the Details: Inside the Power Automate Workflow&lt;/h2&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Let’s delve deeper into the workflow.&lt;/p&gt;
+
+&lt;h3 id=&quot;triggering-the-process&quot;&gt;Triggering the Process&lt;/h3&gt;
+
+&lt;p&gt;Our trigger is a SharePoint for a selected document trigger. When triggering the workflow you will be prompted to enter two essential pieces of information:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;The email of the document approver.&lt;/li&gt;
+  &lt;li&gt;Your comments about the document.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;This sets the dominoes in motion.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-08-03-out-of-office-approval/trigger-workflow.gif&quot; alt=&quot;Triggering the Workflow&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;assembling-the-essentials-get-the-approvers-profile-file-properties-and-initialize-variables&quot;&gt;Assembling the Essentials: Get the Approver’s Profile, File Properties, and Initialize Variables&lt;/h3&gt;
+
+&lt;p&gt;This phase of the workflow encompasses three actions to collect the information needed for the workflow.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Get user profile: This action retrieves the approver’s user profile, making information such as display name available to the workflow as dynamic content.&lt;/li&gt;
+  &lt;li&gt;Get file properties: This action fetches the details of the selected document, providing useful information like the document’s link to the workflow.&lt;/li&gt;
+  &lt;li&gt;Initialize variables: Three string variables are used within the workflow to gather and store information about the approval. These include &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;approvalOutcome&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;approvalComments&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;approvalApprover&lt;/code&gt;.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-08-03-out-of-office-approval/assembling-essentials.png&quot; alt=&quot;Assembling the Essentials&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;For detailed instructions on each action check out Microsoft’s guides on the Office 365 Users action &lt;a href=&quot;https://learn.microsoft.com/en-us/connectors/office365users/#get-user-profile-(v2)&quot; class=&quot;post__link&quot;&gt;Get user profile (V2)&lt;/a&gt;, the SharePoint action &lt;a href=&quot;https://learn.microsoft.com/en-us/connectors/sharepointonline/#get-file-properties&quot; class=&quot;post__link&quot;&gt;Get file properties&lt;/a&gt;, and Variable action &lt;a href=&quot;https://learn.microsoft.com/en-us/power-automate/create-variable-store-values#initialize-a-variable&quot; class=&quot;post__link&quot;&gt;Initialize a variable&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;is-the-approver-available-how-to-check-for-automatic-replies&quot;&gt;Is the Approver Available? How to Check for Automatic Replies&lt;/h3&gt;
+
+&lt;p&gt;This stage uses the the Outlook action &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Get mail tips for a mailbox&lt;/code&gt; to see if the approver has an automatic reply turn on for their inbox. The automatic reply status is key because this could often signify the approver is either out of the office or generally unavailable.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-08-03-out-of-office-approval/get-mail-box-tips.png&quot; alt=&quot;Get Mailbox Tips&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;For more detailed instructions, refer to Microsoft’s guide on the Outlook action &lt;a href=&quot;https://learn.microsoft.com/en-us/connectors/office365/#get-mail-tips-for-a-mailbox-(v2)&quot; class=&quot;post__link&quot;&gt;Get mail tips for a mailbox (V2)&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;evaluating-the-approvers-availability-an-inside-look-at-the-workflow-decision-making-process&quot;&gt;Evaluating the Approver’s Availability: An Inside Look at the Workflow Decision-Making Process&lt;/h3&gt;
+
+&lt;p&gt;A critical part of the workflow is determining whether the assigned approver is available. This is done by checking if there is an automatic reply set for the approver’s inbox. To achieve this, the output of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Get mail tips for a mailbox&lt;/code&gt; action is examined. Here is an example of the information contained within the output body:&lt;/p&gt;
+
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;mailboxFull&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;externalMemberCount&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;totalMemberCount&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;deliveryRestricted&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;isModerated&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;maxMessageSize&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;37748736&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;emailAddress&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;address&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;AlexW@02pby.onmicrosoft.com&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;automaticReplies&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;message&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&amp;lt;div&amp;gt;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\r\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;lt;div style=&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\r\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;I am currently out of the office.&amp;lt;/div&amp;gt;&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\r\n&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;lt;/div&amp;gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;messageLanguage&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;locale&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;en-US&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;displayName&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;English (United States)&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;err&quot;&gt; &lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;From this data, the following expression is used to determine if an automatic reply is set for the inbox:
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;empty(outputs('Get_mail_tips_for_a_mailbox_(V2)')?['body/value'][0]?['automaticReplies/message'])&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;This expression checks the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;message&lt;/code&gt; attributes within the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;automaticReplies&lt;/code&gt; property. If the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;message&lt;/code&gt; is empty (meaning no automatic reply message), the expression will evaluate to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;true&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;If &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;true&lt;/code&gt;, the workflow proceeds as planned, assigning the approval to the assignee. If &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;false&lt;/code&gt;, however, the process takes a more intriguing turn, revealing deeper layers of automation. Continue reading to uncover the magic that unfolds.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-08-03-out-of-office-approval/check-automatic-reply.png&quot; alt=&quot;Check Automatic Reply&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;For more detailed instructions on adding conditions to your workflows, check out Microsoft’s guide &lt;a href=&quot;https://learn.microsoft.com/en-us/power-automate/add-condition&quot; class=&quot;post__link&quot;&gt;Add a condition to a cloud flow&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;from-alert-to-decision-using-adaptive-cards-for-approval-reassignment&quot;&gt;From Alert to Decision: Using Adaptive Cards for Approval Reassignment&lt;/h3&gt;
+
+&lt;p&gt;When an approver is unavailable and an automatic reply is detected, the workflow seamlessly switches to an alternative process to ensure that the approval request doesn’t get stuck in limbo. Through utilizing Teams adaptive cards, this branch of the workflow handles the process of alerting you and providing options for reassigning the approval or continuing with the initial approver. Allowing for flexibility and control even when the primary approver is out of reach.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-08-03-out-of-office-approval/reassign-approval-branch.png&quot; alt=&quot;Reassign the Approval&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;interactive-alerts-how-adaptive-cards-enhance-the-approval-workflow&quot;&gt;Interactive Alerts: How Adaptive Cards Enhance the Approval Workflow&lt;/h3&gt;
+
+&lt;p&gt;First, the workflow sends you a Teams adaptive card. This card alerts you that your action is needed and prompts you to either reassign the approval or send it to the initial approver.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-08-03-out-of-office-approval/adaptive-card.png&quot; alt=&quot;Adaptive Card&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;For detailed instructions on creating and using Adaptive Cards, refer to Microsoft’s guide &lt;a href=&quot;https://learn.microsoft.com/en-us/power-automate/create-adaptive-cards&quot; class=&quot;post__link&quot;&gt;Create your first adaptive card&lt;/a&gt;. Also, when designing your adaptive cards, the &lt;a href=&quot;https://adaptivecards.io/designer/&quot; class=&quot;post__link&quot;&gt;Adaptive Card Designer&lt;/a&gt; can be a helpful tool.&lt;/p&gt;
+
+&lt;h3 id=&quot;decision-making-with-adaptive-cards-reassigning-or-confirming&quot;&gt;Decision-Making with Adaptive Cards: Reassigning or Confirming&lt;/h3&gt;
+
+&lt;p&gt;The adaptive card presents you with two option: the first is to reassign the approval, and the second is to send it to the initial approver. Once you select an option and submit your response on the adaptive card, the workflow receives your response. Your response is then evaluated in another condition action within the workflow.&lt;/p&gt;
+
+&lt;p&gt;If the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;reassignApproval&lt;/code&gt; attribute of you response is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;false&lt;/code&gt;, the workflow will continue to send the approval to the initial approver. However, if the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;reassignApproval&lt;/code&gt; is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;true&lt;/code&gt;, it will assign an approval to the email you provided as input into the adaptive card.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;closing-the-loop-notification-of-the-approval-outcome&quot;&gt;Closing the Loop: Notification of the Approval Outcome&lt;/h3&gt;
+
+&lt;p&gt;Once the approver has completed their task, you are notified of the final outcome of their approval and informed of any comments that they may have left during the approval process.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-08-03-out-of-office-approval/final-notification.png&quot; alt=&quot;Final Notification&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;reaping-the-benefits-of-power-automate-approvals&quot;&gt;Reaping the Benefits of Power Automate Approvals&lt;/h2&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;By leveraging Power Automate efficiencies and features, we have turned a potential bottleneck into a smooth and efficient process. No more waiting for approvals or wondering about the status of a document. We have created a dynamic system that adapts to real-life situations, keeping your approvals moving and your teams productive.&lt;/p&gt;
+
+&lt;p&gt;Power Automate might seem like magic, but it is simply a powerful tool that can make your work life a whole lot easier. Embrace Power Automate’s efficiency and the rich array of Power Automate features to make document approval automation a breeze.&lt;/p&gt;
+
+&lt;p&gt;For further reading, visit:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://learn.microsoft.com/en-us/power-automate/&quot; class=&quot;post__link&quot;&gt;Microsoft Power Automate Documentation&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://learn.microsoft.com/en-us/power-automate/get-started-logic-flow&quot; class=&quot;post__link&quot;&gt;Creating Workflows in Power Automate&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://learn.microsoft.com/en-us/training/powerplatform/power-automate&quot; class=&quot;post__link&quot;&gt;Microsoft Power Automate Training&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Check out these blog posts for other helpful Power Automate Guides:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://medium.com/inquisitive-nature/microsoft-power-automate-dynamic-approval-cycle-e9ea785081a1&quot; class=&quot;post__link&quot;&gt;Dynamic Approvals Made Easy: A Deep Dive into Power Automate’s Approval Functionality&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://medium.com/inquisitive-nature/microsoft-power-automate-outlook-inbox-cleanup-cd5aa67a096d&quot; class=&quot;post__link&quot;&gt;From Chaos to Clarity: Revolutionize Your Inbox with Power Automate&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Now that you have the blueprint for creating a document approval workflow with Power Automate, it is time to put it into action.&lt;/p&gt;
+
+&lt;p&gt;And remember, as Albert Einstein once said, “Anyone who has never made a mistake has never tried anything new.” So don’t be afraid to experiment, learn, and create workflows. A little bit of automation today can save you a lot of manual work tomorrow.&lt;/p&gt;
+
+&lt;p&gt;Happy Automating!&lt;/p&gt;</content><author><name>Ethan Guyant</name></author><category term="How To" /><category term="Microsoft 365" /><category term="Power Automate" /><category term="Outlook" /><category term="Power Apps" /><category term="Power Platform" /><summary type="html">From Hurdle to Handshake: Streamline Document Approvals with Power Automate</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://ethanguyant.com/assets/img/post_img/out-of-office-approval.jpg" /><media:content medium="image" url="http://ethanguyant.com/assets/img/post_img/out-of-office-approval.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Time Travel in Power BI: Mastering Time Intelligence Functions</title><link href="http://ethanguyant.com/blog/2023-07-19-powerbi-time-intelligence/" rel="alternate" type="text/html" title="Time Travel in Power BI: Mastering Time Intelligence Functions" /><published>2023-07-19T00:00:00+00:00</published><updated>2023-07-19T00:00:00+00:00</updated><id>http://ethanguyant.com/blog/powerbi-time-intelligence</id><content type="html" xml:base="http://ethanguyant.com/blog/2023-07-19-powerbi-time-intelligence/">&lt;h2 id=&quot;the-tools-to-time-travel-an-introduction&quot;&gt;The Tools to Time Travel: An Introduction&lt;/h2&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -2151,258 +2333,4 @@ The example below is a Power BI report with a table visual of a products table. 
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
-&lt;p&gt;If you enjoy what you read and find it helpful please check back, and check back often. Follow me on &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/@emguyant&quot;&gt;&lt;i class=&quot;fab fa-medium&quot;&gt;&lt;/i&gt; Medium&lt;/a&gt; while giving a clap to the article! Also don’t forget to subscribe to the &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/inquisitive-nature&quot;&gt;&lt;b&gt;INQUISITIVE NATURE&lt;/b&gt;&lt;/a&gt; publication.&lt;/p&gt;</content><author><name>Ethan Guyant</name></author><category term="Deep Dive" /><category term="Microsoft 365" /><category term="Power BI" /><category term="Power Platform" /><category term="Power BI Fundamentals Series" /><summary type="html">Contents Review Understanding Context Transition Context Transition with CALCULATE Context Transition with Measures Maximum Daily Sales by Month Example Context Transition Pit Falls</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://ethanguyant.com/assets/img/post_img/powerbi-context-transition.jpg" /><media:content medium="image" url="http://ethanguyant.com/assets/img/post_img/powerbi-context-transition.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Power BI Filter Context: Unraveling the Impact of Filters on Calculations</title><link href="http://ethanguyant.com/blog/2022-10-24-power-bi-filter-context/" rel="alternate" type="text/html" title="Power BI Filter Context: Unraveling the Impact of Filters on Calculations" /><published>2022-10-24T00:00:00+00:00</published><updated>2022-10-24T00:00:00+00:00</updated><id>http://ethanguyant.com/blog/power-bi-filter-context</id><content type="html" xml:base="http://ethanguyant.com/blog/2022-10-24-power-bi-filter-context/">&lt;h2 id=&quot;contents&quot;&gt;Contents&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;#review&quot;&gt;Review&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#introduction-to-filter-context&quot;&gt;Introduction to Filter Context&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#the-calculate-function&quot;&gt;The CALCULATE Function&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#exploring-filter-context&quot;&gt;Exploring Filter Context&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#create-filter-context-with-slicers&quot;&gt;Create Filter Context with Slicers&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#create-filter-context-with-calculate&quot;&gt;Create Filter Context with CALCULATE&lt;/a&gt;
-    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#keep-external-filters-with-calculate&quot;&gt;Keep External Filters with CALCULATE&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#more-calculate-examples&quot;&gt;More CALCULATE Examples&lt;/a&gt;
-    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#creating-a-measure-of-high-quantity-sales&quot;&gt;Create a Measure of High Quantity Sales&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#percentage-of-sales-by-product-color&quot;&gt;Percentage of Sales by Product Color&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;review&quot;&gt;Review&lt;/h2&gt;
-&lt;p&gt;One of the early stages of creating any Power BI report is the development of the data model. The data model will consist of data tables, relationships, and calculations. There are two types of calculations: calculated columns, and measures.&lt;/p&gt;
-
-&lt;p&gt;Check out &lt;a href=&quot;https://ethanguyant.com/blog/2022-09-28-power-bi-row-context/&quot; class=&quot;post__link&quot;&gt;Power BI Row Context: Understanding the Power of Context in Calculations&lt;/a&gt; for key differences between calculated columns and measures.&lt;/p&gt;
-
-&lt;p&gt;All expressions, either from a calculated column or a measure, get evaluated within the evaluation context. The evaluation context limits the values in the current scope when evaluating an expression. The filter context and/or the row context make up the evaluation context.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://ethanguyant.com/blog/2022-09-28-power-bi-row-context/&quot; class=&quot;post__link&quot;&gt;Power BI Row Context: Understanding the Power of Context in Calculations&lt;/a&gt; of this series explores the row context in depth. While &lt;a href=&quot;https://ethanguyant.com/blog/2022-10-11-power-bi-iterators/&quot; class=&quot;post__link&quot;&gt;Power BI Iterators: Unleashing the Power of Iteration in Power BI Calculations&lt;/a&gt; explores iterator functions, which are functions that create row context.&lt;/p&gt;
-
-&lt;p&gt;This post is the third of a Power BI Fundamental series with a focus on the filter context. The example file used in this post is located here -&lt;a class=&quot;social-list__link&quot; href=&quot;https://github.com/EMGuyant/power-bi-key-fundamentals&quot;&gt;&lt;i class=&quot;fab fa-github&quot;&gt;&lt;/i&gt; GitHub&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;introduction-to-filter-context&quot;&gt;Introduction to Filter Context&lt;/h2&gt;
-&lt;p&gt;Filter context refers to the filters applied before evaluating an expression. This filter context limits the set of rows of a table available to the calculation. There are two types of filters to consider, the first is implicit filters or filters applied by the user via the report canvas. The second type is explicit filters which use functions such as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULATE()&lt;/code&gt; or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULATETABLE()&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;The applied filter context can contain one or many filters. When there are many filters the filter context will be the intersection of all the filters. When the filter context is empty all the data is used during the evaluation.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;The filter context does not iterate - this is a key difference between the filter context and the row context&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;See &lt;a href=&quot;https://ethanguyant.com/blog/2022-09-28-power-bi-row-context/&quot; class=&quot;post__link&quot;&gt;Power BI Row Context: Understanding the Power of Context in Calculations&lt;/a&gt; and &lt;a href=&quot;https://ethanguyant.com/blog/2022-10-11-power-bi-iterators/&quot; class=&quot;post__link&quot;&gt;Power BI Iterators: Unleashing the Power of Iteration in Power BI Calculations&lt;/a&gt; for more details on the row context.&lt;/p&gt;
-
-&lt;p&gt;Filter context propagates through the data model relationships.  When defining each model relationship the cross-filter direction is set. This setting determines the direction(s) the filters will propagate. The available cross-filter options depend on the cardinality type of the relationship. See available documentation for more information on &lt;a href=&quot;https://learn.microsoft.com/en-us/power-bi/transform-model/desktop-relationships-understand#cross-filter-direction&quot; class=&quot;post__link&quot;&gt;Cross-filter Direction&lt;/a&gt; and &lt;a href=&quot;https://learn.microsoft.com/en-us/power-bi/transform-model/desktop-bidirectional-filtering&quot; class=&quot;post__link&quot;&gt;Enabling Bidirectional Cross-filtering&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;It is important to be familiar with certain DAX functions which can modify the filter context. Some examples used in the post include &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULATE()&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ALL()&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FILTER()&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;the-calculate-function&quot;&gt;The CALCULATE Function&lt;/h2&gt;
-&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULATE()&lt;/code&gt; function can add filters to a measure expression, ignore filters applied to a table, or overwrite filters applied from within the report visuals. The CALCULATE() function is a powerful and important tool when updating or modifying the filter context.&lt;/p&gt;
-
-&lt;p&gt;The syntax of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULATE()&lt;/code&gt; is:
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULATE(&amp;lt;expression&amp;gt;, &amp;lt;filter1&amp;gt;, &amp;lt;filter2&amp;gt;, ...)&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULATE()&lt;/code&gt; function can include many filter expressions or no filter expressions. When there are multiple filter expressions &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULATE()&lt;/code&gt; implements the intersection of all filters. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULATE()&lt;/code&gt; function applies an internal &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AND&lt;/code&gt; logic between filters. Evaluation of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;expression&amp;gt;&lt;/code&gt; occurs after evaluating the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;filter&amp;gt;&lt;/code&gt; expressions.&lt;/p&gt;
-
-&lt;p&gt;Use the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULATE()&lt;/code&gt; function when modifying the filter context of an expression that returns a scalar value. Use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULATETABLE()&lt;/code&gt; when modifying the filter context of an expression that returns a table.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;exploring-filter-context&quot;&gt;Exploring Filter Context&lt;/h2&gt;
-&lt;p&gt;The table below is a visualization of the total sales amount for each product color.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/2022-10-23-power-bi-filter-context/total-sales-table.png&quot; alt=&quot;Total Sales Table&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The table visual creates filter context, as seen by the total sales amount for each color or row. Evaluating &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesAmount2&lt;/code&gt; occurs by first filtering the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesOrderDetail&lt;/code&gt; table by the color, and then evaluating the measure with the filtered table. This is then repeated for each product color in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesOrderDetail&lt;/code&gt; table.&lt;/p&gt;
-
-&lt;p&gt;The above example only contained the single product color filter. However, as mentioned previously the filter context can contain multiple filters. The example table below adds the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProductType&lt;/code&gt; to the table. The addition of this field breaks down the total sales first by color and then by product type. For each row, the underlying &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesOrderDetail&lt;/code&gt; table is first filtered by color and product type before evaluating the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesAmount2&lt;/code&gt; measure. In these examples, it is the table visual that is creating the filter context.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/2022-10-23-power-bi-filter-context/total-sales-product-type-table.png&quot; alt=&quot;Total Sales by Color and Product Type&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;create-filter-context-with-slicers&quot;&gt;Create Filter Context with Slicers&lt;/h2&gt;
-&lt;p&gt;Another way to create filter context is through the use of slicer visuals. For this example, a slicer of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProductType&lt;/code&gt; is created.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/2022-10-23-power-bi-filter-context/filter-context-slicer.gif&quot; alt=&quot;Product Type Slicer&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;When no value is selected in the slicer the filter context from the slicer visual is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;null&lt;/code&gt;. Meaning at first the card visual shows the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesAmount2&lt;/code&gt; value evaluated for all data. Additionally, when no value is selected in the slicer the only filter context is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProductColor&lt;/code&gt; from the table visual.&lt;/p&gt;
-
-&lt;p&gt;Following the selection of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BK&lt;/code&gt; in the product type slicer, the values in both the table and the card visual are updated. The card visual now has one filter context which is the product type &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BK&lt;/code&gt;. This is evaluated by creating a filtered table and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesAmount2&lt;/code&gt; is evaluated for this filtered table.&lt;/p&gt;
-
-&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesAmount2&lt;/code&gt; measure is defined by: &lt;br /&gt;
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesAmount2 = SUMX(SalesOrderDetail, SalesOrderDetail[OrderQty] * SalesOrderDetail[UnitPrice] * (1 - SalesOrderDetail[UnitPriceDiscount]))&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;After selecting an option from the slicer the measure is re-evaluated. The re-evaluation occurs to account for the newly created filter context. The filter context creates a subset of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesOrderDetail&lt;/code&gt; table that matches the slicer selection. Then the row context evaluates the expression row-by-row for the filtered table and is summed. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SUMX()&lt;/code&gt; is an example of an iterator function, see &lt;a href=&quot;https://ethanguyant.com/blog/2022-10-11-power-bi-iterators/&quot; class=&quot;post__link&quot;&gt;Power BI Iterators: Unleashing the Power of Iteration in Power BI Calculations&lt;/a&gt; for details. The updated value is then displayed on the card visual.&lt;/p&gt;
-
-&lt;p&gt;The table visual works in a similar fashion but, there are two filters applied. The table visual has an initial filter context of the product color. After the selection of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BK&lt;/code&gt;, the table gets updated to visualize the intersection of the product color filter and the product type filter.&lt;/p&gt;
-
-&lt;p&gt;Following a selection in the slicer visual, if a row in the table visual is selected this will also apply a filter. The filter context is the intersection of the table selection filters and the slicer. The updated filter context gets applied to all other visuals (e.g. the card visual).&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;The filter context can contain one or many filters. The filter can come from one or many visuals and gets applied before evaluating the expression. Meaning the filter context gets applied before using the row context to evaluate an expression row-by-row.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;create-filter-context-with-calculate&quot;&gt;Create Filter Context with CALCULATE&lt;/h2&gt;
-&lt;p&gt;Previous examples created the filter context using implicit filters. Generally, the user creates this type of filter through the user interface. Another way to create filter context is by using explicit filters. Explicit filters get created through the use of functions such as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULATE()&lt;/code&gt;. For this example, rather than having to select &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BK&lt;/code&gt; in the slicer to view total bike sales, we will use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULATE()&lt;/code&gt;. We will create a new measure that will force the filter context. We can do this because &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULATE()&lt;/code&gt; allows us to set the filter context for an expression.&lt;/p&gt;
-
-&lt;p&gt;We define the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BikeSales&lt;/code&gt; measure as: &lt;br /&gt;
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BikeSales = CALCULATE(SalesOrderDetail[SalesAmount2], Products[ProductType]=&quot;BK&quot;)&lt;/code&gt;&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Expression: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesOrderDetails[SalesAmount2]&lt;/code&gt;&lt;/li&gt;
-  &lt;li&gt;Filter: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Products[ProductType]=&quot;BK&quot;&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/2022-10-23-power-bi-filter-context/calculate-function.gif&quot; alt=&quot;Bike Sales Measure&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BikeSales&lt;/code&gt; is then added to the table visual alongside &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesAmount2&lt;/code&gt;. When the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BK&lt;/code&gt; product type is the slicer selection the two table columns are equal. Both measures have the same filter context created by product color and product type. Removing the implicit product type filter by unselecting a product type updates the filter context. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesAmount2&lt;/code&gt; expression is re-evaluated with the updated filter context. Since the filter context created by the slicer is now &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;null&lt;/code&gt; the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesAmount2&lt;/code&gt; value calculates using all the data. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BikeSales&lt;/code&gt; values do not change. This is because of the explicit filter used by the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULATE()&lt;/code&gt; function when we defined the measure.  The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BikeSales&lt;/code&gt; measure still has the filter  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Products[ProductType]=&quot;BK&quot;&lt;/code&gt; applied regardless of the product type slicer.&lt;/p&gt;
-
-&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULATE()&lt;/code&gt; function only creates filter context and does not create row context. So an important question to ask is why or how the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BikeSales&lt;/code&gt; measure works. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULATE()&lt;/code&gt; function references a specific column value,  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Products[ProductType]=&quot;BK&quot;&lt;/code&gt;. Yet, the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULATE()&lt;/code&gt; function does not have row context. So how does Power BI know which row it is working with? The answer is that the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULATE()&lt;/code&gt; function applies the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FILTER()&lt;/code&gt; function. And the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FILTER&lt;/code&gt; function creates the row context required to evaluate the measure.&lt;/p&gt;
-
-&lt;p&gt;See &lt;a href=&quot;https://ethanguyant.com/blog/2022-10-11-power-bi-iterators/&quot; class=&quot;post__link&quot;&gt;Power BI Iterators: Unleashing the Power of Iteration in Power BI Calculations&lt;/a&gt; for details on iterator functions.&lt;/p&gt;
-
-&lt;p&gt;Within the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULATE()&lt;/code&gt; function the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Products[ProductType]=&quot;BK&quot;&lt;/code&gt; filter is shorten syntax. The filter argument passed to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULATE()&lt;/code&gt; is equivalent to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FILTER(ALL(Products[ProductType]), Products[ProductType]=&quot;BK&quot;))&lt;/code&gt;.  The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ALL()&lt;/code&gt; function removes any external filters on the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProductType&lt;/code&gt; column and is another example of a function that can modify the filter context.&lt;/p&gt;
-
-&lt;h3 id=&quot;keep-external-filters-with-calculate&quot;&gt;Keep External filters with CALCULATE&lt;/h3&gt;
-&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULATE()&lt;/code&gt; function evaluates the filter context both outside of and within the function. The filter context outside of the function can come from user interaction with visuals. The filter context within the function is the filter expression(s).&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULATE()&lt;/code&gt; overwrites external filters or filters that are outside of the function&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;To explore this we create a table with the Product Type, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesAmount2&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesBike&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/2022-10-23-power-bi-filter-context/total-sales-by-product-table.png&quot; alt=&quot;Totals Sales by Product Type&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesAmount2&lt;/code&gt; column shows the total sales amount, if any, as expected. While the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BikeSales&lt;/code&gt; column shows the same repeated value for all rows and is incorrect. Looking at the Product Type &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BK&lt;/code&gt; row we can see this row is correct. This table demonstrates that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULATE()&lt;/code&gt; overwrites external filters.&lt;/p&gt;
-
-&lt;p&gt;For example, the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BB&lt;/code&gt; product type row filters &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesOrderDetail&lt;/code&gt; before evaluating &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesAmount2&lt;/code&gt;. This returns the correct total sales for the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BB&lt;/code&gt; product type. When evaluating &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BikeSales&lt;/code&gt; this external product type filter gets overwritten. The measure calculates the sales amount value for the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BK&lt;/code&gt; product type (explicit filter) and returns this value for all rows.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULATE()&lt;/code&gt; can be modified to keep both external and internal filters&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Using the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;KEEPFILTERS()&lt;/code&gt; function within &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULATE()&lt;/code&gt; will force &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULTE()&lt;/code&gt; to keep both external and internal filters.&lt;/p&gt;
-
-&lt;p&gt;To do this we update &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BikeSales&lt;/code&gt; to: &lt;br /&gt;
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BikeSales = CALCULATE(SalesOrderDetail[SalesAmount2], KEEPFILTERS(Products[ProductType]=&quot;BK&quot;))&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;After updating the measure definition the resulting table is shown below.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/2022-10-23-power-bi-filter-context/total-sales-product-type-table_2.png&quot; alt=&quot;Update Sales by Product Type&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Keeping the external filters is shown by the empty values for all rows except &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BK&lt;/code&gt;. For example, we look again at the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BB&lt;/code&gt; product type row. When evaluating &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BikeSales&lt;/code&gt; Power BI keeps the external filter  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Products[ProductType]=&quot;BB&quot;&lt;/code&gt; and the internal filter &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Products[ProductType]=&quot;BK&quot;&lt;/code&gt;. When applying more than one filter the filter context is the intersection of the two. The intersection of the two applied filters for the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BB&lt;/code&gt; row is empty. A product cannot be both of type &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BB&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BK&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;more-calculate-examples&quot;&gt;More CALCULATE Examples&lt;/h2&gt;
-&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULATE()&lt;/code&gt; function plays an integral part in the filter context. Below are more examples to show key concepts and show that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULATE()&lt;/code&gt; is an important part of the filter context.&lt;/p&gt;
-
-&lt;h3 id=&quot;creating--a-measure-of-high-quantity-sales&quot;&gt;Creating  a measure of High Quantity Sales&lt;/h3&gt;
-&lt;p&gt;For the first example, we will be creating a sales measure showing the total sales amount for high-quantity orders. Creating this measure requires first filtering the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesOrderDetail&lt;/code&gt; table based on the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OrderQty&lt;/code&gt;. Then evaluating the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesAmount2&lt;/code&gt; measure with this filtered table.&lt;/p&gt;
-
-&lt;p&gt;We define &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;HighQtySales&lt;/code&gt; as: &lt;br /&gt;
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;HighQtySales = CALCULATE([SalesAmount2], SalesOrderDetail[OrderQty]&amp;gt;25)&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/2022-10-23-power-bi-filter-context/highqtysales.gif&quot; alt=&quot;High Quantity Sales Measure&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;We then visualize this measure on a card visual and see that 96.30K of our total 109.85M sales come from a high-quantity order. This again demonstrates the filter arguments passed to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULATE()&lt;/code&gt; are shorthand syntax. The filter arguments within &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULATE()&lt;/code&gt; use the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FILTER()&lt;/code&gt; function to create the row context required. In this example  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesOrderDetail[OrderQty]&amp;gt;25&lt;/code&gt; is equivalent to  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FILTER(ALL(SalesOrderDetail),SalesOrderDetail[OrderQty] &amp;gt; 25)&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FILTER()&lt;/code&gt; function is an example of an iterator function and creates the row context. The row context allows for row-by-row evaluation of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;OrderQty&lt;/code&gt;. Meaning it evaluates &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesOrderDetail[OrderQty] &amp;gt; 25&lt;/code&gt; for each row of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesOrderDetail&lt;/code&gt; table. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FILTER()&lt;/code&gt; then returns a virtual tale which is a subset of the original and contains only orders with a quantity greater than 25.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULATE()&lt;/code&gt; function creates filter context because the filter arguments provide a table. This table is the intersection of all the filter expressions passed to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULATE()&lt;/code&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;percentage-of-sales-by-product-color&quot;&gt;Percentage of Sales by Product Color&lt;/h3&gt;
-&lt;p&gt;For the second example we will create a measure to show the percentage of total sales for each product color. To create this we will start with a new &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AllSales&lt;/code&gt; measure. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AllSales&lt;/code&gt; uses the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULATE()&lt;/code&gt; function to remove any filters and evaluates &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesAmount2&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;We define &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AllSales&lt;/code&gt; as: &lt;br /&gt;
-&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AllSales = CALCULATE([SalesAmount2], ALL(Products[Color]))&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/2022-10-23-power-bi-filter-context/all-sales.gif&quot; alt=&quot;All Sales Measure&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AllSales&lt;/code&gt; is then added to the table visual Percentage of Sales by Color table. Once added the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AllSales&lt;/code&gt; column shows 190.85M total sales value for each color. This is consistent with the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesAmount2&lt;/code&gt; card visual. Repeating this value for each color is also expected because of the filter expression &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ALL(Products[Color])&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ALL(Products[Color])&lt;/code&gt; creates a new filter context and gets evaluated with any other filters from the visuals. In this example &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULATE()&lt;/code&gt; overwrites any external filters on &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Products[Color]&lt;/code&gt;. This is why once added to the table visual &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AllSales&lt;/code&gt; displays the total sales value repeated for each row.&lt;/p&gt;
-
-&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ALL()&lt;/code&gt; function removes any filter limiting the color column that may exist while evaluating &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AllSales&lt;/code&gt;. It is best practice to be as specific as possible when defining a measure. Notice, in this example &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ALL()&lt;/code&gt; applies to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Product[Color]&lt;/code&gt;, rather than the entire &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Product&lt;/code&gt; table. If other filters exist on other columns from the visual these filters will still impact the evaluation. For example, selecting a product type from the slicer will adjust all values.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/2022-10-23-power-bi-filter-context/total-sales-product-type.gif&quot; alt=&quot;Total Sales by Product Type&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Following the selection, the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesAmount2&lt;/code&gt; represents the total &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BK&lt;/code&gt; sales for each color. While the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AllSales&lt;/code&gt; measure now represents the total sales for all &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BK&lt;/code&gt; product types. This occurs because when there are multiple filters the result is the intersection of all the filters.&lt;/p&gt;
-
-&lt;p&gt;In this case, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;All(Product[Color])&lt;/code&gt; removes the filter on the color column. The slicer visual creates an external filter context of only &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BK&lt;/code&gt; product types. During the evaluation, the intersection of these two creates the evaluation context.&lt;/p&gt;
-
-&lt;p&gt;We can also remove the external filter context created by the product type slicer. To do this, we update the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AllSales&lt;/code&gt; measure to include &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Products[ProductType]&lt;/code&gt; as an additional filter argument.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/2022-10-23-power-bi-filter-context/total-sales-product-type-2.gif&quot; alt=&quot;Updated Total Sales by Product Type&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;We update the filter expression of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULATE()&lt;/code&gt; function to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AllSales = CALCULATE([SalesAmount2], ALL(Products[Color], Products[ProductType]))&lt;/code&gt;. After updating the measure the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AllSales&lt;/code&gt; column of the table visual updates to the total sales value. The column now displays the expected 109.85M value and is no longer impacted by the filter context created by the slicer visual.&lt;/p&gt;
-
-&lt;p&gt;Another option to remove the filter context within &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULATE()&lt;/code&gt; is to use the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;REMOVEFILTER()&lt;/code&gt; function.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AllSales = CALCULATE(SalesOrderDetail[SalesAmount2], REMOVEFILTERS(Products[Color], Products[ProductType]))&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;We created &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AllSales&lt;/code&gt; as an initial step of the broader goal to calculate the percentage of total sales. To calculate the percentage we will update the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AllSales&lt;/code&gt; expression. We can do this by saving the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AllSales&lt;/code&gt; expression as a variable within the measure. We will also create another variable to store the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesAmount2&lt;/code&gt; value, which will be the total sales for each product color. Lastly, we will update the measure name to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PercentageSales&lt;/code&gt; which will &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RETURN&lt;/code&gt; the division of the two sales variables.&lt;/p&gt;
-
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;PercentageSales = 
-VAR Sales = SalesOrderDetail[SalesAmount2]
-VAR AllSales = CALCULATE(SalesOrderDetail[SalesAmount2], REMOVEFILTERS(Products[Color], Products[ProductType]))
-
-RETURN
-DIVIDE(Sales, AllSales)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/2022-10-23-power-bi-filter-context/percentage-sales.gif&quot; alt=&quot;Percentage of Total Sales by Color&quot; /&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;It is best practice to use the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DIVIDE&lt;/code&gt; function because it provides handling of divide by zero errors and will return a blank or a specified value.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;If you enjoy what you read and find it helpful please check back, and check back often. Follow me on &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/@emguyant&quot;&gt;&lt;i class=&quot;fab fa-medium&quot;&gt;&lt;/i&gt; Medium&lt;/a&gt; while giving a clap to the article! Also don’t forget to subscribe to the &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/inquisitive-nature&quot;&gt;&lt;b&gt;INQUISITIVE NATURE&lt;/b&gt;&lt;/a&gt; publication.&lt;/p&gt;</content><author><name>Ethan Guyant</name></author><category term="Deep Dive" /><category term="Microsoft 365" /><category term="Power BI" /><category term="Power Platform" /><category term="Power BI Fundamentals Series" /><summary type="html">Contents Review Introduction to Filter Context The CALCULATE Function Exploring Filter Context Create Filter Context with Slicers Create Filter Context with CALCULATE Keep External Filters with CALCULATE More CALCULATE Examples Create a Measure of High Quantity Sales Percentage of Sales by Product Color</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://ethanguyant.com/assets/img/post_img/powerbi-filter-context.jpg" /><media:content medium="image" url="http://ethanguyant.com/assets/img/post_img/powerbi-filter-context.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;p&gt;If you enjoy what you read and find it helpful please check back, and check back often. Follow me on &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/@emguyant&quot;&gt;&lt;i class=&quot;fab fa-medium&quot;&gt;&lt;/i&gt; Medium&lt;/a&gt; while giving a clap to the article! Also don’t forget to subscribe to the &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/inquisitive-nature&quot;&gt;&lt;b&gt;INQUISITIVE NATURE&lt;/b&gt;&lt;/a&gt; publication.&lt;/p&gt;</content><author><name>Ethan Guyant</name></author><category term="Deep Dive" /><category term="Microsoft 365" /><category term="Power BI" /><category term="Power Platform" /><category term="Power BI Fundamentals Series" /><summary type="html">Contents Review Understanding Context Transition Context Transition with CALCULATE Context Transition with Measures Maximum Daily Sales by Month Example Context Transition Pit Falls</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://ethanguyant.com/assets/img/post_img/powerbi-context-transition.jpg" /><media:content medium="image" url="http://ethanguyant.com/assets/img/post_img/powerbi-context-transition.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
