@@ -1,7 +1,7 @@
 ---
 layout: post
 author: Ethan Guyant
-title:  "Power BI Fundaments: Part 4 - Context Transitions"
+title:  "Power BI Context Transition: Navigating the Transition between Row and Filter Contexts"
 category: Deep Dive
 tags: [Microsoft 365, Power BI, Power Platform, Power BI Fundamentals Series]
 description: Learn more about the concepts of row context, filter context and how Power BI transitions between them. Context transition occurs when using the CALCULATE function and when referencing measures. It is important to understand when it happens and what it does because there are common scenarios where it can lead to unexpected results.
@@ -25,12 +25,12 @@ image_by_link: https://unsplash.com/@damodigital?utm_source=unsplash&utm_medium=
 ## Review
 One of the early stages of creating any Power BI report is the development of the data model. The data model will consist of data tables, relationships, and calculations. There are two types of calculations: calculated columns, and measures.
 
-Check out [Power BI Fundamentals: Part 1 - Row Context](https://ethanguyant.com/blog/2022-09-28-power-bi-row-context/){: .post__link} for key differences between calculated columns and measures.
+Check out [Power BI Row Context: Understanding the Power of Context in Calculations](https://ethanguyant.com/blog/2022-09-28-power-bi-row-context/){: .post__link} for key differences between calculated columns and measures.
 
 
 One of the most powerful elements of Power BI is that all measure calculations are done in context. The evaluation context limits the values in the current scope when evaluating an expression. The filter context and/or the row context make up the evaluation context. 
 
-[Power BI Fundamentals: Part 1 - Row Context](https://ethanguyant.com/blog/2022-09-28-power-bi-row-context/){: .post__link} of this series explores the row context in depth. While [Power BI Fundamentals: Part 2 - Iterator Functions](https://ethanguyant.com/blog/2022-10-11-power-bi-iterators/){: .post__link} explores iterator functions, which are functions that create row context. And finally, [Power BI Fundamentals: Part 3 - Filer Context](https://ethanguyant.com/blog/2022-09-28-power-bi-row-context/){: .post__link} explores the concept of the filter context.
+[Power BI Row Context: Understanding the Power of Context in Calculations](https://ethanguyant.com/blog/2022-09-28-power-bi-row-context/){: .post__link} explores the row context in depth. While [Power BI Iterators: Unleashing the Power of Iteration in Power BI Calculations](https://ethanguyant.com/blog/2022-10-11-power-bi-iterators/){: .post__link} explores iterator functions, which are functions that create row context. And finally, [Power BI Filter Context: Unraveling the Impact of Filters on Calculations](https://ethanguyant.com/blog/2022-09-28-power-bi-row-context/){: .post__link} explores the concept of the filter context.
 
 When evaluating expressions, the row context can be transitioned into a filter context within Power BI. This transition can help create more complex measures. Row context, filter context, and context transition can be confusing when starting with DAX so visit references and documentation often.  
 
@@ -77,7 +77,7 @@ This new calculated column shows the correct sales value for each product. We vi
 <br>
 
 ### Option #2: Using Measures
-Within the data model, we have already created a measure `SalesAmount2`. See [Power BI Fundamentals: Part 1 - Row Context](https://ethanguyant.com/blog/2022-09-28-power-bi-row-context/){: .post__link} and [Power BI Fundamentals: Part 2 - Iterator Functions](https://ethanguyant.com/blog/2022-10-11-power-bi-iterators/){: .post__link} for details on this measure. We defined `SalesAmount2` as:   
+Within the data model, we have already created a measure `SalesAmount2`. See [Power BI Row Context: Understanding the Power of Context in Calculations](https://ethanguyant.com/blog/2022-09-28-power-bi-row-context/){: .post__link} and [Power BI Iterators: Unleashing the Power of Iteration in Power BI Calculations](https://ethanguyant.com/blog/2022-10-11-power-bi-iterators/){: .post__link} for details on this measure. We defined `SalesAmount2` as:   
 
 `SalesAmount2 = SUMX(SalesOrderDetail, SalesOrderDetail[OrderQty] * SalesOrderDetail[UnitPrice] * (1 - SalesOrderDetail[UnitPriceDiscount]))`
 

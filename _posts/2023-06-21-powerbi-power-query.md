@@ -109,3 +109,10 @@ There are advanced features within Power Query such as conditional transformatio
 Power Query is a powerful tool for data preparation and transformation in Power BI. Its approachable interface and expansive capabilities empower users to connect to various data sources, cleanse and shape data, and load it into the Power BI data model. By expanding your knowledge and use of Power Query advanced features you can optimize your data analysis process, streamline data preparation, and unlock the full potential of your data. Implement the strategies outlined in this guide to improve your Power BI reports and dashboards expanding your analysis to new heights of insight and effectiveness.
 
 Start you exploration of Power Query and its features to further the effectiveness of your data analysis with increased flexibility and efficiency.
+
+<br>
+
+---
+<br>
+
+If you enjoy what you read and find it helpful please check back, and check back often. Follow me on <a class="post__link" href="https://medium.com/@emguyant"><i class="fab fa-medium"></i> Medium</a> while giving a clap to the article! Also don't forget to subscribe to the <a class="post__link" href="https://medium.com/inquisitive-nature"><b>INQUISITIVE NATURE</b></a> publication.
