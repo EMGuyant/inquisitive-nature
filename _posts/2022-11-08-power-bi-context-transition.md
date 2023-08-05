@@ -179,7 +179,14 @@ Knowing what context transition is and when it occurs is important to identifyin
 <br>
 
 ---
-
 <br>
 
-If you enjoy what you read and find it helpful please check back, and check back often. Follow me on <a class="post__link" href="https://medium.com/@emguyant"><i class="fab fa-medium"></i> Medium</a> while giving a clap to the article! Also don't forget to subscribe to the <a class="post__link" href="https://medium.com/inquisitive-nature"><b>INQUISITIVE NATURE</b></a> publication.
+If this sparked your curiosity, keep that spark alive and check back frequently. 
+
+Or even better, don't let the conversation end here. <a class="post__link" href="https://medium.com/@emguyant"><i class="fab fa-medium"></i>Follow me on Medium</a> to continue the conversation by commenting on the post and show your support through shares, and applause. 
+
+Be sure not to miss a post by <a class="post__link" href="https://medium.com/@emguyant/subscribe"><i class="fab fa-medium"></i>subscribing here</a>, with each new post comes an opportunity to learn something new.
+
+Eager for a deeper exploration? Consider venturing further by <a class="post__link" href="https://medium.com/@emguyant/membership"><i class="fab fa-medium"></i>joining Medium</a>, with a Medium membership you gain unlimited access to a world brimming with insights.
+
+Thank you for reading! Stay curious, and until next time, happy learning.

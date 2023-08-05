@@ -11,6 +11,8 @@ image_by: Ethan Robertson
 image_by_link: https://unsplash.com/@ethanrobertson?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText
 ---
 
+Say goodbye to the world of endless email threads and approval documents that somehow get lost in the abyss of your inbox. With Power Automate, ensure that documents get the thumbs up even when the chosen approver is out of the office.  Let's roll up our sleeves and get automating!
+
 ## From Hurdle to Handshake: Streamline Document Approvals with Power Automate
 
 <br>
@@ -80,7 +82,7 @@ For detailed instructions on each action check out Microsoft's guides on the Off
 
 ### Is the Approver Available? How to Check for Automatic Replies
 
-This stage uses the the Outlook action `Get mail tips for a mailbox` to see if the approver has an automatic reply turn on for their inbox. The automatic reply status is key because this could often signify the approver is either out of the office or generally unavailable.
+This stage uses the the Outlook action `Get mail tips for a mailbox` to see if the approver has an automatic reply turned on for their inbox. The automatic reply status is key because this could often signify the approver is either out of the office or generally unavailable.
 
 ![Get Mailbox Tips](/assets/img/2023-08-03-out-of-office-approval/get-mail-box-tips.png){: .post__img}
 
@@ -103,7 +105,7 @@ A critical part of the workflow is determining whether the assigned approver is 
     "maxMessageSize": 37748736,
     "emailAddress": {
       "name": "",
-      "address": "AlexW@02pby.onmicrosoft.com"
+      "address": "XXXXX@XXXX.onmicrosoft.com"
     },
     "automaticReplies": {
       "message": "<div>\r\n<div style=\"font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)\">\r\nI am currently out of the office.</div>\r\n</div>",
@@ -119,7 +121,7 @@ A critical part of the workflow is determining whether the assigned approver is 
 From this data, the following expression is used to determine if an automatic reply is set for the inbox:
 `empty(outputs('Get_mail_tips_for_a_mailbox_(V2)')?['body/value'][0]?['automaticReplies/message'])`
 
-This expression checks the `message` attributes within the `automaticReplies` property. If the `message` is empty (meaning no automatic reply message), the expression will evaluate to `true`.
+This expression checks the `message` attribute within the `automaticReplies` property. If the `message` is empty (meaning no automatic reply message), the expression will evaluate to `true`.
 
 If `true`, the workflow proceeds as planned, assigning the approval to the assignee. If `false`, however, the process takes a more intriguing turn, revealing deeper layers of automation. Continue reading to uncover the magic that unfolds.
 
@@ -137,7 +139,7 @@ When an approver is unavailable and an automatic reply is detected, the workflow
 
 ### Interactive Alerts: How Adaptive Cards Enhance the Approval Workflow
 
-First, the workflow sends you a Teams adaptive card. This card alerts you that your action is needed and prompts you to either reassign the approval or send it to the initial approver.
+First, the workflow sends you a Teams adaptive card. This card alerts you that your action is needed and prompts you to either reassign the approval or send an approval to the initial approver.
 
 ![Adaptive Card](/assets/img/2023-08-03-out-of-office-approval/adaptive-card.png){: .post__img}
 
@@ -147,7 +149,7 @@ For detailed instructions on creating and using Adaptive Cards, refer to Microso
 
 The adaptive card presents you with two option: the first is to reassign the approval, and the second is to send it to the initial approver. Once you select an option and submit your response on the adaptive card, the workflow receives your response. Your response is then evaluated in another condition action within the workflow.
 
-If the `reassignApproval` attribute of you response is `false`, the workflow will continue to send the approval to the initial approver. However, if the `reassignApproval` is `true`, it will assign an approval to the email you provided as input into the adaptive card.
+If the `reassignApproval` attribute of you response is `false`, meaning you selected Send Approval on the card, the workflow will continue to send the approval to the initial approver. However, if the `reassignApproval` is `true`, meaning you selected Reassign Approval, it will assign an approval to the email you provided as input into the adaptive card.
 
 <br>
 
@@ -187,3 +189,18 @@ Now that you have the blueprint for creating a document approval workflow with P
 And remember, as Albert Einstein once said, "Anyone who has never made a mistake has never tried anything new." So don't be afraid to experiment, learn, and create workflows. A little bit of automation today can save you a lot of manual work tomorrow.
 
 Happy Automating!
+
+<br>
+
+---
+<br>
+
+If this sparked your curiosity, keep that spark alive and check back frequently. 
+
+Or even better, don't let the conversation end here. <a class="post__link" href="https://medium.com/@emguyant"><i class="fab fa-medium"></i>Follow me on Medium</a> to continue the conversation by commenting on the post and show your support through shares, and applause. 
+
+Be sure not to miss a post by <a class="post__link" href="https://medium.com/@emguyant/subscribe"><i class="fab fa-medium"></i>subscribing here</a>, with each new post comes an opportunity to learn something new.
+
+Eager for a deeper exploration? Consider venturing further by <a class="post__link" href="https://medium.com/@emguyant/membership"><i class="fab fa-medium"></i>joining Medium</a>, with a Medium membership you gain unlimited access to a world brimming with insights.
+
+Thank you for reading! Stay curious, and until next time, happy learning.
