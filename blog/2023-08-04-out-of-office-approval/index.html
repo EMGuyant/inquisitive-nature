@@ -176,7 +176,9 @@
         </p>
     </section>
     <div class="post-content e-content" itemprop="articleBody">
-      <h2 id="from-hurdle-to-handshake-streamline-document-approvals-with-power-automate">From Hurdle to Handshake: Streamline Document Approvals with Power Automate</h2>
+      <p>Say goodbye to the world of endless email threads and approval documents that somehow get lost in the abyss of your inbox. With Power Automate, ensure that documents get the thumbs up even when the chosen approver is out of the office.  Let’s roll up our sleeves and get automating!</p>
+
+<h2 id="from-hurdle-to-handshake-streamline-document-approvals-with-power-automate">From Hurdle to Handshake: Streamline Document Approvals with Power Automate</h2>
 
 <p><br /></p>
 
@@ -249,7 +251,7 @@
 
 <h3 id="is-the-approver-available-how-to-check-for-automatic-replies">Is the Approver Available? How to Check for Automatic Replies</h3>
 
-<p>This stage uses the the Outlook action <code class="language-plaintext highlighter-rouge">Get mail tips for a mailbox</code> to see if the approver has an automatic reply turn on for their inbox. The automatic reply status is key because this could often signify the approver is either out of the office or generally unavailable.</p>
+<p>This stage uses the the Outlook action <code class="language-plaintext highlighter-rouge">Get mail tips for a mailbox</code> to see if the approver has an automatic reply turned on for their inbox. The automatic reply status is key because this could often signify the approver is either out of the office or generally unavailable.</p>
 
 <p><img src="/assets/img/2023-08-03-out-of-office-approval/get-mail-box-tips.png" alt="Get Mailbox Tips" class="post__img" /></p>
 
@@ -271,7 +273,7 @@
 </span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nl">"maxMessageSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">37748736</span><span class="p">,</span><span class="w">
 </span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nl">"emailAddress"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-</span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AlexW@02pby.onmicrosoft.com"</span><span class="w">
+</span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"XXXXX@XXXX.onmicrosoft.com"</span><span class="w">
 </span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="p">},</span><span class="w">
 </span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nl">"automaticReplies"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
 </span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="err"> </span><span class="w"> </span><span class="nl">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;div&gt;</span><span class="se">\r\n</span><span class="s2">&lt;div style=</span><span class="se">\"</span><span class="s2">font-family:Calibri,Arial,Helvetica,sans-serif; font-size:12pt; color:rgb(0,0,0)</span><span class="se">\"</span><span class="s2">&gt;</span><span class="se">\r\n</span><span class="s2">I am currently out of the office.&lt;/div&gt;</span><span class="se">\r\n</span><span class="s2">&lt;/div&gt;"</span><span class="p">,</span><span class="w">
@@ -287,7 +289,7 @@
 <p>From this data, the following expression is used to determine if an automatic reply is set for the inbox:
 <code class="language-plaintext highlighter-rouge">empty(outputs('Get_mail_tips_for_a_mailbox_(V2)')?['body/value'][0]?['automaticReplies/message'])</code></p>
 
-<p>This expression checks the <code class="language-plaintext highlighter-rouge">message</code> attributes within the <code class="language-plaintext highlighter-rouge">automaticReplies</code> property. If the <code class="language-plaintext highlighter-rouge">message</code> is empty (meaning no automatic reply message), the expression will evaluate to <code class="language-plaintext highlighter-rouge">true</code>.</p>
+<p>This expression checks the <code class="language-plaintext highlighter-rouge">message</code> attribute within the <code class="language-plaintext highlighter-rouge">automaticReplies</code> property. If the <code class="language-plaintext highlighter-rouge">message</code> is empty (meaning no automatic reply message), the expression will evaluate to <code class="language-plaintext highlighter-rouge">true</code>.</p>
 
 <p>If <code class="language-plaintext highlighter-rouge">true</code>, the workflow proceeds as planned, assigning the approval to the assignee. If <code class="language-plaintext highlighter-rouge">false</code>, however, the process takes a more intriguing turn, revealing deeper layers of automation. Continue reading to uncover the magic that unfolds.</p>
 
@@ -305,7 +307,7 @@
 
 <h3 id="interactive-alerts-how-adaptive-cards-enhance-the-approval-workflow">Interactive Alerts: How Adaptive Cards Enhance the Approval Workflow</h3>
 
-<p>First, the workflow sends you a Teams adaptive card. This card alerts you that your action is needed and prompts you to either reassign the approval or send it to the initial approver.</p>
+<p>First, the workflow sends you a Teams adaptive card. This card alerts you that your action is needed and prompts you to either reassign the approval or send an approval to the initial approver.</p>
 
 <p><img src="/assets/img/2023-08-03-out-of-office-approval/adaptive-card.png" alt="Adaptive Card" class="post__img" /></p>
 
@@ -315,7 +317,7 @@
 
 <p>The adaptive card presents you with two option: the first is to reassign the approval, and the second is to send it to the initial approver. Once you select an option and submit your response on the adaptive card, the workflow receives your response. Your response is then evaluated in another condition action within the workflow.</p>
 
-<p>If the <code class="language-plaintext highlighter-rouge">reassignApproval</code> attribute of you response is <code class="language-plaintext highlighter-rouge">false</code>, the workflow will continue to send the approval to the initial approver. However, if the <code class="language-plaintext highlighter-rouge">reassignApproval</code> is <code class="language-plaintext highlighter-rouge">true</code>, it will assign an approval to the email you provided as input into the adaptive card.</p>
+<p>If the <code class="language-plaintext highlighter-rouge">reassignApproval</code> attribute of you response is <code class="language-plaintext highlighter-rouge">false</code>, meaning you selected Send Approval on the card, the workflow will continue to send the approval to the initial approver. However, if the <code class="language-plaintext highlighter-rouge">reassignApproval</code> is <code class="language-plaintext highlighter-rouge">true</code>, meaning you selected Reassign Approval, it will assign an approval to the email you provided as input into the adaptive card.</p>
 
 <p><br /></p>
 
@@ -359,6 +361,21 @@
 <p>And remember, as Albert Einstein once said, “Anyone who has never made a mistake has never tried anything new.” So don’t be afraid to experiment, learn, and create workflows. A little bit of automation today can save you a lot of manual work tomorrow.</p>
 
 <p>Happy Automating!</p>
+
+<p><br /></p>
+
+<hr />
+<p><br /></p>
+
+<p>If this sparked your curiosity, keep that spark alive and check back frequently.</p>
+
+<p>Or even better, don’t let the conversation end here. <a class="post__link" href="https://medium.com/@emguyant"><i class="fab fa-medium"></i>Follow me on Medium</a> to continue the conversation by commenting on the post and show your support through shares, and applause.</p>
+
+<p>Be sure not to miss a post by <a class="post__link" href="https://medium.com/@emguyant/subscribe"><i class="fab fa-medium"></i>subscribing here</a>, with each new post comes an opportunity to learn something new.</p>
+
+<p>Eager for a deeper exploration? Consider venturing further by <a class="post__link" href="https://medium.com/@emguyant/membership"><i class="fab fa-medium"></i>joining Medium</a>, with a Medium membership you gain unlimited access to a world brimming with insights.</p>
+
+<p>Thank you for reading! Stay curious, and until next time, happy learning.</p>
 
     </div><a class="u-url" href="/blog/2023-08-04-out-of-office-approval/" hidden></a>
   </article>
