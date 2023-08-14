@@ -1,4 +1,471 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://ethanguyant.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://ethanguyant.com/" rel="alternate" type="text/html" /><updated>2023-08-05T14:39:40+00:00</updated><id>http://ethanguyant.com/feed.xml</id><title type="html">Ethan Guyant’s Blog</title><subtitle>A data solution centric blog focusing on the use and application of Microsoft Power Apps, Python Programming, and Data Science.</subtitle><entry><title type="html">Outsmarting the Out-of-Office Quandary: A Power Automate Approval Guide</title><link href="http://ethanguyant.com/blog/2023-08-04-out-of-office-approval/" rel="alternate" type="text/html" title="Outsmarting the Out-of-Office Quandary: A Power Automate Approval Guide" /><published>2023-08-04T00:00:00+00:00</published><updated>2023-08-04T00:00:00+00:00</updated><id>http://ethanguyant.com/blog/out-of-office-approval</id><content type="html" xml:base="http://ethanguyant.com/blog/2023-08-04-out-of-office-approval/">&lt;p&gt;Say goodbye to the world of endless email threads and approval documents that somehow get lost in the abyss of your inbox. With Power Automate, ensure that documents get the thumbs up even when the chosen approver is out of the office.  Let’s roll up our sleeves and get automating!&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://ethanguyant.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://ethanguyant.com/" rel="alternate" type="text/html" /><updated>2023-08-14T21:05:08+00:00</updated><id>http://ethanguyant.com/feed.xml</id><title type="html">Ethan Guyant’s Blog</title><subtitle>A data solution centric blog focusing on the use and application of Microsoft Power Apps, Python Programming, and Data Science.</subtitle><entry><title type="html">Mastering DAX Text Expressions: Making Sense of Your Data One String at a Time</title><link href="http://ethanguyant.com/blog/2023-08-14-text-functions/" rel="alternate" type="text/html" title="Mastering DAX Text Expressions: Making Sense of Your Data One String at a Time" /><published>2023-08-14T00:00:00+00:00</published><updated>2023-08-14T00:00:00+00:00</updated><id>http://ethanguyant.com/blog/text-functions</id><content type="html" xml:base="http://ethanguyant.com/blog/2023-08-14-text-functions/">&lt;p&gt;Ever felt like your data was whispering secrets just beyond your grasp? Dive into the world of DAX Text Functions and turn those whispers into powerful narratives. Unlock stories hidden within text strings, and let your data weave tales previously untold.&lt;/p&gt;
+
+&lt;h2 id=&quot;introduction-to-dax-text-expressions&quot;&gt;Introduction to DAX Text Expressions&lt;/h2&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;We live in a world that’s overflowing with data. But let’s remember: data can be so much more than just numbers on a spreadsheet. It can be the letters we string together, and the words we read. Get ready to explore the exciting world of DAX text expressions!&lt;/p&gt;
+
+&lt;p&gt;If you have ever worked with Power BI, you are likely familiar with DAX or Data Analysis Expressions. If you are new to Power BI and DAX check out these blog posts to get started:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://ethanguyant.com/blog/2022-09-28-power-bi-row-context/&quot; class=&quot;post__link&quot;&gt;Power BI Row Context: Understanding the Power of Context in Calculations&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://ethanguyant.com/blog/2022-10-11-power-bi-iterators/&quot; class=&quot;post__link&quot;&gt;Power BI Iterators: Unleashing the Power of Iteration in Power BI Calculations&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://ethanguyant.com/blog/2022-10-24-power-bi-filter-context/&quot; class=&quot;post__link&quot;&gt;Power BI Filter Context: Unraveling the Impact of Filters on Calculations&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://ethanguyant.com/blog/2022-11-08-power-bi-context-transition/&quot; class=&quot;post__link&quot;&gt;Power BI Context Transition: Navigating the Transition between Row and Filter Contexts&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://ethanguyant.com/blog/2023-06-29-calculated-measures-columns/&quot; class=&quot;post__link&quot;&gt;From Data to Insights: Maximizing Power BI’s Calculated Measures and Columns for Deeper Analysis&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;DAX is the backbone that brings structure and meaning to the data we work with in Power BI. Especially when we are dealing with textual data, DAX stands out with its comprehensive set of functions dedicated just for this purpose.&lt;/p&gt;
+
+&lt;p&gt;So whether you’re an experienced data analyst or a beginner just starting your journey, you have landed on the right page. Prepare to explore the depth and breadth of DAX Text Functions. This is going to be a deep dive covering various functions, their syntax, and plenty of of examples!&lt;/p&gt;
+
+&lt;p&gt;For those of you eager to start experimenting there is a Power BI report loaded with the sample data used in this post ready for you. So don’t just read, dive in and get hands-on with DAX Functions in Power BI. Check out it here: &lt;a href=&quot;https://github.com/EMGuyant/powerbi-dax-functions-series&quot; class=&quot;post__link&quot;&gt;GitHub — Power BI DAX Function Series: Mastering Data Analysis&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;left-right--mid---the-text-extractors&quot;&gt;LEFT, RIGHT, &amp;amp; MID - The Text Extractors&lt;/h2&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Starting with the basics, LEFT, RIGHT, and MID. Their primary role is to provide tools for selectively snipping portions of text, enabling focused and relevant data extraction. Let’s go a little deeper and explore their nuances.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;LEFT Function:&lt;/strong&gt; As the name subtly suggests, the LEFT function fetches a specific number of characters from the start, or leftmost part, of a given text string.&lt;/p&gt;
+
+&lt;p&gt;The syntax is as simple as:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LEFT(&amp;lt;text&amp;gt;, &amp;lt;number_of_characters&amp;gt;)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Here, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;text&amp;gt;&lt;/code&gt; is the text string containing the characters you want to extract, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;number_of_characters&amp;gt;&lt;/code&gt; is an optional parameter that indicates the number of characters you want to extract. It defaults to a value of 1 if a value is not provided.&lt;/p&gt;
+
+&lt;p&gt;For more details see - &lt;a href=&quot;https://learn.microsoft.com/en-us/dax/left-function-dax&quot; class=&quot;post__link&quot;&gt;Microsoft Documentation - LEFT&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;RIGHT Function:&lt;/strong&gt; The RIGHT function, mirrors the functionality of LEFT and aims to extract the characters from the end of a string, or the rightmost part.&lt;/p&gt;
+
+&lt;p&gt;The syntax is the same as we saw for LEFT:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RIGHT(&amp;lt;text&amp;gt;, &amp;lt;number_of_characters&amp;gt;)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;For more details see - &lt;a href=&quot;https://learn.microsoft.com/en-us/dax/right-function-dax&quot; class=&quot;post__link&quot;&gt;Microsoft Documentation - RIGHT&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;MID Function:&lt;/strong&gt; Now, we have the MID function. This is the bridge between LEFT and RIGHT that doesn’t restrict you to the start or end of the text string of interest. MID enables you to pinpoint a starting position and then extract a specific number of characters from there.&lt;/p&gt;
+
+&lt;p&gt;The syntax is as follows:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MID(&amp;lt;text&amp;gt;, &amp;lt;start_number&amp;gt;, &amp;lt;number_of_characters&amp;gt;)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Here, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;text&amp;gt;&lt;/code&gt; is the text string containing the characters you want to extract, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;start_number&amp;gt;&lt;/code&gt; is the position of the first character you want to extract (positions in the string start at 1), and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;number_of_characters&amp;gt;&lt;/code&gt; is the number of characters you want to extract.&lt;/p&gt;
+
+&lt;p&gt;For more details see - &lt;a href=&quot;https://learn.microsoft.com/en-us/dax/mid-function-dax&quot; class=&quot;post__link&quot;&gt;Microsoft Documentation - MID&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;practical-examples-diving-deeper-with-the-text-extractors&quot;&gt;Practical Examples: Diving Deeper with the Text Extractors&lt;/h3&gt;
+
+&lt;p&gt;Let’s dive deeper with some examples. Let’s say we have a Product Code column within our Product Table. The Product Code takes the form of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;product_abbreviation&amp;gt;-&amp;lt;product_num&amp;gt;-&amp;lt;color_code&amp;gt;&lt;/code&gt; for example, SM-5933-BK.&lt;/p&gt;
+
+&lt;p&gt;We will first extract the first two characters using LEFT, these represent the product abbreviation. We can create a calculated column in the products table using the following expression:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Product Abbrev = LEFT(Products[Product Code], 2)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Next, let’s use RIGHT to extract the last two characters which represent the color code of the product. We will add another calculated column to the products table using the following:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Product Color = RIGHT(Products[Product Code], 2)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Lastly, to pinpoint the unique product number which is nestled in the middle we will use MID. We add one last calculated column to the products table using this expression:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Product Number = MID(Products[Product Code], 4, 4)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Together, these three functions form the cornerstone of text extraction. However, they can sometimes stumble when there are unexpected text patterns. Take, for instance, the last row shown below for Product Code &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TBL-57148-BLK&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-08-14-text-functions/left-right-mid.png&quot; alt=&quot;Left, Right, &amp;amp; Mid&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;You might have noticed that the example expressions above may not always extract the intended values due to their reliance on hardcoded positions and number of characters. This highlights the importance of flexible and dynamic text extraction methods.&lt;/p&gt;
+
+&lt;p&gt;Enter FIND and SEARCH! As we venture further into this post, we will uncover how these functions can provide much-needed flexibility to our extractions, making them adaptable to varying text lengths and structures. So, while the trio of LEFT, RIGHT, and MID are foundational, there is a broader horizon of DAX Text Functions to explore.&lt;/p&gt;
+
+&lt;p&gt;So, don’t halt your DAX journey here; continue reading and discover the expanded universe of text manipulation tools. Dive in, and let’s continue to elevate your DAX skills.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;find--search---navigators-of-the-text-terrain&quot;&gt;FIND &amp;amp; SEARCH - Navigators of the Text Terrain&lt;/h2&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;In the landscape of DAX Text Functions, FIND and SEARCH stand out as exceptional navigators, aiding you in locating a substring within another text string. Yet, despite their apparent similarities, they come with clear distinctions that could greatly impact your results.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;FIND Function:&lt;/strong&gt; the detail-oriented one of the two functions. It is precise, and is case-sensitive. So, when using FIND, ensure you embrace the details and match the exact case of the text string you are seeking.&lt;/p&gt;
+
+&lt;p&gt;The syntax of FIND is:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FIND(&amp;lt;find_text&amp;gt;, &amp;lt;within_text&amp;gt;[, [&amp;lt;start_number&amp;gt;][, &amp;lt;NotFoundValue&amp;gt;]])&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Here, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;find_text&amp;gt;&lt;/code&gt; is the text string you are seeking, you can use empty double quotes &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&quot;&quot;&lt;/code&gt; to match the first character of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;within_text&amp;gt;&lt;/code&gt;. Speaking of, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;within_text&amp;gt;&lt;/code&gt; is the text string containing the text you want to find. The other parameters are optional, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;start_number&amp;gt;&lt;/code&gt; is the position in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;within_text&amp;gt;&lt;/code&gt; to start the seeking and defaults to 1 meaning the start of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;within_text&amp;gt;&lt;/code&gt;. Lastly, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;NotFoundValue&amp;gt;&lt;/code&gt; although optional is highly recommended and represents the value the function will use when &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;find_text&amp;gt;&lt;/code&gt; is not found in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;within_text&amp;gt;&lt;/code&gt;, typical values include 0, -1.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; if &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NotFoundValue&lt;/code&gt; is not specified and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;find_text&amp;gt;&lt;/code&gt; is not found in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;within_text&amp;gt;&lt;/code&gt; the function will return and error.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;For more details see - &lt;a href=&quot;https://learn.microsoft.com/en-us/dax/find-function-dax&quot; class=&quot;post__link&quot;&gt;Microsoft Documentation - FIND&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;SEARCH Function:&lt;/strong&gt; SEARCH is the more laid-back of the two functions. It is adaptable and does not account for case, whether it’s upper case, lower case or a mix SEARCH will find the text you are looking for.&lt;/p&gt;
+
+&lt;p&gt;The syntax for SEARCH is as follows:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SEARCH(&amp;lt;find_text&amp;gt;, &amp;lt;within_text&amp;gt;[, [&amp;lt;start_number&amp;gt;][, &amp;lt;NotFoundValue&amp;gt;]])&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;SEARCH operates using the same parameters as FIND, which can facilitate a streamlined approach when having to switch between them.&lt;/p&gt;
+
+&lt;p&gt;For more details see - &lt;a href=&quot;https://learn.microsoft.com/en-us/dax/search-function-dax&quot; class=&quot;post__link&quot;&gt;Microsoft Documentation - SEARCH&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;practical-examples-amplifying-flexibility&quot;&gt;Practical Examples: Amplifying Flexibility&lt;/h3&gt;
+
+&lt;p&gt;When combined with LEFT, RIGHT, or MID the potential of FIND and SEARCH multiplies, allowing for dynamic text extraction. Let’s consider the problematic Product Code &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TBL-57148-BLK&lt;/code&gt; again.&lt;/p&gt;
+
+&lt;p&gt;We started by extracting the product abbreviation with the following expression:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Product Abbrev = LEFT(Products[Product Code], 2)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;This works well when all the product codes start with a two-letter abbreviation. But what if they don’t? The fixed number of characters to extract might yield undesirable results. Let’s use FIND to add some much-needed flexibility to this expression.&lt;/p&gt;
+
+&lt;p&gt;We know that the product abbreviation is all the characters before the first hyphen. To determine the position of the the first hyphen we can use:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;First Hyphen = FIND(&quot;-&quot;, Products[Product Code])&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;For &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TBL-57148-BLK&lt;/code&gt; this will return a value of 4. We can then use this position to update our expression to dynamically extract the product abbreviation.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Product Abbrev Dynamic = LEFT(Products[Product Code], FIND(&quot;-&quot;, Products[Product Code]) - 1)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-08-14-text-functions/find.png&quot; alt=&quot;FIND Function&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Next, let’s add some adaptability to our Product Color expression to handle when the color code may contain more than two characters. We started with the following expression:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Product Color = RIGHT(Products[Product Code], 2)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;This expression assumes that all product color codes are consistently placed at the end and always two characters. However, if there are variations in the length (e.g. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TBL-57148-BLK&lt;/code&gt;) this method might not be foolproof. To introduce some adaptability, let’s utilize SEARCH.&lt;/p&gt;
+
+&lt;p&gt;To determine the position of the last hyphen, since the color code will always be all the characters following this we can use:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Last Hyphen = SEARCH(&quot;-&quot;, Products[Product Code], FIND(&quot;-&quot;, Products[Product Code])+1)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Here, for the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;start_number&amp;gt;&lt;/code&gt; we use the same FIND expression that we did to locate the first hyphen and then add 1 to the position to start the search for the second.&lt;/p&gt;
+
+&lt;p&gt;With this position, we can update our Product Color function to account for potential variations:&lt;/p&gt;
+
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Product Color Dynamic =
+VAR _firstHyphenPosition = FIND(&quot;-&quot;, Products[Product Code])
+VAR _lastHyphenPosition = SEARCH(&quot;-&quot;, Products[Product Code], _firstHyphenPosition + 1)
+
+RETURN
+RIGHT(Products[Product Code], LEN(Products[Product Code]) - _lastHyphenPosition)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The updated calculated column finds the position of the first hyphen, and then uses this position to search for the position of the last hyphen. Once we know the position, we can use this position and the length of the string to determine the number of characters needed to extract the color code (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LEN(Products[Product Code]) - _lastHyphenPosition&lt;/code&gt;).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-08-14-text-functions/search.png&quot; alt=&quot;Search Function&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Through the use of FIND, SEARCH, and RIGHT, the DAX text extraction becomes more adaptable, and handles even unexpected product code formats with ease.&lt;/p&gt;
+
+&lt;p&gt;Similarly, we can update the the Product Number expression to:&lt;/p&gt;
+
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Product Number Dynamic =
+VAR _firstHyphenPosition = FIND(&quot;-&quot;, Products[Product Code])
+VAR _lastHyphenPosition = SEARCH(&quot;-&quot;, Products[Product Code], _firstHyphenPosition + 1)
+VAR _productNumberLength = _lastHyphenPosition - _firstHyphenPosition -1
+
+RETURN
+MID(Products[Product Code], _firstHyphenPosition + 1, _productNumberLength)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-08-14-text-functions/product-number-dynamic.png&quot; alt=&quot;Update Product Number&quot; class=&quot;post__link&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Through these examples we have highlighted how to build upon the basics of LEFT, RIGHT, and MID by amplifying their flexibility through the use of FIND and SEARCH.&lt;/p&gt;
+
+&lt;h3 id=&quot;practical-examples-demonstrating-distinct-characteristics&quot;&gt;Practical Examples: Demonstrating Distinct Characteristics&lt;/h3&gt;
+
+&lt;p&gt;When it comes to locating specific strings within a text string, both FIND and SEARCH offer a helping hand. But, as is often the case with DAX, the devil is in the details. While they seem quite similar at a glance, a deeper exploration uncovers unique traits that set them apart. What’s main difference? Case sensitivity.&lt;/p&gt;
+
+&lt;p&gt;Let’s explore this by comparing the results of the following expressions:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Position with FIND = FIND(&quot;rd&quot;, Products[Product Code], 1, -1)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Position with SEARCH = SEARCH(&quot;rd&quot;, Products[Product Code], -1)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-08-14-text-functions/find-search-difference.png&quot; alt=&quot;FIND and SEARCH Case Sensitivity&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In these example DAX formulas we can see the key difference between FIND and SEARCH. Both calculated columns are looking for “rd” within the Product Code. However, for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SM-7818-RD&lt;/code&gt; we see FIND does not identify “rd” as a match whereas SEARCH does identify “rd” as a match at position 9.&lt;/p&gt;
+
+&lt;p&gt;Both of these functions are essential tools in your DAX toolbox, your choice between them will hinge on whether case sensitivity is a factor in your data analysis needs.&lt;/p&gt;
+
+&lt;p&gt;By mastering the combination of these text functions, you not only enhance text extraction but also pave the way to advanced text processing with DAX. The intricate synergy of FIND and SEARCH with other functions like LEFT, RIGHT, and MID showcases DAX’s textual data processing potential. Keep reading, as we journey further into more complex and fascinating DAX functions!&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;concatenate--combinevalues---craftsmen-of-cohesion&quot;&gt;CONCATENATE &amp;amp; COMBINEVALUES - Craftsmen of Cohesion&lt;/h2&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;While both CONCATENATE and COMBINEVALUES serve the primary purpose of stringing texts together, they achieve this with unique characteristics. CONCATENATE is the timeless classic, merging two strings with ease, while COMBINEVALUES adds modern finesse by introducing delimiters.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;CONCATENATE Function:&lt;/strong&gt; is designed to merge two text strings, with a syntax as simple as the concept.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CONCATENATE(&amp;lt;text1&amp;gt;, &amp;lt;text2&amp;gt;)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;The first text string you want to merge is represented by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;text1&amp;gt;&lt;/code&gt;, and the second text string to be merged is represented by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;text2&amp;gt;&lt;/code&gt;. The text strings can include text, numbers, or you can use a column references.&lt;/p&gt;
+
+&lt;p&gt;For more details see - &lt;a href=&quot;https://learn.microsoft.com/en-us/dax/concatenate-function-dax&quot; class=&quot;post__link&quot;&gt;Microsoft Documentation - CONCATENATE&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;COMBINEVALUES Function:&lt;/strong&gt; combines text strings while also integrating a specified delimiter between them, adding some versatility when needed. The syntax is as follows:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;COMBINEVALUES(&amp;lt;delimiter&amp;gt;, &amp;lt;expression&amp;gt;, &amp;lt;expression&amp;gt;[, &amp;lt;expression&amp;gt;]…)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;The character or set of characters you wish to use as a separator is denoted by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;delimiter&amp;gt;&lt;/code&gt;. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;expression&amp;gt;&lt;/code&gt; parameters are the DAX expressions whose value will be joined into the single string.&lt;/p&gt;
+
+&lt;p&gt;For more details see - &lt;a href=&quot;https://learn.microsoft.com/en-us/dax/combinevalues-function-dax&quot; class=&quot;post__link&quot;&gt;Microsoft Documentation - COMBINEVALUES&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;practical-examples-illuminating-their-craft&quot;&gt;Practical Examples: Illuminating Their Craft&lt;/h3&gt;
+
+&lt;p&gt;Let’s put these functions to use and examine some real-world scenarios.&lt;/p&gt;
+
+&lt;p&gt;Let’s say we need to create a new Product Label column in the Products table. The label should consist of the product abbreviation directly followed by the product number. We can achieve this using the previously created columns &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Product Abbrev Dynamic&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Product Number Dynamic&lt;/code&gt; along with CONCATENATE. The expression for the new column would look like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Product Label = CONCATENATE(Products[Product Abbrev Dynamic], Products[Product Number Dynamic])&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;The expression merges the dynamically determined product abbreviation and product number.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-08-14-text-functions/concat.png&quot; alt=&quot;Concatenate Function&quot; class=&quot;post_img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now, let’s change it up a bit and work with creating a new measure with COMBINEVALUES. Say, we need a page of the report specific to the current year’s sales and we want to create a page title that provides the current year and the YTD sales value. Additionally, we want to avoid hardcoding the current year value and the current YTD sales figure because these will continually change and would require continual updating. We can use COMBINEVALUES to meet this requirement, and the expression would look like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Yearly Page Title = COMBINEVALUES(&quot; &quot;, Year(TODAY()), &quot;- Year to date sales:&quot;, FORMAT([YTD Sales TOTALYTD], &quot;Currency&quot;))&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;This measure, dynamically generates the title text by combining the current year (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Year(TODAY())&lt;/code&gt;), the text string “- Year to date sales:”, followed by a YTD measure (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;[YTD Sales TOTALYTD&lt;/code&gt;).&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-08-14-text-functions/combine-values.png&quot; alt=&quot;COMBINEVALUES Function&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;[YTD Sales TOTALYTD]&lt;/code&gt; measure uses a another set of powerful DAX functions: Time Intelligence functions. For details on the creation of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;[YTD Sales TOTALYTD]&lt;/code&gt; along with other Time Intelligence functions check out this post that provides an in-depth guide to these functions.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://ethanguyant.com/blog/2023-07-19-powerbi-time-intelligence/&quot; class=&quot;post__link&quot;&gt;Time Travel in Power BI: Mastering Time Intelligence Functions&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;By mastering CONCATENATE and COMBINEVALUES, you can craft meaningful text combinations that suit various data modeling needs. Whether you are creating measures for reports or calculated column for your tables, you will find numerous applications for these DAX text function.&lt;/p&gt;
+
+&lt;p&gt;As we journey deeper into the realm of DAX, remember that the right tool hinges on your specific needs. While CONCATENATE and COMBINEVALUES both join texts, their nuanced differences could significantly influence the presentation of your data. Choose wisely!&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;replace--substitute---masters-of-text-transformation&quot;&gt;REPLACE &amp;amp; SUBSTITUTE - Masters of Text Transformation&lt;/h2&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Diving into the transformative world of text manipulation, we find two helpful tools: REPLACE and SUBSTITUTE. While both aim to modify the original text, their methods differ. REPLACE focuses in on a specific portion of text based on position, allowing for precise modification. In contrast, SUBSTITUTE scans the entire text string, swapping out every occurrence of a particular substring unless instructed otherwise.&lt;/p&gt;
+
+&lt;p&gt;You know the drill, let’s take a look at their syntax before exploring the examples.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;REPLACE Function:&lt;/strong&gt; pinpoints a section of text based on its position and its syntax is:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;REPLACE(&amp;lt;old_text&amp;gt;, &amp;lt;start_number&amp;gt;, &amp;lt;number_characters&amp;gt;, &amp;lt;new_text&amp;gt;)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;The original text (i.e. the text you want to replace) is represented by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;old_text&amp;gt;&lt;/code&gt;. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;start_number&amp;gt;&lt;/code&gt; denotes where, the position in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;old_text&amp;gt;&lt;/code&gt;, you want the replacement to begin, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;number_characters&amp;gt;&lt;/code&gt; signifies the number of characters you would like to replace. Lastly, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;new_text&amp;gt;&lt;/code&gt; is what you will be inserting in place of the old characters.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Note: If &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;number_characters&amp;gt;&lt;/code&gt; is blank, or a column that evaluates to blank, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;new_text&amp;gt;&lt;/code&gt; is inserted at the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;start_number&amp;gt;&lt;/code&gt; position &lt;strong&gt;without&lt;/strong&gt; replacing any characters.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;For more details see - &lt;a href=&quot;https://learn.microsoft.com/en-us/dax/replace-function-dax&quot; class=&quot;post__link&quot;&gt;Microsoft Documentation - REPLACE&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;SUBSTITUTE Function:&lt;/strong&gt; searches for a specific text string within the original text and replaces it with new text and has the following syntax:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SUBSTITUTE(&amp;lt;text&amp;gt;, &amp;lt;old_text&amp;gt;, &amp;lt;new_text&amp;gt;, &amp;lt;instance_number&amp;gt;)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;The main text string where you want the substitution to occur is represented as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;text&amp;gt;&lt;/code&gt;, with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;old_text&amp;gt;&lt;/code&gt; denoting the existing text string within &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;text&amp;gt;&lt;/code&gt; that you want to replace. Once the function spots &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;old_text&amp;gt;&lt;/code&gt;, it replaces it with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;new_text&amp;gt;&lt;/code&gt;. If you only wish to change a specific instance of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;old_text&amp;gt;&lt;/code&gt;, you can use the optional parameter &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;instance_number&amp;gt;&lt;/code&gt; to dictate which occurrence to modify. If &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;instance_number&amp;gt;&lt;/code&gt; is omitted every instance of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;old_text&amp;gt;&lt;/code&gt; will be replaced by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;new_text&amp;gt;&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;For more details see - &lt;a href=&quot;https://learn.microsoft.com/en-us/dax/substitute-function-dax&quot; class=&quot;post__link&quot;&gt;Microsoft Documentation - SUBSTITUTE&lt;/a&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;practical-examples-text-transformation-in-action&quot;&gt;Practical Examples: Text Transformation in Action&lt;/h3&gt;
+
+&lt;p&gt;Earlier we created a product label consisting of the product abbreviation and the product number. Let’s suppose now we need to create a new label based on this replacing the product number with the color code. We can use the REPLACE function to do this and the expression would look like this:&lt;/p&gt;
+
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Product Label Color =
+REPLACE(
+    Products[Product Label],
+    LEN(Products[Product Abbrev Dynamic])+1,
+    LEN(Products[Product Number Dynamic]),
+    Products[Product Color Dynamic]
+)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Here we are creating a new calculated column &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Product Label Color&lt;/code&gt; which aims to replace the product number with the product color code. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;old_text&amp;gt;&lt;/code&gt; is defined as the column &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Products[Product Label]&lt;/code&gt;. Then, remember the syntax, we need to determine the position to start the replacement (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;start_number&lt;/code&gt;) and the number of characters to replace (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;number_chars&lt;/code&gt;). Since both of these are not consistent we use our previous dynamically determined columns to help.&lt;/p&gt;
+
+&lt;p&gt;Here is a break down of the details:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Positioning: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LEN(Products[Product Abbrev Dynamic])+1&lt;/code&gt; helps find the starting point which is directly following the product abbreviation. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LEN&lt;/code&gt; counts the length of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Product Abbrev Dynamic&lt;/code&gt; column value and adds one, this is then used to start the replacement directly after the abbreviation.&lt;/li&gt;
+  &lt;li&gt;Length of Replacement: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LEN(Products[Product Number Dynamic])&lt;/code&gt; helps determine the length of the segment we want to replace. It counts how many characters make up the product number, allowing for the product number to vary in length but always be fully replaced.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Lastly, the expression uses the product color code as determined by the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Product Color Dynamic&lt;/code&gt; column we previously created as the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;new_text&amp;gt;&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-08-14-text-functions/replace.png&quot; alt=&quot;Replace Function&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The transformation of data can often require several steps of modification to ensure consistency and clarity. We can see in the above the last product code is not consistent with the rest resulting in a label that is also not consistent. Let’s build upon the previous example using SUBSTITUTE to add some consistency to the new label.&lt;/p&gt;
+
+&lt;p&gt;To do this the DAX expression would look like this:&lt;/p&gt;
+
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Product Label Color Updated =
+VAR _initialColorLabel =    
+    REPLACE(
+        Products[Product Label],
+        LEN(Products[Product Abbrev Dynamic])+1,
+        LEN(Products[Product Number Dynamic]),
+        Products[Product Color Dynamic]
+    )
+
+RETURN
+SUBSTITUTE(
+    SUBSTITUTE(_initialColorLabel, &quot;TBL&quot;, &quot;TB&quot;),
+    &quot;BLK&quot;,
+    &quot;BK&quot;
+)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Here we start by defining the variable &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_initialColorLabel&lt;/code&gt; using the same expression as the previous example. Then we refine this with a double substitution! The inner SUBSTITUTE (&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SUBSTITUTE(_initialColorLabel, &quot;TBL&quot;, &quot;TB&quot;)&lt;/code&gt;) takes the initial label as the main text string and searches for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TBL&lt;/code&gt; and replaces it with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TB&lt;/code&gt;. The result of this (e.g. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TBBLK&lt;/code&gt;) is then used as the initial text string for the outer SUBSTITUTE, which searches this string for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BLK&lt;/code&gt; and replaces it with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BK&lt;/code&gt;. This produces the new label that is consistent for all products.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-08-14-text-functions/subsitute.png&quot; alt=&quot;SUBSTITUTE Function&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now we are starting to see the true power of DAX Text Functions, this expression does so much more than just a singular adjustment: it first reshapes the product label and then it goes even further to make sure the abbreviation and colors codes that make up the label are consistent and concise. It is an illustration of how DAX can incrementally build and refine results for more accurate and streamlined outputs.&lt;/p&gt;
+
+&lt;p&gt;Although, these examples are helpful to demonstrate the use of REPLACE and SUBSTITUTE, it may be best to perform these transformations upstream when creating the dynamic extractions. For example the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Product Abbrev Dynamic&lt;/code&gt; column we created early:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Product Abbrev Dynamic = LEFT(Products[Product Code], FIND(&quot;-&quot;, Products[Product Code]) - 1)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Could be updated to :&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SUBSTITUTE(LEFT(Products[Product Code], FIND(&quot;-&quot;, Products[Product Code]) - 1), &quot;TBL&quot;, &quot;TB&quot;)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;This would ensure consistency where ever the product code is used within the report.&lt;/p&gt;
+
+&lt;p&gt;As we continue to journey deeper into the realm of DAX, remember that the right tool hinges on your specific needs. While CONCATENATE and COMBINEVALUES both join text strings, their nuanced differences could significantly influence the effectiveness of you data analysis and the presentation of your data. Choose wisely!&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;len--format---the-essentials&quot;&gt;LEN &amp;amp; FORMAT - The Essentials&lt;/h2&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;In the realm of DAX Text Functions, while both LEN and FORMAT serve distinct purposes, they play crucial roles in refining and presenting textual data. Throughout this deep dive into DAX Text Functions, you may have noticed these functions quietly powering several of our previous examples, working diligently behind the scenes.&lt;/p&gt;
+
+&lt;p&gt;For instance, in our &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Product Color Dynamic&lt;/code&gt; calculated column LEN was instrumental in determining the appropriate number of characters for the RIGHT function to extract. Similarly, our &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Yearly Page Title&lt;/code&gt; measure makes use of FORMAT, to ensure an aesthetic presentation of the YTD Sales value.&lt;/p&gt;
+
+&lt;p&gt;These instances accentuate the versatility of LEN and FORMAT, illustrating how they can be combined with other DAX functions to achieve intricate data manipulations and presentation. Let’s take a look at the details of these two essential functions.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;LEN Function:&lt;/strong&gt; provides a straightforward way to understand the length of a text string and the syntax couldn’t be more simple.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LEN(&amp;lt;text&amp;gt;)&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;The text string you wish to know the length of is represented by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;text&amp;gt;&lt;/code&gt;, just pass this to LEN to determine how many characters make up the string. The text string of interest could also be a column reference.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Note: Spaces count as characters&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;For more details see - &lt;a href=&quot;https://learn.microsoft.com/en-us/dax/len-function-dax&quot; class=&quot;post__link&quot;&gt;Microsoft Documentation - LEN&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Now that you are more familiar with the LEN function revisit the previous examples to see it in action.&lt;/p&gt;
+
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Product Color Dynamic =
+VAR _firstHyphenPosition = FIND(&quot;-&quot;, Products[Product Code])
+VAR _lastHyphenPosition = SEARCH(&quot;-&quot;, Products[Product Code], _firstHyphenPosition + 1)
+
+RETURN
+RIGHT(Products[Product Code], LEN(Products[Product Code]) - _lastHyphenPosition)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Product Label Color =
+    REPLACE(
+        Products[Product Label],
+        LEN(Products[Product Abbrev Dynamic])+1,
+        LEN(Products[Product Number Dynamic]),
+        Products[Product Color Dynamic]
+)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;FORMAT Function:&lt;/strong&gt; reshapes how data is visually represented, with this function you can transition the format of data types like dates, numbers, or durations into standardized, localized, or customized textual formats. The syntax is as follows:&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FORMAT(&amp;lt;value&amp;gt;, &amp;lt;format_string&amp;gt;[, &amp;lt;locale_name&amp;gt;])&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Here, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;value&amp;gt;&lt;/code&gt; represents the data value or expression that evaluates to a single value you intend to format and could be a number, date, or duration. The format string, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;format_string&amp;gt;&lt;/code&gt;, is the formatting template and determines how the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;value&amp;gt;&lt;/code&gt; will be presented. For example a format string of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;'MMMM dd, yyyy'&lt;/code&gt; would present a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;values&amp;gt;&lt;/code&gt; of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;2023-05-12&lt;/code&gt; as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;May 12, 2023&lt;/code&gt;. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;locale_name&amp;gt;&lt;/code&gt; is optional and allows you to specify a locale, different regions or countries may have varying conventions for presenting numbers, dates, or durations. Examples include &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;en-US&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;fi-FI&lt;/code&gt;, or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;it-IT&lt;/code&gt;.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Note: The result of FORMAT has a text data type, meaning that if a numeric value is formatted using FORMAT it could not then be used on visuals where the values section requires a numeric data type, or it could not be used to perform numerical calculations without converting it back to a number.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;For more details see - &lt;a href=&quot;https://learn.microsoft.com/en-us/dax/format-function-dax&quot; class=&quot;post__link&quot;&gt;Microsoft Documentation - FORMAT&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;Now that you know the details of FORMAT see it put to work by revisiting the  &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Yearly Page Title&lt;/code&gt; measure.&lt;/p&gt;
+
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Yearly Page Title = 
+COMBINEVALUES(
+	&quot; &quot;, 
+	Year(TODAY()), 
+	&quot;- Year to date sales:&quot;, 
+	FORMAT([YTD Sales TOTALYTD], &quot;Currency&quot;)
+)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;In this example, you see that the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;format_string&amp;gt;&lt;/code&gt; uses a value of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Currency&lt;/code&gt; to format the YTD sales. This is an example of a predefined numeric format. For more details on predefined numeric formats, custom numeric formats, custom numeric format characters, predefined date/time formats, and custom date/time formats visit the documentation here:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://learn.microsoft.com/en-us/dax/format-function-dax#predefined-numeric-formats&quot; class=&quot;post__link&quot;&gt;Microsoft Documentation - Predefined Formats&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;beyond-strings-the-culmination-of-dax-text-wisdom&quot;&gt;Beyond Strings: The Culmination of DAX Text Wisdom&lt;/h2&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Words share our world. And in the realm of data, they offer valuable insights. With DAX Text Functions, you have the power to manipulate, transform, and uncover these insights.&lt;/p&gt;
+
+&lt;p&gt;We have explored just a subset of DAX Text Functions during our journey here. There is still more to be uncovered so don’t stop learning here. Keep expanding and perfecting your DAX textual skills by exploring other text functions here:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://learn.microsoft.com/en-us/dax/text-functions-dax&quot; class=&quot;post__link&quot;&gt;Microsoft Documentation - Text Functions&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;And, remember, as Albert Einstein once said, “Anyone who has never made a mistake has never tried anything new.” So, don’t be afraid of making mistakes; practice makes perfect. Continuously experiment and explore new DAX functions, and challenge yourself with real-world data scenarios.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;If this sparked your curiosity, keep that spark alive and check back frequently.&lt;/p&gt;
+
+&lt;p&gt;Or even better, don’t let the conversation end here. &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/@emguyant&quot;&gt;&lt;i class=&quot;fab fa-medium&quot;&gt;&lt;/i&gt;Follow me on Medium&lt;/a&gt; to continue the conversation by commenting on the post and show your support through shares, and applause.&lt;/p&gt;
+
+&lt;p&gt;Be sure not to miss a post by &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/@emguyant/subscribe&quot;&gt;&lt;i class=&quot;fab fa-medium&quot;&gt;&lt;/i&gt;subscribing here&lt;/a&gt;, with each new post comes an opportunity to learn something new.&lt;/p&gt;
+
+&lt;p&gt;Eager for a deeper exploration? Consider venturing further by &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/@emguyant/membership&quot;&gt;&lt;i class=&quot;fab fa-medium&quot;&gt;&lt;/i&gt;joining Medium&lt;/a&gt;, with a Medium membership you gain unlimited access to a world brimming with insights.&lt;/p&gt;
+
+&lt;p&gt;Thank you for reading! Stay curious, and until next time, happy learning.&lt;/p&gt;</content><author><name>Ethan Guyant</name></author><category term="Deep Dive" /><category term="Microsoft 365" /><category term="Power BI" /><category term="Power Platform" /><category term="Power BI Fundamentals Series" /><category term="Power BI Functions" /><summary type="html">Ever felt like your data was whispering secrets just beyond your grasp? Dive into the world of DAX Text Functions and turn those whispers into powerful narratives. Unlock stories hidden within text strings, and let your data weave tales previously untold.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://ethanguyant.com/assets/img/post_img/text-functions.jpg" /><media:content medium="image" url="http://ethanguyant.com/assets/img/post_img/text-functions.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Outsmarting the Out-of-Office Quandary: A Power Automate Approval Guide</title><link href="http://ethanguyant.com/blog/2023-08-04-out-of-office-approval/" rel="alternate" type="text/html" title="Outsmarting the Out-of-Office Quandary: A Power Automate Approval Guide" /><published>2023-08-04T00:00:00+00:00</published><updated>2023-08-04T00:00:00+00:00</updated><id>http://ethanguyant.com/blog/out-of-office-approval</id><content type="html" xml:base="http://ethanguyant.com/blog/2023-08-04-out-of-office-approval/">&lt;p&gt;Say goodbye to the world of endless email threads and approval documents that somehow get lost in the abyss of your inbox. With Power Automate, ensure that documents get the thumbs up even when the chosen approver is out of the office.  Let’s roll up our sleeves and get automating!&lt;/p&gt;
 
 &lt;h2 id=&quot;from-hurdle-to-handshake-streamline-document-approvals-with-power-automate&quot;&gt;From Hurdle to Handshake: Streamline Document Approvals with Power Automate&lt;/h2&gt;
 
@@ -2233,192 +2700,4 @@ s&lt;/p&gt;</content><author><name>Ethan Guyant</name></author><category term="Q
 
 &lt;p&gt;Eager for a deeper exploration? Consider venturing further by &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/@emguyant/membership&quot;&gt;&lt;i class=&quot;fab fa-medium&quot;&gt;&lt;/i&gt;joining Medium&lt;/a&gt;, with a Medium membership you gain unlimited access to a world brimming with insights.&lt;/p&gt;
 
-&lt;p&gt;Thank you for reading! Stay curious, and until next time, happy learning.&lt;/p&gt;</content><author><name>Ethan Guyant</name></author><category term="Quick Start" /><category term="Microsoft 365" /><category term="Power Automate" /><category term="Power Apps" /><category term="Power Platform" /><summary type="html">Introducing Microsoft Power Platform Microsoft Power Platform is a set of tools and services used to build custom applications and automate processes. It provides a low-code development platform for building applications, business intelligence tools, and process automation. The main components of the Power Platform are Power BI, Power Apps, Power Automate, and Power Virtual Agents. You can use the main components together or individually.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://ethanguyant.com/assets/img/post_img/power-platform.jpg" /><media:content medium="image" url="http://ethanguyant.com/assets/img/post_img/power-platform.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Power BI Context Transition: Navigating the Transition between Row and Filter Contexts</title><link href="http://ethanguyant.com/blog/2022-11-08-power-bi-context-transition/" rel="alternate" type="text/html" title="Power BI Context Transition: Navigating the Transition between Row and Filter Contexts" /><published>2022-11-08T00:00:00+00:00</published><updated>2022-11-08T00:00:00+00:00</updated><id>http://ethanguyant.com/blog/power-bi-context-transition</id><content type="html" xml:base="http://ethanguyant.com/blog/2022-11-08-power-bi-context-transition/">&lt;h2 id=&quot;contents&quot;&gt;Contents&lt;/h2&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;#review&quot;&gt;Review&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#understanding-context-transition&quot;&gt;Understanding Context Transition&lt;/a&gt;
-    &lt;ul&gt;
-      &lt;li&gt;&lt;a href=&quot;#option-1-the-calculate-function&quot;&gt;Context Transition with CALCULATE&lt;/a&gt;&lt;/li&gt;
-      &lt;li&gt;&lt;a href=&quot;#option-2-using-measures&quot;&gt;Context Transition with Measures&lt;/a&gt;&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#maximum-daily-sales-by-month-example&quot;&gt;Maximum Daily Sales by Month Example&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;#context-transition-pit-falls&quot;&gt;Context Transition Pit Falls&lt;/a&gt;
-&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;review&quot;&gt;Review&lt;/h2&gt;
-&lt;p&gt;One of the early stages of creating any Power BI report is the development of the data model. The data model will consist of data tables, relationships, and calculations. There are two types of calculations: calculated columns, and measures.&lt;/p&gt;
-
-&lt;p&gt;Check out &lt;a href=&quot;https://ethanguyant.com/blog/2022-09-28-power-bi-row-context/&quot; class=&quot;post__link&quot;&gt;Power BI Row Context: Understanding the Power of Context in Calculations&lt;/a&gt; for key differences between calculated columns and measures.&lt;/p&gt;
-
-&lt;p&gt;One of the most powerful elements of Power BI is that all measure calculations are done in context. The evaluation context limits the values in the current scope when evaluating an expression. The filter context and/or the row context make up the evaluation context.&lt;/p&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://ethanguyant.com/blog/2022-09-28-power-bi-row-context/&quot; class=&quot;post__link&quot;&gt;Power BI Row Context: Understanding the Power of Context in Calculations&lt;/a&gt; explores the row context in depth. While &lt;a href=&quot;https://ethanguyant.com/blog/2022-10-11-power-bi-iterators/&quot; class=&quot;post__link&quot;&gt;Power BI Iterators: Unleashing the Power of Iteration in Power BI Calculations&lt;/a&gt; explores iterator functions, which are functions that create row context. And finally, &lt;a href=&quot;https://ethanguyant.com/blog/2022-09-28-power-bi-row-context/&quot; class=&quot;post__link&quot;&gt;Power BI Filter Context: Unraveling the Impact of Filters on Calculations&lt;/a&gt; explores the concept of the filter context.&lt;/p&gt;
-
-&lt;p&gt;When evaluating expressions, the row context can be transitioned into a filter context within Power BI. This transition can help create more complex measures. Row context, filter context, and context transition can be confusing when starting with DAX so visit references and documentation often.&lt;/p&gt;
-
-&lt;p&gt;This post is the fourth, and last, of a Power BI Fundamental series with a focus on the context transition. The example file used in this post is located here -&lt;a class=&quot;social-list__link&quot; href=&quot;https://github.com/EMGuyant/power-bi-key-fundamentals&quot;&gt;&lt;i class=&quot;fab fa-github&quot;&gt;&lt;/i&gt; GitHub&lt;/a&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;understanding-context-transition&quot;&gt;Understanding Context Transition&lt;/h2&gt;
-&lt;p&gt;The row context by itself does not filter data. Row context iterates through a table row-by-row. Context transition is when the row context transitions into the filter context. Context transition occurs with the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULATE()&lt;/code&gt; function and when the expression of an iterator function is a DAX measure.&lt;/p&gt;
-
-&lt;p&gt;The concept of context transition can be a bit abstract so it can be easiest to learn through examples. To explore we will first create a new calculated column in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Products&lt;/code&gt; table. The new &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProductsSales&lt;/code&gt; calculates the total sales for each product and we define it as:&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProductSales = SUM(SalesOrderDetail[SalesAmount])&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/2022-11-10-power-bi-context-transistion/product-sales-no-transistion.gif&quot; alt=&quot;Total Product Sales with no Context Transition Examples&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;After evaluating &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProductSales&lt;/code&gt; we see it repeats the same $109.85M sales value for each row. This value is the total sales amount for the entire dataset. This is not what we want &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProductSales&lt;/code&gt; to calculate, so what happened?&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProductSales&lt;/code&gt; calculates the total sales of the entire data rather than the &lt;em&gt;filtered&lt;/em&gt; per-product value because row context is not a filter. For example, the row context includes the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProductID&lt;/code&gt;  value but this identifier is not a filter on the data during evaluation. And because the row context is not a filter DAX does not distinguish between different rows (i.e products) when evaluating &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProductSales&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/2022-11-10-power-bi-context-transistion/product-sales-no-transistion-table.png&quot; alt=&quot;Product Sales no Context Transition Table&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;For example, looking at the table above while evaluating the measure DAX does not distinguish the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Adjustable Race&lt;/code&gt; row from the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LL Crankarm&lt;/code&gt; row. Since all rows are viewed as the same the total sales value is repeated for each row.&lt;/p&gt;
-
-&lt;p&gt;You may have guessed it but, the example above calculates the wrong value because it does not contain a context transition. The row context does not shift to the filter context causing the error in the calculated value. This simple example highlights why context transition is important and when it’s needed. To correct this we must force the context transition. This will convert the row values into a filter and calculate the sales for each product. There are various ways to do this, and below are two options.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;option-1-the-calculate-function&quot;&gt;Option #1: The CALCULATE() Function&lt;/h3&gt;
-&lt;p&gt;We can force context transition by wrapping &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProductSales&lt;/code&gt; with the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULATE()&lt;/code&gt; function. To demonstrate we create a new &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProductSales_calculate&lt;/code&gt; column. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProductSales_calculate&lt;/code&gt; is defined as:&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProductSales_calculate = CALCULATE(SUM(SalesOrderDetail[SalesAmount]))&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/2022-11-10-power-bi-context-transistion/product-sales-calculate.gif&quot; alt=&quot;Product Sales with the CALCULATE function&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;This new calculated column shows the correct sales value for each product. We view the product type &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BK&lt;/code&gt; and can see now each row in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProductSales_calculate&lt;/code&gt; column is different for each row.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/2022-11-10-power-bi-context-transistion/product-sales-calculate.png&quot; alt=&quot;Product Sales with theC CALCULATE function&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;option-2-using-measures&quot;&gt;Option #2: Using Measures&lt;/h3&gt;
-&lt;p&gt;Within the data model, we have already created a measure &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesAmount2&lt;/code&gt;. See &lt;a href=&quot;https://ethanguyant.com/blog/2022-09-28-power-bi-row-context/&quot; class=&quot;post__link&quot;&gt;Power BI Row Context: Understanding the Power of Context in Calculations&lt;/a&gt; and &lt;a href=&quot;https://ethanguyant.com/blog/2022-10-11-power-bi-iterators/&quot; class=&quot;post__link&quot;&gt;Power BI Iterators: Unleashing the Power of Iteration in Power BI Calculations&lt;/a&gt; for details on this measure. We defined &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesAmount2&lt;/code&gt; as:&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesAmount2 = SUMX(SalesOrderDetail, SalesOrderDetail[OrderQty] * SalesOrderDetail[UnitPrice] * (1 - SalesOrderDetail[UnitPriceDiscount]))&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;We can see by the expression &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesAmount2&lt;/code&gt; uses the iterator function &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SUMX()&lt;/code&gt;.  This measure calculates the sales amount row-by-row in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesOrderDetail&lt;/code&gt; table.  As mentioned before context transition occurs within iterator functions.  So rather than using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULATE()&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SUM()&lt;/code&gt; we create another calculated column that references this measure.&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProductSales_measure = SalesAmount2&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/2022-11-10-power-bi-context-transistion/product-sales-measure.png&quot; alt=&quot;Product Sales Measure&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;We add the new column to the table visual and can see that it has the same value as &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProductSales_calculate&lt;/code&gt;. This shows that a measure defined with an iterator also forces context transition.&lt;/p&gt;
-
-&lt;p&gt;An important note about this new column is that the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProductsSales_measure&lt;/code&gt; works as expected when referencing the measure. However, it will not work if we define this column as the same expression that defines &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesAmount2&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;We can see below if we update &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProductSales_measure&lt;/code&gt; to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SUMX(SalesOrderDetail, SalesOrderDetail[OrderQty] * SalesOrderDetail[UnitPrice] * (1 - SalesOrderDetail[UnitPriceDiscount]))&lt;/code&gt;, the same expression used when defining &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesAmount2&lt;/code&gt;, will result in wrong values.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/2022-11-10-power-bi-context-transistion/product-sales-expression.gif&quot; alt=&quot;Product Sales Expression&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;After updating &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ProductSales_measure&lt;/code&gt; we can see it returns the total sales values and not the sales per product. With this updated definition DAX is no longer able to apply the context transition. We can correct this by wrapping the expression with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULATE()&lt;/code&gt;.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Applying context transition always requires &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULATE()&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/2022-11-10-power-bi-context-transistion/product-sales-expression_update.gif&quot; alt=&quot;Product Sales Expression Update&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Using the measure &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesAmount2&lt;/code&gt; worked previously because DAX implicitly wraps a measure with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULATE()&lt;/code&gt;. This is why context transition was applied when referencing the measure directly but not when referencing the same expression that defines the measure.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;maximum-daily-sales-by-month-example&quot;&gt;Maximum Daily Sales by Month Example&lt;/h2&gt;
-&lt;p&gt;A question of interest is what is the maximum daily sales amount for each month in the dataset. In other words we would like to determine for each month what day of the month had the highest sales and what was the total daily sales value. We start by creating a new &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MaxDailySales&lt;/code&gt; measure and add it to the Max Daily Sales by Month and Year table visual.&lt;/p&gt;
-
-&lt;p&gt;We define &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MaxDailySales&lt;/code&gt; as:&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MaxDailySales = MAXX(SalesOrderDetail, [SalesAmount2])&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/2022-11-10-power-bi-context-transistion/max-daily-sales.gif&quot; alt=&quot;Max Daily Sales&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;After adding the measure to the table we can see the sales amount value for each month. For example, the table currently shows that the maximum daily sales for November 2016 is $21,202.79. This value may appear reasonable but when examined closely we can determine it is incorrect. Currently, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MaxDailySales&lt;/code&gt; is returning the maximum sale for each month and is not accounting for multiple sales within each day. We can see this by creating a new visual with the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Date&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MaxSales&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesOrderDetailID&lt;/code&gt; fields.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/2022-11-10-power-bi-context-transistion/max-daily-sales.png&quot; alt=&quot;Max Daily Sales and Individual Sales&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;This table shows that the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MaxDailySales&lt;/code&gt; for November 2016 is the same value as a single sale that occurred on November 17th. Yet, there are multiple sales on this day and every other day. The desired outcome is to calculate the total sales for each day and then determined the highest daily total value for each month.&lt;/p&gt;
-
-&lt;p&gt;This error occurs because context transition is not being applied correctly. It is important to note that context transition is occurring while evaluating &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MaxDailySales&lt;/code&gt; because it is a measure. However, the context transition is not being applied on the correct aggregation level. The context transition is occurring on the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesOrderDetail&lt;/code&gt; level, meaning for each row of this table. To correct this measure we will have to force the context transition on the correct, daily, aggregation level. We update the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MaxDailySales&lt;/code&gt; expression using the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;VALUES()&lt;/code&gt; function.&lt;/p&gt;
-
-&lt;p&gt;We define &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MaxDailySales_Corrected&lt;/code&gt; as:&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MaxDailySales_Corrected = MAXX(VALUES(DateTable[Date]), [SalesAmount2])&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/2022-11-10-power-bi-context-transistion/max-daily-sales-corrected.gif&quot; alt=&quot;Max Daily Sales Corrected&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;We change the table passed to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MAXX()&lt;/code&gt; from &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesOrderDetail&lt;/code&gt; to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;VALUES(DateTable[Date])&lt;/code&gt;. Using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;VALUES(DateTable[Date])&lt;/code&gt; aggregates all the dates that are the same day shifting the context transition to the correct aggregation level. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;VALUES()&lt;/code&gt; function in the expression provides a unique list of dates. For each day in the unique list, the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SalesAmount2&lt;/code&gt; measure gets evaluated and returns the maximum daily total value. We then add the new measure to the table visual and now it shows the correct maximum daily sales for each month.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/2022-11-10-power-bi-context-transistion/max-daily-sales-corrected.png&quot; alt=&quot;Max Daily Sales Table&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;The above example shows context transition at two different aggregation levels. They also highlight that the context transition can be shifted to return the specific value that is required. As well as showing why it is important to take into consideration the aggregation level when developing measures like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;MaxDailySales&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;context-transition-pit-falls&quot;&gt;Context Transition Pit Falls&lt;/h2&gt;
-
-&lt;p&gt;Context transition is when row values transition into or replace the filter context. When context transition occurs it can sometimes lead to unexpected and incorrect values. An important part of context transition to understand is that it transitions the entire row into the filter. So what occurs when a row is not unique? Let’s explore this with the following example.&lt;/p&gt;
-
-&lt;p&gt;We add a new &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SimplifiedSales&lt;/code&gt; table to the data model.&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/2022-11-10-power-bi-context-transistion/simplified-sales-data.png&quot; alt=&quot;Simplified Sales Data Table&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Then we add a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TotalSales&lt;/code&gt; measure. &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TotalSales&lt;/code&gt; is defined as:&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TotalSales = SUMX(SimplifiedSales, SimplifiedSales[OrderQty] * SimplifiedSales[UnitPrice] * (1 - SimplifiedSales[UnitPriceDiscount]))&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/2022-11-10-power-bi-context-transistion/simplified-sales-summary.png&quot; alt=&quot;Simplified Sales Total Sales Summary&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;Viewing the two tables above, we can confirm that the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TotalSales&lt;/code&gt; values are correctly aggregating the sales data. Now we add another measure to the table which references the measure &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TotalSales&lt;/code&gt;. Referencing this measure will force context transition due to the implicit &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULATE()&lt;/code&gt; added to measures. See above for details.&lt;/p&gt;
-
-&lt;p&gt;We define &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TotalSales_ConextT&lt;/code&gt; as:&lt;/p&gt;
-
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TotalSales_ContextT = SUMX(SimplifiedSales, [TotalSales])&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;&lt;img src=&quot;/assets/img/2022-11-10-power-bi-context-transistion/simplified-sales-context-transition.png&quot; alt=&quot;Simplified Sales Context Transition Measure&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;In the new column we can see that the values for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Road-350-W Yellow, 48&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Touring-3000 Blue, 44&lt;/code&gt; have not changed and are correct. However, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Mountain-500 Silver, 52&lt;/code&gt; did update, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TotalSales_ContextT&lt;/code&gt; column shows an incorrect value. So what happened?&lt;/p&gt;
-
-&lt;p&gt;The issue is the context transition. Viewing the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SimplifiedSales&lt;/code&gt; table we can see that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Mountain-500 Silver, 52&lt;/code&gt; appears twice in the table. With both records having identical values for each field. Remember, context transition utilizes the entire row. Meaning the table gets filtered on &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Mountain-500 Silver, 52&lt;/code&gt;/&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;1&lt;/code&gt;/&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;$450.00&lt;/code&gt;. Because of this, the result gets summed up in the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TotalSales&lt;/code&gt; measure returning a value of $900.00. This value is then evaluated twice, once for each identical row.&lt;/p&gt;
-
-&lt;p&gt;This behavior is not seen for the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Road-350-W, 48&lt;/code&gt; records because they are unique. One row has a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;UnitPriceDiscount&lt;/code&gt; of  0.0% and the other has a value of 5.0%. This difference makes each row unique when context transition is applied.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;When context transition occurs it is important to have some sort of unique identifier creating unique rows&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Knowing what context transition is and when it occurs is important to identifying when this issue may occur. When context transition is applied it is important to check the table and verify calculations to ensure it is applied correctly.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;If this sparked your curiosity, keep that spark alive and check back frequently.&lt;/p&gt;
-
-&lt;p&gt;Or even better, don’t let the conversation end here. &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/@emguyant&quot;&gt;&lt;i class=&quot;fab fa-medium&quot;&gt;&lt;/i&gt;Follow me on Medium&lt;/a&gt; to continue the conversation by commenting on the post and show your support through shares, and applause.&lt;/p&gt;
-
-&lt;p&gt;Be sure not to miss a post by &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/@emguyant/subscribe&quot;&gt;&lt;i class=&quot;fab fa-medium&quot;&gt;&lt;/i&gt;subscribing here&lt;/a&gt;, with each new post comes an opportunity to learn something new.&lt;/p&gt;
-
-&lt;p&gt;Eager for a deeper exploration? Consider venturing further by &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/@emguyant/membership&quot;&gt;&lt;i class=&quot;fab fa-medium&quot;&gt;&lt;/i&gt;joining Medium&lt;/a&gt;, with a Medium membership you gain unlimited access to a world brimming with insights.&lt;/p&gt;
-
-&lt;p&gt;Thank you for reading! Stay curious, and until next time, happy learning.&lt;/p&gt;</content><author><name>Ethan Guyant</name></author><category term="Deep Dive" /><category term="Microsoft 365" /><category term="Power BI" /><category term="Power Platform" /><category term="Power BI Fundamentals Series" /><summary type="html">Contents Review Understanding Context Transition Context Transition with CALCULATE Context Transition with Measures Maximum Daily Sales by Month Example Context Transition Pit Falls</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://ethanguyant.com/assets/img/post_img/powerbi-context-transition.jpg" /><media:content medium="image" url="http://ethanguyant.com/assets/img/post_img/powerbi-context-transition.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;p&gt;Thank you for reading! Stay curious, and until next time, happy learning.&lt;/p&gt;</content><author><name>Ethan Guyant</name></author><category term="Quick Start" /><category term="Microsoft 365" /><category term="Power Automate" /><category term="Power Apps" /><category term="Power Platform" /><summary type="html">Introducing Microsoft Power Platform Microsoft Power Platform is a set of tools and services used to build custom applications and automate processes. It provides a low-code development platform for building applications, business intelligence tools, and process automation. The main components of the Power Platform are Power BI, Power Apps, Power Automate, and Power Virtual Agents. You can use the main components together or individually.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://ethanguyant.com/assets/img/post_img/power-platform.jpg" /><media:content medium="image" url="http://ethanguyant.com/assets/img/post_img/power-platform.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>

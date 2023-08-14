@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
+<title>Mastering DAX Text Expressions: Making Sense of Your Data One String at a Time | Ethan Guyant’s Blog</title>
+<meta name="generator" content="Jekyll v4.2.1" />
+<meta property="og:title" content="Mastering DAX Text Expressions: Making Sense of Your Data One String at a Time" />
+<meta name="author" content="Ethan Guyant" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Ever felt like your data was whispering secrets just beyond your grasp? Dive into the world of DAX Text Functions and turn those whispers into powerful narratives. Unlock stories hidden within strings, and let your data weave tales previously untold." />
+<meta property="og:description" content="Ever felt like your data was whispering secrets just beyond your grasp? Dive into the world of DAX Text Functions and turn those whispers into powerful narratives. Unlock stories hidden within strings, and let your data weave tales previously untold." />
+<link rel="canonical" href="http://ethanguyant.com/blog/2023-08-14-text-functions/" />
+<meta property="og:url" content="http://ethanguyant.com/blog/2023-08-14-text-functions/" />
+<meta property="og:site_name" content="Ethan Guyant’s Blog" />
+<meta property="og:image" content="http://ethanguyant.com/assets/img/post_img/text-functions.jpg" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-08-14T00:00:00+00:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="http://ethanguyant.com/assets/img/post_img/text-functions.jpg" />
+<meta property="twitter:title" content="Mastering DAX Text Expressions: Making Sense of Your Data One String at a Time" />
+<script type="application/ld+json">
+{"author":{"@type":"Person","name":"Ethan Guyant"},"description":"Ever felt like your data was whispering secrets just beyond your grasp? Dive into the world of DAX Text Functions and turn those whispers into powerful narratives. Unlock stories hidden within strings, and let your data weave tales previously untold.","url":"http://ethanguyant.com/blog/2023-08-14-text-functions/","@type":"BlogPosting","image":"http://ethanguyant.com/assets/img/post_img/text-functions.jpg","headline":"Mastering DAX Text Expressions: Making Sense of Your Data One String at a Time","dateModified":"2023-08-14T00:00:00+00:00","datePublished":"2023-08-14T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://ethanguyant.com/blog/2023-08-14-text-functions/"},"@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<title>Ethan Guyant's Blog</title>
+  <!-- Normalize CSS file irons out some difference between browsers -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css">
+  <!-- Google Fonts-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,900|Source+Sans+Pro:300,900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Arvo:wght@700&display=swap" rel="stylesheet">
+  <!-- CSS Styles -->
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="/assets/css/notebook_default.css">
+  <link rel="stylesheet" href="/assets/css/notebook_custom.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS_HTML"></script>
+  <!-- MathJax configuration -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+            displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+            processEscapes: true,
+            processEnvironments: true
+        },
+        // Center justify equations in code and markdown cells. Elsewhere
+        // we use CSS to left justify single line equations in code cells.
+        displayAlign: 'center',
+        "HTML-CSS": {
+            styles: {'.MathJax_Display': {"margin": 0}},
+            linebreaks: { automatic: true }
+        }
+    });
+  </script>
+  <!-- Animation on Scroll-->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <!-- Font Awesome Kit -->
+  <script src="https://kit.fontawesome.com/c9965d23bb.js" crossorigin="anonymous"></script><link type="application/atom+xml" rel="alternate" href="http://ethanguyant.com/feed.xml" title="Ethan Guyant's Blog" /><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7356875210051999"
+  crossorigin="anonymous">
+  </script>
+  
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RTFP0V6X0G"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RTFP0V6X0G');
+</script>
+  
+</head>
+<body><header class="header sticky">
+    <div class="wrapper">
+        <div>
+            <div class="scroll-logo"> 
+                <a href="/">  
+                    <svg id="EG" viewBox="0 0 152 216">
+                        <g>
+                            <path id="hex"d="M 76.342 4 L 147.685 41.377 L 147.685 116.13 L 76.342 153.506 L 5 116.13 L 5 41.377 Z" style="stroke-width: 8.37394px; fill-opacity: 0; fill: none; stroke: #39ace7;"></path>         
+                            <polygon class="logo"style="stroke-width: 3.58883px; stroke: #39ace7; fill: #39ace7;" points="41.001 38.501 112.012 38.501 112.012 62.884 97.474 62.884 97.474 54.976 41.001 54.976"></polygon>
+                            <polygon class="logo" style="stroke-width: 3.58883px; stroke: #39ace7; fill: #39ace7;" points="40.671 102.9 97.81 102.9 97.81 86.796 83.604 86.796 83.604 70.701 112.014 70.701 112.014 102.92 112.014 119.004 40.939 119.004"></polygon>
+                            <polygon class="logo" style="stroke-width: 3.58883px; stroke: #39ace7; fill: #39ace7;" points="41.001 70.701 69.753 70.701 63.532 87.725 41.317 87.725"></polygon>
+                        </g> 
+                    </svg>
+                </a>
+            </div>
+
+            <div class="header__title">
+                <a href="/">EthanGuyant.com</a>
+            </div>
+            
+        </div>
+        
+        <div class="nav__menu">
+            <div class="nav__toggle">
+                <div class="nav__icon">
+                    <span></span>
+                </div>
+            </div>
+        </div>
+        <div class="nav__menu__wrapper">
+            <ul class="nav__menu__list">
+                <li class="nav__menu__list__item">
+                    <a href="/" class="nav__menu__list__item__link">Home</a>
+                </li>
+                <li class="nav__menu__list__item">
+                    <a href="/blog" class="nav__menu__list__item__link">Blog</a>
+                </li>
+                <li class="nav__menu__list__item">
+                    <a href="/about" class="nav__menu__list__item__link">About</a>
+                </li>
+                <li class="nav__menu__list__item">
+                    <a href="/category/project/" class="nav__menu__list__item__link">Projects</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</header><main class="page" aria-label="Content">
+      <div class="page__content">
+        <section class="blog__header">
+    <div class="blog__img">
+      <div class="blog__img__over"></div>
+    </div>
+    <div class="wrapper">
+      <h1 class="blog__title"><span class="inquisitive">INQUISITIVE</span> <span class="nature">NATURE</span></h1>
+      <p class="blog__subtitle">Learn  Explore  <strong>Share</strong></p>
+      <p class="post__categories">
+    </div>
+  </section><div class="wrapper">
+  <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+    <section class="article__header">
+        <h1 class="post-title p-name" itemprop="name headline">Mastering DAX Text Expressions: Making Sense of Your Data One String at a Time</h1>
+        <p class="post-meta">
+          <time class="dt-published" datetime="2023-08-14T00:00:00+00:00" itemprop="datePublished">Aug 14, 2023
+          </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">Ethan Guyant</span></span></p>
+          <p class="post-category">
+            Category: 
+            <a href="/category/deep-dive">
+              <i class="fa-solid fa-folder"></i>
+              Deep Dive
+            </a> 
+          </p>
+          <p class="post-tags">
+          Tags: 
+           
+              
+              <a href="/tag/microsoft-365">
+                <i class="fa-solid fa-tag"></i>
+                Microsoft 365
+              </a> 
+              
+              <a href="/tag/power-bi">
+                <i class="fa-solid fa-tag"></i>
+                Power BI
+              </a> 
+              
+              <a href="/tag/power-platform">
+                <i class="fa-solid fa-tag"></i>
+                Power Platform
+              </a> 
+              
+              <a href="/tag/power-bi-fundamentals-series">
+                <i class="fa-solid fa-tag"></i>
+                Power BI Fundamentals Series
+              </a> 
+              
+              <a href="/tag/power-bi-functions">
+                <i class="fa-solid fa-tag"></i>
+                Power BI Functions
+              </a> 
+            
+          
+        </p>
+    </section>
+    <div class="post-content e-content" itemprop="articleBody">
+      <p>Ever felt like your data was whispering secrets just beyond your grasp? Dive into the world of DAX Text Functions and turn those whispers into powerful narratives. Unlock stories hidden within text strings, and let your data weave tales previously untold.</p>
+
+<h2 id="introduction-to-dax-text-expressions">Introduction to DAX Text Expressions</h2>
+
+<p><br /></p>
+
+<p>We live in a world that’s overflowing with data. But let’s remember: data can be so much more than just numbers on a spreadsheet. It can be the letters we string together, and the words we read. Get ready to explore the exciting world of DAX text expressions!</p>
+
+<p>If you have ever worked with Power BI, you are likely familiar with DAX or Data Analysis Expressions. If you are new to Power BI and DAX check out these blog posts to get started:</p>
+
+<ul>
+  <li><a href="https://ethanguyant.com/blog/2022-09-28-power-bi-row-context/" class="post__link">Power BI Row Context: Understanding the Power of Context in Calculations</a></li>
+  <li><a href="https://ethanguyant.com/blog/2022-10-11-power-bi-iterators/" class="post__link">Power BI Iterators: Unleashing the Power of Iteration in Power BI Calculations</a></li>
+  <li><a href="https://ethanguyant.com/blog/2022-10-24-power-bi-filter-context/" class="post__link">Power BI Filter Context: Unraveling the Impact of Filters on Calculations</a></li>
+  <li><a href="https://ethanguyant.com/blog/2022-11-08-power-bi-context-transition/" class="post__link">Power BI Context Transition: Navigating the Transition between Row and Filter Contexts</a></li>
+  <li><a href="https://ethanguyant.com/blog/2023-06-29-calculated-measures-columns/" class="post__link">From Data to Insights: Maximizing Power BI’s Calculated Measures and Columns for Deeper Analysis</a></li>
+</ul>
+
+<p>DAX is the backbone that brings structure and meaning to the data we work with in Power BI. Especially when we are dealing with textual data, DAX stands out with its comprehensive set of functions dedicated just for this purpose.</p>
+
+<p>So whether you’re an experienced data analyst or a beginner just starting your journey, you have landed on the right page. Prepare to explore the depth and breadth of DAX Text Functions. This is going to be a deep dive covering various functions, their syntax, and plenty of of examples!</p>
+
+<p>For those of you eager to start experimenting there is a Power BI report loaded with the sample data used in this post ready for you. So don’t just read, dive in and get hands-on with DAX Functions in Power BI. Check out it here: <a href="https://github.com/EMGuyant/powerbi-dax-functions-series" class="post__link">GitHub — Power BI DAX Function Series: Mastering Data Analysis</a>.</p>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="left-right--mid---the-text-extractors">LEFT, RIGHT, &amp; MID - The Text Extractors</h2>
+
+<p><br /></p>
+
+<p>Starting with the basics, LEFT, RIGHT, and MID. Their primary role is to provide tools for selectively snipping portions of text, enabling focused and relevant data extraction. Let’s go a little deeper and explore their nuances.</p>
+
+<p><strong>LEFT Function:</strong> As the name subtly suggests, the LEFT function fetches a specific number of characters from the start, or leftmost part, of a given text string.</p>
+
+<p>The syntax is as simple as:</p>
+
+<p><code class="language-plaintext highlighter-rouge">LEFT(&lt;text&gt;, &lt;number_of_characters&gt;)</code></p>
+
+<p>Here, <code class="language-plaintext highlighter-rouge">&lt;text&gt;</code> is the text string containing the characters you want to extract, and <code class="language-plaintext highlighter-rouge">&lt;number_of_characters&gt;</code> is an optional parameter that indicates the number of characters you want to extract. It defaults to a value of 1 if a value is not provided.</p>
+
+<p>For more details see - <a href="https://learn.microsoft.com/en-us/dax/left-function-dax" class="post__link">Microsoft Documentation - LEFT</a></p>
+
+<p><strong>RIGHT Function:</strong> The RIGHT function, mirrors the functionality of LEFT and aims to extract the characters from the end of a string, or the rightmost part.</p>
+
+<p>The syntax is the same as we saw for LEFT:</p>
+
+<p><code class="language-plaintext highlighter-rouge">RIGHT(&lt;text&gt;, &lt;number_of_characters&gt;)</code></p>
+
+<p>For more details see - <a href="https://learn.microsoft.com/en-us/dax/right-function-dax" class="post__link">Microsoft Documentation - RIGHT</a></p>
+
+<p><strong>MID Function:</strong> Now, we have the MID function. This is the bridge between LEFT and RIGHT that doesn’t restrict you to the start or end of the text string of interest. MID enables you to pinpoint a starting position and then extract a specific number of characters from there.</p>
+
+<p>The syntax is as follows:</p>
+
+<p><code class="language-plaintext highlighter-rouge">MID(&lt;text&gt;, &lt;start_number&gt;, &lt;number_of_characters&gt;)</code></p>
+
+<p>Here, <code class="language-plaintext highlighter-rouge">&lt;text&gt;</code> is the text string containing the characters you want to extract, <code class="language-plaintext highlighter-rouge">&lt;start_number&gt;</code> is the position of the first character you want to extract (positions in the string start at 1), and <code class="language-plaintext highlighter-rouge">&lt;number_of_characters&gt;</code> is the number of characters you want to extract.</p>
+
+<p>For more details see - <a href="https://learn.microsoft.com/en-us/dax/mid-function-dax" class="post__link">Microsoft Documentation - MID</a></p>
+
+<h3 id="practical-examples-diving-deeper-with-the-text-extractors">Practical Examples: Diving Deeper with the Text Extractors</h3>
+
+<p>Let’s dive deeper with some examples. Let’s say we have a Product Code column within our Product Table. The Product Code takes the form of <code class="language-plaintext highlighter-rouge">&lt;product_abbreviation&gt;-&lt;product_num&gt;-&lt;color_code&gt;</code> for example, SM-5933-BK.</p>
+
+<p>We will first extract the first two characters using LEFT, these represent the product abbreviation. We can create a calculated column in the products table using the following expression:</p>
+
+<p><code class="language-plaintext highlighter-rouge">Product Abbrev = LEFT(Products[Product Code], 2)</code></p>
+
+<p>Next, let’s use RIGHT to extract the last two characters which represent the color code of the product. We will add another calculated column to the products table using the following:</p>
+
+<p><code class="language-plaintext highlighter-rouge">Product Color = RIGHT(Products[Product Code], 2)</code></p>
+
+<p>Lastly, to pinpoint the unique product number which is nestled in the middle we will use MID. We add one last calculated column to the products table using this expression:</p>
+
+<p><code class="language-plaintext highlighter-rouge">Product Number = MID(Products[Product Code], 4, 4)</code></p>
+
+<p>Together, these three functions form the cornerstone of text extraction. However, they can sometimes stumble when there are unexpected text patterns. Take, for instance, the last row shown below for Product Code <code class="language-plaintext highlighter-rouge">TBL-57148-BLK</code>.</p>
+
+<p><img src="/assets/img/2023-08-14-text-functions/left-right-mid.png" alt="Left, Right, &amp; Mid" class="post__img" /></p>
+
+<p>You might have noticed that the example expressions above may not always extract the intended values due to their reliance on hardcoded positions and number of characters. This highlights the importance of flexible and dynamic text extraction methods.</p>
+
+<p>Enter FIND and SEARCH! As we venture further into this post, we will uncover how these functions can provide much-needed flexibility to our extractions, making them adaptable to varying text lengths and structures. So, while the trio of LEFT, RIGHT, and MID are foundational, there is a broader horizon of DAX Text Functions to explore.</p>
+
+<p>So, don’t halt your DAX journey here; continue reading and discover the expanded universe of text manipulation tools. Dive in, and let’s continue to elevate your DAX skills.</p>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="find--search---navigators-of-the-text-terrain">FIND &amp; SEARCH - Navigators of the Text Terrain</h2>
+
+<p><br /></p>
+
+<p>In the landscape of DAX Text Functions, FIND and SEARCH stand out as exceptional navigators, aiding you in locating a substring within another text string. Yet, despite their apparent similarities, they come with clear distinctions that could greatly impact your results.</p>
+
+<p><strong>FIND Function:</strong> the detail-oriented one of the two functions. It is precise, and is case-sensitive. So, when using FIND, ensure you embrace the details and match the exact case of the text string you are seeking.</p>
+
+<p>The syntax of FIND is:</p>
+
+<p><code class="language-plaintext highlighter-rouge">FIND(&lt;find_text&gt;, &lt;within_text&gt;[, [&lt;start_number&gt;][, &lt;NotFoundValue&gt;]])</code></p>
+
+<p>Here, <code class="language-plaintext highlighter-rouge">&lt;find_text&gt;</code> is the text string you are seeking, you can use empty double quotes <code class="language-plaintext highlighter-rouge">""</code> to match the first character of <code class="language-plaintext highlighter-rouge">&lt;within_text&gt;</code>. Speaking of, <code class="language-plaintext highlighter-rouge">&lt;within_text&gt;</code> is the text string containing the text you want to find. The other parameters are optional, <code class="language-plaintext highlighter-rouge">&lt;start_number&gt;</code> is the position in <code class="language-plaintext highlighter-rouge">&lt;within_text&gt;</code> to start the seeking and defaults to 1 meaning the start of <code class="language-plaintext highlighter-rouge">&lt;within_text&gt;</code>. Lastly, <code class="language-plaintext highlighter-rouge">&lt;NotFoundValue&gt;</code> although optional is highly recommended and represents the value the function will use when <code class="language-plaintext highlighter-rouge">&lt;find_text&gt;</code> is not found in <code class="language-plaintext highlighter-rouge">&lt;within_text&gt;</code>, typical values include 0, -1.</p>
+
+<blockquote>
+  <p><strong>Note:</strong> if <code class="language-plaintext highlighter-rouge">NotFoundValue</code> is not specified and <code class="language-plaintext highlighter-rouge">&lt;find_text&gt;</code> is not found in <code class="language-plaintext highlighter-rouge">&lt;within_text&gt;</code> the function will return and error.</p>
+</blockquote>
+
+<p>For more details see - <a href="https://learn.microsoft.com/en-us/dax/find-function-dax" class="post__link">Microsoft Documentation - FIND</a></p>
+
+<p><strong>SEARCH Function:</strong> SEARCH is the more laid-back of the two functions. It is adaptable and does not account for case, whether it’s upper case, lower case or a mix SEARCH will find the text you are looking for.</p>
+
+<p>The syntax for SEARCH is as follows:</p>
+
+<p><code class="language-plaintext highlighter-rouge">SEARCH(&lt;find_text&gt;, &lt;within_text&gt;[, [&lt;start_number&gt;][, &lt;NotFoundValue&gt;]])</code></p>
+
+<p>SEARCH operates using the same parameters as FIND, which can facilitate a streamlined approach when having to switch between them.</p>
+
+<p>For more details see - <a href="https://learn.microsoft.com/en-us/dax/search-function-dax" class="post__link">Microsoft Documentation - SEARCH</a></p>
+
+<h3 id="practical-examples-amplifying-flexibility">Practical Examples: Amplifying Flexibility</h3>
+
+<p>When combined with LEFT, RIGHT, or MID the potential of FIND and SEARCH multiplies, allowing for dynamic text extraction. Let’s consider the problematic Product Code <code class="language-plaintext highlighter-rouge">TBL-57148-BLK</code> again.</p>
+
+<p>We started by extracting the product abbreviation with the following expression:</p>
+
+<p><code class="language-plaintext highlighter-rouge">Product Abbrev = LEFT(Products[Product Code], 2)</code></p>
+
+<p>This works well when all the product codes start with a two-letter abbreviation. But what if they don’t? The fixed number of characters to extract might yield undesirable results. Let’s use FIND to add some much-needed flexibility to this expression.</p>
+
+<p>We know that the product abbreviation is all the characters before the first hyphen. To determine the position of the the first hyphen we can use:</p>
+
+<p><code class="language-plaintext highlighter-rouge">First Hyphen = FIND("-", Products[Product Code])</code></p>
+
+<p>For <code class="language-plaintext highlighter-rouge">TBL-57148-BLK</code> this will return a value of 4. We can then use this position to update our expression to dynamically extract the product abbreviation.</p>
+
+<p><code class="language-plaintext highlighter-rouge">Product Abbrev Dynamic = LEFT(Products[Product Code], FIND("-", Products[Product Code]) - 1)</code></p>
+
+<p><img src="/assets/img/2023-08-14-text-functions/find.png" alt="FIND Function" class="post__img" /></p>
+
+<p>Next, let’s add some adaptability to our Product Color expression to handle when the color code may contain more than two characters. We started with the following expression:</p>
+
+<p><code class="language-plaintext highlighter-rouge">Product Color = RIGHT(Products[Product Code], 2)</code></p>
+
+<p>This expression assumes that all product color codes are consistently placed at the end and always two characters. However, if there are variations in the length (e.g. <code class="language-plaintext highlighter-rouge">TBL-57148-BLK</code>) this method might not be foolproof. To introduce some adaptability, let’s utilize SEARCH.</p>
+
+<p>To determine the position of the last hyphen, since the color code will always be all the characters following this we can use:</p>
+
+<p><code class="language-plaintext highlighter-rouge">Last Hyphen = SEARCH("-", Products[Product Code], FIND("-", Products[Product Code])+1)</code></p>
+
+<p>Here, for the <code class="language-plaintext highlighter-rouge">&lt;start_number&gt;</code> we use the same FIND expression that we did to locate the first hyphen and then add 1 to the position to start the search for the second.</p>
+
+<p>With this position, we can update our Product Color function to account for potential variations:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Product Color Dynamic =
+VAR _firstHyphenPosition = FIND("-", Products[Product Code])
+VAR _lastHyphenPosition = SEARCH("-", Products[Product Code], _firstHyphenPosition + 1)
+
+RETURN
+RIGHT(Products[Product Code], LEN(Products[Product Code]) - _lastHyphenPosition)
+</code></pre></div></div>
+
+<p>The updated calculated column finds the position of the first hyphen, and then uses this position to search for the position of the last hyphen. Once we know the position, we can use this position and the length of the string to determine the number of characters needed to extract the color code (<code class="language-plaintext highlighter-rouge">LEN(Products[Product Code]) - _lastHyphenPosition</code>).</p>
+
+<p><img src="/assets/img/2023-08-14-text-functions/search.png" alt="Search Function" class="post__img" /></p>
+
+<p>Through the use of FIND, SEARCH, and RIGHT, the DAX text extraction becomes more adaptable, and handles even unexpected product code formats with ease.</p>
+
+<p>Similarly, we can update the the Product Number expression to:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Product Number Dynamic =
+VAR _firstHyphenPosition = FIND("-", Products[Product Code])
+VAR _lastHyphenPosition = SEARCH("-", Products[Product Code], _firstHyphenPosition + 1)
+VAR _productNumberLength = _lastHyphenPosition - _firstHyphenPosition -1
+
+RETURN
+MID(Products[Product Code], _firstHyphenPosition + 1, _productNumberLength)
+</code></pre></div></div>
+
+<p><img src="/assets/img/2023-08-14-text-functions/product-number-dynamic.png" alt="Update Product Number" class="post__link" /></p>
+
+<p>Through these examples we have highlighted how to build upon the basics of LEFT, RIGHT, and MID by amplifying their flexibility through the use of FIND and SEARCH.</p>
+
+<h3 id="practical-examples-demonstrating-distinct-characteristics">Practical Examples: Demonstrating Distinct Characteristics</h3>
+
+<p>When it comes to locating specific strings within a text string, both FIND and SEARCH offer a helping hand. But, as is often the case with DAX, the devil is in the details. While they seem quite similar at a glance, a deeper exploration uncovers unique traits that set them apart. What’s main difference? Case sensitivity.</p>
+
+<p>Let’s explore this by comparing the results of the following expressions:</p>
+
+<p><code class="language-plaintext highlighter-rouge">Position with FIND = FIND("rd", Products[Product Code], 1, -1)</code></p>
+
+<p><code class="language-plaintext highlighter-rouge">Position with SEARCH = SEARCH("rd", Products[Product Code], -1)</code></p>
+
+<p><img src="/assets/img/2023-08-14-text-functions/find-search-difference.png" alt="FIND and SEARCH Case Sensitivity" class="post__img" /></p>
+
+<p>In these example DAX formulas we can see the key difference between FIND and SEARCH. Both calculated columns are looking for “rd” within the Product Code. However, for <code class="language-plaintext highlighter-rouge">SM-7818-RD</code> we see FIND does not identify “rd” as a match whereas SEARCH does identify “rd” as a match at position 9.</p>
+
+<p>Both of these functions are essential tools in your DAX toolbox, your choice between them will hinge on whether case sensitivity is a factor in your data analysis needs.</p>
+
+<p>By mastering the combination of these text functions, you not only enhance text extraction but also pave the way to advanced text processing with DAX. The intricate synergy of FIND and SEARCH with other functions like LEFT, RIGHT, and MID showcases DAX’s textual data processing potential. Keep reading, as we journey further into more complex and fascinating DAX functions!</p>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="concatenate--combinevalues---craftsmen-of-cohesion">CONCATENATE &amp; COMBINEVALUES - Craftsmen of Cohesion</h2>
+
+<p><br /></p>
+
+<p>While both CONCATENATE and COMBINEVALUES serve the primary purpose of stringing texts together, they achieve this with unique characteristics. CONCATENATE is the timeless classic, merging two strings with ease, while COMBINEVALUES adds modern finesse by introducing delimiters.</p>
+
+<p><strong>CONCATENATE Function:</strong> is designed to merge two text strings, with a syntax as simple as the concept.</p>
+
+<p><code class="language-plaintext highlighter-rouge">CONCATENATE(&lt;text1&gt;, &lt;text2&gt;)</code></p>
+
+<p>The first text string you want to merge is represented by <code class="language-plaintext highlighter-rouge">&lt;text1&gt;</code>, and the second text string to be merged is represented by <code class="language-plaintext highlighter-rouge">&lt;text2&gt;</code>. The text strings can include text, numbers, or you can use a column references.</p>
+
+<p>For more details see - <a href="https://learn.microsoft.com/en-us/dax/concatenate-function-dax" class="post__link">Microsoft Documentation - CONCATENATE</a></p>
+
+<p><strong>COMBINEVALUES Function:</strong> combines text strings while also integrating a specified delimiter between them, adding some versatility when needed. The syntax is as follows:</p>
+
+<p><code class="language-plaintext highlighter-rouge">COMBINEVALUES(&lt;delimiter&gt;, &lt;expression&gt;, &lt;expression&gt;[, &lt;expression&gt;]…)</code></p>
+
+<p>The character or set of characters you wish to use as a separator is denoted by <code class="language-plaintext highlighter-rouge">&lt;delimiter&gt;</code>. The <code class="language-plaintext highlighter-rouge">&lt;expression&gt;</code> parameters are the DAX expressions whose value will be joined into the single string.</p>
+
+<p>For more details see - <a href="https://learn.microsoft.com/en-us/dax/combinevalues-function-dax" class="post__link">Microsoft Documentation - COMBINEVALUES</a></p>
+
+<h3 id="practical-examples-illuminating-their-craft">Practical Examples: Illuminating Their Craft</h3>
+
+<p>Let’s put these functions to use and examine some real-world scenarios.</p>
+
+<p>Let’s say we need to create a new Product Label column in the Products table. The label should consist of the product abbreviation directly followed by the product number. We can achieve this using the previously created columns <code class="language-plaintext highlighter-rouge">Product Abbrev Dynamic</code> and <code class="language-plaintext highlighter-rouge">Product Number Dynamic</code> along with CONCATENATE. The expression for the new column would look like this:</p>
+
+<p><code class="language-plaintext highlighter-rouge">Product Label = CONCATENATE(Products[Product Abbrev Dynamic], Products[Product Number Dynamic])</code></p>
+
+<p>The expression merges the dynamically determined product abbreviation and product number.</p>
+
+<p><img src="/assets/img/2023-08-14-text-functions/concat.png" alt="Concatenate Function" class="post_img" /></p>
+
+<p>Now, let’s change it up a bit and work with creating a new measure with COMBINEVALUES. Say, we need a page of the report specific to the current year’s sales and we want to create a page title that provides the current year and the YTD sales value. Additionally, we want to avoid hardcoding the current year value and the current YTD sales figure because these will continually change and would require continual updating. We can use COMBINEVALUES to meet this requirement, and the expression would look like this:</p>
+
+<p><code class="language-plaintext highlighter-rouge">Yearly Page Title = COMBINEVALUES(" ", Year(TODAY()), "- Year to date sales:", FORMAT([YTD Sales TOTALYTD], "Currency"))</code></p>
+
+<p>This measure, dynamically generates the title text by combining the current year (<code class="language-plaintext highlighter-rouge">Year(TODAY())</code>), the text string “- Year to date sales:”, followed by a YTD measure (<code class="language-plaintext highlighter-rouge">[YTD Sales TOTALYTD</code>).</p>
+
+<p><img src="/assets/img/2023-08-14-text-functions/combine-values.png" alt="COMBINEVALUES Function" class="post__img" /></p>
+
+<p>The <code class="language-plaintext highlighter-rouge">[YTD Sales TOTALYTD]</code> measure uses a another set of powerful DAX functions: Time Intelligence functions. For details on the creation of the <code class="language-plaintext highlighter-rouge">[YTD Sales TOTALYTD]</code> along with other Time Intelligence functions check out this post that provides an in-depth guide to these functions.</p>
+
+<p><a href="https://ethanguyant.com/blog/2023-07-19-powerbi-time-intelligence/" class="post__link">Time Travel in Power BI: Mastering Time Intelligence Functions</a></p>
+
+<p>By mastering CONCATENATE and COMBINEVALUES, you can craft meaningful text combinations that suit various data modeling needs. Whether you are creating measures for reports or calculated column for your tables, you will find numerous applications for these DAX text function.</p>
+
+<p>As we journey deeper into the realm of DAX, remember that the right tool hinges on your specific needs. While CONCATENATE and COMBINEVALUES both join texts, their nuanced differences could significantly influence the presentation of your data. Choose wisely!</p>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="replace--substitute---masters-of-text-transformation">REPLACE &amp; SUBSTITUTE - Masters of Text Transformation</h2>
+
+<p><br /></p>
+
+<p>Diving into the transformative world of text manipulation, we find two helpful tools: REPLACE and SUBSTITUTE. While both aim to modify the original text, their methods differ. REPLACE focuses in on a specific portion of text based on position, allowing for precise modification. In contrast, SUBSTITUTE scans the entire text string, swapping out every occurrence of a particular substring unless instructed otherwise.</p>
+
+<p>You know the drill, let’s take a look at their syntax before exploring the examples.</p>
+
+<p><strong>REPLACE Function:</strong> pinpoints a section of text based on its position and its syntax is:</p>
+
+<p><code class="language-plaintext highlighter-rouge">REPLACE(&lt;old_text&gt;, &lt;start_number&gt;, &lt;number_characters&gt;, &lt;new_text&gt;)</code></p>
+
+<p>The original text (i.e. the text you want to replace) is represented by <code class="language-plaintext highlighter-rouge">&lt;old_text&gt;</code>. The <code class="language-plaintext highlighter-rouge">&lt;start_number&gt;</code> denotes where, the position in <code class="language-plaintext highlighter-rouge">&lt;old_text&gt;</code>, you want the replacement to begin, and <code class="language-plaintext highlighter-rouge">&lt;number_characters&gt;</code> signifies the number of characters you would like to replace. Lastly, <code class="language-plaintext highlighter-rouge">&lt;new_text&gt;</code> is what you will be inserting in place of the old characters.</p>
+
+<blockquote>
+  <p>Note: If <code class="language-plaintext highlighter-rouge">&lt;number_characters&gt;</code> is blank, or a column that evaluates to blank, <code class="language-plaintext highlighter-rouge">&lt;new_text&gt;</code> is inserted at the <code class="language-plaintext highlighter-rouge">&lt;start_number&gt;</code> position <strong>without</strong> replacing any characters.</p>
+</blockquote>
+
+<p>For more details see - <a href="https://learn.microsoft.com/en-us/dax/replace-function-dax" class="post__link">Microsoft Documentation - REPLACE</a></p>
+
+<p><strong>SUBSTITUTE Function:</strong> searches for a specific text string within the original text and replaces it with new text and has the following syntax:</p>
+
+<p><code class="language-plaintext highlighter-rouge">SUBSTITUTE(&lt;text&gt;, &lt;old_text&gt;, &lt;new_text&gt;, &lt;instance_number&gt;)</code></p>
+
+<p>The main text string where you want the substitution to occur is represented as <code class="language-plaintext highlighter-rouge">&lt;text&gt;</code>, with <code class="language-plaintext highlighter-rouge">&lt;old_text&gt;</code> denoting the existing text string within <code class="language-plaintext highlighter-rouge">&lt;text&gt;</code> that you want to replace. Once the function spots <code class="language-plaintext highlighter-rouge">&lt;old_text&gt;</code>, it replaces it with <code class="language-plaintext highlighter-rouge">&lt;new_text&gt;</code>. If you only wish to change a specific instance of <code class="language-plaintext highlighter-rouge">&lt;old_text&gt;</code>, you can use the optional parameter <code class="language-plaintext highlighter-rouge">&lt;instance_number&gt;</code> to dictate which occurrence to modify. If <code class="language-plaintext highlighter-rouge">&lt;instance_number&gt;</code> is omitted every instance of <code class="language-plaintext highlighter-rouge">&lt;old_text&gt;</code> will be replaced by <code class="language-plaintext highlighter-rouge">&lt;new_text&gt;</code>.</p>
+
+<p>For more details see - <a href="https://learn.microsoft.com/en-us/dax/substitute-function-dax" class="post__link">Microsoft Documentation - SUBSTITUTE</a></p>
+
+<h3 id="practical-examples-text-transformation-in-action">Practical Examples: Text Transformation in Action</h3>
+
+<p>Earlier we created a product label consisting of the product abbreviation and the product number. Let’s suppose now we need to create a new label based on this replacing the product number with the color code. We can use the REPLACE function to do this and the expression would look like this:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Product Label Color =
+REPLACE(
+    Products[Product Label],
+    LEN(Products[Product Abbrev Dynamic])+1,
+    LEN(Products[Product Number Dynamic]),
+    Products[Product Color Dynamic]
+)
+</code></pre></div></div>
+
+<p>Here we are creating a new calculated column <code class="language-plaintext highlighter-rouge">Product Label Color</code> which aims to replace the product number with the product color code. The <code class="language-plaintext highlighter-rouge">&lt;old_text&gt;</code> is defined as the column <code class="language-plaintext highlighter-rouge">Products[Product Label]</code>. Then, remember the syntax, we need to determine the position to start the replacement (<code class="language-plaintext highlighter-rouge">&lt;start_number</code>) and the number of characters to replace (<code class="language-plaintext highlighter-rouge">&lt;number_chars</code>). Since both of these are not consistent we use our previous dynamically determined columns to help.</p>
+
+<p>Here is a break down of the details:</p>
+
+<ol>
+  <li>Positioning: <code class="language-plaintext highlighter-rouge">LEN(Products[Product Abbrev Dynamic])+1</code> helps find the starting point which is directly following the product abbreviation. <code class="language-plaintext highlighter-rouge">LEN</code> counts the length of the <code class="language-plaintext highlighter-rouge">Product Abbrev Dynamic</code> column value and adds one, this is then used to start the replacement directly after the abbreviation.</li>
+  <li>Length of Replacement: <code class="language-plaintext highlighter-rouge">LEN(Products[Product Number Dynamic])</code> helps determine the length of the segment we want to replace. It counts how many characters make up the product number, allowing for the product number to vary in length but always be fully replaced.</li>
+</ol>
+
+<p>Lastly, the expression uses the product color code as determined by the <code class="language-plaintext highlighter-rouge">Product Color Dynamic</code> column we previously created as the <code class="language-plaintext highlighter-rouge">&lt;new_text&gt;</code>.</p>
+
+<p><img src="/assets/img/2023-08-14-text-functions/replace.png" alt="Replace Function" class="post__img" /></p>
+
+<p>The transformation of data can often require several steps of modification to ensure consistency and clarity. We can see in the above the last product code is not consistent with the rest resulting in a label that is also not consistent. Let’s build upon the previous example using SUBSTITUTE to add some consistency to the new label.</p>
+
+<p>To do this the DAX expression would look like this:</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Product Label Color Updated =
+VAR _initialColorLabel =    
+    REPLACE(
+        Products[Product Label],
+        LEN(Products[Product Abbrev Dynamic])+1,
+        LEN(Products[Product Number Dynamic]),
+        Products[Product Color Dynamic]
+    )
+
+RETURN
+SUBSTITUTE(
+    SUBSTITUTE(_initialColorLabel, "TBL", "TB"),
+    "BLK",
+    "BK"
+)
+</code></pre></div></div>
+
+<p>Here we start by defining the variable <code class="language-plaintext highlighter-rouge">_initialColorLabel</code> using the same expression as the previous example. Then we refine this with a double substitution! The inner SUBSTITUTE (<code class="language-plaintext highlighter-rouge">SUBSTITUTE(_initialColorLabel, "TBL", "TB")</code>) takes the initial label as the main text string and searches for <code class="language-plaintext highlighter-rouge">TBL</code> and replaces it with <code class="language-plaintext highlighter-rouge">TB</code>. The result of this (e.g. <code class="language-plaintext highlighter-rouge">TBBLK</code>) is then used as the initial text string for the outer SUBSTITUTE, which searches this string for <code class="language-plaintext highlighter-rouge">BLK</code> and replaces it with <code class="language-plaintext highlighter-rouge">BK</code>. This produces the new label that is consistent for all products.</p>
+
+<p><img src="/assets/img/2023-08-14-text-functions/subsitute.png" alt="SUBSTITUTE Function" class="post__img" /></p>
+
+<p>Now we are starting to see the true power of DAX Text Functions, this expression does so much more than just a singular adjustment: it first reshapes the product label and then it goes even further to make sure the abbreviation and colors codes that make up the label are consistent and concise. It is an illustration of how DAX can incrementally build and refine results for more accurate and streamlined outputs.</p>
+
+<p>Although, these examples are helpful to demonstrate the use of REPLACE and SUBSTITUTE, it may be best to perform these transformations upstream when creating the dynamic extractions. For example the <code class="language-plaintext highlighter-rouge">Product Abbrev Dynamic</code> column we created early:</p>
+
+<p><code class="language-plaintext highlighter-rouge">Product Abbrev Dynamic = LEFT(Products[Product Code], FIND("-", Products[Product Code]) - 1)</code></p>
+
+<p>Could be updated to :</p>
+
+<p><code class="language-plaintext highlighter-rouge">SUBSTITUTE(LEFT(Products[Product Code], FIND("-", Products[Product Code]) - 1), "TBL", "TB")</code></p>
+
+<p>This would ensure consistency where ever the product code is used within the report.</p>
+
+<p>As we continue to journey deeper into the realm of DAX, remember that the right tool hinges on your specific needs. While CONCATENATE and COMBINEVALUES both join text strings, their nuanced differences could significantly influence the effectiveness of you data analysis and the presentation of your data. Choose wisely!</p>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="len--format---the-essentials">LEN &amp; FORMAT - The Essentials</h2>
+
+<p><br /></p>
+
+<p>In the realm of DAX Text Functions, while both LEN and FORMAT serve distinct purposes, they play crucial roles in refining and presenting textual data. Throughout this deep dive into DAX Text Functions, you may have noticed these functions quietly powering several of our previous examples, working diligently behind the scenes.</p>
+
+<p>For instance, in our <code class="language-plaintext highlighter-rouge">Product Color Dynamic</code> calculated column LEN was instrumental in determining the appropriate number of characters for the RIGHT function to extract. Similarly, our <code class="language-plaintext highlighter-rouge">Yearly Page Title</code> measure makes use of FORMAT, to ensure an aesthetic presentation of the YTD Sales value.</p>
+
+<p>These instances accentuate the versatility of LEN and FORMAT, illustrating how they can be combined with other DAX functions to achieve intricate data manipulations and presentation. Let’s take a look at the details of these two essential functions.</p>
+
+<p><strong>LEN Function:</strong> provides a straightforward way to understand the length of a text string and the syntax couldn’t be more simple.</p>
+
+<p><code class="language-plaintext highlighter-rouge">LEN(&lt;text&gt;)</code></p>
+
+<p>The text string you wish to know the length of is represented by <code class="language-plaintext highlighter-rouge">&lt;text&gt;</code>, just pass this to LEN to determine how many characters make up the string. The text string of interest could also be a column reference.</p>
+
+<blockquote>
+  <p>Note: Spaces count as characters</p>
+</blockquote>
+
+<p>For more details see - <a href="https://learn.microsoft.com/en-us/dax/len-function-dax" class="post__link">Microsoft Documentation - LEN</a></p>
+
+<p>Now that you are more familiar with the LEN function revisit the previous examples to see it in action.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Product Color Dynamic =
+VAR _firstHyphenPosition = FIND("-", Products[Product Code])
+VAR _lastHyphenPosition = SEARCH("-", Products[Product Code], _firstHyphenPosition + 1)
+
+RETURN
+RIGHT(Products[Product Code], LEN(Products[Product Code]) - _lastHyphenPosition)
+</code></pre></div></div>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Product Label Color =
+    REPLACE(
+        Products[Product Label],
+        LEN(Products[Product Abbrev Dynamic])+1,
+        LEN(Products[Product Number Dynamic]),
+        Products[Product Color Dynamic]
+)
+</code></pre></div></div>
+
+<p><strong>FORMAT Function:</strong> reshapes how data is visually represented, with this function you can transition the format of data types like dates, numbers, or durations into standardized, localized, or customized textual formats. The syntax is as follows:</p>
+
+<p><code class="language-plaintext highlighter-rouge">FORMAT(&lt;value&gt;, &lt;format_string&gt;[, &lt;locale_name&gt;])</code></p>
+
+<p>Here, <code class="language-plaintext highlighter-rouge">&lt;value&gt;</code> represents the data value or expression that evaluates to a single value you intend to format and could be a number, date, or duration. The format string, <code class="language-plaintext highlighter-rouge">&lt;format_string&gt;</code>, is the formatting template and determines how the <code class="language-plaintext highlighter-rouge">&lt;value&gt;</code> will be presented. For example a format string of <code class="language-plaintext highlighter-rouge">'MMMM dd, yyyy'</code> would present a <code class="language-plaintext highlighter-rouge">&lt;values&gt;</code> of <code class="language-plaintext highlighter-rouge">2023-05-12</code> as <code class="language-plaintext highlighter-rouge">May 12, 2023</code>. The <code class="language-plaintext highlighter-rouge">&lt;locale_name&gt;</code> is optional and allows you to specify a locale, different regions or countries may have varying conventions for presenting numbers, dates, or durations. Examples include <code class="language-plaintext highlighter-rouge">en-US</code>, <code class="language-plaintext highlighter-rouge">fi-FI</code>, or <code class="language-plaintext highlighter-rouge">it-IT</code>.</p>
+
+<blockquote>
+  <p>Note: The result of FORMAT has a text data type, meaning that if a numeric value is formatted using FORMAT it could not then be used on visuals where the values section requires a numeric data type, or it could not be used to perform numerical calculations without converting it back to a number.</p>
+</blockquote>
+
+<p>For more details see - <a href="https://learn.microsoft.com/en-us/dax/format-function-dax" class="post__link">Microsoft Documentation - FORMAT</a></p>
+
+<p>Now that you know the details of FORMAT see it put to work by revisiting the  <code class="language-plaintext highlighter-rouge">Yearly Page Title</code> measure.</p>
+
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Yearly Page Title = 
+COMBINEVALUES(
+	" ", 
+	Year(TODAY()), 
+	"- Year to date sales:", 
+	FORMAT([YTD Sales TOTALYTD], "Currency")
+)
+</code></pre></div></div>
+
+<p>In this example, you see that the <code class="language-plaintext highlighter-rouge">&lt;format_string&gt;</code> uses a value of <code class="language-plaintext highlighter-rouge">Currency</code> to format the YTD sales. This is an example of a predefined numeric format. For more details on predefined numeric formats, custom numeric formats, custom numeric format characters, predefined date/time formats, and custom date/time formats visit the documentation here:</p>
+
+<p><a href="https://learn.microsoft.com/en-us/dax/format-function-dax#predefined-numeric-formats" class="post__link">Microsoft Documentation - Predefined Formats</a></p>
+
+<p><br /></p>
+
+<hr />
+
+<p><br /></p>
+
+<h2 id="beyond-strings-the-culmination-of-dax-text-wisdom">Beyond Strings: The Culmination of DAX Text Wisdom</h2>
+
+<p><br /></p>
+
+<p>Words share our world. And in the realm of data, they offer valuable insights. With DAX Text Functions, you have the power to manipulate, transform, and uncover these insights.</p>
+
+<p>We have explored just a subset of DAX Text Functions during our journey here. There is still more to be uncovered so don’t stop learning here. Keep expanding and perfecting your DAX textual skills by exploring other text functions here:</p>
+
+<p><a href="https://learn.microsoft.com/en-us/dax/text-functions-dax" class="post__link">Microsoft Documentation - Text Functions</a></p>
+
+<p>And, remember, as Albert Einstein once said, “Anyone who has never made a mistake has never tried anything new.” So, don’t be afraid of making mistakes; practice makes perfect. Continuously experiment and explore new DAX functions, and challenge yourself with real-world data scenarios.</p>
+
+<p><br /></p>
+
+<hr />
+<p><br /></p>
+
+<p>If this sparked your curiosity, keep that spark alive and check back frequently.</p>
+
+<p>Or even better, don’t let the conversation end here. <a class="post__link" href="https://medium.com/@emguyant"><i class="fab fa-medium"></i>Follow me on Medium</a> to continue the conversation by commenting on the post and show your support through shares, and applause.</p>
+
+<p>Be sure not to miss a post by <a class="post__link" href="https://medium.com/@emguyant/subscribe"><i class="fab fa-medium"></i>subscribing here</a>, with each new post comes an opportunity to learn something new.</p>
+
+<p>Eager for a deeper exploration? Consider venturing further by <a class="post__link" href="https://medium.com/@emguyant/membership"><i class="fab fa-medium"></i>joining Medium</a>, with a Medium membership you gain unlimited access to a world brimming with insights.</p>
+
+<p>Thank you for reading! Stay curious, and until next time, happy learning.</p>
+
+    </div><a class="u-url" href="/blog/2023-08-14-text-functions/" hidden></a>
+  </article>
+</div>
+      </div>
+    </main><footer class="footer">
+    <!-- replace with your own email address 
+    <a href="mailto:info@ethanguyant.com" class="footer__link">info@ethanguyant.com</a>-->
+    <ul class="social-list">
+        <li class="social-list__item">
+            <a class="social-list__link" href="mailto:emguyant@gmail.com">
+                <i class="fas fa-envelope"></i>
+            </a>
+        </li>
+        <li class="social-list__item">
+            <a class="social-list__link" href="https://www.linkedin.com/in/ethan-guyant/">
+                <i class="fab fa-linkedin"></i>
+            </a>
+        </li>
+        <li class="social-list__item">
+            <a class="social-list__link" href="https://github.com/EMGuyant">
+                <i class="fab fa-github"></i>
+            </a>
+        </li>
+        <li class="social-list__item">
+            <a class="social-list__link" href="https://medium.com/@emguyant">
+                <i class="fab fa-medium"></i>
+            </a>
+        </li>
+        <li class="social-list__item">
+            <a class="social-list__link" href="https://medium.com/inquisitive-nature">
+                <i class="fa-solid fa-book"></i>
+            </a>
+        </li>
+    </ul>
+</footer><script src="https://kit.fontawesome.com/c9965d23bb.js" crossorigin="anonymous"></script>
+<script src="/assets/js/script.js"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init();
+</script>
+</body>
+
+</html>
