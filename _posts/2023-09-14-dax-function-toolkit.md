@@ -139,7 +139,7 @@ DATEDIFF(
 
 `Days Between First and Last Smartphone Sale US` calculates the number of days between the first and last sale of Smartphones in the United States. This gives us a clearer understanding of the sales cycle, which can be a critical piece of information for proper planning.
 
-### Keep Exploring Aggregation Functions
+### Keep Exploring Date and Time Functions
 
 Date and Time Functions are not just convenient, they are fundamental in data analysis for dissecting temporal aspects of our data. They enable us to analyze our data through the lens of time, providing a more nuanced understanding of trends and patterns.
 
@@ -161,7 +161,7 @@ Filter Functions act as the gatekeepers of our data. They enable us to hone in o
 
 1. Overfiltering: While it is tempting to narrow down our data, be cautious not to filter out important information
 
-2. Underfiltering: On the filp side, too little filtering can leave us overwhelmed with irrelevant data.
+2. Underfiltering: On the flip side, too little filtering can leave us overwhelmed with irrelevant data.
 
 For successful and efficient analysis it is important to strike the right balance.
 
@@ -196,7 +196,7 @@ CALCULATETABLE(
 
 Now we have a table that includes only transactions that occurred between January 1, 2022 and March 31, 2022. This allows us to focus solely on the performance metrics for Q1 2022.
 
-### Keep Exploring Aggregation Functions
+### Keep Exploring Filter Functions
 
 Filter Functions are the go-to tools for conducting precise and focused analysis. They enable us to sift through large dataset and zero in on the specific subset that is most pertinent to our questions and objectives.
 
@@ -214,7 +214,7 @@ For those that want to learn more about Filter Functions check out the [Microsof
 
 Financial Functions serve as a specific set of calculators in our data analytics toolkit, specializing in all things monetary. Functions like `PMT`, `FV`, and `NPV` are our go-to financial tools within the DAX environment. Whether we are a seasoned finance manager or a small business owner just starting out, understanding our financial metrics is a necessity. Financial Functions enable us to perform a myriad of calculations, from determining loan payments and forecasting the future values of investments to calculating the net present value of cash flows. These functions are key for robust financial planning and analysis, guiding us toward sound financial decisions.
 
-### Common Pitfalls to AVoid
+### Common Pitfalls to Avoid
 
 1. Incorrect Parameters: Always double-check the parameters when using financial functions to avoid errors.
 
@@ -244,7 +244,7 @@ Monthly Loan Payment = PMT(0.05/12, 60, -20000)
 
 This give us an understanding of the monthly financial commitment, aiding in budget planning and financial forecasting.
 
-### Keep Exploring Aggregation Functions
+### Keep Exploring Financial Functions
 
 Financial Functions are the bedrock of financial analysis. They equip us with computational capabilities to make informed and sound financial decisions.
 
@@ -280,7 +280,7 @@ Is Sales Amount Missing = ISBLANK([Amount])
 
 This calculated column will flag entries with a `TRUE` value if the sales amount is missing. Allowing us to quickly identify potential data integrity issues in our sales records.
 
-### Keep Exploring Aggregation Functions
+### Keep Exploring Information Functions
 
 Information Functions are more than just handy tools. They are the magnifying glass that allows us to scrutinize the finer details of our data. They help validate data, authenticate users, and even debug issues, making them an essential part of any data analytics toolkit.
 
@@ -314,7 +314,7 @@ Sales Category = IF(Sales[Amount] > 5000, "High", "Low")
 
 ![IF Example](/assets/img/2023-09-15-dax-function-toolkit/if-function.jpg){: .post__img}
 
-`Sales Category` creates a calculated colum that categorizes sales as "High" if the amount exceeds $5,000 and "Low" otherwise.
+`Sales Category` creates a calculated column that categorizes sales as "High" if the amount exceeds $5,000 and "Low" otherwise.
 
 For a more complex example, suppose we need to categorize sales based on multiple conditions, such as region and amount. The `SWITCH` function is particularly useful here. The formula below categorizes sales as "High" or "Low" in the United States, Europe, and Asia, based on the sales amount and region.
 
@@ -335,7 +335,7 @@ Sales Category High/Low Region = SWITCH(
 
 This approach is a cleaner alternative to nesting multiple `IF` statements, making our DAX easier to read and maintain.
 
-### Keep Exploring Aggregation Functions
+### Keep Exploring Logical Functions
 
 Logical Functions are the decision-makers of our data analysis. They guide us through complex scenarios, allowing us to make sense of our data in a more nuanced and insightful manner.
 
@@ -388,7 +388,7 @@ DIVIDE(
 
 ![DIVIDE Example](/assets/img/2023-09-15-dax-function-toolkit/divide-function.jpg){: .post__img}
 
-### Keep Exploring Aggregation Functions
+### Keep Exploring Math and Trig Functions
 
 Math and Trig Function are the tools required for quantitative analysis in DAX. They provide us with the computational capabilities to tackle a wide range of problems, from basic arithmetic to complex mathematical modeling.
 
@@ -430,7 +430,7 @@ COUNTROWS(
 
 Here we count the number of rows in the Sales table where the `EmployeeID` is missing, allowing us to quickly identify potential data integrity issues.
 
-### Keep Exploring Aggregation Functions
+### Keep Exploring Other Functions
 
 Other Functions in DAX are more than just a miscellaneous collection, they are specialized tools designed to meet specific needs that other categories may not address. They offer a level of flexibility and specificity that can be crucial for tasks like data validation, error handling, and much more.
 
@@ -474,22 +474,22 @@ Next, we want to identify the direct manager for each employee who has logged a 
 
 ```
 Sales Manager Name = 
-    VAR ManagerID = 
-        RELATED(Employee[Extract Manager])
-    
-    RETURN 
-    LOOKUPVALUE(
-        Employee[EmployeeName], 
-        Employee[EmployeeID], 
-        ManagerID
-    )
+VAR ManagerID = 
+    RELATED(Employee[Extract Manager])
+
+RETURN 
+LOOKUPVALUE(
+    Employee[EmployeeName], 
+    Employee[EmployeeID], 
+    ManagerID
+)
 ```
 
 ![Sales Manager Name Example](/assets/img/2023-09-15-dax-function-toolkit/reverse-item-path-function.jpg){: .post__img}
 
 The new calculated column adds a layer of organizational context to each sale, allowing us to easily identify managerial responsibilities and perhaps even performance metrics.
 
-### Keep Exploring Aggregation Functions
+### Keep Exploring Parent and Child Functions
 
 Parent and Child Functions are fundamental for understanding and manipulating hierarchical data structures. They provide us with the means to navigate complex relationships within our data making our analysis more insightful and actionable.
 
@@ -543,7 +543,7 @@ FILTER(
 
 Although, we could have achieved the same result by filtering on `Sales[RegionID]=1`, using `RELATED` to filter by the region name enhances the readability of the DAX formula. Anyone viewing the formula can immediately understand that the table focuses on sales in the United States.
 
-### Keep Exploring Aggregation Functions
+### Keep Exploring Relationship Functions
 
 Relationship Functions are the cartographers of our data model, mapping out the intricate web of connections that allow our data to flow seamlessly. They are indispensable tools for anyone looking to make sense of interconnected data.
 
@@ -602,7 +602,7 @@ RANKX(
 
 This formula leverages the `RANKX` function to add a calculated column to the Sales table, ranking all sales amounts in descending order. This allows us to pinpoint where each sale ranks in comparison to the others.
 
-### Keep Exploring Aggregation Functions
+### Keep Exploring Statistical Functions
 
 Statistical Functions serve as the statisticians of our DAX tool kit. They help convert raw data into meaningful, actionable insights. These functions are essential for anyone looking to make data-driven decisions.
 
@@ -666,7 +666,7 @@ GROUPBY(
 
 `Sales by Region and Employee` is a newly created table which aggregates sales amounts by the Region and Employee. Essentially, it is like crafting a leader board for our sales team, broken down by geographical areas.
 
-### Keep Exploring Aggregation Functions
+### Keep Exploring Table Manipulation Functions
 
 Table Manipulation Functions are the building blocks that help us construct the data landscape we need for our analysis. They offer the flexibility and power to transform our data into actionable insights and are indispensable tools.
 
@@ -719,7 +719,7 @@ This formula employs several text functions to create the Short Name column. The
 * LEN: calculates the length of the employee's full name and is used to help RIGHT know how many characters to extract for the employee's last name
 * CONCATENATE: joins the employee's first initial and the last name to create the employee's shorten named field.
 
-### Keep Exploring Aggregation Functions
+### Keep Exploring Text Functions
 
 Text Functions are our go-to tools for handling and making sense of textual data. They are the wordsmiths of the DAX world, ensuring that every string of text is in its right place and serves its purpose in our analysis.
 
@@ -782,7 +782,7 @@ CALCULATE(
 
 This formula uses the Time Intelligence functions `DATESBETWEEN` and `LASTDATE` to help calculate the 3-month rolling average of sales. It provides a great tools to get a more stable view of our sales trends.
 
-### Keep Exploring Aggregation Functions
+### Keep Exploring Time Intelligence Functions
 
 Time Intelligence Functions are our navigational compass for traversing the sands of time within our data. They provide valuable insights whether we are looking backwards to historical data or forward to predictive analytics.
 
