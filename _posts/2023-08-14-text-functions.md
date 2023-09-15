@@ -31,7 +31,7 @@ DAX is the backbone that brings structure and meaning to the data we work with i
 
 So whether you're an experienced data analyst or a beginner just starting your journey, you have landed on the right page. Prepare to explore the depth and breadth of DAX Text Functions. This is going to be a deep dive covering various functions, their syntax, and plenty of of examples!
 
-For those of you eager to start experimenting there is a Power BI report loaded with the sample data used in this post ready for you. So don’t just read, dive in and get hands-on with DAX Functions in Power BI. Check out it here: [GitHub — Power BI DAX Function Series: Mastering Data Analysis](https://github.com/EMGuyant/powerbi-dax-functions-series){: .post__link}.
+For those of you eager to start experimenting there is a Power BI report loaded with the sample data used in this post ready for you. So don’t just read, dive in and get hands-on with DAX Functions in Power BI. Check it out here: [GitHub — Power BI DAX Function Series: Mastering Data Analysis](https://github.com/EMGuyant/powerbi-dax-functions-series){: .post__link}.
 
 <br>
 
