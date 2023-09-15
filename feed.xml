@@ -1,4 +1,870 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://ethanguyant.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://ethanguyant.com/" rel="alternate" type="text/html" /><updated>2023-08-14T21:05:08+00:00</updated><id>http://ethanguyant.com/feed.xml</id><title type="html">Ethan Guyant’s Blog</title><subtitle>A data solution centric blog focusing on the use and application of Microsoft Power Apps, Python Programming, and Data Science.</subtitle><entry><title type="html">Mastering DAX Text Expressions: Making Sense of Your Data One String at a Time</title><link href="http://ethanguyant.com/blog/2023-08-14-text-functions/" rel="alternate" type="text/html" title="Mastering DAX Text Expressions: Making Sense of Your Data One String at a Time" /><published>2023-08-14T00:00:00+00:00</published><updated>2023-08-14T00:00:00+00:00</updated><id>http://ethanguyant.com/blog/text-functions</id><content type="html" xml:base="http://ethanguyant.com/blog/2023-08-14-text-functions/">&lt;p&gt;Ever felt like your data was whispering secrets just beyond your grasp? Dive into the world of DAX Text Functions and turn those whispers into powerful narratives. Unlock stories hidden within text strings, and let your data weave tales previously untold.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://ethanguyant.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://ethanguyant.com/" rel="alternate" type="text/html" /><updated>2023-09-15T17:10:58+00:00</updated><id>http://ethanguyant.com/feed.xml</id><title type="html">Ethan Guyant’s Blog</title><subtitle>A data solution centric blog focusing on the use and application of Microsoft Power Apps, Python Programming, and Data Science.</subtitle><entry><title type="html">The DAX Function Universe: A Guide to Navigating the Data Analysis Tool box</title><link href="http://ethanguyant.com/blog/2023-09-14-dax-function-toolkit/" rel="alternate" type="text/html" title="The DAX Function Universe: A Guide to Navigating the Data Analysis Tool box" /><published>2023-09-14T00:00:00+00:00</published><updated>2023-09-14T00:00:00+00:00</updated><id>http://ethanguyant.com/blog/dax-function-toolkit</id><content type="html" xml:base="http://ethanguyant.com/blog/2023-09-14-dax-function-toolkit/">&lt;p&gt;Imagine a world where &lt;strong&gt;DAX&lt;/strong&gt; isn’t just a cryptic acronym but a transformative tool that elevates your &lt;strong&gt;Data Analysis&lt;/strong&gt; to an art form. You go beyond just crunching numbers, you begin sculpting data into actionable insights. Welcome to the realm where data manipulation becomes as easy as ABC, yet as intricate as a spider’s web.&lt;/p&gt;
+
+&lt;p&gt;If you have ever felt overwhelmed by the world of data analytics, this &lt;strong&gt;DAX Tutorial&lt;/strong&gt; is your guiding light. We are not merely scratching the surface, we are delving into the intricacies of DAX functions and highlighting their use with practical examples. Think of this post as your comprehensive guide to mastering DAX.&lt;/p&gt;
+
+&lt;p&gt;So, are you ready to leave the ordinary and step into the extraordinary world of DAX? Let this tutorial be your stepping stone to the next level of your data analysis.&lt;/p&gt;
+
+&lt;p&gt;For those of you eager to start experimenting there is a Power BI report loaded with the sample data used in this post ready for you. So don’t just read, dive in and get hands-on with DAX Functions in Power BI. Check it out here: &lt;a href=&quot;https://github.com/EMGuyant/powerbi-dax-functions-series&quot; class=&quot;post__link&quot;&gt;GitHub — Power BI DAX Toolkit: Mastering DAX Through Examples&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;new-dax-functions-the-new-kids-on-the-block&quot;&gt;New DAX Functions: The New Kids on the Block&lt;/h2&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;In the dynamic landscape of DAX, staying abreast of updates is not merely optional—it’s imperative. Just when we think we have mastered the existing functions, DAX introduces innovative features that can revolutionize our approach to data analysis. These aren’t just incremental updates. They are game-changers that can redefine how we approach our data analysis. These updates are introduced periodically, so get ready to get acquainted with these new kids on the block in order to stay ahead of the curve.&lt;/p&gt;
+
+&lt;p&gt;What makes these new functions even better is that they are far more that just bells and whistles, they all serve a purpose. They often fill gaps in existing functionality or offer more efficient ways to get the job done. For instance, some functions make complex calculations easier, while others offer new ways to manipulate data.&lt;/p&gt;
+
+&lt;p&gt;Stay updated on new DAX functions here: &lt;a href=&quot;https://learn.microsoft.com/en-us/dax/new-dax-functions&quot; class=&quot;post__link&quot;&gt;Microsoft Documentation - New DAX Functions&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;aggregation-functions-the-core-of-data-summaries&quot;&gt;Aggregation Functions: The Core of Data Summaries&lt;/h2&gt;
+
+&lt;p&gt;Imagine we are an analyst faced with the task of sifting through a large dataset to quickly determine the total sales for a specific month. Aggregation functions like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SUM&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;COUNT&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AVERAGE&lt;/code&gt; are our go-to tools for this job. These functions serve as the foundation for transforming extensive datasets into actionable insights, such as identifying daily sales peaks, calculating average customer ratings, or estimating annual revenue. Their importance cannot be overstated. They are the essential tools that allow us to distill mountains of data into digestible, meaningful metrics. Whether we are under pressure to deliver fast results or striving for a comprehensive analysis, aggregation functions are indispensable.&lt;/p&gt;
+
+&lt;h3 id=&quot;common-pitfalls-to-avoid&quot;&gt;Common Pitfalls to Avoid&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Ignoring Data Types: Ensure that the data types in the columns we are aggregating are compatible with the function we are using. For instance, using SUM on a text column will result in an error.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Overlooking Filters: When using functions like CALCULATE, remember that existing filters in the data model can affect the result. Always double-check report filters.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Misunderstanding Scope: Be cautious when defining the scope of our aggregation. A common mistake is to aggregate over an entire table when a more specific range is required.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;practical-examples&quot;&gt;Practical Examples&lt;/h3&gt;
+
+&lt;p&gt;Let’s get into some hands-on examples to better understand these aggregation functions. To start, consider the task of calculating average sales. We can use the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AVERAGE&lt;/code&gt; function to quickly gauge our typical sales size.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Average Sales = AVERAGE(Sales[Amount])
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-09-15-dax-function-toolkit/average-function.jpg&quot; alt=&quot;Average Function Example&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Average Sales&lt;/code&gt; calculates the average of the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Amount&lt;/code&gt; column in the Sales table, giving us a quick idea of our typical sale size.&lt;/p&gt;
+
+&lt;p&gt;Next, suppose we have a more specific query: we want to know the total sales of Smartphones within the United Sates. For this, we can employ the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULATE&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SUM&lt;/code&gt; functions together.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Total Smartphone Sales US = 
+CALCULATE(
+    SUM(Sales[Amount]), 
+    Products[Product]=&quot;Smartphone&quot;, 
+    Regions[Region]=&quot;United States&quot;
+)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-09-15-dax-function-toolkit/sum-function.jpg&quot; alt=&quot;Sum Function Example&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This formula sums up the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Amount&lt;/code&gt; column from the Sales table but filters it to only include rows where the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Product&lt;/code&gt; is “Smartphone” in the Products table and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Region&lt;/code&gt; is “United States” in the Regions table.&lt;/p&gt;
+
+&lt;h3 id=&quot;keep-exploring-aggregation-functions&quot;&gt;Keep Exploring Aggregation Functions&lt;/h3&gt;
+
+&lt;p&gt;Aggregation functions are the cornerstone of effective data analysis, offering a streamlined approach to understanding large datasets. They are invaluable for both quick insights and in-depth analyses.&lt;/p&gt;
+
+&lt;p&gt;For those looking for more on Aggregation Functions check out the &lt;a href=&quot;https://learn.microsoft.com/en-us/dax/aggregation-functions-dax&quot; class=&quot;post__link&quot;&gt;Microsoft DAX Function Reference on Aggregation Functions&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;date-and-time-functions-managing-temporal-data&quot;&gt;Date and Time Functions: Managing Temporal Data&lt;/h2&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Date and Time Functions are indispensable when we are dealing with time-sensitive data. Whether we are analyzing sales trends over multiple quarters or tracking project timelines, functions like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TODAY&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;YEAR&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DATEDIFF&lt;/code&gt; are invaluable tools. Understanding the temporal aspects of our data can uncover trends, patterns, and opportunities that would otherwise remain hidden. These functions allow us to slice and dice our data across various time frames, making them essential for tasks such as trend analysis, forecasting, and even real-time decision-making.&lt;/p&gt;
+
+&lt;h3 id=&quot;common-pitfalls-to-avoid-1&quot;&gt;Common Pitfalls to Avoid&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Time Zone Differences: When dealing with data across geographic location, always considers time zones.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Date Formats: Keeping date formats consistent is non-negotiable for precise analysis.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;practical-examples-1&quot;&gt;Practical Examples&lt;/h3&gt;
+
+&lt;p&gt;Let’s explore some real-world applications of these functions. First, rather than glancing at the calendar to find the current date we want to include the date directly in our report. By employing the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TODAY&lt;/code&gt; function we can easily do this.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Today's Date = TODAY()
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-09-15-dax-function-toolkit/today-function.jpg&quot; alt=&quot;Today Function Example&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Just like that, we have today’s date at our fingertips, ready for reporting.&lt;/p&gt;
+
+&lt;p&gt;Now, consider a more complex scenario. We are interested in understanding the sales cycle for Smartphones in the United States. We want to know the duration between the first and last sale. Instead of manually counting days, DAX offers a more elegant solution.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Days Between First and Last Smartphone Sale US = 
+DATEDIFF(
+    MINX(
+        FILTER(
+            Sales, 
+            Products[Product]=&quot;Smartphone&quot; &amp;amp;&amp;amp; 
+            Regions[Region]=&quot;United States&quot;
+        ), 
+        Sales[SalesDate]
+    ), 
+    MAXX(
+        FILTER(
+            Sales, 
+            Products[Product]=&quot;Smartphone&quot; &amp;amp;&amp;amp; 
+            Regions[Region]=&quot;United States&quot;
+        ), 
+        Sales[SalesDate]
+    ), 
+    DAY
+)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-09-15-dax-function-toolkit/datediff-function.jpg&quot; alt=&quot;DATEDIFF Example&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Days Between First and Last Smartphone Sale US&lt;/code&gt; calculates the number of days between the first and last sale of Smartphones in the United States. This gives us a clearer understanding of the sales cycle, which can be a critical piece of information for proper planning.&lt;/p&gt;
+
+&lt;h3 id=&quot;keep-exploring-aggregation-functions-1&quot;&gt;Keep Exploring Aggregation Functions&lt;/h3&gt;
+
+&lt;p&gt;Date and Time Functions are not just convenient, they are fundamental in data analysis for dissecting temporal aspects of our data. They enable us to analyze our data through the lens of time, providing a more nuanced understanding of trends and patterns.&lt;/p&gt;
+
+&lt;p&gt;For those looking for more information on Date and Time Functions check out the &lt;a href=&quot;https://learn.microsoft.com/en-us/dax/date-and-time-functions-dax&quot; class=&quot;post__link&quot;&gt;Microsoft DAX Function Reference on Date and Time Functions&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;filter-functions-refining-your-data-views&quot;&gt;Filter Functions: Refining Your Data Views&lt;/h2&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Filter Functions act as the gatekeepers of our data. They enable us to hone in on the specific subsets that are most relevant to our analysis. Functions like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FILTER&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ALL&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RELATED&lt;/code&gt; are integral components of the DAX toolkit. Imagine we are a marketing manager keen on evaluating the impact of a recent campaign. We are not interested in the entirety of sales data, just the metrics pertinent to this specific initiative. Filter Functions empower us to focus our analysis by narrowing down the data to only the most relevant subsets, thereby enhancing the accuracy and effectiveness of our insights.&lt;/p&gt;
+
+&lt;h3 id=&quot;common-pitfalls-to-avoid-2&quot;&gt;Common Pitfalls to Avoid&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Overfiltering: While it is tempting to narrow down our data, be cautious not to filter out important information&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Underfiltering: On the filp side, too little filtering can leave us overwhelmed with irrelevant data.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;For successful and efficient analysis it is important to strike the right balance.&lt;/p&gt;
+
+&lt;h3 id=&quot;practical-examples-2&quot;&gt;Practical Examples&lt;/h3&gt;
+
+&lt;p&gt;Now getting to the examples. We are interested in analyzing sales data for the United States. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FILTER&lt;/code&gt; function can be used to create a new table that isolates this specific data.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;US Sales Table = 
+FILTER(
+    Sales, 
+    RELATED(Regions[Region]) = &quot;United States&quot;
+)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-09-15-dax-function-toolkit/filter-function.jpg&quot; alt=&quot;FILTER Example&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Just like that, we have a table focused solely on US sales. This can help streamline our analysis.&lt;/p&gt;
+
+&lt;p&gt;Moving to another scenario, we are interested in evaluating sales performance for the first quarter of 2022.The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;CALCULATETABLE&lt;/code&gt; function comes in handy here.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Q1 2022 Sales = 
+CALCULATETABLE(
+    Sales, 
+    Sales[SalesDate] &amp;gt;= DATE(2022, 1, 1), 
+    Sales[SalesDate] &amp;lt;= DATE(2022, 3, 31)
+)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-09-15-dax-function-toolkit/calculate-table-function.jpg&quot; alt=&quot;CALCULATETABLE Example&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now we have a table that includes only transactions that occurred between January 1, 2022 and March 31, 2022. This allows us to focus solely on the performance metrics for Q1 2022.&lt;/p&gt;
+
+&lt;h3 id=&quot;keep-exploring-aggregation-functions-2&quot;&gt;Keep Exploring Aggregation Functions&lt;/h3&gt;
+
+&lt;p&gt;Filter Functions are the go-to tools for conducting precise and focused analysis. They enable us to sift through large dataset and zero in on the specific subset that is most pertinent to our questions and objectives.&lt;/p&gt;
+
+&lt;p&gt;For those that want to learn more about Filter Functions check out the &lt;a href=&quot;https://learn.microsoft.com/en-us/dax/filter-functions-dax&quot; class=&quot;post__link&quot;&gt;Microsoft DAX Function Reference on Filter Functions&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;financial-functions-the-money-managers&quot;&gt;Financial Functions: The Money Managers&lt;/h2&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Financial Functions serve as a specific set of calculators in our data analytics toolkit, specializing in all things monetary. Functions like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PMT&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FV&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NPV&lt;/code&gt; are our go-to financial tools within the DAX environment. Whether we are a seasoned finance manager or a small business owner just starting out, understanding our financial metrics is a necessity. Financial Functions enable us to perform a myriad of calculations, from determining loan payments and forecasting the future values of investments to calculating the net present value of cash flows. These functions are key for robust financial planning and analysis, guiding us toward sound financial decisions.&lt;/p&gt;
+
+&lt;h3 id=&quot;common-pitfalls-to-avoid-3&quot;&gt;Common Pitfalls to AVoid&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Incorrect Parameters: Always double-check the parameters when using financial functions to avoid errors.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Unit Consistency: Ensure that the time units (months, years, etc.) are consistent across calculations.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;practical-examples-3&quot;&gt;Practical Examples&lt;/h3&gt;
+
+&lt;p&gt;Let’s consider a scenario where we are assisting a finance manager in calculating the monthly payment for a loan. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PMT&lt;/code&gt; function can help us do just that. Before diving in, it is essential to understand the syntax and parameters of this function.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PMT(&amp;lt;rate&amp;gt;, &amp;lt;nper&amp;gt;, &amp;lt;pv&amp;gt;[, &amp;lt;fv&amp;gt; [, &amp;lt;type&amp;gt;]])&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;The parameter are as follows:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;rate&amp;gt;&lt;/code&gt;: the interest rate of the loan&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;nper&amp;gt;&lt;/code&gt;: the total number of payments for the loan&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;pv&amp;gt;&lt;/code&gt;: the present value; also known as the principal&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;fv&amp;gt;&lt;/code&gt;: an optional parameter representing the future value or a cash balance you want to attain after the last payment is made. If &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;fv&amp;gt;&lt;/code&gt; is omitted, it is assumed to be BLANK.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&amp;lt;type&amp;gt;&lt;/code&gt;: an optional parameter representing when payments are due and indicated by &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0&lt;/code&gt; when payments are due at the end of the period or &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;1&lt;/code&gt; when payments are due at the beginning of the period. If omitted, it is assumed to be &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;0&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Armed with this understanding we can use the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PMT&lt;/code&gt; function to calculate the monthly payment for a $20,000 loan with a 5% annual interest rate, spread over 60 months.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Monthly Loan Payment = PMT(0.05/12, 60, -20000)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-09-15-dax-function-toolkit/pmt-function.jpg&quot; alt=&quot;PMT Example&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This give us an understanding of the monthly financial commitment, aiding in budget planning and financial forecasting.&lt;/p&gt;
+
+&lt;h3 id=&quot;keep-exploring-aggregation-functions-3&quot;&gt;Keep Exploring Aggregation Functions&lt;/h3&gt;
+
+&lt;p&gt;Financial Functions are the bedrock of financial analysis. They equip us with computational capabilities to make informed and sound financial decisions.&lt;/p&gt;
+
+&lt;p&gt;For those that want to learn more about Financial Functions check out the &lt;a href=&quot;https://learn.microsoft.com/en-us/dax/financial-functions-dax&quot; class=&quot;post__link&quot;&gt;Microsoft DAX Function Reference on Financial Functions&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;information-functions-understanding-data-types-and-errors&quot;&gt;Information Functions: Understanding Data Types and Errors&lt;/h2&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Information Functions serve as the detectives of our data analytics toolkit, adept at uncovering hidden details and characteristics within our data. Functions like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ISBLANK&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ISFILTERED&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;USERNAME&lt;/code&gt; are the investigative tools in the DAX. Whether we are a data analyst tasked with ensuring data integrity or a business owner keen on monitoring user activity, Information Functions provide invaluable insights into the structure and content of our data. These functions aid in a range of tasks, including data validation, user authentication, and even debugging.&lt;/p&gt;
+
+&lt;h3 id=&quot;common-pitfalls-to-avoid-4&quot;&gt;Common Pitfalls to Avoid&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Misinterpretation: Always understand what a function returns to avoid making incorrect assumptions or drawing erroneous conclusions.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Overuse: While these functions are useful, excessive use can make our DAX expressions complex and hard to manage.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;practical-examples-4&quot;&gt;Practical Examples&lt;/h3&gt;
+
+&lt;p&gt;Now for the hands-on examples. First, we need to verify the integrity of sales data by checking for missing sales amounts. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ISBLANK&lt;/code&gt; function is particularly useful for this task. It is important to note that &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ISBLANK&lt;/code&gt; returns a boolean value: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;true&lt;/code&gt; if the value is blank and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;false&lt;/code&gt; otherwise. We can use the following formula to add a calculated column to the Sales table to help identify sales entries that do not have a sales amount.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Is Sales Amount Missing = ISBLANK([Amount])
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-09-15-dax-function-toolkit/isblank-function.jpg&quot; alt=&quot;ISBLANK Example&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This calculated column will flag entries with a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TRUE&lt;/code&gt; value if the sales amount is missing. Allowing us to quickly identify potential data integrity issues in our sales records.&lt;/p&gt;
+
+&lt;h3 id=&quot;keep-exploring-aggregation-functions-4&quot;&gt;Keep Exploring Aggregation Functions&lt;/h3&gt;
+
+&lt;p&gt;Information Functions are more than just handy tools. They are the magnifying glass that allows us to scrutinize the finer details of our data. They help validate data, authenticate users, and even debug issues, making them an essential part of any data analytics toolkit.&lt;/p&gt;
+
+&lt;p&gt;For those that want to learn more about Information Functions check out the &lt;a href=&quot;https://learn.microsoft.com/en-us/dax/information-functions-dax&quot; class=&quot;post__link&quot;&gt;Microsoft DAX Function Reference on Information Functions&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;logical-functions-decision-making-in-data-analysis&quot;&gt;Logical Functions: Decision-Making in Data Analysis&lt;/h2&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Logical Functions in DAX serve as the decision-makers of our data analytics toolkit, like judges in a courtroom. Functions like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;IF&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SWITCH&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;AND&lt;/code&gt; enable us to apply logical conditions to our data, thereby enhancing its interpretability and utility. These functions are critical for making our data analysis more dynamic, insightful, and actionable. They allow us to categorize, filter, and even transform our data based on specific conditions, making them essential tools for any data analyst.&lt;/p&gt;
+
+&lt;h3 id=&quot;common-pitfalls-to-avoid-5&quot;&gt;Common Pitfalls to Avoid&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Over-complicating Conditions: Keep logical conditions as simple as possible. Overly complex conditions can make our DAX hard to understand and maintain.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Ignoring Default Cases: Always consider what should happen if none of our conditions are met. Functions like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SWITCH&lt;/code&gt; offer the ability to set default values, ensuring that our logic is comprehensive and foolproof.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;practical-examples-5&quot;&gt;Practical Examples&lt;/h3&gt;
+
+&lt;p&gt;Now for the real-world applications. First, we need to categorize sales as either “High” or “Low” based on the sales amounts. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;IF&lt;/code&gt; function is perfectly suited for this task.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Sales Category = IF(Sales[Amount] &amp;gt; 5000, &quot;High&quot;, &quot;Low&quot;)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-09-15-dax-function-toolkit/if-function.jpg&quot; alt=&quot;IF Example&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Sales Category&lt;/code&gt; creates a calculated colum that categorizes sales as “High” if the amount exceeds $5,000 and “Low” otherwise.&lt;/p&gt;
+
+&lt;p&gt;For a more complex example, suppose we need to categorize sales based on multiple conditions, such as region and amount. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SWITCH&lt;/code&gt; function is particularly useful here. The formula below categorizes sales as “High” or “Low” in the United States, Europe, and Asia, based on the sales amount and region.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Sales Category High/Low Region = SWITCH(
+    TRUE(),
+    Sales[Amount] &amp;gt; 5000 &amp;amp;&amp;amp; Sales[RegionID] = 1, &quot;High in US&quot;,
+    Sales[Amount] &amp;lt;= 5000 &amp;amp;&amp;amp; Sales[RegionID] = 1, &quot;Low in US&quot;,
+    Sales[Amount] &amp;gt; 5000 &amp;amp;&amp;amp; Sales[RegionID] = 2, &quot;High in Europe&quot;,
+    Sales[Amount] &amp;lt;= 5000 &amp;amp;&amp;amp; Sales[RegionID] = 2, &quot;Low in Europe&quot;,
+    Sales[Amount] &amp;gt; 5000 &amp;amp;&amp;amp; Sales[RegionID] = 3, &quot;High in Asia&quot;,
+    Sales[Amount] &amp;lt;= 5000 &amp;amp;&amp;amp; Sales[RegionID] = 3, &quot;Low in Asia&quot;,
+    &quot;Other&quot;
+)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-09-15-dax-function-toolkit/switch-function.jpg&quot; alt=&quot;SWITCH Example&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This approach is a cleaner alternative to nesting multiple &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;IF&lt;/code&gt; statements, making our DAX easier to read and maintain.&lt;/p&gt;
+
+&lt;h3 id=&quot;keep-exploring-aggregation-functions-5&quot;&gt;Keep Exploring Aggregation Functions&lt;/h3&gt;
+
+&lt;p&gt;Logical Functions are the decision-makers of our data analysis. They guide us through complex scenarios, allowing us to make sense of our data in a more nuanced and insightful manner.&lt;/p&gt;
+
+&lt;p&gt;For those that want to learn more about Logical Functions check out the &lt;a href=&quot;https://learn.microsoft.com/en-us/dax/logical-functions-dax&quot; class=&quot;post__link&quot;&gt;Microsoft DAX Function Reference on Logical Functions&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;math-and-trig-functions-handling-numerical-data&quot;&gt;Math and Trig Functions: Handling Numerical Data&lt;/h2&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Math and Trig Functions in DAX serve as the computational engines of our data model, capable of handling everything from basic arithmetic to intricate trigonometric calculations. Functions like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ABS&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SIN&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ISO.CEILING&lt;/code&gt; offer a comprehensive suite of mathematical operations that can be applied across various domains. Whether we are engaged in straightforward sales calculations or complex engineering models, these functions are indispensable. They empower us to derive actionable insights, make accurate predictions, and optimize processes based on quantitative data.&lt;/p&gt;
+
+&lt;h3 id=&quot;common-pitfalls-to-avoid-6&quot;&gt;Common Pitfalls to Avoid&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Precision Errors: When dealing with floating-point numbers, be cautious of potential rounding errors that could affect the accuracy of any calculations.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Misuse of Trig Functions: Ensure there is an understanding of trigonometric functions and their domains to avoid incorrect or misleading results.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;practical-examples-6&quot;&gt;Practical Examples&lt;/h3&gt;
+
+&lt;p&gt;Let’s move onto some examples using these functions. We need to round our average sales figures to the nearest dollar for more straightforward reporting. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ROUND&lt;/code&gt; function is ideally suited for this task.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Rounded Average Sales = 
+ROUND(
+    AVERAGE(Sales[Amount]), 
+    0
+)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-09-15-dax-function-toolkit/round-function.jpg&quot; alt=&quot;ROUND Example&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This measure calculates the average sales and then rounds the result to the nearest dollar, simplifying our reports.&lt;/p&gt;
+
+&lt;p&gt;Next, we are interested in determining the ratio of sales in the United States to the total number of sales. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DIVIDE&lt;/code&gt; function can help us achieve this with the added benefit of built-in error handling. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DIVIDE&lt;/code&gt; function has three parameters: the numerator, denominator, and a built-in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;[alternative_result]&lt;/code&gt; parameter to handle divide by zero errors.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;US Sales Ratio = 
+DIVIDE(
+    CALCULATE(SUM(Sales[Amount]), Sales[RegionID] = 1),
+    SUM(Sales[Amount]),
+    0
+)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-09-15-dax-function-toolkit/divide-function.jpg&quot; alt=&quot;DIVIDE Example&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;keep-exploring-aggregation-functions-6&quot;&gt;Keep Exploring Aggregation Functions&lt;/h3&gt;
+
+&lt;p&gt;Math and Trig Function are the tools required for quantitative analysis in DAX. They provide us with the computational capabilities to tackle a wide range of problems, from basic arithmetic to complex mathematical modeling.&lt;/p&gt;
+
+&lt;p&gt;For those that want to learn more about Math and Trig Functions check out the &lt;a href=&quot;https://learn.microsoft.com/en-us/dax/math-and-trig-functions-dax&quot; class=&quot;post__link&quot;&gt;Microsoft DAX Function Reference on Math and Trig Functions&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;other-functions-specialized-tools-for-specific-needs&quot;&gt;Other Functions: Specialized Tools for Specific Needs&lt;/h2&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Other Functions in DAX serve as a versatile toolkit of utilities that do not necessarily fit into the more specialized categories but are nonetheless invaluable. Functions like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BLANK&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;ERROR&lt;/code&gt; offer a range of specialized functionalities, filling in the gaps left by other function categories. Whether we are dealing with missing data or need to generate custom error messages, these functions provide the flexibility and specificity required for such tasks.&lt;/p&gt;
+
+&lt;h3 id=&quot;common-pitfalls-to-avoid-7&quot;&gt;Common Pitfalls to Avoid&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Overlooking Function Limitation: Some of these functions have specific limitations or requirements. Make sure to read the documentation carefully.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Misusing Functions: Using a function for a purpose it is not intended for can lead to incorrect results or cause performance issues.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;practical-examples-7&quot;&gt;Practical Examples&lt;/h3&gt;
+
+&lt;p&gt;Let’s explore some practical applications. We need to count the number of sales transactions in our Sales table where the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;EmployeeID&lt;/code&gt; is missing. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;COUNTROWS&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FILTER&lt;/code&gt; functions, combined with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;BLANK&lt;/code&gt; can accomplish this task.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Count Missing EmployeeID = 
+COUNTROWS(
+    FILTER(
+        Sales, 
+        Sales[EmployeeID] = BLANK()
+    )
+)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-09-15-dax-function-toolkit/countrows-function.jpg&quot; alt=&quot;COUNTROWS Function&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Here we count the number of rows in the Sales table where the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;EmployeeID&lt;/code&gt; is missing, allowing us to quickly identify potential data integrity issues.&lt;/p&gt;
+
+&lt;h3 id=&quot;keep-exploring-aggregation-functions-7&quot;&gt;Keep Exploring Aggregation Functions&lt;/h3&gt;
+
+&lt;p&gt;Other Functions in DAX are more than just a miscellaneous collection, they are specialized tools designed to meet specific needs that other categories may not address. They offer a level of flexibility and specificity that can be crucial for tasks like data validation, error handling, and much more.&lt;/p&gt;
+
+&lt;p&gt;For those that want to learn more about Other Functions check out the &lt;a href=&quot;https://learn.microsoft.com/en-us/dax/other-functions-dax&quot; class=&quot;post__link&quot;&gt;Microsoft DAX Function Reference on Other Functions&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;parent-and-child-functions-managing-hierarchical-data&quot;&gt;Parent and Child Functions: Managing Hierarchical Data&lt;/h2&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Parent and Child Functions in DAX are specialized tools designed to help us navigate and manipulate hierarchical relationships within our data. Functions like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PATH&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PATHITEM&lt;/code&gt; are our go-to resources for traversing these intricate family trees of data. Whether we are dealing with organizational charts, product categories, or nested comments, these functions are essential. They enable us to move seamlessly from parent to child elements and vice versa, adding a layer of dynamism and depth to our data analysis.&lt;/p&gt;
+
+&lt;h3 id=&quot;common-pitfalls-to-avoid-8&quot;&gt;Common Pitfalls to Avoid&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Ignoring Data Integrity: Make sure hierarchical data is clean and consistent. Inconsistent data can lead to unexpected results.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Over-complicating Formulas: These functions are powerful but can become complex quickly. Keep DAX formulas as simple as possible for better performance and easier debugging.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;practical-examples-8&quot;&gt;Practical Examples&lt;/h3&gt;
+
+&lt;p&gt;Let’s dive into the practical examples. We need to create a calculated column in our Employee table to store a hierarchical path of and employee’s managers. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PATH&lt;/code&gt; function is ideally suited for this task.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Employee Full Path = 
+PATH(
+    Employee[EmployeeID], 
+    Employee[ManagerID]
+)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-09-15-dax-function-toolkit/path-function.jpg&quot; alt=&quot;PATH Example&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Employee Full Path&lt;/code&gt; is a new calculated column in the Employee table that combines the EmployeeID and ManagerID into a hierarchical path, effectively mapping out an organizational structure.&lt;/p&gt;
+
+&lt;p&gt;Next, we want to identify the direct manager for each employee who has logged a sale. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PATHITEMREVERSE&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LOOKUPVALUE&lt;/code&gt; functions can be combined to achieve this.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Sales Manager Name = 
+    VAR ManagerID = 
+        RELATED(Employee[Extract Manager])
+    
+    RETURN 
+    LOOKUPVALUE(
+        Employee[EmployeeName], 
+        Employee[EmployeeID], 
+        ManagerID
+    )
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-09-15-dax-function-toolkit/reverse-item-path-function.jpg&quot; alt=&quot;Sales Manager Name Example&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The new calculated column adds a layer of organizational context to each sale, allowing us to easily identify managerial responsibilities and perhaps even performance metrics.&lt;/p&gt;
+
+&lt;h3 id=&quot;keep-exploring-aggregation-functions-8&quot;&gt;Keep Exploring Aggregation Functions&lt;/h3&gt;
+
+&lt;p&gt;Parent and Child Functions are fundamental for understanding and manipulating hierarchical data structures. They provide us with the means to navigate complex relationships within our data making our analysis more insightful and actionable.&lt;/p&gt;
+
+&lt;p&gt;For those that want to learn more about Parent and Child Functions check out the &lt;a href=&quot;https://learn.microsoft.com/en-us/dax/parent-and-child-functions-dax&quot; class=&quot;post__link&quot;&gt;Microsoft DAX Function Reference on Parent and Child Functions&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;relationship-functions-linking-tables-effectively&quot;&gt;Relationship Functions: Linking Tables Effectively&lt;/h2&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;In the world of data analysis, Relationship Functions in DAX serve as our navigators, guiding us through the interconnected relationships between data tables. These functions are the cartographers of our data landscape, mapping out how one table relates to another. Understanding and utilizing Relationship Functions is not just a good skill to master, it is a necessity when our data model involves multiple tables. They enable us to craft complex and insightful queries by pulling data from various tables, acting as the adhesive that binds our data analysis together.&lt;/p&gt;
+
+&lt;p&gt;In essence, they ensure that every piece of data is in its rightful place at the opportune moment, making our analysis not only accurate but also efficient.&lt;/p&gt;
+
+&lt;h3 id=&quot;common-pitfalls-to-avoid-9&quot;&gt;Common Pitfalls to Avoid&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Not Knowing the Active Relationship: Always be aware of which relationship is active to avoid unexpected results.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Mismatch Data Types: Ensure that the columns being connected have the same data types to avoid errors.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;practical-examples-9&quot;&gt;Practical Examples&lt;/h3&gt;
+
+&lt;p&gt;We need to further analyze our sales data and how each sale relates to product information. Relationship Functions help bring all the required data together.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Total Product Sales = 
+SUMX(
+    RELATEDTABLE(Sales), 
+    Sales[Amount]
+)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-09-15-dax-function-toolkit/relatedtables-function.jpg&quot; alt=&quot;RELATEDTABLE Example&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This formula uses the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RELATEDTABLE&lt;/code&gt; function to fetch all the sales data that corresponds to each product in the Products table. Then, it uses &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SUMX&lt;/code&gt; to sum up the sales amount for each of the related sales. It is like giving each product it’s own comprehensive sales summary, all in one formula.&lt;/p&gt;
+
+&lt;p&gt;Next, let’s revisit the previous example were we created a filtered table for US Sales. The formula used was:&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;US Sales Table = 
+FILTER(
+    Sales, 
+    RELATED(Regions[Region]) = &quot;United States&quot;
+)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Although, we could have achieved the same result by filtering on &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Sales[RegionID]=1&lt;/code&gt;, using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RELATED&lt;/code&gt; to filter by the region name enhances the readability of the DAX formula. Anyone viewing the formula can immediately understand that the table focuses on sales in the United States.&lt;/p&gt;
+
+&lt;h3 id=&quot;keep-exploring-aggregation-functions-9&quot;&gt;Keep Exploring Aggregation Functions&lt;/h3&gt;
+
+&lt;p&gt;Relationship Functions are the cartographers of our data model, mapping out the intricate web of connections that allow our data to flow seamlessly. They are indispensable tools for anyone looking to make sense of interconnected data.&lt;/p&gt;
+
+&lt;p&gt;For those that want to learn more about Relationship Functions check out the &lt;a href=&quot;https://learn.microsoft.com/en-us/dax/relationship-functions-dax&quot; class=&quot;post__link&quot;&gt;Microsoft DAX Function Reference on Relationship Functions&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;statistical-functions-analyzing-data-distributions&quot;&gt;Statistical Functions: Analyzing Data Distributions&lt;/h2&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Statistical Functions in DAX are the statisticians of our data analysis toolkit. They don’t just summarize, analyze, and interpret our data, they transform raw numbers into actionable insights. Understanding the distribution, trends, and patterns in our data is not a luxury—it’s a necessity. Whether we are calculating averages, identifying maximum sales amounts, or dissecting data variance, these functions are the perfect tools.&lt;/p&gt;
+
+&lt;h3 id=&quot;common-pitfalls-to-avoid-10&quot;&gt;Common Pitfalls to Avoid&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Ignoring Outliers: Outliers can significantly skew statistical calculations. Always check for data anomalies.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Misinterpreting Results: Understanding the meaning behind the numbers is crucial. A high standard deviation, for example, could either be a sign of a problem or a natural part of the business cycle.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;practical-examples-10&quot;&gt;Practical Examples&lt;/h3&gt;
+
+&lt;p&gt;Suppose we need to examine the effectiveness of a recent promotional campaign. To do this we randomly sample our sales data to quickly assess our sales data.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Sampled Sales = 
+SAMPLE(
+    10, 
+    Sales, 
+    Sales[Amount], 
+    DESC
+)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-09-15-dax-function-toolkit/sample-function.jpg&quot; alt=&quot;SAMPLE Example&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This formula uses the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SAMPLE&lt;/code&gt; function to select 10 random rows from the Sales table, sorted by the SalesID in ascending order. Think of it as taking a snapshot of our sales data to quickly gauge our sales data.&lt;/p&gt;
+
+&lt;p&gt;Next, we need to identify the top-selling products. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RANKX&lt;/code&gt; is the statistical function for the job.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Sales Rank = 
+RANKX(
+    ALL(Sales), 
+    Sales[Amount], 
+    , 
+    DESC, 
+    Dense
+)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-09-15-dax-function-toolkit/rankx-function.jpg&quot; alt=&quot;RANKX Example&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This formula leverages the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RANKX&lt;/code&gt; function to add a calculated column to the Sales table, ranking all sales amounts in descending order. This allows us to pinpoint where each sale ranks in comparison to the others.&lt;/p&gt;
+
+&lt;h3 id=&quot;keep-exploring-aggregation-functions-10&quot;&gt;Keep Exploring Aggregation Functions&lt;/h3&gt;
+
+&lt;p&gt;Statistical Functions serve as the statisticians of our DAX tool kit. They help convert raw data into meaningful, actionable insights. These functions are essential for anyone looking to make data-driven decisions.&lt;/p&gt;
+
+&lt;p&gt;For those that want to learn more about Statistical Functions check out the &lt;a href=&quot;https://learn.microsoft.com/en-us/dax/statistical-functions-dax&quot; class=&quot;post__link&quot;&gt;Microsoft DAX Function Reference on Statistical Functions&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Statistical Functions are another set of specialized calculators within our DAX toolkit. They help us crunch the numbers to make data-driven decisions and strategies.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;table-manipulation-functions-transforming-data-structures&quot;&gt;Table Manipulation Functions: Transforming Data Structures&lt;/h2&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Table Manipulation Functions in DAX serve as the architects of our data landscape, empowering us to reshape, transform, and manipulate tables. Whether we are creating new tables, modifying existing ones, or generating tables on-the-fly for specific analyses. These functions offer the flexibility to customize our data to meet a wide array of analytical needs.&lt;/p&gt;
+
+&lt;h3 id=&quot;common-pitfalls-to-avoid-11&quot;&gt;Common Pitfalls to Avoid&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Performance Issues: Complex table manipulations can be resource-intensive. Be mindful of the impact on query performance, especially when working with large datasets.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Loss of Context: Functions that create new tables in the data model may lose the context or relationships present in the original tables. Make sure to re-establish any necessary relationships.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;practical-examples-11&quot;&gt;Practical Examples&lt;/h3&gt;
+
+&lt;p&gt;We need to analyze the total sales for each product to aid in identifying best sellers. To do this we can use &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SUMMARIZE&lt;/code&gt; to create a new table that shows the total sales for each Product.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Product Sales Summary = 
+SUMMARIZE(
+    Sales, 
+    Sales[SalesDate].[Year], 
+    Products[Product Code], 
+    Products[Product], 
+    &quot;Total Sales&quot;, 
+    SUM(Sales[Amount])
+)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-09-15-dax-function-toolkit/summarize-function.jpg&quot; alt=&quot;SUMMARIZE Example&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The resulting table will provide a quick way to identify which products are flying off the shelves each year and which are not.&lt;/p&gt;
+
+&lt;p&gt;Next, we need would like to better understand how each sales employee is performing across the different regions, the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;GROUPBY&lt;/code&gt; function come in handy.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Sales by Region and Employee = 
+GROUPBY(
+    Sales, 
+    Regions[Region], 
+    Employee[EmployeeName], 
+    &quot;Total Sales&quot;, 
+    SUMX(CURRENTGROUP(), 
+    Sales[Amount])
+)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-09-15-dax-function-toolkit/groupby-function.jpg&quot; alt=&quot;GROUPBY Example&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Sales by Region and Employee&lt;/code&gt; is a newly created table which aggregates sales amounts by the Region and Employee. Essentially, it is like crafting a leader board for our sales team, broken down by geographical areas.&lt;/p&gt;
+
+&lt;h3 id=&quot;keep-exploring-aggregation-functions-11&quot;&gt;Keep Exploring Aggregation Functions&lt;/h3&gt;
+
+&lt;p&gt;Table Manipulation Functions are the building blocks that help us construct the data landscape we need for our analysis. They offer the flexibility and power to transform our data into actionable insights and are indispensable tools.&lt;/p&gt;
+
+&lt;p&gt;For those that want to learn more about Table Manipulation Functions check out the &lt;a href=&quot;https://learn.microsoft.com/en-us/dax/table-manipulation-functions-dax&quot; class=&quot;post__link&quot;&gt;Microsoft DAX Function Reference on Table Manipulation Functions&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;text-functions-manipulating-and-analyzing-text-data&quot;&gt;Text Functions: Manipulating and Analyzing Text Data&lt;/h2&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;In the realm of data analysis, Text Functions in DAX serve as the wordsmiths that empower us to manipulate and transform text data within our data sets. These functions are a key aspect of cleaning, formatting, and extracting valuable insights from textual data. While numbers may be the backbone of data analysis, textual data often provides the context, nuance, and additional layers of meaning that numbers alone can’t offer. These functions help us make sense of textual data, which is often messy and unstructured.&lt;/p&gt;
+
+&lt;p&gt;The post &lt;a href=&quot;https://ethanguyant.com/blog/2023-08-14-text-functions/&quot; class=&quot;post__link&quot;&gt;Master DAX Text Expressions: Making Sense of Your Data One String at a Time&lt;/a&gt; offers a deep dive into DAX Text functions.&lt;/p&gt;
+
+&lt;h3 id=&quot;common-pitfalls-to-avoid-12&quot;&gt;Common Pitfalls to Avoid&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Case Sensitivity: DAX is not case-sensitive, but the text data we work with might be. Always be aware of the case requirements of the data to avoid inconsistencies.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Special Characters: Not all text functions handle special characters gracefully. Before deploying any function, test it thoroughly to ensure it meets expectations, especially when the text data includes symbols or other special characters.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;practical-examples-12&quot;&gt;Practical Examples&lt;/h3&gt;
+
+&lt;p&gt;Now for learning by doing. Our Employee table has a single Employee Name column containing each employee’s first and last name. We need to create a new column that shortens each employee’s name to their first initial followed by their last name. We can use a series of Text Functions to achieve this.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Short Name = 
+VAR _space = 
+    SEARCH(&quot; &quot;, Employee[EmployeeName])
+VAR _firstInitial = 
+    LEFT(Employee[EmployeeName], 1)
+VAR _lastName = 
+    RIGHT(Employee[EmployeeName], LEN(Employee[EmployeeName])-_space)
+
+RETURN
+CONCATENATE(_firstInitial, _lastName)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-09-15-dax-function-toolkit/concat-function.jpg&quot; alt=&quot;CONCATENATE Example&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This formula employs several text functions to create the Short Name column. The text functions includes:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;SEARCH: finds the position in Employee Name of the first space&lt;/li&gt;
+  &lt;li&gt;LEFT: extracts the first letter of the employee’s full name&lt;/li&gt;
+  &lt;li&gt;RIGHT: extracts the last name from the employee’s full name&lt;/li&gt;
+  &lt;li&gt;LEN: calculates the length of the employee’s full name and is used to help RIGHT know how many characters to extract for the employee’s last name&lt;/li&gt;
+  &lt;li&gt;CONCATENATE: joins the employee’s first initial and the last name to create the employee’s shorten named field.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;keep-exploring-aggregation-functions-12&quot;&gt;Keep Exploring Aggregation Functions&lt;/h3&gt;
+
+&lt;p&gt;Text Functions are our go-to tools for handling and making sense of textual data. They are the wordsmiths of the DAX world, ensuring that every string of text is in its right place and serves its purpose in our analysis.&lt;/p&gt;
+
+&lt;p&gt;For those that want to learn more about Text Functions check out the &lt;a href=&quot;https://learn.microsoft.com/en-us/dax/text-functions-dax&quot; class=&quot;post__link&quot;&gt;Microsoft DAX Function Reference on Text Functions&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Additionally, for a more comprehensive understanding explore this insightful post: &lt;a href=&quot;https://ethanguyant.com/blog/2023-08-14-text-functions/&quot; class=&quot;post__link&quot;&gt;Master DAX Text Expressions: Making Sense of Your Data One String at a Time&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;By mastering Text Functions, we equip ourselves with the tools to clean, format, and analyze textual data. This makes our data analysis endeavors not just quantitative but also qualitative.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;time-intelligence-functions-analyzing-data-through-time&quot;&gt;Time Intelligence Functions: Analyzing Data Through Time&lt;/h2&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Time Intelligence Functions in DAX empower us to perform calculations involving various time periods—be it months, quarters, or years. These functions are must-haves when it comes to trend analysis, forecasting, or comparing performance over different time frames. They allow us to unlock the temporal dimensions of our data, providing a dynamic lens through which to view our analytics.&lt;/p&gt;
+
+&lt;p&gt;The post &lt;a href=&quot;https://ethanguyant.com/blog/2023-07-19-powerbi-time-intelligence/&quot; class=&quot;post__link&quot;&gt;Time Travel in Power BI: Mastering Time Intelligence Functions&lt;/a&gt; offers a deep dive into DAX Time Intelligence functions.&lt;/p&gt;
+
+&lt;h3 id=&quot;common-pitfalls-to-avoid-13&quot;&gt;Common Pitfalls to Avoid&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Data Table: Ensure that there is a well-structured date table within the data model. These functions rely heavily on a coherent date table to operate effectively.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Time Zone Differences: Be cautious of time zones when dealing with time-based data, especially if the data is collected from different geographical locations.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3 id=&quot;practical-examples-13&quot;&gt;Practical Examples&lt;/h3&gt;
+
+&lt;p&gt;Let’s see how we can use these Time Intelligence functions. To complete our analysis of our sales data we need to track the sales performance throughout the year. To achieve this we will create a measure which tracks year-to-date sales.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;YTD Sales TOTALYTD = 
+TOTALYTD(
+    SUM(Sales[Amount]), Dates[Date]
+)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-09-15-dax-function-toolkit/totalytd-function.jpg&quot; alt=&quot;TOTALYTD Example&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This formula uses the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TOTALYTD&lt;/code&gt; function to sum up the sales amounts from the beginning of the year to the current date. This is an essential metric for understanding sales performance as the year progresses and helpful to compare to previous years.&lt;/p&gt;
+
+&lt;p&gt;Next, we are interested in smoothing out short-term fluctuations to understand the longer-term trends in sales. To do this we will calculate a rolling 3-month average of our sales.&lt;/p&gt;
+
+&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Sales 3 Month Rolling Average = 
+CALCULATE(
+    AVERAGE(Sales[Amount]),
+    DATESBETWEEN(
+        Dates[Date],
+        EDATE(LASTDATE(Dates[Date]), -3),
+        LASTDATE(Dates[Date])
+    )
+)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-09-15-dax-function-toolkit/datesbetween-function.jpg&quot; alt=&quot;3 Month Rolling Average&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This formula uses the Time Intelligence functions &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DATESBETWEEN&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LASTDATE&lt;/code&gt; to help calculate the 3-month rolling average of sales. It provides a great tools to get a more stable view of our sales trends.&lt;/p&gt;
+
+&lt;h3 id=&quot;keep-exploring-aggregation-functions-13&quot;&gt;Keep Exploring Aggregation Functions&lt;/h3&gt;
+
+&lt;p&gt;Time Intelligence Functions are our navigational compass for traversing the sands of time within our data. They provide valuable insights whether we are looking backwards to historical data or forward to predictive analytics.&lt;/p&gt;
+
+&lt;p&gt;For those that want to lear more about Text Functions check out the &lt;a href=&quot;https://learn.microsoft.com/en-us/dax/time-intelligence-functions-dax&quot; class=&quot;post__link&quot;&gt;Microsoft DAX Function Reference on Time Intelligence Functions&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Additionally, the blog post &lt;a href=&quot;https://ethanguyant.com/blog/2023-07-19-powerbi-time-intelligence/&quot; class=&quot;post__link&quot;&gt;Time Travel in Power BI: Mastering Time Intelligence Functions&lt;/a&gt; offers an in-depth exploration of these functions.&lt;/p&gt;
+
+&lt;p&gt;Once we can wield these powerful tools we not only enrich our analytical toolkit but we also gain the ability to view our data from a temporal perspective. This adds an whole new layer of depth to our analyses.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;the-road-ahead-in-mastering-dax&quot;&gt;The Road Ahead in Mastering DAX&lt;/h2&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Embarking on the journey to master DAX is like setting sail on an ocean of data, it is filled with both challenges and opportunities. We have explored various DAX functions from the foundational aspects of aggregation to the complexities of time intelligence. But the journey doesn’t end here.&lt;/p&gt;
+
+&lt;p&gt;Mastering DAX is an ever evolving and ongoing process which requires a blend of time, practice, and a bit of an inquisitive nature.&lt;/p&gt;
+
+&lt;p&gt;Once you get the hang of it, the rewards are immeasurable. So keep practicing, keep learning and you will become a DAX master in no time.&lt;/p&gt;
+
+&lt;p&gt;That wraps up our comprehensive guide on DAX functions. Whether you’re a beginner or an experienced analyst, there’s always something new to learn in the world of DAX. So keep exploring, and may your data always lead you to insights!&lt;/p&gt;
+
+&lt;p&gt;And, remember, as Albert Einstein once said, “Anyone who has never made a mistake has never tried anything new.” So, don’t be afraid of making mistakes, practice makes perfect. Continuously experiment and explore new DAX functions, and challenge yourself with real-world data scenarios.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;If this sparked your curiosity, keep that spark alive and check back frequently.&lt;/p&gt;
+
+&lt;p&gt;Or even better, don’t let the conversation end here. &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/@emguyant&quot;&gt;&lt;i class=&quot;fab fa-medium&quot;&gt;&lt;/i&gt;Follow me on Medium&lt;/a&gt; to continue the conversation by commenting on the post and show your support through shares, and applause.&lt;/p&gt;
+
+&lt;p&gt;Be sure not to miss a post by &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/@emguyant/subscribe&quot;&gt;&lt;i class=&quot;fab fa-medium&quot;&gt;&lt;/i&gt;subscribing here&lt;/a&gt;, with each new post comes an opportunity to learn something new.&lt;/p&gt;
+
+&lt;p&gt;Eager for a deeper exploration? Consider venturing further by &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/@emguyant/membership&quot;&gt;&lt;i class=&quot;fab fa-medium&quot;&gt;&lt;/i&gt;joining Medium&lt;/a&gt;, with a Medium membership you gain unlimited access to a world brimming with insights.&lt;/p&gt;
+
+&lt;p&gt;Thank you for reading! Stay curious, and until next time, happy learning.&lt;/p&gt;</content><author><name>Ethan Guyant</name></author><category term="Deep Dive" /><category term="Microsoft 365" /><category term="Power BI" /><category term="Power Platform" /><category term="Power BI Fundamentals Series" /><category term="Power BI Functions" /><category term="DAX" /><summary type="html">Imagine a world where DAX isn’t just a cryptic acronym but a transformative tool that elevates your Data Analysis to an art form. You go beyond just crunching numbers, you begin sculpting data into actionable insights. Welcome to the realm where data manipulation becomes as easy as ABC, yet as intricate as a spider’s web.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://ethanguyant.com/assets/img/post_img/dax-toolkit.jpg" /><media:content medium="image" url="http://ethanguyant.com/assets/img/post_img/dax-toolkit.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">Mastering DAX Text Expressions: Making Sense of Your Data One String at a Time</title><link href="http://ethanguyant.com/blog/2023-08-14-text-functions/" rel="alternate" type="text/html" title="Mastering DAX Text Expressions: Making Sense of Your Data One String at a Time" /><published>2023-08-14T00:00:00+00:00</published><updated>2023-08-14T00:00:00+00:00</updated><id>http://ethanguyant.com/blog/text-functions</id><content type="html" xml:base="http://ethanguyant.com/blog/2023-08-14-text-functions/">&lt;p&gt;Ever felt like your data was whispering secrets just beyond your grasp? Dive into the world of DAX Text Functions and turn those whispers into powerful narratives. Unlock stories hidden within text strings, and let your data weave tales previously untold.&lt;/p&gt;
 
 &lt;h2 id=&quot;introduction-to-dax-text-expressions&quot;&gt;Introduction to DAX Text Expressions&lt;/h2&gt;
 
@@ -20,7 +886,7 @@
 
 &lt;p&gt;So whether you’re an experienced data analyst or a beginner just starting your journey, you have landed on the right page. Prepare to explore the depth and breadth of DAX Text Functions. This is going to be a deep dive covering various functions, their syntax, and plenty of of examples!&lt;/p&gt;
 
-&lt;p&gt;For those of you eager to start experimenting there is a Power BI report loaded with the sample data used in this post ready for you. So don’t just read, dive in and get hands-on with DAX Functions in Power BI. Check out it here: &lt;a href=&quot;https://github.com/EMGuyant/powerbi-dax-functions-series&quot; class=&quot;post__link&quot;&gt;GitHub — Power BI DAX Function Series: Mastering Data Analysis&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;For those of you eager to start experimenting there is a Power BI report loaded with the sample data used in this post ready for you. So don’t just read, dive in and get hands-on with DAX Functions in Power BI. Check it out here: &lt;a href=&quot;https://github.com/EMGuyant/powerbi-dax-functions-series&quot; class=&quot;post__link&quot;&gt;GitHub — Power BI DAX Function Series: Mastering Data Analysis&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -670,7 +1536,7 @@ COMBINEVALUES(
 
 &lt;p&gt;In Power BI, time intelligence functions are your handy time machines. They enable you to extract useful insights from your data by manipulating time periods. These functions range from calculating sales year-to-date (YTD) to comparing data from previous years. If you want to unlock the true potential of your Power BI reports, you need to harness the might of Time Intelligence functions. In this post, we will unpack six time intelligence functions: DATESYTD, TOTALYTD, SAMEPERIODLASTYEAR, DATEADD, DATESINPERIOD, and DATESBETWEEN.&lt;/p&gt;
 
-&lt;p&gt;For those of you eager to start experimenting and diving deeper there is a Power BI report loaded with the sample data used in this post ready for you. So don’t just read, dive in and get hands-on with DAX Functions in Power BI. Check out it here: &lt;a href=&quot;https://github.com/EMGuyant/powerbi-dax-functions-series&quot; class=&quot;post__link&quot;&gt;GitHub — Power BI DAX Function Series: Mastering Data Analysis&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;For those of you eager to start experimenting and diving deeper there is a Power BI report loaded with the sample data used in this post ready for you. So don’t just read, dive in and get hands-on with DAX Functions in Power BI. Check it out here: &lt;a href=&quot;https://github.com/EMGuyant/powerbi-dax-functions-series&quot; class=&quot;post__link&quot;&gt;GitHub — Power BI DAX Function Series: Mastering Data Analysis&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -2531,173 +3397,4 @@ s&lt;/p&gt;</content><author><name>Ethan Guyant</name></author><category term="Q
 
 &lt;p&gt;Eager for a deeper exploration? Consider venturing further by &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/@emguyant/membership&quot;&gt;&lt;i class=&quot;fab fa-medium&quot;&gt;&lt;/i&gt;joining Medium&lt;/a&gt;, with a Medium membership you gain unlimited access to a world brimming with insights.&lt;/p&gt;
 
-&lt;p&gt;Thank you for reading! Stay curious, and until next time, happy learning.&lt;/p&gt;</content><author><name>Ethan Guyant</name></author><category term="Deep Dive" /><category term="Microsoft 365" /><category term="Power Apps" /><category term="Power Platform" /><summary type="html"></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://ethanguyant.com/assets/img/post_img/model-driven-app.jpg" /><media:content medium="image" url="http://ethanguyant.com/assets/img/post_img/model-driven-app.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry><entry><title type="html">What is the Microsoft Power Platform</title><link href="http://ethanguyant.com/blog/2022-12-12-what-is-ms-power-platform/" rel="alternate" type="text/html" title="What is the Microsoft Power Platform" /><published>2022-12-12T00:00:00+00:00</published><updated>2022-12-12T00:00:00+00:00</updated><id>http://ethanguyant.com/blog/what-is-ms-power-platform</id><content type="html" xml:base="http://ethanguyant.com/blog/2022-12-12-what-is-ms-power-platform/">&lt;h2 id=&quot;introducing-microsoft-power-platform&quot;&gt;Introducing Microsoft Power Platform&lt;/h2&gt;
-&lt;p&gt;Microsoft Power Platform is a set of tools and services used to build custom applications and automate processes. It provides a low-code development platform for building applications, business intelligence tools, and process automation. The main components of the Power Platform are Power BI, Power Apps, Power Automate, and Power Virtual Agents. You can use the main components together or individually.&lt;/p&gt;
-
-&lt;p&gt;Power BI is a business intelligence tool that allows for analyzing data and communicating insights. Power BI includes a desktop application for report development and a cloud service to host and share reports and dashboards.&lt;/p&gt;
-
-&lt;p&gt;Power Apps is a low-code platform for custom application development. Power App’s simple and approachable interface allows business users and developers to create applications.&lt;/p&gt;
-
-&lt;p&gt;Power Automate is a workflow automation tool that helps automate repetitive processes (e.g. data collection, and document approvals).&lt;/p&gt;
-
-&lt;p&gt;Power Virtual Agents is a tool to develop and deploy chatbots in a low-code environment.&lt;/p&gt;
-
-&lt;p&gt;Utilizing the components of the Power Platform allows organizations to &lt;strong&gt;Analyze&lt;/strong&gt; data and deliver insights, &lt;strong&gt;Act&lt;/strong&gt; by building low-code solutions, &lt;strong&gt;Automate&lt;/strong&gt; business processes, and &lt;strong&gt;Assist&lt;/strong&gt; with inquiries with chatbots.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;power-bi&quot;&gt;Power BI&lt;/h2&gt;
-&lt;p&gt;Power BI is a tool for analyzing data and making informed decisions. The basic parts of Power BI include Workspaces, Datasets, Reports &amp;amp; Dashboards, and Apps.&lt;/p&gt;
-
-&lt;p&gt;A workspace is a container to store related datasets, reports, dashboards, and dataflows. Workspaces come in two types either My workspace or workspaces. My workspace is a personal workspace. Workspaces is a container for collaborating and sharing content. All workspace members require a Power BI Pro license.&lt;/p&gt;
-
-&lt;p&gt;Datasets are the data imported, connected to, or created within Power BI. The datasets are the data that underlie Power BI reports. When creating a  dataset you associate it with a workspace. You can include a dataset in multiple workspaces and use it in multiple reports.&lt;/p&gt;
-
-&lt;p&gt;A report is a collection of visualizations (e.g. line chart, bar chart, KPIs, etc.). Reports can consist of multiple pages each with its own set of visualizations. A Dashboard is a collection of tiles. A tile can display a single visualization pinned from a report or an entire report page. An app in Power BI is a collection of reports, dashboards, and datasets that you package together and share.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;power-bi-desktop&quot;&gt;Power BI Desktop&lt;/h3&gt;
-&lt;p&gt;Power BI Desktop is a free application that you can use to extract and transform data. The data can be from various sources and you build reports on this data. After extracting the data Power BI provides the option to transform the data. The data transformations can range from data cleaning operations to improving readability by clarifying column names and setting data types to more complex operations.&lt;/p&gt;
-
-&lt;p&gt;There are three main pages in Power BI Desktop which you can navigate between on the left menu. The first is the Report page. This is the report canvas where you add and configure visualizations.&lt;/p&gt;
-
-&lt;p&gt;The second is the Data page. Once you load data to the Power BI data model you can view it on this page. Also, from here you can perform additional data manipulation. This can include operations such as adding calculated columns using the Power Query Editor.&lt;/p&gt;
-
-&lt;p&gt;The last is the Model page. On this page, you can construct and view the data model. You can also view, configure, and add any relationships between different data tables.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;power-bi-report-visuals&quot;&gt;Power BI Report Visuals&lt;/h3&gt;
-&lt;p&gt;When viewing the report canvas you can add a variety of elements to your report from the Insert menu on the top ribbon. On the right-hand side of the Power BI Desktop application, there are panes for Filters, Visualizations, and Fields. You can add visuals to the report from the Visualizations pane. On the Field pane, you are able to add or change the data displayed on the visual. There are many built-in visualizations to add to Power BI reports. A few examples include bar and column charts, single and multi-row cards, KPIs, pie charts, and tables. In addition to the built-in visualizations, you can add custom visuals from the Power BI AppSource.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;publishing-power-bi-reports&quot;&gt;Publishing Power BI Reports&lt;/h3&gt;
-&lt;p&gt;Once you complete a report you must publish it to share with others. You publish a report from the Power BI Desktop Home menu using the Publish option in the top ribbon. When publishing a report you must select the workspace to associate it with. Selecting any workplace other than My workspace requires a Power BI Pro license. Any reports published to My workspace are for personal content.&lt;/p&gt;
-
-&lt;p&gt;For more details on Power BI Fundamentals check out this four-part series.&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://ethanguyant.com/blog/2022-09-28-power-bi-row-context/&quot; class=&quot;post__link&quot;&gt;Power BI Fundamentals: Part 1 - Row Context&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://ethanguyant.com/blog/2022-10-11-power-bi-iterators/&quot; class=&quot;post__link&quot;&gt;Power BI Fundamentals: Part 2 - Iterator Functions&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://ethanguyant.com/blog/2022-09-28-power-bi-row-context/&quot; class=&quot;post__link&quot;&gt;Power BI Fundamentals: Part 3 - Filer Context&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://ethanguyant.com/blog/2022-11-08-power-bi-context-transition/&quot; class=&quot;post__link&quot;&gt;Power BI Fundamentals: Part 4 - Context Transition&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;power-apps&quot;&gt;Power Apps&lt;/h2&gt;
-&lt;p&gt;Power Apps is a rapid low-code platform for custom application development. It consists of apps, connectors, and data that are all integrated providing the tools and environment required for application development.&lt;/p&gt;
-
-&lt;p&gt;With Power Apps, there are 3 types of apps that you can create. The first type is a Canvas app. These apps start blank and connect to various data sources. You construct the app using the low code interface. Model-driven apps are applications built on top of an existing data model. You build these apps using forms, views, and dashboards. Dataverse is the data source for model-driven apps. The last type of app is Portal. Portal creates public-facing websites. Like model-driven apps, Dataverse is the data source for Power Apps Portal.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;the-build-blocks-of-power-apps&quot;&gt;The Build Blocks of Power Apps&lt;/h3&gt;
-&lt;p&gt;The basic building blocks of Power Apps include screens, controls, and functions. Screens are the canvas of the app’s user interface. You add different components and controls to the screens. Each app can have multiple screens. Each with its own set of controls, with each screen typically serving a different purpose.&lt;/p&gt;
-
-&lt;p&gt;Components are reusable groupings of controls and formulas within the app. Components become helpful when creating parts of an app (e.g. navigation section) that repeat on multiple screens. Without the use of components the repeated part of the app would have to be rebuilt on each screen.&lt;/p&gt;
-
-&lt;p&gt;Controls are the different elements that make up the app. Controls include things such as buttons, text labels and inputs, galleries, and icons. The complete list is viewable in the Power Apps Studio on the Insert tab. Each control has its own array of properties and events which are viewable after adding it to the app.&lt;/p&gt;
-
-&lt;p&gt;The basic building blocks above develop the visual aspects of the app. However, typically there is a data aspect to the app. Power Apps connectors connect to and access data from various sources. There are standard connectors and there are premium connectors that require a Power Apps premium license.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;power-automate&quot;&gt;Power Automate&lt;/h2&gt;
-&lt;p&gt;Power Automate is a workflow engine used to improve business processes through automation. It excels at automating repetitive manual processes which consist of predefined steps. The processes automated can range in complexity. They can be as simple as sending notifications and document approvals. Or complex multi-flow processes where certain tasks are conditionally triggered.&lt;/p&gt;
-
-&lt;p&gt;Power Automate flows consist of the trigger, actions, and controls. The triggers available depend on the type of flow. While the actions available depend on the specific connector. Controls can create conditional evaluations and branches within the workflow.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;types-of-flows&quot;&gt;Types of Flows&lt;/h3&gt;
-&lt;p&gt;In Power Automate there are three types of flows.&lt;/p&gt;
-
-&lt;p&gt;Cloud flows are flows built that consist of a trigger and at least one other action. There are different types of cloud flows.  Automated flows get triggered when a specific action occurs. Examples of these trigger actions include a new document in a SharePoint document library or when a new Outlook email arrives. Instant flows are triggered by a user. The trigger of instant flows can be a button click, running the flow from a Power App, or on a selected SharePoint list item.&lt;/p&gt;
-
-&lt;p&gt;Business Process flows provide a guided experience for the collection and entry of data. They augment the experience of a model-driven app.&lt;/p&gt;
-
-&lt;p&gt;Desktop flows provide robotic process automation to Power Automate. Desktop flows allow users to record their actions while completing a process. These actions and interactions with applications are then played back and automated by the flow.&lt;/p&gt;
-
-&lt;p&gt;For Power Automate examples please see the following related posts.&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href=&quot;https://ethanguyant.com/blog/2022-08-19-powerautomate-inbox-cleanup/&quot; class=&quot;post__link&quot;&gt;Microsoft Power Automate: Outlook Inbox Cleanup&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href=&quot;https://ethanguyant.com/blog/2022-09-07-powerautomate-dyanmic-approval-cycle/&quot; class=&quot;post__link&quot;&gt;Microsoft Power Automate: Dynamic Approval Cycle&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;power-virtual-agents&quot;&gt;Power Virtual Agents&lt;/h2&gt;
-&lt;p&gt;Power Virtual Agents is an app powered by AI and used to create chatbots. Power Virtual Agents is a tool to develop solutions for a specific topic where the bot will ask a series of questions. Using the responses to the questions the Power Virtual Agent will perform associated actions.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;topics&quot;&gt;Topics&lt;/h3&gt;
-&lt;p&gt;When developing a Power Virtual Agent a topic is what the person who is interacting with the bot talks to the bot about. The topic is a discrete conversation path that defines how the conversation will be processed. Each topic has phrases, keywords, or questions that act as trigger phrases. These phrases define how the bot responds and what it should do.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;entities&quot;&gt;Entities&lt;/h3&gt;
-&lt;p&gt;Entities group information. Power Virtual Agents provide prebuilt entities and the ability to create custom ones. Pre-built entities represent commonly used information. With the use of these entities, the bot recognizes relevant information from user interactions. The information is then saved and used to inform later actions. Use custom entities when developing a chatbot for a specific purpose. Creating a custom entity involves teaching the chatbot language understanding model the domain-specific information.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;canvas&quot;&gt;Canvas&lt;/h3&gt;
-&lt;p&gt;The canvas is where the conversation pattern gets constructed. The conversation pattern generally consists of questions, conditions, and messages. Questions can be multiple choice, text input, or an entity. The response to questions then gets stored in variables. Conditions create flow control and branches within the conversation pattern based on the responses to questions. Messages are the blocks of text displayed on the screen and viewed by the user.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;actions&quot;&gt;Actions&lt;/h3&gt;
-&lt;p&gt;The Power Virtual Agents can perform actions by calling a Power Automate flow. The flows get passed the required information from Power Virtual Agent. Power Virtual agents can leverage flows that are already created in the Power Apps environment or can use a flow created within the Power Virtual Agent canvas.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;publishing&quot;&gt;Publishing&lt;/h3&gt;
-&lt;p&gt;Once complete the chatbot can be published to multiple platforms or channels including websites, mobile apps, and Microsoft Teams. Following each update of the chatbot, it must be published again to update the bot on all channels.&lt;/p&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;power-platform-related-components&quot;&gt;Power Platform Related Components&lt;/h2&gt;
-&lt;p&gt;Across each of the four apps mentioned there are cross-cutting features that enable utilizing the Power Platform to its full potential. The Power Platform products use a set of three shared services or components. The core components include AI Builder, Dataverse, and Connectors. These components allow the Power Platform apps to be closely integrated.&lt;/p&gt;
-
-&lt;p&gt;AI Builder is a solution that lets users add intelligence to created workflows and apps. These AI capabilities can predict outcomes and aid in improving business performance.&lt;/p&gt;
-
-&lt;p&gt;Dataverse is a data storage service that allows users to securely store and manage data. A Dataverse database provides the data structure supporting interconnected apps and processes.&lt;/p&gt;
-
-&lt;p&gt;Connectors enable users to connect apps, data, and devices. They act as an abstraction layer for APIs for other services.&lt;/p&gt;
-
-&lt;p&gt;«br&amp;gt;&lt;/p&gt;
-
-&lt;hr /&gt;
-&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
-
-&lt;p&gt;If this sparked your curiosity, keep that spark alive and check back frequently.&lt;/p&gt;
-
-&lt;p&gt;Or even better, don’t let the conversation end here. &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/@emguyant&quot;&gt;&lt;i class=&quot;fab fa-medium&quot;&gt;&lt;/i&gt;Follow me on Medium&lt;/a&gt; to continue the conversation by commenting on the post and show your support through shares, and applause.&lt;/p&gt;
-
-&lt;p&gt;Be sure not to miss a post by &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/@emguyant/subscribe&quot;&gt;&lt;i class=&quot;fab fa-medium&quot;&gt;&lt;/i&gt;subscribing here&lt;/a&gt;, with each new post comes an opportunity to learn something new.&lt;/p&gt;
-
-&lt;p&gt;Eager for a deeper exploration? Consider venturing further by &lt;a class=&quot;post__link&quot; href=&quot;https://medium.com/@emguyant/membership&quot;&gt;&lt;i class=&quot;fab fa-medium&quot;&gt;&lt;/i&gt;joining Medium&lt;/a&gt;, with a Medium membership you gain unlimited access to a world brimming with insights.&lt;/p&gt;
-
-&lt;p&gt;Thank you for reading! Stay curious, and until next time, happy learning.&lt;/p&gt;</content><author><name>Ethan Guyant</name></author><category term="Quick Start" /><category term="Microsoft 365" /><category term="Power Automate" /><category term="Power Apps" /><category term="Power Platform" /><summary type="html">Introducing Microsoft Power Platform Microsoft Power Platform is a set of tools and services used to build custom applications and automate processes. It provides a low-code development platform for building applications, business intelligence tools, and process automation. The main components of the Power Platform are Power BI, Power Apps, Power Automate, and Power Virtual Agents. You can use the main components together or individually.</summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://ethanguyant.com/assets/img/post_img/power-platform.jpg" /><media:content medium="image" url="http://ethanguyant.com/assets/img/post_img/power-platform.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
+&lt;p&gt;Thank you for reading! Stay curious, and until next time, happy learning.&lt;/p&gt;</content><author><name>Ethan Guyant</name></author><category term="Deep Dive" /><category term="Microsoft 365" /><category term="Power Apps" /><category term="Power Platform" /><summary type="html"></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://ethanguyant.com/assets/img/post_img/model-driven-app.jpg" /><media:content medium="image" url="http://ethanguyant.com/assets/img/post_img/model-driven-app.jpg" xmlns:media="http://search.yahoo.com/mrss/" /></entry></feed>
