@@ -16,7 +16,7 @@ image_by_link: https://unsplash.com/@loic?utm_source=unsplash&utm_medium=referra
 
 In Power BI, time intelligence functions are your handy time machines. They enable you to extract useful insights from your data by manipulating time periods. These functions range from calculating sales year-to-date (YTD) to comparing data from previous years. If you want to unlock the true potential of your Power BI reports, you need to harness the might of Time Intelligence functions. In this post, we will unpack six time intelligence functions: DATESYTD, TOTALYTD, SAMEPERIODLASTYEAR, DATEADD, DATESINPERIOD, and DATESBETWEEN.
 
-For those of you eager to start experimenting and diving deeper there is a Power BI report loaded with the sample data used in this post ready for you. So don’t just read, dive in and get hands-on with DAX Functions in Power BI. Check out it here: [GitHub — Power BI DAX Function Series: Mastering Data Analysis](https://github.com/EMGuyant/powerbi-dax-functions-series){: .post__link}.
+For those of you eager to start experimenting and diving deeper there is a Power BI report loaded with the sample data used in this post ready for you. So don’t just read, dive in and get hands-on with DAX Functions in Power BI. Check it out here: [GitHub — Power BI DAX Function Series: Mastering Data Analysis](https://github.com/EMGuyant/powerbi-dax-functions-series){: .post__link}.
 
 <br>
 
