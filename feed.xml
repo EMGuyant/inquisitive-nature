@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://ethanguyant.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://ethanguyant.com/" rel="alternate" type="text/html" /><updated>2023-09-15T17:10:58+00:00</updated><id>http://ethanguyant.com/feed.xml</id><title type="html">Ethan Guyant’s Blog</title><subtitle>A data solution centric blog focusing on the use and application of Microsoft Power Apps, Python Programming, and Data Science.</subtitle><entry><title type="html">The DAX Function Universe: A Guide to Navigating the Data Analysis Tool box</title><link href="http://ethanguyant.com/blog/2023-09-14-dax-function-toolkit/" rel="alternate" type="text/html" title="The DAX Function Universe: A Guide to Navigating the Data Analysis Tool box" /><published>2023-09-14T00:00:00+00:00</published><updated>2023-09-14T00:00:00+00:00</updated><id>http://ethanguyant.com/blog/dax-function-toolkit</id><content type="html" xml:base="http://ethanguyant.com/blog/2023-09-14-dax-function-toolkit/">&lt;p&gt;Imagine a world where &lt;strong&gt;DAX&lt;/strong&gt; isn’t just a cryptic acronym but a transformative tool that elevates your &lt;strong&gt;Data Analysis&lt;/strong&gt; to an art form. You go beyond just crunching numbers, you begin sculpting data into actionable insights. Welcome to the realm where data manipulation becomes as easy as ABC, yet as intricate as a spider’s web.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://ethanguyant.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://ethanguyant.com/" rel="alternate" type="text/html" /><updated>2023-09-15T19:11:32+00:00</updated><id>http://ethanguyant.com/feed.xml</id><title type="html">Ethan Guyant’s Blog</title><subtitle>A data solution centric blog focusing on the use and application of Microsoft Power Apps, Python Programming, and Data Science.</subtitle><entry><title type="html">The DAX Function Universe: A Guide to Navigating the Data Analysis Tool box</title><link href="http://ethanguyant.com/blog/2023-09-14-dax-function-toolkit/" rel="alternate" type="text/html" title="The DAX Function Universe: A Guide to Navigating the Data Analysis Tool box" /><published>2023-09-14T00:00:00+00:00</published><updated>2023-09-14T00:00:00+00:00</updated><id>http://ethanguyant.com/blog/dax-function-toolkit</id><content type="html" xml:base="http://ethanguyant.com/blog/2023-09-14-dax-function-toolkit/">&lt;p&gt;Imagine a world where &lt;strong&gt;DAX&lt;/strong&gt; isn’t just a cryptic acronym but a transformative tool that elevates your &lt;strong&gt;Data Analysis&lt;/strong&gt; to an art form. You go beyond just crunching numbers, you begin sculpting data into actionable insights. Welcome to the realm where data manipulation becomes as easy as ABC, yet as intricate as a spider’s web.&lt;/p&gt;
 
 &lt;p&gt;If you have ever felt overwhelmed by the world of data analytics, this &lt;strong&gt;DAX Tutorial&lt;/strong&gt; is your guiding light. We are not merely scratching the surface, we are delving into the intricacies of DAX functions and highlighting their use with practical examples. Think of this post as your comprehensive guide to mastering DAX.&lt;/p&gt;
 
@@ -133,7 +133,7 @@ DATEDIFF(
 
 &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Days Between First and Last Smartphone Sale US&lt;/code&gt; calculates the number of days between the first and last sale of Smartphones in the United States. This gives us a clearer understanding of the sales cycle, which can be a critical piece of information for proper planning.&lt;/p&gt;
 
-&lt;h3 id=&quot;keep-exploring-aggregation-functions-1&quot;&gt;Keep Exploring Aggregation Functions&lt;/h3&gt;
+&lt;h3 id=&quot;keep-exploring-date-and-time-functions&quot;&gt;Keep Exploring Date and Time Functions&lt;/h3&gt;
 
 &lt;p&gt;Date and Time Functions are not just convenient, they are fundamental in data analysis for dissecting temporal aspects of our data. They enable us to analyze our data through the lens of time, providing a more nuanced understanding of trends and patterns.&lt;/p&gt;
 
@@ -158,7 +158,7 @@ DATEDIFF(
     &lt;p&gt;Overfiltering: While it is tempting to narrow down our data, be cautious not to filter out important information&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
-    &lt;p&gt;Underfiltering: On the filp side, too little filtering can leave us overwhelmed with irrelevant data.&lt;/p&gt;
+    &lt;p&gt;Underfiltering: On the flip side, too little filtering can leave us overwhelmed with irrelevant data.&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ol&gt;
 
@@ -193,7 +193,7 @@ CALCULATETABLE(
 
 &lt;p&gt;Now we have a table that includes only transactions that occurred between January 1, 2022 and March 31, 2022. This allows us to focus solely on the performance metrics for Q1 2022.&lt;/p&gt;
 
-&lt;h3 id=&quot;keep-exploring-aggregation-functions-2&quot;&gt;Keep Exploring Aggregation Functions&lt;/h3&gt;
+&lt;h3 id=&quot;keep-exploring-filter-functions&quot;&gt;Keep Exploring Filter Functions&lt;/h3&gt;
 
 &lt;p&gt;Filter Functions are the go-to tools for conducting precise and focused analysis. They enable us to sift through large dataset and zero in on the specific subset that is most pertinent to our questions and objectives.&lt;/p&gt;
 
@@ -211,7 +211,7 @@ CALCULATETABLE(
 
 &lt;p&gt;Financial Functions serve as a specific set of calculators in our data analytics toolkit, specializing in all things monetary. Functions like &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PMT&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;FV&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;NPV&lt;/code&gt; are our go-to financial tools within the DAX environment. Whether we are a seasoned finance manager or a small business owner just starting out, understanding our financial metrics is a necessity. Financial Functions enable us to perform a myriad of calculations, from determining loan payments and forecasting the future values of investments to calculating the net present value of cash flows. These functions are key for robust financial planning and analysis, guiding us toward sound financial decisions.&lt;/p&gt;
 
-&lt;h3 id=&quot;common-pitfalls-to-avoid-3&quot;&gt;Common Pitfalls to AVoid&lt;/h3&gt;
+&lt;h3 id=&quot;common-pitfalls-to-avoid-3&quot;&gt;Common Pitfalls to Avoid&lt;/h3&gt;
 
 &lt;ol&gt;
   &lt;li&gt;
@@ -247,7 +247,7 @@ CALCULATETABLE(
 
 &lt;p&gt;This give us an understanding of the monthly financial commitment, aiding in budget planning and financial forecasting.&lt;/p&gt;
 
-&lt;h3 id=&quot;keep-exploring-aggregation-functions-3&quot;&gt;Keep Exploring Aggregation Functions&lt;/h3&gt;
+&lt;h3 id=&quot;keep-exploring-financial-functions&quot;&gt;Keep Exploring Financial Functions&lt;/h3&gt;
 
 &lt;p&gt;Financial Functions are the bedrock of financial analysis. They equip us with computational capabilities to make informed and sound financial decisions.&lt;/p&gt;
 
@@ -287,7 +287,7 @@ CALCULATETABLE(
 
 &lt;p&gt;This calculated column will flag entries with a &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TRUE&lt;/code&gt; value if the sales amount is missing. Allowing us to quickly identify potential data integrity issues in our sales records.&lt;/p&gt;
 
-&lt;h3 id=&quot;keep-exploring-aggregation-functions-4&quot;&gt;Keep Exploring Aggregation Functions&lt;/h3&gt;
+&lt;h3 id=&quot;keep-exploring-information-functions&quot;&gt;Keep Exploring Information Functions&lt;/h3&gt;
 
 &lt;p&gt;Information Functions are more than just handy tools. They are the magnifying glass that allows us to scrutinize the finer details of our data. They help validate data, authenticate users, and even debug issues, making them an essential part of any data analytics toolkit.&lt;/p&gt;
 
@@ -325,7 +325,7 @@ CALCULATETABLE(
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/2023-09-15-dax-function-toolkit/if-function.jpg&quot; alt=&quot;IF Example&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Sales Category&lt;/code&gt; creates a calculated colum that categorizes sales as “High” if the amount exceeds $5,000 and “Low” otherwise.&lt;/p&gt;
+&lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Sales Category&lt;/code&gt; creates a calculated column that categorizes sales as “High” if the amount exceeds $5,000 and “Low” otherwise.&lt;/p&gt;
 
 &lt;p&gt;For a more complex example, suppose we need to categorize sales based on multiple conditions, such as region and amount. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;SWITCH&lt;/code&gt; function is particularly useful here. The formula below categorizes sales as “High” or “Low” in the United States, Europe, and Asia, based on the sales amount and region.&lt;/p&gt;
 
@@ -345,7 +345,7 @@ CALCULATETABLE(
 
 &lt;p&gt;This approach is a cleaner alternative to nesting multiple &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;IF&lt;/code&gt; statements, making our DAX easier to read and maintain.&lt;/p&gt;
 
-&lt;h3 id=&quot;keep-exploring-aggregation-functions-5&quot;&gt;Keep Exploring Aggregation Functions&lt;/h3&gt;
+&lt;h3 id=&quot;keep-exploring-logical-functions&quot;&gt;Keep Exploring Logical Functions&lt;/h3&gt;
 
 &lt;p&gt;Logical Functions are the decision-makers of our data analysis. They guide us through complex scenarios, allowing us to make sense of our data in a more nuanced and insightful manner.&lt;/p&gt;
 
@@ -401,7 +401,7 @@ DIVIDE(
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/2023-09-15-dax-function-toolkit/divide-function.jpg&quot; alt=&quot;DIVIDE Example&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
 
-&lt;h3 id=&quot;keep-exploring-aggregation-functions-6&quot;&gt;Keep Exploring Aggregation Functions&lt;/h3&gt;
+&lt;h3 id=&quot;keep-exploring-math-and-trig-functions&quot;&gt;Keep Exploring Math and Trig Functions&lt;/h3&gt;
 
 &lt;p&gt;Math and Trig Function are the tools required for quantitative analysis in DAX. They provide us with the computational capabilities to tackle a wide range of problems, from basic arithmetic to complex mathematical modeling.&lt;/p&gt;
 
@@ -447,7 +447,7 @@ COUNTROWS(
 
 &lt;p&gt;Here we count the number of rows in the Sales table where the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;EmployeeID&lt;/code&gt; is missing, allowing us to quickly identify potential data integrity issues.&lt;/p&gt;
 
-&lt;h3 id=&quot;keep-exploring-aggregation-functions-7&quot;&gt;Keep Exploring Aggregation Functions&lt;/h3&gt;
+&lt;h3 id=&quot;keep-exploring-other-functions&quot;&gt;Keep Exploring Other Functions&lt;/h3&gt;
 
 &lt;p&gt;Other Functions in DAX are more than just a miscellaneous collection, they are specialized tools designed to meet specific needs that other categories may not address. They offer a level of flexibility and specificity that can be crucial for tasks like data validation, error handling, and much more.&lt;/p&gt;
 
@@ -494,22 +494,22 @@ PATH(
 &lt;p&gt;Next, we want to identify the direct manager for each employee who has logged a sale. The &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PATHITEMREVERSE&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LOOKUPVALUE&lt;/code&gt; functions can be combined to achieve this.&lt;/p&gt;
 
 &lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Sales Manager Name = 
-    VAR ManagerID = 
-        RELATED(Employee[Extract Manager])
-    
-    RETURN 
-    LOOKUPVALUE(
-        Employee[EmployeeName], 
-        Employee[EmployeeID], 
-        ManagerID
-    )
+VAR ManagerID = 
+    RELATED(Employee[Extract Manager])
+
+RETURN 
+LOOKUPVALUE(
+    Employee[EmployeeName], 
+    Employee[EmployeeID], 
+    ManagerID
+)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;img src=&quot;/assets/img/2023-09-15-dax-function-toolkit/reverse-item-path-function.jpg&quot; alt=&quot;Sales Manager Name Example&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The new calculated column adds a layer of organizational context to each sale, allowing us to easily identify managerial responsibilities and perhaps even performance metrics.&lt;/p&gt;
 
-&lt;h3 id=&quot;keep-exploring-aggregation-functions-8&quot;&gt;Keep Exploring Aggregation Functions&lt;/h3&gt;
+&lt;h3 id=&quot;keep-exploring-parent-and-child-functions&quot;&gt;Keep Exploring Parent and Child Functions&lt;/h3&gt;
 
 &lt;p&gt;Parent and Child Functions are fundamental for understanding and manipulating hierarchical data structures. They provide us with the means to navigate complex relationships within our data making our analysis more insightful and actionable.&lt;/p&gt;
 
@@ -566,7 +566,7 @@ FILTER(
 
 &lt;p&gt;Although, we could have achieved the same result by filtering on &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Sales[RegionID]=1&lt;/code&gt;, using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RELATED&lt;/code&gt; to filter by the region name enhances the readability of the DAX formula. Anyone viewing the formula can immediately understand that the table focuses on sales in the United States.&lt;/p&gt;
 
-&lt;h3 id=&quot;keep-exploring-aggregation-functions-9&quot;&gt;Keep Exploring Aggregation Functions&lt;/h3&gt;
+&lt;h3 id=&quot;keep-exploring-relationship-functions&quot;&gt;Keep Exploring Relationship Functions&lt;/h3&gt;
 
 &lt;p&gt;Relationship Functions are the cartographers of our data model, mapping out the intricate web of connections that allow our data to flow seamlessly. They are indispensable tools for anyone looking to make sense of interconnected data.&lt;/p&gt;
 
@@ -628,7 +628,7 @@ RANKX(
 
 &lt;p&gt;This formula leverages the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;RANKX&lt;/code&gt; function to add a calculated column to the Sales table, ranking all sales amounts in descending order. This allows us to pinpoint where each sale ranks in comparison to the others.&lt;/p&gt;
 
-&lt;h3 id=&quot;keep-exploring-aggregation-functions-10&quot;&gt;Keep Exploring Aggregation Functions&lt;/h3&gt;
+&lt;h3 id=&quot;keep-exploring-statistical-functions&quot;&gt;Keep Exploring Statistical Functions&lt;/h3&gt;
 
 &lt;p&gt;Statistical Functions serve as the statisticians of our DAX tool kit. They help convert raw data into meaningful, actionable insights. These functions are essential for anyone looking to make data-driven decisions.&lt;/p&gt;
 
@@ -695,7 +695,7 @@ GROUPBY(
 
 &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Sales by Region and Employee&lt;/code&gt; is a newly created table which aggregates sales amounts by the Region and Employee. Essentially, it is like crafting a leader board for our sales team, broken down by geographical areas.&lt;/p&gt;
 
-&lt;h3 id=&quot;keep-exploring-aggregation-functions-11&quot;&gt;Keep Exploring Aggregation Functions&lt;/h3&gt;
+&lt;h3 id=&quot;keep-exploring-table-manipulation-functions&quot;&gt;Keep Exploring Table Manipulation Functions&lt;/h3&gt;
 
 &lt;p&gt;Table Manipulation Functions are the building blocks that help us construct the data landscape we need for our analysis. They offer the flexibility and power to transform our data into actionable insights and are indispensable tools.&lt;/p&gt;
 
@@ -754,7 +754,7 @@ CONCATENATE(_firstInitial, _lastName)
   &lt;li&gt;CONCATENATE: joins the employee’s first initial and the last name to create the employee’s shorten named field.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3 id=&quot;keep-exploring-aggregation-functions-12&quot;&gt;Keep Exploring Aggregation Functions&lt;/h3&gt;
+&lt;h3 id=&quot;keep-exploring-text-functions&quot;&gt;Keep Exploring Text Functions&lt;/h3&gt;
 
 &lt;p&gt;Text Functions are our go-to tools for handling and making sense of textual data. They are the wordsmiths of the DAX world, ensuring that every string of text is in its right place and serves its purpose in our analysis.&lt;/p&gt;
 
@@ -820,7 +820,7 @@ CALCULATE(
 
 &lt;p&gt;This formula uses the Time Intelligence functions &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DATESBETWEEN&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;LASTDATE&lt;/code&gt; to help calculate the 3-month rolling average of sales. It provides a great tools to get a more stable view of our sales trends.&lt;/p&gt;
 
-&lt;h3 id=&quot;keep-exploring-aggregation-functions-13&quot;&gt;Keep Exploring Aggregation Functions&lt;/h3&gt;
+&lt;h3 id=&quot;keep-exploring-time-intelligence-functions&quot;&gt;Keep Exploring Time Intelligence Functions&lt;/h3&gt;
 
 &lt;p&gt;Time Intelligence Functions are our navigational compass for traversing the sands of time within our data. They provide valuable insights whether we are looking backwards to historical data or forward to predictive analytics.&lt;/p&gt;
 
