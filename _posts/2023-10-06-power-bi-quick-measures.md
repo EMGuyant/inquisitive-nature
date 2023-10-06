@@ -1,8 +1,8 @@
 ---
 layout: post
 author: Ethan Guyant
-title:  "Power BI Quick Measures: The Secrets to Efficient Data Visualization"
-subtitle: "Elevate you data analysis: with quick measure tips and tricks"
+title:  "Power BI Quick Measures: The Secrets to Efficient Data Analysis"
+subtitle: "Elevate you data analysis with quick measures"
 category: Deep Dive
 tags: [Microsoft 365, Power BI, Power Platform, Power BI Fundamentals Series, Power BI Functions, DAX]
 description: Master Power BI Quick Measures with this guide. Discover the secrets to efficient data analysis and enhance your analytical skills.
@@ -49,7 +49,7 @@ Quick measures work by automating the creation of common measures and calculatio
 
 The pre-defined Quick measures is a treasure trove for anyone looking to enhance their data analytics. It offers a range of pre-built calculations, ready to be used and customized. It offers us tools and resources to make our data analytics more efficient, more accurate, and more impactful. The pre-defined measures is a testament to the versatility and power of Quick measures, showcasing the various ways in which it can be leveraged to enhance our data analysis and decision-making.
 
-![Quick Measure Gallery](./assets/quick-measure-gallery.png)
+![Quick Measure Gallery](/assets/img/2023-10-06-quick-measures/quick-measure-gallery.png){: .post__img}
 
 Additionally, in the Quick measures pane there is the Suggestions with Copilot feature to further the Quick measures experience. This feature, when enabled, offers intelligent measure suggestions as we type, making it even easier and faster to create measures. 
 
@@ -80,7 +80,7 @@ Creating a Quick measure in Power BI is a straightforward process. Let's use thi
 5. For category in the Products table locate the Product field, then drag and drop it in the Category box.
 6. Click Add.
 
-![Create a Quick Measure](./assets/average-quick-measure.gif)
+![Create a Quick Measure](/assets/img/2023-10-06-quick-measures/average-quick-measure.gif){: .post__img}
 
 >You can also display the Quick Measures pane from the Report view tab by selecting Quick Measure under the Modeling tab on the ribbon.
 
@@ -101,7 +101,7 @@ And now this measure can be used within our report or for additional calculation
 #### Time intelligence calculations
 Utilizing our `DateTable` we can quickly create time intelligence measures using the pre-defined Quick measures. For example, one quick measure in the Time intelligence section is Year-to-date total. Using this we can create a measure and visualize our monthly sales along with our year-to-date total in no time.
 
-![Year-to-Date Sales Quick Measure](./assets/ytd-quick-measure.png)
+![Year-to-Date Sales Quick Measure](/assets/img/2023-10-06-quick-measures/ytd-quick-measure.png){: .post__img}
 
 Here is the DAX formula the Quick Measure used for this calculation.
 
@@ -118,11 +118,11 @@ This is quick and efficient way to bring the power of time intelligence function
 
 We can use Quick Measures to create new measures for running totals, for example we can use the `Running total` pre-defined quick measure (under the Totals heading) to calculate the total of our sales amounts. This will give a cumulative total of sales over time, providing insight into sales growth. 
 
-![Running Total Sales](./assets/quick-measure-rolling-total.png)
+![Running Total Sales](/assets/img/2023-10-06-quick-measures/quick-measure-rolling-total.png){: .post__img}
 
 Similarly, we can use the `Rolling average` quick measure to smooth out short-term fluctuations in order to better understand longer-term trends in sales.
 
-![3 Month Moving Average](./assets/quick-measure-3month-average.png)
+![3 Month Moving Average](/assets/img/2023-10-06-quick-measures/quick-measure-3month-average.png){: .post__img}
 
 #### Leveraging Suggestions for Quick Measures
 
@@ -130,17 +130,17 @@ Make the most of the suggestions feature in Power BI to enhance our Quick measur
 
 To create this measure we start typing `Total sales for United...` and we see a suggestion for `Total sales for United States (region name)`.
 
-![Quick Measure Suggestions](./assets/quick-measure-suggestion-us-sales.png)
+![Quick Measure Suggestions](/assets/img/2023-10-06-quick-measures/quick-measure-suggestion-us-sales.png){: .post__img}
 
 Selecting this suggestion and then generate provides the following DAX formula to calculate the sum of the sales for the United States region, making use or our previous `Total Sales` measure.
 
-![Quick Measure Suggested Measure](./assets/quick-measure-suggested-measure.png)
+![Quick Measure Suggested Measure](/assets/img/2023-10-06-quick-measures/quick-measure-suggested-measure.png){: .post__img}
 
 >**Remember:** We need to validate the DAX suggestions to ensure it is accurate and aligns with our analytical goals.
 
 For this example we can verify that the measure calculates the correct value, ensuring the accuracy of the measure.
 
-![Total US Sales](./assets/quick-measure-total-validation.png)
+![Total US Sales](/assets/img/2023-10-06-quick-measures/quick-measure-total-validation.png){: .post__img}
 
 The second part of validating the suggestion is to ensure it matches our intent. A key question to ask before using this measure is *how do we want to handle external filters?*. External filters refer to any filter not contained within the DAX formula.
 
@@ -202,9 +202,7 @@ Power BI Quick measures area a powerful tool for efficient and effective data an
 
 Continue to explore this feature and add it to your analytical toolbox.
 
-And, remember, as Albert Einstein once said, “Anyone who has never made a mistake has never tried anything new.” So, don’t be afraid of making mistakes, practice makes perfect. Continuously experiment and explore new Quick measures, and challenge yourself with real-world data scenarios.
-
-Thanks for reading, and until next time happy learning!
+And remember, as Albert Einstein once said, “Anyone who has never made a mistake has never tried anything new.” So, don’t be afraid of making mistakes, practice makes perfect. Continuously experiment and explore new Quick measures, and challenge yourself with real-world data scenarios.
 
 <br>
 
