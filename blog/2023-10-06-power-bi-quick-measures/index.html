@@ -3,9 +3,9 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.7.1 -->
-<title>Power BI Quick Measures: The Secrets to Efficient Data Visualization | Ethan Guyant’s Blog</title>
+<title>Power BI Quick Measures: The Secrets to Efficient Data Analysis | Ethan Guyant’s Blog</title>
 <meta name="generator" content="Jekyll v4.2.1" />
-<meta property="og:title" content="Power BI Quick Measures: The Secrets to Efficient Data Visualization" />
+<meta property="og:title" content="Power BI Quick Measures: The Secrets to Efficient Data Analysis" />
 <meta name="author" content="Ethan Guyant" />
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Master Power BI Quick Measures with this guide. Discover the secrets to efficient data analysis and enhance your analytical skills." />
@@ -18,9 +18,9 @@
 <meta property="article:published_time" content="2023-10-06T00:00:00+00:00" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta property="twitter:image" content="http://ethanguyant.com/assets/img/post_img/powerbi-quick-measures.jpg" />
-<meta property="twitter:title" content="Power BI Quick Measures: The Secrets to Efficient Data Visualization" />
+<meta property="twitter:title" content="Power BI Quick Measures: The Secrets to Efficient Data Analysis" />
 <script type="application/ld+json">
-{"author":{"@type":"Person","name":"Ethan Guyant"},"description":"Master Power BI Quick Measures with this guide. Discover the secrets to efficient data analysis and enhance your analytical skills.","url":"http://ethanguyant.com/blog/2023-10-06-power-bi-quick-measures/","@type":"BlogPosting","image":"http://ethanguyant.com/assets/img/post_img/powerbi-quick-measures.jpg","headline":"Power BI Quick Measures: The Secrets to Efficient Data Visualization","dateModified":"2023-10-06T00:00:00+00:00","datePublished":"2023-10-06T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://ethanguyant.com/blog/2023-10-06-power-bi-quick-measures/"},"@context":"https://schema.org"}</script>
+{"author":{"@type":"Person","name":"Ethan Guyant"},"description":"Master Power BI Quick Measures with this guide. Discover the secrets to efficient data analysis and enhance your analytical skills.","url":"http://ethanguyant.com/blog/2023-10-06-power-bi-quick-measures/","@type":"BlogPosting","image":"http://ethanguyant.com/assets/img/post_img/powerbi-quick-measures.jpg","headline":"Power BI Quick Measures: The Secrets to Efficient Data Analysis","dateModified":"2023-10-06T00:00:00+00:00","datePublished":"2023-10-06T00:00:00+00:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://ethanguyant.com/blog/2023-10-06-power-bi-quick-measures/"},"@context":"https://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 <title>Ethan Guyant's Blog</title>
   <!-- Normalize CSS file irons out some difference between browsers -->
@@ -132,7 +132,7 @@
   </section><div class="wrapper">
   <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
     <section class="article__header">
-        <h1 class="post-title p-name" itemprop="name headline">Power BI Quick Measures: The Secrets to Efficient Data Visualization</h1>
+        <h1 class="post-title p-name" itemprop="name headline">Power BI Quick Measures: The Secrets to Efficient Data Analysis</h1>
         <p class="post-meta">
           <time class="dt-published" datetime="2023-10-06T00:00:00+00:00" itemprop="datePublished">Oct 6, 2023
           </time>• <span itemprop="author" itemscope itemtype="http://schema.org/Person"><span class="p-author h-card" itemprop="name">Ethan Guyant</span></span></p>
@@ -219,7 +219,7 @@
 
 <p>The pre-defined Quick measures is a treasure trove for anyone looking to enhance their data analytics. It offers a range of pre-built calculations, ready to be used and customized. It offers us tools and resources to make our data analytics more efficient, more accurate, and more impactful. The pre-defined measures is a testament to the versatility and power of Quick measures, showcasing the various ways in which it can be leveraged to enhance our data analysis and decision-making.</p>
 
-<p><img src="./assets/quick-measure-gallery.png" alt="Quick Measure Gallery" /></p>
+<p><img src="/assets/img/2023-10-06-quick-measures/quick-measure-gallery.png" alt="Quick Measure Gallery" class="post__img" /></p>
 
 <p>Additionally, in the Quick measures pane there is the Suggestions with Copilot feature to further the Quick measures experience. This feature, when enabled, offers intelligent measure suggestions as we type, making it even easier and faster to create measures.</p>
 
@@ -252,7 +252,7 @@
   <li>Click Add.</li>
 </ol>
 
-<p><img src="./assets/average-quick-measure.gif" alt="Create a Quick Measure" /></p>
+<p><img src="/assets/img/2023-10-06-quick-measures/average-quick-measure.gif" alt="Create a Quick Measure" class="post__img" /></p>
 
 <blockquote>
   <p>You can also display the Quick Measures pane from the Report view tab by selecting Quick Measure under the Modeling tab on the ribbon.</p>
@@ -274,7 +274,7 @@ AVERAGEX(
 <h4 id="time-intelligence-calculations">Time intelligence calculations</h4>
 <p>Utilizing our <code class="language-plaintext highlighter-rouge">DateTable</code> we can quickly create time intelligence measures using the pre-defined Quick measures. For example, one quick measure in the Time intelligence section is Year-to-date total. Using this we can create a measure and visualize our monthly sales along with our year-to-date total in no time.</p>
 
-<p><img src="./assets/ytd-quick-measure.png" alt="Year-to-Date Sales Quick Measure" /></p>
+<p><img src="/assets/img/2023-10-06-quick-measures/ytd-quick-measure.png" alt="Year-to-Date Sales Quick Measure" class="post__img" /></p>
 
 <p>Here is the DAX formula the Quick Measure used for this calculation.</p>
 
@@ -290,11 +290,11 @@ TOTALYTD(SUM('Sales'[Amount]), 'Date Table'[Date])
 
 <p>We can use Quick Measures to create new measures for running totals, for example we can use the <code class="language-plaintext highlighter-rouge">Running total</code> pre-defined quick measure (under the Totals heading) to calculate the total of our sales amounts. This will give a cumulative total of sales over time, providing insight into sales growth.</p>
 
-<p><img src="./assets/quick-measure-rolling-total.png" alt="Running Total Sales" /></p>
+<p><img src="/assets/img/2023-10-06-quick-measures/quick-measure-rolling-total.png" alt="Running Total Sales" class="post__img" /></p>
 
 <p>Similarly, we can use the <code class="language-plaintext highlighter-rouge">Rolling average</code> quick measure to smooth out short-term fluctuations in order to better understand longer-term trends in sales.</p>
 
-<p><img src="./assets/quick-measure-3month-average.png" alt="3 Month Moving Average" /></p>
+<p><img src="/assets/img/2023-10-06-quick-measures/quick-measure-3month-average.png" alt="3 Month Moving Average" class="post__img" /></p>
 
 <h4 id="leveraging-suggestions-for-quick-measures">Leveraging Suggestions for Quick Measures</h4>
 
@@ -302,11 +302,11 @@ TOTALYTD(SUM('Sales'[Amount]), 'Date Table'[Date])
 
 <p>To create this measure we start typing <code class="language-plaintext highlighter-rouge">Total sales for United...</code> and we see a suggestion for <code class="language-plaintext highlighter-rouge">Total sales for United States (region name)</code>.</p>
 
-<p><img src="./assets/quick-measure-suggestion-us-sales.png" alt="Quick Measure Suggestions" /></p>
+<p><img src="/assets/img/2023-10-06-quick-measures/quick-measure-suggestion-us-sales.png" alt="Quick Measure Suggestions" class="post__img" /></p>
 
 <p>Selecting this suggestion and then generate provides the following DAX formula to calculate the sum of the sales for the United States region, making use or our previous <code class="language-plaintext highlighter-rouge">Total Sales</code> measure.</p>
 
-<p><img src="./assets/quick-measure-suggested-measure.png" alt="Quick Measure Suggested Measure" /></p>
+<p><img src="/assets/img/2023-10-06-quick-measures/quick-measure-suggested-measure.png" alt="Quick Measure Suggested Measure" class="post__img" /></p>
 
 <blockquote>
   <p><strong>Remember:</strong> We need to validate the DAX suggestions to ensure it is accurate and aligns with our analytical goals.</p>
@@ -314,7 +314,7 @@ TOTALYTD(SUM('Sales'[Amount]), 'Date Table'[Date])
 
 <p>For this example we can verify that the measure calculates the correct value, ensuring the accuracy of the measure.</p>
 
-<p><img src="./assets/quick-measure-total-validation.png" alt="Total US Sales" /></p>
+<p><img src="/assets/img/2023-10-06-quick-measures/quick-measure-total-validation.png" alt="Total US Sales" class="post__img" /></p>
 
 <p>The second part of validating the suggestion is to ensure it matches our intent. A key question to ask before using this measure is <em>how do we want to handle external filters?</em>. External filters refer to any filter not contained within the DAX formula.</p>
 
@@ -379,9 +379,7 @@ TOTALYTD(SUM('Sales'[Amount]), 'Date Table'[Date])
 
 <p>Continue to explore this feature and add it to your analytical toolbox.</p>
 
-<p>And, remember, as Albert Einstein once said, “Anyone who has never made a mistake has never tried anything new.” So, don’t be afraid of making mistakes, practice makes perfect. Continuously experiment and explore new Quick measures, and challenge yourself with real-world data scenarios.</p>
-
-<p>Thanks for reading, and until next time happy learning!</p>
+<p>And remember, as Albert Einstein once said, “Anyone who has never made a mistake has never tried anything new.” So, don’t be afraid of making mistakes, practice makes perfect. Continuously experiment and explore new Quick measures, and challenge yourself with real-world data scenarios.</p>
 
 <p><br /></p>
 

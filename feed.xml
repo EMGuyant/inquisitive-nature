@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://ethanguyant.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://ethanguyant.com/" rel="alternate" type="text/html" /><updated>2023-10-06T05:52:47+00:00</updated><id>http://ethanguyant.com/feed.xml</id><title type="html">Ethan Guyant’s Blog</title><subtitle>A data solution centric blog focusing on the use and application of Microsoft Power Apps, Python Programming, and Data Science.</subtitle><entry><title type="html">Power BI Quick Measures: The Secrets to Efficient Data Visualization</title><link href="http://ethanguyant.com/blog/2023-10-06-power-bi-quick-measures/" rel="alternate" type="text/html" title="Power BI Quick Measures: The Secrets to Efficient Data Visualization" /><published>2023-10-06T00:00:00+00:00</published><updated>2023-10-06T00:00:00+00:00</updated><id>http://ethanguyant.com/blog/power-bi-quick-measures</id><content type="html" xml:base="http://ethanguyant.com/blog/2023-10-06-power-bi-quick-measures/">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://ethanguyant.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://ethanguyant.com/" rel="alternate" type="text/html" /><updated>2023-10-06T18:10:46+00:00</updated><id>http://ethanguyant.com/feed.xml</id><title type="html">Ethan Guyant’s Blog</title><subtitle>A data solution centric blog focusing on the use and application of Microsoft Power Apps, Python Programming, and Data Science.</subtitle><entry><title type="html">Power BI Quick Measures: The Secrets to Efficient Data Analysis</title><link href="http://ethanguyant.com/blog/2023-10-06-power-bi-quick-measures/" rel="alternate" type="text/html" title="Power BI Quick Measures: The Secrets to Efficient Data Analysis" /><published>2023-10-06T00:00:00+00:00</published><updated>2023-10-06T00:00:00+00:00</updated><id>http://ethanguyant.com/blog/power-bi-quick-measures</id><content type="html" xml:base="http://ethanguyant.com/blog/2023-10-06-power-bi-quick-measures/">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
 
 &lt;p&gt;In this guide, we will delve into the world of Power BI Quick Measures, a feature that stands out when looking to boost the efficiency of our data analytics. Throughout this guide we will navigate through the various facets of Quick measures, from understanding its basic elements to exploring its profound impact on data analytics and business insights. Embark on this journey to unravel the ways Quick measures can enhance efficiency, ensure accuracy, and contribute to data-driven decision making.&lt;/p&gt;
 
@@ -36,7 +36,7 @@
 
 &lt;p&gt;The pre-defined Quick measures is a treasure trove for anyone looking to enhance their data analytics. It offers a range of pre-built calculations, ready to be used and customized. It offers us tools and resources to make our data analytics more efficient, more accurate, and more impactful. The pre-defined measures is a testament to the versatility and power of Quick measures, showcasing the various ways in which it can be leveraged to enhance our data analysis and decision-making.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;./assets/quick-measure-gallery.png&quot; alt=&quot;Quick Measure Gallery&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-10-06-quick-measures/quick-measure-gallery.png&quot; alt=&quot;Quick Measure Gallery&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Additionally, in the Quick measures pane there is the Suggestions with Copilot feature to further the Quick measures experience. This feature, when enabled, offers intelligent measure suggestions as we type, making it even easier and faster to create measures.&lt;/p&gt;
 
@@ -69,7 +69,7 @@
   &lt;li&gt;Click Add.&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;&lt;img src=&quot;./assets/average-quick-measure.gif&quot; alt=&quot;Create a Quick Measure&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-10-06-quick-measures/average-quick-measure.gif&quot; alt=&quot;Create a Quick Measure&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;You can also display the Quick Measures pane from the Report view tab by selecting Quick Measure under the Modeling tab on the ribbon.&lt;/p&gt;
@@ -91,7 +91,7 @@ AVERAGEX(
 &lt;h4 id=&quot;time-intelligence-calculations&quot;&gt;Time intelligence calculations&lt;/h4&gt;
 &lt;p&gt;Utilizing our &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;DateTable&lt;/code&gt; we can quickly create time intelligence measures using the pre-defined Quick measures. For example, one quick measure in the Time intelligence section is Year-to-date total. Using this we can create a measure and visualize our monthly sales along with our year-to-date total in no time.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;./assets/ytd-quick-measure.png&quot; alt=&quot;Year-to-Date Sales Quick Measure&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-10-06-quick-measures/ytd-quick-measure.png&quot; alt=&quot;Year-to-Date Sales Quick Measure&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Here is the DAX formula the Quick Measure used for this calculation.&lt;/p&gt;
 
@@ -107,11 +107,11 @@ TOTALYTD(SUM('Sales'[Amount]), 'Date Table'[Date])
 
 &lt;p&gt;We can use Quick Measures to create new measures for running totals, for example we can use the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Running total&lt;/code&gt; pre-defined quick measure (under the Totals heading) to calculate the total of our sales amounts. This will give a cumulative total of sales over time, providing insight into sales growth.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;./assets/quick-measure-rolling-total.png&quot; alt=&quot;Running Total Sales&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-10-06-quick-measures/quick-measure-rolling-total.png&quot; alt=&quot;Running Total Sales&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Similarly, we can use the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Rolling average&lt;/code&gt; quick measure to smooth out short-term fluctuations in order to better understand longer-term trends in sales.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;./assets/quick-measure-3month-average.png&quot; alt=&quot;3 Month Moving Average&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-10-06-quick-measures/quick-measure-3month-average.png&quot; alt=&quot;3 Month Moving Average&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
 
 &lt;h4 id=&quot;leveraging-suggestions-for-quick-measures&quot;&gt;Leveraging Suggestions for Quick Measures&lt;/h4&gt;
 
@@ -119,11 +119,11 @@ TOTALYTD(SUM('Sales'[Amount]), 'Date Table'[Date])
 
 &lt;p&gt;To create this measure we start typing &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Total sales for United...&lt;/code&gt; and we see a suggestion for &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Total sales for United States (region name)&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;./assets/quick-measure-suggestion-us-sales.png&quot; alt=&quot;Quick Measure Suggestions&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-10-06-quick-measures/quick-measure-suggestion-us-sales.png&quot; alt=&quot;Quick Measure Suggestions&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Selecting this suggestion and then generate provides the following DAX formula to calculate the sum of the sales for the United States region, making use or our previous &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Total Sales&lt;/code&gt; measure.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;./assets/quick-measure-suggested-measure.png&quot; alt=&quot;Quick Measure Suggested Measure&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-10-06-quick-measures/quick-measure-suggested-measure.png&quot; alt=&quot;Quick Measure Suggested Measure&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;&lt;strong&gt;Remember:&lt;/strong&gt; We need to validate the DAX suggestions to ensure it is accurate and aligns with our analytical goals.&lt;/p&gt;
@@ -131,7 +131,7 @@ TOTALYTD(SUM('Sales'[Amount]), 'Date Table'[Date])
 
 &lt;p&gt;For this example we can verify that the measure calculates the correct value, ensuring the accuracy of the measure.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;./assets/quick-measure-total-validation.png&quot; alt=&quot;Total US Sales&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-10-06-quick-measures/quick-measure-total-validation.png&quot; alt=&quot;Total US Sales&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The second part of validating the suggestion is to ensure it matches our intent. A key question to ask before using this measure is &lt;em&gt;how do we want to handle external filters?&lt;/em&gt;. External filters refer to any filter not contained within the DAX formula.&lt;/p&gt;
 
@@ -196,9 +196,7 @@ TOTALYTD(SUM('Sales'[Amount]), 'Date Table'[Date])
 
 &lt;p&gt;Continue to explore this feature and add it to your analytical toolbox.&lt;/p&gt;
 
-&lt;p&gt;And, remember, as Albert Einstein once said, “Anyone who has never made a mistake has never tried anything new.” So, don’t be afraid of making mistakes, practice makes perfect. Continuously experiment and explore new Quick measures, and challenge yourself with real-world data scenarios.&lt;/p&gt;
-
-&lt;p&gt;Thanks for reading, and until next time happy learning!&lt;/p&gt;
+&lt;p&gt;And remember, as Albert Einstein once said, “Anyone who has never made a mistake has never tried anything new.” So, don’t be afraid of making mistakes, practice makes perfect. Continuously experiment and explore new Quick measures, and challenge yourself with real-world data scenarios.&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
