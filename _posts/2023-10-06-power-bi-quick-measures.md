@@ -15,6 +15,8 @@ image_by_link: https://unsplash.com/@veri_ivanova?utm_content=creditCopyText&utm
 
 In this guide, we will delve into the world of Power BI Quick Measures, a feature that stands out when looking to boost the efficiency of our data analytics. Throughout this guide we will navigate through the various facets of Quick measures, from understanding its basic elements to exploring its profound impact on data analytics and business insights. Embark on this journey to unravel the ways Quick measures can enhance efficiency, ensure accuracy, and contribute to data-driven decision making.
 
+For those of you eager to start experimenting there is a Power BI report loaded with the sample data used in this post ready for you. So don’t just read, dive in and get hands-on and follow along. Check it out here: [GitHub — Power BI DAX Toolkit: Mastering DAX Through Examples](https://github.com/EMGuyant/powerbi-dax-functions-series){: .post__link}.
+
 ### Brief Overview of Power BI Quick Measures
 
 Power BI Quick measures is a beacon in the expansive universe of data analytics. It emerges as a robust companion, ready to undertake the intricate tasks of data calculations and analysis. Designed with our convenience in mind, Quick measures ensures that data analytics is not just a task but a seamless, intuitive, and swift experience. It's about making complex calculations accessible and understandable for all.
@@ -55,7 +57,7 @@ Additionally, in the Quick measures pane there is the Suggestions with Copilot f
 
 However, it is crucial to note that these suggestions are not a replacement for learning and understanding DAX. The suggestions provided by this feature are not perfect are only meant to help fast track measure creation. We will still need to validate the DAX suggestions to ensure their accuracy and that they match our intent.
 
-![Suggestions with Copilot](./assets/quick-measure-suggestions.png)
+![Suggestions with Copilot](/assets/img/2023-10-06-quick-measures/quick-measure-suggestions.png){: .post__img}
 
 <br>
 
@@ -148,7 +150,7 @@ The suggested formula uses `KEEPFILTERS` which will keep the external filters th
 
 An alternative to consider would be a measure that does override external filters on the `Regions[Region]` field.
 
-```
+```text
 United States Sales = CALCULATE(
     'Sales'[Total Sales],
     'Regions'[Region] = "United States"
