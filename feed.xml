@@ -1,6 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://ethanguyant.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://ethanguyant.com/" rel="alternate" type="text/html" /><updated>2023-10-06T18:10:46+00:00</updated><id>http://ethanguyant.com/feed.xml</id><title type="html">Ethan Guyant’s Blog</title><subtitle>A data solution centric blog focusing on the use and application of Microsoft Power Apps, Python Programming, and Data Science.</subtitle><entry><title type="html">Power BI Quick Measures: The Secrets to Efficient Data Analysis</title><link href="http://ethanguyant.com/blog/2023-10-06-power-bi-quick-measures/" rel="alternate" type="text/html" title="Power BI Quick Measures: The Secrets to Efficient Data Analysis" /><published>2023-10-06T00:00:00+00:00</published><updated>2023-10-06T00:00:00+00:00</updated><id>http://ethanguyant.com/blog/power-bi-quick-measures</id><content type="html" xml:base="http://ethanguyant.com/blog/2023-10-06-power-bi-quick-measures/">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.1">Jekyll</generator><link href="http://ethanguyant.com/feed.xml" rel="self" type="application/atom+xml" /><link href="http://ethanguyant.com/" rel="alternate" type="text/html" /><updated>2023-10-07T16:21:09+00:00</updated><id>http://ethanguyant.com/feed.xml</id><title type="html">Ethan Guyant’s Blog</title><subtitle>A data solution centric blog focusing on the use and application of Microsoft Power Apps, Python Programming, and Data Science.</subtitle><entry><title type="html">Power BI Quick Measures: The Secrets to Efficient Data Analysis</title><link href="http://ethanguyant.com/blog/2023-10-06-power-bi-quick-measures/" rel="alternate" type="text/html" title="Power BI Quick Measures: The Secrets to Efficient Data Analysis" /><published>2023-10-06T00:00:00+00:00</published><updated>2023-10-06T00:00:00+00:00</updated><id>http://ethanguyant.com/blog/power-bi-quick-measures</id><content type="html" xml:base="http://ethanguyant.com/blog/2023-10-06-power-bi-quick-measures/">&lt;h2 id=&quot;introduction&quot;&gt;Introduction&lt;/h2&gt;
 
 &lt;p&gt;In this guide, we will delve into the world of Power BI Quick Measures, a feature that stands out when looking to boost the efficiency of our data analytics. Throughout this guide we will navigate through the various facets of Quick measures, from understanding its basic elements to exploring its profound impact on data analytics and business insights. Embark on this journey to unravel the ways Quick measures can enhance efficiency, ensure accuracy, and contribute to data-driven decision making.&lt;/p&gt;
+
+&lt;p&gt;For those of you eager to start experimenting there is a Power BI report loaded with the sample data used in this post ready for you. So don’t just read, dive in and get hands-on and follow along. Check it out here: &lt;a href=&quot;https://github.com/EMGuyant/powerbi-dax-functions-series&quot; class=&quot;post__link&quot;&gt;GitHub — Power BI DAX Toolkit: Mastering DAX Through Examples&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h3 id=&quot;brief-overview-of-power-bi-quick-measures&quot;&gt;Brief Overview of Power BI Quick Measures&lt;/h3&gt;
 
@@ -42,7 +44,7 @@
 
 &lt;p&gt;However, it is crucial to note that these suggestions are not a replacement for learning and understanding DAX. The suggestions provided by this feature are not perfect are only meant to help fast track measure creation. We will still need to validate the DAX suggestions to ensure their accuracy and that they match our intent.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;./assets/quick-measure-suggestions.png&quot; alt=&quot;Suggestions with Copilot&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/assets/img/2023-10-06-quick-measures/quick-measure-suggestions.png&quot; alt=&quot;Suggestions with Copilot&quot; class=&quot;post__img&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
@@ -139,7 +141,7 @@ TOTALYTD(SUM('Sales'[Amount]), 'Date Table'[Date])
 
 &lt;p&gt;An alternative to consider would be a measure that does override external filters on the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;Regions[Region]&lt;/code&gt; field.&lt;/p&gt;
 
-&lt;div class=&quot;language-plaintext highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;United States Sales = CALCULATE(
+&lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;United States Sales = CALCULATE(
     'Sales'[Total Sales],
     'Regions'[Region] = &quot;United States&quot;
 )
