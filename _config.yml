@@ -24,7 +24,7 @@ email: emguyant@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   A data solution centric blog focusing on the use and application of Microsoft Power Apps, Python Programming, and Data Science.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://ethanguyant.com" 
+url: "http://inquisitivenature.blog" 
 twitter_username: 
 github_username:  EMGuyant
 
